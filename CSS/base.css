@@ -1,0 +1,60 @@
+html {
+    font-family: sans-serif;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    margin: 0;
+}
+
+a{
+    background: transparent;
+}
+/* base padrao*/
+
+html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+}
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+/* links  */
+a{
+    text-decoration: none;
+    line-height: inherit;
+}
+a img {
+    border: none;
+}
+
+
+/*grid menu */
+.row {
+    width: 94%;
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+.row::before,
+.row::after {
+    content: "";
+    display: table;
+}
+.row::after {
+    clear: both;
+}
+.row .row {
+    width: auto;
+    max-width: none;
+    margin-left: -20px;
+    margin-right: -20px;
+}
+
+.col-twelve {
+    width: 100%;
+}
