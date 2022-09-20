@@ -305,7 +305,8 @@ painel de navegação
     font-size: 8.4rem;
     margin-left: auto;
     margin-right: auto;
-
+    max-width: 900px;
+    text-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
 }
 .intro-content .intro-position {
     font-family: "poppins-regular", serif;
