@@ -331,3 +331,25 @@ painel de navegação
 	padding: 0 14px 0 8px;
 	color: rgba(255, 255, 255, 0.3);
 }
+
+.intro-social {
+    display: block;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 7.2rem;
+    font-size: 3.3rem;
+    margin: 0;
+    padding: 0;
+}
+.intro-social li {
+    display: inline-block;
+    margin: 0 20px;
+    padding: 0;
+}
+.intro-social li a, .intro-social li a:visited {
+    color: #FFFFFF;
+}
+.intro-social li a:hover, .intro-social li a:focus {
+    color: #e8d632;
+}
