@@ -353,3 +353,25 @@ painel de navegação
 .intro-social li a:hover, .intro-social li a:focus {
     color: #e8d632;
 }
+
+/*rodape */
+
+footer {
+    padding-bottom: 3rem;
+    font-size: 1.4rem;
+    font-family: "poppins-regular", sans-serif;
+}
+footer .row {
+    max-width: 900px;
+}
+
+footer .copyright span {
+    display: inline-block;
+}
+
+footer .copyright span::after {
+    content: "|";
+    display: inline-block;
+    padding: 0 1rem 0 1.2rem;
+    color: rgba(255, 255, 255, 0.5);
+}
