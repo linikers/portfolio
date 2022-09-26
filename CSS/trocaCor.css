@@ -1,22 +1,56 @@
-.nav-center {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    background-color:aqua;
+:root{
+    --clr-primary-1: hsl(205, 86%, 17%);
+    --clr-white: #fff;
+    
+    --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    --spacing: 0.1rem;
 }
+
+ul {
+    list-style-type: none;
+    gap: 15px;
+}
+a {
+    text-decoration: none;
+}
+
 h4 {
     font-family: "poppins", sans-serif;
     color: rgb(14, 12, 12);
     
 }
 
-.nav-links {
-    font-family: "poppins", sans-serif;
-    color: blueviolet;
-    font-size: 1em;
+nav {
+    background: var(--clr-white);
+    height: 3rem;
+    display: grid;
+    align-items: center;
+    box-shadow: var(--dark-shadow);
+    padding: 10px;
 }
+.nav-center {
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    
+}
+
+.nav-links {
+    display: flex;
+    font-family: "poppins", sans-serif;
+}
+
+nav a {
+    text-transform: capitalize;
+    font-weight: 700;
+    color: var(--clr-primary-1);
+    letter-spacing: var (--spacing)
+    margin-right: 1rem;
+}
+
 
 .container {
     width: 100%;
@@ -26,6 +60,10 @@ h4 {
     align-items: center;
     justify-content: center;
 
+}
+.container h2 {
+    background-color: black;
+    color: white;
 }
 
 .btn {
@@ -41,6 +79,8 @@ h4 {
     color: #000;
     transition: all 0.3s;
     position: relative;
+    background: transparent;
+    color: black;
 }
 
 .cor {

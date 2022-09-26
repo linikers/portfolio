@@ -354,6 +354,29 @@ painel de navegação
     color: #e8d632;
 }
 
+/* Portifolio */
+
+#portifolio {
+    background: #313131;
+    background-size: cover;
+}
+
+#portifolio .overlay {
+    position: absolute;
+}
+
+#portifolio .section-intro {
+    margin-bottom: 2rem;
+}
+
+#portifolio .section-intro h1 {
+    color: #FFFFFF;
+}
+
+#portifolio .section-intro h5 {
+    color: #e8d632;
+}
+
 /*rodape */
 
 footer {
