@@ -1,4 +1,5 @@
 import Logo from "@/components/logo";
+import BoxTop from "@/components/top";
 import { Container } from "reactstrap";
 
 export default function Home() {
@@ -7,6 +8,9 @@ export default function Home() {
       <header className="py-4">
         <Logo />
       </header>
+      <main>
+        <BoxTop />
+      </main>
     </Container>
   );
 }
