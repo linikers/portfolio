@@ -13,6 +13,7 @@ import {
   UserCircleIcon,
   LifebuoyIcon,
 } from "@heroicons/react/24/outline";
+import profile from "../../public/profile.jpeg";
 
 export default function MenuUser() {
   return (
@@ -22,41 +23,38 @@ export default function MenuUser() {
           <Avatar
             variant="circular"
             alt="candice wu"
-            className="w-20 h-20"
-            src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"
+            className="w-16 h-16 rounded-full overflow-hidden"
+            src={
+              "https://live.staticflickr.com/65535/52926246098_451af8fed4_c.jpg"
+            }
           />
         </div>
       </MenuHandler>
-      <MenuList>
+      <MenuList className="z-10 text-white mr-6 p-2">
         <MenuItem className="flex items-center gap-2">
           <UserCircleIcon strokeWidth={2} className="h-4 w-4" />
           <Typography variant="small" className="font-normal">
-            My Profile
+            Perfil
           </Typography>
         </MenuItem>
         <MenuItem className="flex items-center gap-2">
           <Cog6ToothIcon strokeWidth={2} className="h-4 w-4" />
           <Typography variant="small" className="font-normal">
-            Edit Profile
+            Ferramentas
           </Typography>
         </MenuItem>
         <MenuItem className="flex items-center gap-2">
           <InboxArrowDownIcon strokeWidth={2} className="h-4 w-4" />
           <Typography variant="small" className="font-normal">
-            Inbox
+            Projetos
           </Typography>
         </MenuItem>
-        <MenuItem className="flex items-center gap-2">
-          <LifebuoyIcon strokeWidth={2} className="h-4 w-4" />
-          <Typography variant="small" className="font-normal">
-            Help
-          </Typography>
-        </MenuItem>
+
         <hr className="my-2 border-blue-gray-50" />
         <MenuItem className="flex items-center gap-2 ">
           <PowerIcon strokeWidth={2} className="h-4 w-4" />
           <Typography variant="small" className="font-normal">
-            Sign Out
+            Contato
           </Typography>
         </MenuItem>
       </MenuList>
