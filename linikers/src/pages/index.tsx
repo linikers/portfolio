@@ -5,12 +5,12 @@ import { Container } from "reactstrap";
 
 export default function Home() {
   return (
-    <Container className="bg-custom-base-0 min-h-screen flex flex-col items-center justify-center">
-      <div className="absolute top-0 right-0 z-10">
+    <Container className="min-h-screen flex flex-col items-center justify-center">
+      <div className="absolute top-0 right-0 z-10 m-6">
         <MenuUser />
-      </div>
-      <div className="z-10">
-        <Logo />
+        <div className="z-10 flex flex-col items-center justify-center">
+          <Logo />
+        </div>
       </div>
       <div className="z-0">
         <BoxTop />
