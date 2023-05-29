@@ -1,5 +1,6 @@
 import Logo from "@/components/logo";
 import MenuUser from "@/components/menu";
+import Social from "@/components/social";
 import BoxTop from "@/components/top";
 import { Container } from "reactstrap";
 
@@ -11,6 +12,9 @@ export default function Home() {
         <div className="z-10 flex flex-col items-center justify-center">
           <Logo />
         </div>
+      </div>
+      <div className="absolute bottom-0 z-10 flex flex-col items-end text-custom-base-1">
+        <Social />
       </div>
       <div className="z-0">
         <BoxTop />
