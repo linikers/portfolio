@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 interface MaquinaProps {
-  text: string;
+  lines: string[];
   delay?: number;
   hideCursor?: boolean;
 }
@@ -12,12 +12,13 @@ interface EscreverProps {
 }
 
 export default function MaquinaDeEscrever({
-  text,
+  lines,
   delay = 160,
   hideCursor = false,
 }: MaquinaProps) {
   const [textState, setTextState] = useState<string>("");
   const [mostrarCursor, setMostrarCursor] = useState(!hideCursor);
+  const [currentLineIndex, setCurrentLineIndex] = useState(0);
 
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
@@ -34,19 +35,24 @@ export default function MaquinaDeEscrever({
       }
     };
 
-    timeoutId = setTimeout(() => escrever({ texto: text }), delay);
+    const starWriting = () => {
+      const currentLine = lines[currentLineIndex];
+      timeoutId = setTimeout(() => escrever({ texto: currentLine }), delay);
+    };
+
+    timeoutId = setTimeout(starWriting, delay);
 
     return () => {
       clearTimeout(timeoutId);
     };
-  }, [text, delay, hideCursor]);
+  }, [lines, delay, hideCursor, currentLineIndex]);
 
   return (
     <>
       {textState}
       {mostrarCursor && (
         <span className="blink-cursor text-xl md:text-2xl ml-1 font-medium">
-          {""}
+          {"|"}
         </span>
       )}
     </>
