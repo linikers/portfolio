@@ -8,18 +8,31 @@ export default function Logo() {
     "Front-End Developer | E-commerce | SEO",
   ]);
   const [currentLine, setCurrentLine] = useState<number>(0);
+  const [showNextLine, setShowNextLine] = useState<boolean>(false);
+  const [typingComplete, setTypingComplete] = useState<boolean>(false);
 
   useEffect(() => {
     if (currentLine < lines.length) {
       const timeoutId = setTimeout(() => {
-        setCurrentLine((prevLine) => prevLine + 1);
-      }, 2000); // Delay entre cada linha (2000ms)
-
+        setShowNextLine(true);
+      }, 500);
       return () => {
         clearTimeout(timeoutId);
       };
     }
   }, [currentLine, lines]);
+
+  useEffect(() => {
+    if (showNextLine && currentLine < lines.length) {
+      const timeoutId = setTimeout(() => {
+        setShowNextLine(false);
+        setCurrentLine((prevLine) => prevLine + 1);
+      }, 3000);
+      return () => {
+        clearTimeout(timeoutId);
+      };
+    }
+  }, [showNextLine, currentLine, lines]);
 
   return (
     <figure className="font-source-code-pro font-bold text-lg p-2 m-1 text-center shadow-xl">
@@ -28,22 +41,34 @@ export default function Logo() {
           {index < currentLine ? (
             <>
               {index === 0 && (
-                <span className="text-custom-base-1 shadow-xl">
-                  <MaquinaDeEscrever lines={[line]} />
-                </span>
+                <span className="text-custom-base-1 shadow-xl">{line}</span>
               )}
               {index === 1 && (
                 <p className="text-custom-base-2 text-xl mt-2 mb-2 shadow-xl">
-                  <MaquinaDeEscrever lines={[line]} />
+                  {line}
                 </p>
               )}
-              {index === 2 && (
-                <span className="text-custom-red-1">
-                  <MaquinaDeEscrever lines={[line]} />
-                </span>
-              )}
+              {index === 2 && <span className="text-custom-red-1">{line}</span>}
             </>
-          ) : null}
+          ) : (
+            index === currentLine && (
+              <span
+                className={
+                  index === 0
+                    ? "text-custom-base-1 shadow-xl"
+                    : index === 1
+                    ? "text-custom-base-2 text-xl mt-2 mb-2 shadow-xl"
+                    : "text-custom-red-1"
+                }
+              >
+                <MaquinaDeEscrever
+                  lines={[line]}
+                  onComplete={() => setTypingComplete(true)}
+                />
+              </span>
+            )
+          )}
+          {}
         </div>
       ))}
     </figure>
