@@ -4,6 +4,7 @@ interface MaquinaProps {
   lines: string[];
   delay?: number;
   hideCursor?: boolean;
+  onComplete: () => void;
 }
 
 interface EscreverProps {
@@ -16,6 +17,7 @@ export default function MaquinaDeEscrever({
   lines,
   delay = 160,
   hideCursor = false,
+  onComplete,
 }: MaquinaProps) {
   const [textState, setTextState] = useState<string>("");
   const [mostrarCursor, setMostrarCursor] = useState(!hideCursor);
@@ -35,6 +37,7 @@ export default function MaquinaDeEscrever({
         setMostrarCursor(true);
         timeoutId = setTimeout(() => {
           setMostrarCursor(false);
+          onComplete(); // Chama a função onComplete após o efeito de digitação ser concluído
           setCurrentLine((prevline) => prevline + 1);
         }, delay);
       }
@@ -47,7 +50,7 @@ export default function MaquinaDeEscrever({
     return () => {
       clearTimeout(timeoutId);
     };
-  }, [lines, delay, hideCursor, currentLine]);
+  }, [lines, delay, hideCursor, currentLine, onComplete]);
 
   return (
     <>
