@@ -9,6 +9,7 @@ interface MaquinaProps {
 interface EscreverProps {
   texto: string;
   i?: number;
+  linha?: number;
 }
 
 export default function MaquinaDeEscrever({
@@ -18,41 +19,42 @@ export default function MaquinaDeEscrever({
 }: MaquinaProps) {
   const [textState, setTextState] = useState<string>("");
   const [mostrarCursor, setMostrarCursor] = useState(!hideCursor);
-  const [currentLineIndex, setCurrentLineIndex] = useState(0);
+  const [currentLine, setCurrentLine] = useState<number>(0);
 
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
 
-    const escrever = ({ texto, i = 0 }: EscreverProps) => {
+    const escrever = ({ texto, i = 0, linha = 0 }: EscreverProps) => {
       if (i < texto.length) {
-        setTextState(texto.slice(0, i + 1));
+        setTextState((prevText) => prevText + texto[i]);
         timeoutId = setTimeout(
-          () => escrever({ texto: texto, i: i + 1 }),
+          () => escrever({ texto, i: i + 1, linha }),
           delay
         );
       } else {
-        setMostrarCursor(!hideCursor);
+        setMostrarCursor(true);
+        timeoutId = setTimeout(() => {
+          setMostrarCursor(false);
+          setCurrentLine((prevline) => prevline + 1);
+        }, delay);
       }
     };
 
-    const starWriting = () => {
-      const currentLine = lines[currentLineIndex];
-      timeoutId = setTimeout(() => escrever({ texto: currentLine }), delay);
-    };
-
-    timeoutId = setTimeout(starWriting, delay);
+    if (currentLine < lines.length) {
+      escrever({ texto: lines[currentLine] });
+    }
 
     return () => {
       clearTimeout(timeoutId);
     };
-  }, [lines, delay, hideCursor, currentLineIndex]);
+  }, [lines, delay, hideCursor, currentLine]);
 
   return (
     <>
       {textState}
       {mostrarCursor && (
         <span className="blink-cursor text-xl md:text-2xl ml-1 font-medium">
-          {"|"}
+          |
         </span>
       )}
     </>
