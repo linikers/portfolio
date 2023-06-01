@@ -14,6 +14,7 @@ import {
   LifebuoyIcon,
 } from "@heroicons/react/24/outline";
 import profile from "../../public/profile.jpeg";
+import Link from "next/link";
 
 export default function MenuUser() {
   return (
@@ -32,10 +33,12 @@ export default function MenuUser() {
       </MenuHandler>
       <MenuList className="z-10 text-custom-base-0 mr-6 p-2 bg-custom-black-0">
         <MenuItem className="flex items-center gap-2">
-          <UserCircleIcon strokeWidth={2} className="h-4 w-4" />
-          <Typography variant="small" className="font-normal">
-            Perfil
-          </Typography>
+          <a href="perfil" className="flex items-center gap-2">
+            <UserCircleIcon strokeWidth={2} className="h-4 w-4" />
+            <Typography variant="small" className="font-normal">
+              Perfil
+            </Typography>
+          </a>
         </MenuItem>
         <MenuItem className="flex items-center gap-2">
           <Cog6ToothIcon strokeWidth={2} className="h-4 w-4" />
