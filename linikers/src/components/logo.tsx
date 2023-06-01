@@ -3,8 +3,8 @@ import MaquinaDeEscrever from "./maquinaEscrever";
 
 export default function Logo() {
   const [lines, setLines] = useState<string[]>([
-    "    Olá, clique no avatar para saber mais sobre",
-    "    LinikerS",
+    " Olá, clique no avatar para saber mais sobre",
+    " LinikerS",
     "Front-End Developer | E-commerce | SEO",
   ]);
   const [currentLine, setCurrentLine] = useState<number>(0);
@@ -15,7 +15,7 @@ export default function Logo() {
     if (currentLine < lines.length) {
       const timeoutId = setTimeout(() => {
         setShowNextLine(true);
-      }, 500);
+      }, 50);
       return () => {
         clearTimeout(timeoutId);
       };
@@ -27,7 +27,7 @@ export default function Logo() {
       const timeoutId = setTimeout(() => {
         setShowNextLine(false);
         setCurrentLine((prevLine) => prevLine + 1);
-      }, 3000);
+      }, 9000);
       return () => {
         clearTimeout(timeoutId);
       };
@@ -35,29 +35,33 @@ export default function Logo() {
   }, [showNextLine, currentLine, lines]);
 
   return (
-    <figure className="font-source-code-pro font-bold text-lg p-2 m-1 text-center shadow-xl">
+    <figure className="font-source-code-pro font-bold text-lg p-2 m-1 text-center md:text-xl lg:text-2xl">
       {lines.map((line, index) => (
         <div key={index}>
           {index < currentLine ? (
             <>
               {index === 0 && (
-                <span className="text-custom-base-1 shadow-xl">{line}</span>
+                <span className="text-custom-base-1 text-lg md:text-xl lg:text-2xl">
+                  {line}
+                </span>
               )}
               {index === 1 && (
-                <p className="text-custom-base-2 text-xl mt-2 mb-2 shadow-xl">
-                  {line}
-                </p>
+                <p className="text-custom-base-2 text-2xl mt-2 mb-2 ">{line}</p>
               )}
-              {index === 2 && <span className="text-custom-red-1">{line}</span>}
+              {index === 2 && (
+                <span className="text-custom-red-1 text-lg md:text-xl lg:text-2xl">
+                  {line}
+                </span>
+              )}
             </>
           ) : (
             index === currentLine && (
               <span
                 className={
                   index === 0
-                    ? "text-custom-base-1 shadow-xl"
+                    ? "text-custom-base-1"
                     : index === 1
-                    ? "text-custom-base-2 text-xl mt-2 mb-2 shadow-xl"
+                    ? "text-custom-base-2 text-xl mt-2 mb-2"
                     : "text-custom-red-1"
                 }
               >
