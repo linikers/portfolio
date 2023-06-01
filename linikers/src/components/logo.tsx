@@ -3,8 +3,8 @@ import MaquinaDeEscrever from "./maquinaEscrever";
 
 export default function Logo() {
   const [lines, setLines] = useState<string[]>([
-    "Olá, clique no avatar para saber mais sobre",
-    "LinikerS",
+    "    Olá, clique no avatar para saber mais sobre",
+    "    LinikerS",
     "Front-End Developer | E-commerce | SEO",
   ]);
   const [currentLine, setCurrentLine] = useState<number>(0);
@@ -63,12 +63,17 @@ export default function Logo() {
               >
                 <MaquinaDeEscrever
                   lines={[line]}
-                  onComplete={() => setTypingComplete(true)}
+                  onComplete={() => {
+                    if (currentLine < lines.length - 1) {
+                      setCurrentLine((prevLine) => prevLine + 1);
+                    } else {
+                      setTypingComplete(true);
+                    }
+                  }}
                 />
               </span>
             )
           )}
-          {}
         </div>
       ))}
     </figure>
