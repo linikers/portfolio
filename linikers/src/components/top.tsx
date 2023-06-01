@@ -12,6 +12,7 @@ export default function BoxTop() {
           layout="fill"
           objectFit="cover"
           quality={100}
+          className="brightness-75"
         />
       </div>
     </Container>

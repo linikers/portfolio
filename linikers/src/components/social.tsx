@@ -12,21 +12,21 @@ export default function Social() {
         target="_blank"
         className="p-2 md:p-4"
       >
-        <FontAwesomeIcon icon={faGithub} />
+        <FontAwesomeIcon icon={faGithub} className="text-lg md:text-2xl" />
       </a>
       <a
         href="https://instagram.com/linikers"
         target="_blank"
         className="p-2 md:p-4"
       >
-        <FontAwesomeIcon icon={faInstagram} />
+        <FontAwesomeIcon icon={faInstagram} className="text-lg md:text-2xl" />
       </a>
       <a
         href="https://www.linkedin.com/in/linikers/"
         target="_blank"
         className="p-2 md:p-4"
       >
-        <FontAwesomeIcon icon={faLinkedin} />
+        <FontAwesomeIcon icon={faLinkedin} className="text-lg md:text-2xl" />
       </a>
     </div>
   );

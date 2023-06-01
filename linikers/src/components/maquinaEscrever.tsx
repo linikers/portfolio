@@ -56,7 +56,7 @@ export default function MaquinaDeEscrever({
     <>
       {textState}
       {mostrarCursor && (
-        <span className="blink-cursor text-xl md:text-2xl ml-1 font-medium">
+        <span className="blink-cursor text-xl md:text-2xl ml-1 font-medium ">
           |
         </span>
       )}
