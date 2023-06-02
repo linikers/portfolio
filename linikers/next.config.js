@@ -5,6 +5,7 @@ const nextConfig = {
 const path = require("path");
 module.exports = {
   ...nextConfig,
+
   webpack: (config, { dev, isServer }) => {
     if (!dev && !isServer) {
       config.resolve.alias["@/components"] = path.join(
