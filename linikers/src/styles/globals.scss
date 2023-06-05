@@ -6,7 +6,6 @@
   --custom-base-0: #d8ccc8;
   --custom-base-1: #f1b940;
   --custom-base-2: #f44a66;
-
   --custom-black-0: #302a2b;
   --custom-red-1: #d6474d;
   --custom-blue-1: #699fcb;
@@ -38,4 +37,15 @@
   filter: brightness(1.5);
   text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
   transform-style: preserve-3d;
+}
+
+.background-image {
+  background: linear-gradient(
+    to right,
+    var(--custom-base-1),
+    var(--custom-base-2)
+  );
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
