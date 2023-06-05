@@ -1,10 +1,12 @@
 import { Container, ListGroup } from "reactstrap";
 import { motion } from "framer-motion";
 import { FaReact, FaJs, FaCode, FaBootstrap } from "react-icons/fa";
+import MenuUser from "@/components/menu";
 
 export default function Ferramentas() {
   return (
     <Container className="h-screen bg-black">
+      <MenuUser />
       <ListGroup className="h-full flex flex-col justify-center items-center">
         <div className="flex items-center gap-4 text-white text-3xl">
           <motion.div
