@@ -33,7 +33,7 @@ export default function MenuUser() {
       </MenuHandler>
       <MenuList className="z-10 text-custom-base-0 mr-6 p-2 bg-custom-black-0">
         <MenuItem className="flex items-center gap-2">
-          <a href="profile" className="flex items-center gap-2">
+          <a href="perfil" className="flex items-center gap-2">
             <UserCircleIcon strokeWidth={2} className="h-4 w-4" />
             <Typography variant="small" className="font-normal">
               Perfil
@@ -41,16 +41,20 @@ export default function MenuUser() {
           </a>
         </MenuItem>
         <MenuItem className="flex items-center gap-2">
-          <Cog6ToothIcon strokeWidth={2} className="h-4 w-4" />
-          <Typography variant="small" className="font-normal">
-            Ferramentas
-          </Typography>
+          <a href="ferramentas" className="flex items-center gap-2">
+            <Cog6ToothIcon strokeWidth={2} className="h-4 w-4" />
+            <Typography variant="small" className="font-normal">
+              Ferramentas
+            </Typography>
+          </a>
         </MenuItem>
         <MenuItem className="flex items-center gap-2">
-          <InboxArrowDownIcon strokeWidth={2} className="h-4 w-4" />
-          <Typography variant="small" className="font-normal">
-            Projetos
-          </Typography>
+          <a href="projetos" className=" flex items-center gap-2">
+            <InboxArrowDownIcon strokeWidth={2} className="h-4 w-4" />
+            <Typography variant="small" className="font-normal">
+              Projetos
+            </Typography>
+          </a>
         </MenuItem>
 
         <hr className="my-2 border-blue-gray-50" />
