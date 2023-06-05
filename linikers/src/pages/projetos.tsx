@@ -16,10 +16,10 @@ import MenuUser from "@/components/menu";
 export default function Projetos() {
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
   return (
-    <Container className=" bg-custom-black-0">
+    <Container className=" bg-custom-black-0 flex flex-col items-center">
       <MenuUser />
 
-      <ListGroup className="flex flex-wrap">
+      <ListGroup className="flex flex-wrap justify-center">
         <Card
           style={{
             width: "18rem",
@@ -28,8 +28,8 @@ export default function Projetos() {
           <CardPortfolio
             imgUrl={`${basePath}/rmtumbl.png`}
             altText="RICK  and MORTY"
-            title="RB Nail Design"
-            subTitle=" Rafa Bach Nails"
+            title="Rick and Morty"
+            subTitle="Utilizando API"
             description="Nesse Projeto foi usado Next.Js, tailwind, Sass, typescript e bootstrap com reactstrap, utilizando API Rick e Morty
         com  opção de busca e opção de favoritos."
             url="https://rick-morty-ecru.vercel.app/"
@@ -59,9 +59,9 @@ export default function Projetos() {
           <CardPortfolio
             imgUrl={`${basePath}/khtumbl.png`}
             altText="rb nails"
-            title="RB Nail Design"
-            subTitle=" Rafa Bach Nails"
-            description="Nesse Projeto foi usado Next.Js, tailwind, Sass, typescript e bootstrap com reactstrap"
+            title="Kenzie Hub"
+            subTitle="Login e senha "
+            description="Nesse Projeto foi usado React, typescript com login e senha e proteção de rotas criadas manualmente"
             url="https://n-delta-lake.vercel.app/"
           />
         </Card>
@@ -73,10 +73,10 @@ export default function Projetos() {
         >
           <CardPortfolio
             imgUrl={`${basePath}/vartumbl.png`}
-            altText="rb nails"
-            title="RB Nail Design"
-            subTitle=" Rafa Bach Nails"
-            description="Nesse Projeto foi usado Next.Js, tailwind, Sass, typescript e bootstrap com reactstrap"
+            altText="varify"
+            title="Varify"
+            subTitle="Utilização lib de Cores"
+            description="Nesse Projeto foi usado React, typescript com login e senha sem verificação e tratamento"
             url="https://varify.vercel.app/"
           />
         </Card>
