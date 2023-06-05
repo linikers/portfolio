@@ -1,6 +1,7 @@
 import { useState } from "react";
 import MaquinaDeEscrever from "../components/maquinaEscrever";
 import ProfileTop from "../components/topProfile";
+import MenuUser from "@/components/menu";
 
 export default function Perfil() {
   const [typingComplete, setTypingComplete] = useState(false);
@@ -8,7 +9,10 @@ export default function Perfil() {
     setTypingComplete(true);
   };
   return (
-    <div className="">
+    <div className="z-0">
+      <div className=" absolute z-50">
+        <MenuUser />
+      </div>
       <div className="flex flex-col items-center justify-center relative z-10 text-custom-red-1 text-2xl bg-base-0 mt-8">
         <MaquinaDeEscrever
           lines={["Seja bem vindo!"]}

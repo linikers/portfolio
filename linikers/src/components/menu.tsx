@@ -20,7 +20,7 @@ export default function MenuUser() {
   return (
     <Menu>
       <MenuHandler>
-        <div className="cursor-pointer">
+        <div className="cursor-pointer ml-4">
           <Avatar
             variant="circular"
             alt="candice wu"
