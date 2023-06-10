@@ -80,6 +80,51 @@ export default function Projetos() {
             url="https://varify.vercel.app/"
           />
         </Card>
+
+        <Card
+          style={{
+            width: "18rem",
+          }}
+        >
+          <CardPortfolio
+            imgUrl={`${basePath}/pktumbl.png`}
+            altText="pokemon"
+            title="Pokemon"
+            subTitle="API Pokemon"
+            description="Nesse Projeto foi usado React, typescript com login e senha sem verificação e tratamento"
+            url="https://linikers.github.io/pokemonAPI-v2/"
+          />
+        </Card>
+
+        <Card
+          style={{
+            width: "18rem",
+          }}
+        >
+          <CardPortfolio
+            imgUrl={`${basePath}/dntumbl.png`}
+            altText="dianoite"
+            title="Dia e Noite"
+            subTitle="JS com data"
+            description="Projeto utilizando animações feitas com CSS e javascript que de acordo com a hora ele mostra se é dia ou noite."
+            url="https://linikers.github.io/DiaNoite/"
+          />
+        </Card>
+
+        <Card
+          style={{
+            width: "18rem",
+          }}
+        >
+          <CardPortfolio
+            imgUrl={`${basePath}/twtumbl.png`}
+            altText="Twniker"
+            title="Twiniker"
+            subTitle="layout basico"
+            description="Esse foi um projeto básico com CSS, HTML5 e javascript puro."
+            url="https://linikers.github.io/Twiniker/"
+          />
+        </Card>
       </ListGroup>
     </Container>
   );
