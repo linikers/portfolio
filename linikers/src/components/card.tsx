@@ -7,7 +7,6 @@ import {
   CardTitle,
 } from "reactstrap";
 import Image from "next/image";
-import rickmorty from "../../public/rmtumbl.png";
 import Link from "next/link";
 
 interface iCardPortfilioProps {
@@ -18,6 +17,7 @@ interface iCardPortfilioProps {
   description: string;
   url: string;
 }
+
 export default function CardPortfolio({
   imgUrl,
   altText,
@@ -27,7 +27,7 @@ export default function CardPortfolio({
   url,
 }: iCardPortfilioProps) {
   return (
-    <Card className="m-4 border border-custom-base-1 rounded-xl">
+    <Card className="card-image-wrapper m-4 border border-custom-base-1 rounded-xl">
       <Image
         src={imgUrl}
         alt={altText}
@@ -36,7 +36,7 @@ export default function CardPortfolio({
         height={280}
         className="rounded-xl"
       />
-      <CardBody className="text-center">
+      <CardBody className="text-center d-flex flex-column">
         <CardTitle tag="h5" className="text-custom-base-2 text-xl mt-4">
           {title}
         </CardTitle>
@@ -47,11 +47,14 @@ export default function CardPortfolio({
           {subTitle}
         </CardSubtitle>
         <CardText className="text-custom-base-0">{description}</CardText>
-        <Link href={url} target="_blank">
-          <Button className="bg-custom-base-1 btn btn-link rounded-xl px-4 py-2 m-2">
-            Acessar
-          </Button>
-        </Link>
+
+        <div className="mt-auto">
+          <Link href={url} target="_blank" className="relative bottom-0">
+            <Button className="bg-custom-base-1 btn btn-link rounded-xl px-4 py-2 m-2">
+              Acessar
+            </Button>
+          </Link>
+        </div>
       </CardBody>
     </Card>
   );
