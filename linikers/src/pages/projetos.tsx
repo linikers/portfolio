@@ -125,6 +125,21 @@ export default function Projetos() {
             url="https://linikers.github.io/Twiniker/"
           />
         </Card>
+
+        <Card
+          style={{
+            width: "18rem",
+          }}
+        >
+          <CardPortfolio
+            imgUrl={`${basePath}/twtumbl.png`}
+            altText="Geek Commerce"
+            title="E-commerce"
+            subTitle="layout basico"
+            description="Esse foi um projeto básico com CSS, HTML5 e javascript puro."
+            url="https://linikers.github.io/Geek-Commerce/"
+          />
+        </Card>
       </ListGroup>
     </Container>
   );
