@@ -49,8 +49,8 @@ export default function CardPortfolio({
         <CardText className="text-custom-base-0">{description}</CardText>
 
         <div className="mt-auto">
-          <Link href={url} target="_blank" className="relative bottom-0">
-            <Button className="bg-custom-base-1 btn btn-link rounded-xl px-4 py-2 m-2">
+          <Link href={url} target="_blank" className="">
+            <Button className="bg-custom-base-1 btn btn-link rounded-xl px-4 py-2 m-2 mb-1">
               Acessar
             </Button>
           </Link>
