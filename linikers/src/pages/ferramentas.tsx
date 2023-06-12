@@ -5,37 +5,77 @@ import {
   FaJs,
   FaCode,
   FaBootstrap,
-  FaJava,
   FaJsSquare,
+  FaHtml5,
+  FaCss3,
+  FaTrophy,
 } from "react-icons/fa";
+import { SiNextdotjs, SiTypescript } from "react-icons/si";
+import { BsBootstrap } from "react-icons/bs";
+import { IoLogoGithub } from "react-icons/io5";
+import { HiCode } from "react-icons/hi";
 import MenuUser from "@/components/menu";
 
 export default function Ferramentas() {
   return (
-    <Container className="h-screen bg-black">
+    <Container className="h-screen bg-black flex flex-col justify-center items-center">
       <MenuUser />
-      <ListGroup className="h-full flex flex-col justify-start items-center">
-        <div className="flex gap-2 text-white text-3xl ">
+      <ListGroup
+        className="h-full flex flex-col justify-center "
+        style={{ maxWidth: 400 }}
+      >
+        <div className="flex  gap-2 text-white justify-around text-3xl">
+          <motion.div
+            initial={{ filter: "blur(0px)" }}
+            whileHover={{ filter: "blur(4px)" }}
+            whileTap={{ filter: "blur(8px)" }}
+          >
+            <FaHtml5 className="mr-2 text-3xl" />
+          </motion.div>
+          <span className="text-xl">HTML5</span>
+        </div>
+
+        <div className="flex gap-2 text-white text-3xl justify-around mt-2">
           <motion.div
             style={{ display: "inline-block", transformOrigin: "center" }}
             animate={{
-              rotate: [0, 25, 0, -25, 0],
+              rotate: [0, 15, 0, -15, 0],
             }}
             exit={{
-              rotate: 0,
+              rotate: 1,
             }}
             transition={{
-              duration: 2,
+              duration: 4,
               repeat: Infinity,
               ease: "linear",
             }}
           >
-            <FaJs className="mr-2" />
+            <FaCss3 className="mr-2 text-3xl" />
           </motion.div>
-          <span>JavaScript</span>
+          <span className="text-xl">CSS3</span>
         </div>
 
-        <div className="flex gap-2 text-white text-3xl ">
+        <div className="flex gap-2 text-white text-3xl justify-around mt-2">
+          <motion.div
+            style={{ display: "inline-block", transformOrigin: "center" }}
+            animate={{
+              rotate: [0.6, 6.2, 0.6],
+            }}
+            exit={{
+              scale: 6.2,
+            }}
+            transition={{
+              duration: 4.4,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          >
+            <FaJs className="mr-2 text-3xl" />
+          </motion.div>
+          <span className="text-xl">JavaScript</span>
+        </div>
+
+        <div className="flex gap-2 text-white text-3xl justify-around mt-2">
           <motion.div
             style={{ display: "inline-block", transformOrigin: "center" }}
             animate={{
@@ -45,17 +85,37 @@ export default function Ferramentas() {
               rotate: 0,
             }}
             transition={{
+              duration: 5,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+          >
+            <FaReact className="mr-2 text-3xl" />
+          </motion.div>
+          <span className="text-xl">React</span>
+        </div>
+
+        <div className="flex gap-2 text-white text-3xl justify-around mt-2">
+          <motion.div
+            style={{ display: "inline-block", transformOrigin: "center" }}
+            animate={{
+              rotate: [0, 25, -25, 0],
+            }}
+            exit={{
+              rotate: 0,
+            }}
+            transition={{
               duration: 2,
               repeat: Infinity,
               ease: "linear",
             }}
           >
-            <FaReact className="mr-2" />
+            <SiTypescript className="mr-2 text-3xl" />
           </motion.div>
-          <span>React</span>
+          <span className="text-xl">Typescript</span>
         </div>
 
-        <div className="flex gap-2 text-white text-3xl ">
+        <div className="flex gap-2 text-white text-3xl justify-around mt-2 ">
           <motion.div
             style={{ display: "inline-block", transformOrigin: "center" }}
             animate={{
@@ -70,12 +130,12 @@ export default function Ferramentas() {
               ease: "linear",
             }}
           >
-            <FaJsSquare className="mr-2" />
+            <SiNextdotjs className="mr-2 text-3xl" />
           </motion.div>
-          <span>Next</span>
+          <span className="text-xl">Next</span>
         </div>
 
-        <div className="flex gap-2 text-white text-3xl ">
+        <div className="flex gap-2 text-white text-3xl justify-around mt-2 ">
           <motion.div
             style={{ display: "inline-block", transformOrigin: "center" }}
             animate={{
@@ -90,12 +150,12 @@ export default function Ferramentas() {
               ease: "linear",
             }}
           >
-            <FaCode className="mr-2" />
+            <HiCode className="mr-2 text-3xl" />
           </motion.div>
-          <span>Tailwind</span>
+          <span className="text-xl">Tailwind</span>
         </div>
 
-        <div className="flex gap-2 text-white text-3xl ">
+        <div className="flex gap-2 text-white text-3xl justify-around mt-2 ">
           <motion.div
             style={{ display: "inline-block", transformOrigin: "center" }}
             animate={{
@@ -110,9 +170,29 @@ export default function Ferramentas() {
               ease: "linear",
             }}
           >
-            <FaBootstrap className="mr-2" />
+            <BsBootstrap className="mr-2 text-3xl" />
           </motion.div>
-          <span>Bootstrap</span>
+          <span className="text-xl">Bootstrap</span>
+        </div>
+
+        <div className="flex gap-2 text-white text-3xl justify-around mt-2 ">
+          <motion.div
+            style={{ display: "inline-block", transformOrigin: "center" }}
+            animate={{
+              rotate: [0, 25, 0, -25, 0],
+            }}
+            exit={{
+              rotate: 0,
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+          >
+            <IoLogoGithub className="mr-2 text-3xl" />
+          </motion.div>
+          <span className="text-xl">Git</span>
         </div>
       </ListGroup>
     </Container>
