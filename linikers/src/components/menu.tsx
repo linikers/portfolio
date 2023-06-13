@@ -59,10 +59,12 @@ export default function MenuUser() {
 
         <hr className="my-2 border-blue-gray-50" />
         <MenuItem className="flex items-center gap-2 ">
-          <PowerIcon strokeWidth={2} className="h-4 w-4" />
-          <Typography variant="small" className="font-normal">
-            Contato
-          </Typography>
+          <a href="contato" className="flex items-center gap-2">
+            <PowerIcon strokeWidth={2} className="h-4 w-4" />
+            <Typography variant="small" className="font-normal">
+              Contato
+            </Typography>
+          </a>
         </MenuItem>
       </MenuList>
     </Menu>
