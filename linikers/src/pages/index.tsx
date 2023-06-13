@@ -9,14 +9,14 @@ export default function Home() {
     <Container className="min-h-screen flex flex-col items-center justify-center">
       <div className="absolute z-10 flex flex-col items-center">
         <MenuUser />
-        <div className="z-10 flex flex-col items-center justify-center">
+        <div className=" z-10 flex flex-col items-center justify-center">
           <Logo />
         </div>
       </div>
       <div className="absolute bottom-0 z-10 flex flex-col items-end text-custom-base-1">
         <Social />
       </div>
-      <div className="z-0">
+      <div className="z-1">
         <BoxTop />
       </div>
     </Container>
