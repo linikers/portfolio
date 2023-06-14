@@ -3,17 +3,40 @@ import BoxTop from "@/components/top";
 import { IoLogoWhatsapp } from "react-icons/io5";
 import { Container } from "reactstrap";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 export default function Contato() {
+  const [isShock, setIsShock] = useState(false);
+
+  useEffect(() => {
+    setIsShock(true);
+  }, []);
+
+  const shockVar = {
+    shocked: {
+      skewX: [-20, 0, 20, 0],
+      skewY: [10, 0, -10, 0],
+      transition: {
+        duration: 0.2,
+        repeat: 4,
+        ease: "easeInOut",
+      },
+    },
+  };
+
   return (
     <Container className="flex flex-col justify-center items-center mt-20">
       <div className="absolute inset-0 z-0">
         <BoxTop />
       </div>
       <div className="relative z-1 flex flex-col justify-center items-center">
-        <span className="text-custom-base-2 text-xl mt-6">
+        <motion.span
+          className="text-custom-base-2 text-xl mt-6"
+          variants={shockVar}
+          animate={isShock ? "shocked" : "initial"}
+        >
           Entre em contato com{" "}
-        </span>
+        </motion.span>
         <p className="text-custom-blue-1 text-5xl mt-6 text-stroke text-stroke-xl">
           Liniker&#39;S
         </p>

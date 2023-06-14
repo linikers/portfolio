@@ -3,9 +3,9 @@ import MaquinaDeEscrever from "./maquinaEscrever";
 
 export default function Logo() {
   const [lines, setLines] = useState<string[]>([
-    " Olá, clique no avatar para saber mais sobre",
-    " LinikerS",
-    "Front-End Developer | E-commerce | SEO",
+    "   Olá, clique no avatar para saber mais sobre",
+    "  LinikerS",
+    " Front-End Developer | E-commerce | SEO",
   ]);
   const [currentLine, setCurrentLine] = useState<number>(0);
   const [showNextLine, setShowNextLine] = useState<boolean>(false);
