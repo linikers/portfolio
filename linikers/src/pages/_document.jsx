@@ -5,6 +5,7 @@ export default class MyDocument extends Document {
     return (
       <Html lang="Pt-Br">
         <Head>
+          <link rel="icon" href="../../public/favicon.png" />
           <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"

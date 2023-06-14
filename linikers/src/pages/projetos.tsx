@@ -57,6 +57,20 @@ export default function Projetos() {
           }}
         >
           <CardPortfolio
+            imgUrl={`${basePath}/lftumbl.png`}
+            altText="Linkfy"
+            title="Linkfy"
+            subTitle="Spotify"
+            description="Esse foi um projet com CSS, HTML5 e javascript puro utilizando a API do deezer e layout baseado no Spotify. Totalmente funcional"
+            url="https://linikers.github.io/linkfy/"
+          />
+        </Card>
+        <Card
+          style={{
+            width: "18rem",
+          }}
+        >
+          <CardPortfolio
             imgUrl={`${basePath}/khtumbl.png`}
             altText="rb nails"
             title="Kenzie Hub"
@@ -132,10 +146,10 @@ export default function Projetos() {
           }}
         >
           <CardPortfolio
-            imgUrl={`${basePath}/twtumbl.png`}
+            imgUrl={`${basePath}/gctumbl.png`}
             altText="Geek Commerce"
             title="E-commerce"
-            subTitle="layout basico"
+            subTitle="layout basico com carrinho de compras"
             description="Esse foi um projeto básico com CSS, HTML5 e javascript puro."
             url="https://linikers.github.io/Geek-Commerce/"
           />
