@@ -14,12 +14,24 @@ export default function Contato() {
 
   const shockVar = {
     shocked: {
-      skewX: [-20, 0, 20, 0],
-      skewY: [10, 0, -10, 0],
+      scale: [1, 1.1, 0.9, 1],
+      rotate: [-1, 1, -1, 0],
       transition: {
-        duration: 0.2,
+        duration: 0.5,
         repeat: 4,
         ease: "easeInOut",
+      },
+    },
+  };
+
+  const fadeVar = {
+    initial: {
+      opacity: 0,
+    },
+    animate: {
+      opacity: 1,
+      transition: {
+        duration: 0.9,
       },
     },
   };
@@ -32,8 +44,9 @@ export default function Contato() {
       <div className="relative z-1 flex flex-col justify-center items-center">
         <motion.span
           className="text-custom-base-2 text-xl mt-6"
-          variants={shockVar}
-          animate={isShock ? "shocked" : "initial"}
+          variants={fadeVar}
+          initial="initial"
+          animate="animate"
         >
           Entre em contato com{" "}
         </motion.span>
