@@ -14,7 +14,7 @@ export default function Contato() {
         <span className="text-custom-base-2 text-xl mt-6">
           Entre em contato com{" "}
         </span>
-        <p className="text-custom-blue-1 text-4xl mt-6 text-stroke text-stroke-xl">
+        <p className="text-custom-blue-1 text-5xl mt-6 text-stroke text-stroke-xl">
           Liniker&#39;S
         </p>
         <span>
@@ -25,6 +25,7 @@ export default function Contato() {
             <motion.div
               whileHover={{ filter: "blur(2px) brightness(1.8)" }}
               whileTap={{ filter: "blur(8px) brightness(0.8)" }}
+              className="transition-all"
             >
               <IoLogoWhatsapp className="text-custom-base-0 text-4xl m-4 shadow-xl" />
             </motion.div>
