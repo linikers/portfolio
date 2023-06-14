@@ -6,19 +6,12 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 export default function Contato() {
-  const [isShock, setIsShock] = useState(false);
-
-  useEffect(() => {
-    setIsShock(true);
-  }, []);
-
-  const shockVar = {
-    shocked: {
-      scale: [1, 1.1, 0.9, 1],
-      rotate: [-1, 1, -1, 0],
+  const pulseVar = {
+    pulse: {
+      scale: [0.9, 1, 0.9],
       transition: {
-        duration: 0.5,
-        repeat: 4,
+        duration: 0.6,
+        repeat: 1,
         ease: "easeInOut",
       },
     },
@@ -50,9 +43,14 @@ export default function Contato() {
         >
           Entre em contato com{" "}
         </motion.span>
-        <p className="text-custom-blue-1 text-5xl mt-6 text-stroke text-stroke-xl">
+        <motion.p
+          className="text-custom-blue-1 text-5xl mt-6 text-stroke text-stroke-xl"
+          variants={fadeVar}
+          initial="initial"
+          animate="animate"
+        >
           Liniker&#39;S
-        </p>
+        </motion.p>
         <span>
           <a
             href="https://wa.me/5544984198075?text=Oi%20Liniker%20vi%20seu%20portfolio"
