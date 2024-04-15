@@ -4,10 +4,10 @@
 
 :root {
   --custom-base-0: #d8ccc8;
-  --custom-base-1: #f1b940;
-  --custom-base-2: #f44a66;
+  --custom-base-1: #c7ff3a;
+  --custom-base-2: #3c0675;
   --custom-black-0: #302a2b;
-  --custom-red-1: #d6474d;
+  --custom-red-1: #ff9f0d;
   --custom-blue-1: #699fcb;
 }
 
@@ -52,4 +52,11 @@
 .card-image-wrapper {
   height: 420px;
   overflow: hidden;
+}
+
+.text-shadow-base-1 {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+.text-shadow-base-2 {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
