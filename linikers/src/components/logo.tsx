@@ -5,7 +5,7 @@ export default function Logo() {
   const [lines, setLines] = useState<string[]>([
     "   Olá, clique no avatar para saber mais sobre",
     "  LinikerS",
-    " Front-End Developer | E-commerce | SEO",
+    " Web Developer - TS | Js | NextJs",
   ]);
   const [currentLine, setCurrentLine] = useState<number>(0);
   const [showNextLine, setShowNextLine] = useState<boolean>(false);
@@ -35,21 +35,21 @@ export default function Logo() {
   }, [showNextLine, currentLine, lines]);
 
   return (
-    <figure className="font-source-code-pro font-bold text-lg p-2 m-1 text-center md:text-xl lg:text-2xl">
+    <figure className="font-source-code-pro font-bold text-lg p-2 m-1 text-center md:text-xl lg:text-2xl ">
       {lines.map((line, index) => (
         <div key={index}>
           {index < currentLine ? (
             <>
               {index === 0 && (
-                <span className="text-custom-base-1 text-lg md:text-xl lg:text-2xl">
+                <span className="text-custom-base-1 text-lg md:text-xl lg:text-2xl text-shadow-base-1">
                   {line}
                 </span>
               )}
               {index === 1 && (
-                <p className="text-custom-base-2 text-2xl mt-2 mb-2 ">{line}</p>
+                <p className="text-custom-base-2 text-2xl mt-2 mb-2 text-shadow-base-2">{line}</p>
               )}
               {index === 2 && (
-                <span className="text-custom-red-1 text-lg md:text-xl lg:text-2xl">
+                <span className="text-custom-red-1 text-lg md:text-xl lg:text-2xl text-shadow-base-1">
                   {line}
                 </span>
               )}
