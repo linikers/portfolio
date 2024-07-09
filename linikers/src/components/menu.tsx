@@ -26,7 +26,7 @@ export default function MenuUser() {
             alt="candice wu"
             className="w-16 h-16 rounded-full overflow-hidden"
             src={
-              "https://live.staticflickr.com/65535/52926246098_451af8fed4_c.jpg"
+              "https://live.staticflickr.com/65535/53846668019_bdd38aef38_n.jpg"
             }
           />
         </div>
