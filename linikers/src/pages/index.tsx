@@ -2,23 +2,57 @@ import Logo from "@/components/logo";
 import MenuUser from "@/components/menu";
 import Social from "@/components/social";
 import BoxTop from "@/components/top";
-import { Container } from "reactstrap";
+import { Box, Container } from "@mui/material";
 
 export default function Home() {
-  return (
-    <Container className="min-h-screen flex flex-col items-center justify-center">
-      <div className="absolute z-10 flex flex-col items-center">
-        <MenuUser />
-        <div className=" z-10 flex flex-col items-center justify-center">
-          <Logo />
-        </div>
-      </div>
-      <div className="absolute bottom-0 z-10 flex flex-col items-end text-custom-base-1">
-        <Social />
-      </div>
-      <div className="z-1">
-        <BoxTop />
-      </div>
-    </Container>
-  );
+
+    return (
+        <Container
+            maxWidth='sm'
+            sx={{
+                minHeight: '100vh',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'relative',
+            }}
+        >
+            <Box
+                sx={{
+                    position: 'absolute',
+                    zIndex: 10,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                }}
+            >
+                <MenuUser />
+                <Box
+                    sx={{
+                        zIndex: 10,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                    }}
+                >
+                    <Logo />
+                </Box>
+            </Box>
+            <Box
+                sx={{ 
+                    position: 'absolute', 
+                    bottom: 0, 
+                    zIndex: 10, 
+                    display: 'flex', 
+                    flexDirection: 'column',
+                    alignItems: 'flex-end', 
+                    color: 'text.primary' }}
+
+            >
+                <Social />
+            </Box>
+            <Box sx={{ zIndex: 1 }}>
+                <BoxTop />
+            </Box>
+        </Container>
+    )
 }
