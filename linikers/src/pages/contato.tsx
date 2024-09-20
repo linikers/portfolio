@@ -1,7 +1,9 @@
 import Social from "@/components/social";
 import BoxTop from "@/components/top";
-import { IoLogoWhatsapp } from "react-icons/io5";
-import { Container } from "reactstrap";
+import { WhatsApp } from "@mui/icons-material";
+import { Container } from "@mui/material";
+// import { IoLogoWhatsapp } from "react-icons/io5";
+// import { Container } from "reactstrap";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
@@ -61,7 +63,7 @@ export default function Contato() {
               whileTap={{ filter: "blur(8px) brightness(0.8)" }}
               className="transition-all"
             >
-              <IoLogoWhatsapp className="text-custom-base-0 text-4xl m-4 shadow-xl" />
+              <WhatsApp />
             </motion.div>
           </a>
         </span>

@@ -8,12 +8,13 @@ export default function Home() {
 
     return (
         <Container
-            maxWidth='sm'
             sx={{
-                minHeight: '100vh',
+                // minHeight: '100vh',
                 display: 'flex',
                 flexDirection: 'column',
-                justifyContent: 'relative',
+                justifyContent: 'center',
+                alignContent: 'center',
+                // alignItems: 'center',
             }}
         >
             <Box
@@ -23,6 +24,8 @@ export default function Home() {
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
+                    alignContent: 'center',
+                    justifyContent: 'center',
                 }}
             >
                 <MenuUser />
