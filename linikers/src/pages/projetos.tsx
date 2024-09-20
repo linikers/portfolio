@@ -1,17 +1,18 @@
-import {
-  Button,
-  Card,
-  CardBody,
-  CardSubtitle,
-  CardText,
-  CardTitle,
-  Container,
-  ListGroup,
-} from "reactstrap";
-import Image from "next/image";
-import rickmorty from "../../public/rmtumbl.png";
+// import {
+//   Button,
+//   Card,
+//   CardBody,
+//   CardSubtitle,
+//   CardText,
+//   CardTitle,
+//   Container,
+//   ListGroup,
+// } from "reactstrap";
+// import Image from "next/image";
+// import rickmorty from "../../public/rmtumbl.png";
 import CardPortfolio from "@/components/card";
 import MenuUser from "@/components/menu";
+import { Card, Container, Grid2 } from "@mui/material";
 
 export default function Projetos() {
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
@@ -19,7 +20,7 @@ export default function Projetos() {
     <Container className=" bg-custom-black-0 flex flex-col items-center">
       <MenuUser />
 
-      <ListGroup className="flex flex-wrap justify-center">
+      <Grid2 className="flex flex-wrap justify-center">
         <Card
           style={{
             width: "18rem",
@@ -154,7 +155,7 @@ export default function Projetos() {
             url="https://linikers.github.io/Geek-Commerce/"
           />
         </Card>
-      </ListGroup>
+      </Grid2>
     </Container>
   );
 }
