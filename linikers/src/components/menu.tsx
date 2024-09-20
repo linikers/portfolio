@@ -11,10 +11,10 @@ import {
   PowerIcon,
   InboxArrowDownIcon,
   UserCircleIcon,
-  LifebuoyIcon,
+  // LifebuoyIcon,
 } from "@heroicons/react/24/outline";
-import profile from "../../public/nprofile.jpg";
-import Link from "next/link";
+// import profile from "../../public/nprofile.jpg";
+// import Link from "next/link";
 
 export default function MenuUser() {
   return (

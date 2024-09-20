@@ -1,9 +1,9 @@
-// import { useState } from "react";
-// import MaquinaDeEscrever from "../components/maquinaEscrever";
-// import ProfileTop from "../components/topProfile";
-// import MenuUser from "@/components/menu";
-// import Link from "next/link";
-// import { FaBriefcase, FaPersonBooth } from "react-icons/fa";
+// // import { useState } from "react";
+// // import MaquinaDeEscrever from "../components/maquinaEscrever";
+// // import ProfileTop from "../components/topProfile";
+// // import MenuUser from "@/components/menu";
+// // import Link from "next/link";
+// // import { FaBriefcase, FaPersonBooth } from "react-icons/fa";
 
 // export default function Perfil2() {
 //   const [typingComplete, setTypingComplete] = useState(false);
