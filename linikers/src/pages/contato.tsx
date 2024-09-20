@@ -7,12 +7,27 @@ import Social from "@/components/social";
 
 export default function Contato() {
 
+    const blinkEffect = {
+        animate: {
+            opacity:[0.6, 1, 0.6],
+            filter: ["brightness(0.7)", "brightness(1.3)", "brightness(0.7)"],
+            transition: {
+                duration:2,
+                repeat: Infinity,
+                ease: "easeInOut",
+            }
+        }
+    }
     return (
         <Container className="flex flex-col"
             sx={{
                 backgroundColor: '#d4d0c4',
                 height: '100vh',
                 width: '100vw',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
             }}
         >
             <Grid2>
@@ -40,16 +55,17 @@ export default function Contato() {
             </Grid2>
             <Grid2 className="absolute inset-0 flex justify-center items-center z-0">
                 <motion.div
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                    variants={blinkEffect}
+                    initial= "animate"
+                    animate="animate"
                 >
                     <Image 
                         // src={"../../public/planeta.svg"}
                         src={world}
                         alt="planeta" 
                         style={{
-                            width: 250,
-                            opacity:0.2
+                            width: 120,
+                            opacity:0.6
                     }} />
                 </motion.div>
             </Grid2>
