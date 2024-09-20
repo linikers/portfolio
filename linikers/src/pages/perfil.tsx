@@ -1,3 +1,4 @@
+import infoPerfil from "@/components/infoPerfil";
 import { Typography } from "@material-tailwind/react";
 import { Avatar, Box, Container, Paper } from "@mui/material";
 
@@ -36,7 +37,7 @@ export default function Perfil() {
                 LinikerS dev
             </Typography>
             <Box>
-                {[...Array(5)].map((_, index) => (
+                {infoPerfil.map(( info ,index) => (
                     <Paper
                         key={index}
                         elevation={3}
@@ -47,8 +48,11 @@ export default function Perfil() {
                             backgroundColor: '#f5f5f5',
                         }}
                     >
-                        <Typography variant='body1'>
-                            Hello Wolrd! 
+                        <Typography variant='h5'>
+                            {info.titulo}
+                        </Typography>
+                        <Typography variant='body2'>
+                            {info.texto} 
                         </Typography>
                     </Paper>
                 ))}
