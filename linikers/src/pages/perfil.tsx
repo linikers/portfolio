@@ -2,7 +2,7 @@ import infoPerfil from "@/components/infoPerfil";
 import Menu from "@/components/menu";
 import { Typography } from "@material-tailwind/react";
 import profileImg from "../../public/profileImg.jpg"
-import { Avatar, Box, Container, Paper } from "@mui/material";
+import { Box, Container, Paper } from "@mui/material";
 
 export default function Perfil() {
 
@@ -12,9 +12,9 @@ export default function Perfil() {
             <Box
                 sx={{
                     width:'100%',
-                    height: '300',
-                    backgroundImage: `url(${profileImg})`,
-                    // backgroundImage: `url(../../public/profileImg.jpg)`,
+                    height: '160px',
+                    // backgroundImage: `url(${profileImg})`,
+                    backgroundImage: `url(../../public/profileImg.jpg)`,
                     backgroundSize: 'cover', // cobre todo fundo
                     backgroundPosition: 'center', //center img
                     backgroundColor: '#3b5998',
@@ -24,32 +24,22 @@ export default function Perfil() {
                 }}
             >
                 <Box
-                sx={{
-                    position: 'absolute',
-                    bottom: -50,
-                    left: 20,
-                    borderRadius: '3px solid white'
-                }}
-            >
-                <Menu />
-            </Box>
-                <Avatar 
-                src="../../public/linikersBg.jpg"
-                sx={{
-                    width: 100,
-                    height: 100,
-                    position: 'absolute',
-                    bottom: -50,
-                    left: 20,
-                    border: '3px solid white',
-                }}
-                />
+                    sx={{
+                        position: 'absolute',
+                        bottom: -50,
+                        left: 20,
+                        border: '3px solid white',
+                        borderRadius: '50%',
+                    }}
+                >
+                    <Menu />
+                </Box>
             </Box>
             <Typography
                 variant='h5'
                 sx={{
                     mb:2,
-                    marginTop:1,
+                    marginTop:6,
                 }}
             >
                 LinikerS dev
