@@ -1,22 +1,40 @@
 import infoPerfil from "@/components/infoPerfil";
+import Menu from "@/components/menu";
 import { Typography } from "@material-tailwind/react";
+import profileImg from "../../public/profileImg.jpg"
 import { Avatar, Box, Container, Paper } from "@mui/material";
 
 export default function Perfil() {
 
     return (
         <Container maxWidth='sm'>
+            {/* capa teste */}
             <Box
                 sx={{
                     width:'100%',
-                    height: '200',
+                    height: '300',
+                    backgroundImage: `url(${profileImg})`,
+                    // backgroundImage: `url(../../public/profileImg.jpg)`,
+                    backgroundSize: 'cover', // cobre todo fundo
+                    backgroundPosition: 'center', //center img
                     backgroundColor: '#3b5998',
                     position: 'relative',
-                    mb: 2,
+                    mb: 8,
+                    borderRadius: '8px',
                 }}
             >
+                <Box
+                sx={{
+                    position: 'absolute',
+                    bottom: -50,
+                    left: 20,
+                    borderRadius: '3px solid white'
+                }}
+            >
+                <Menu />
+            </Box>
                 <Avatar 
-                src=""
+                src="../../public/linikersBg.jpg"
                 sx={{
                     width: 100,
                     height: 100,

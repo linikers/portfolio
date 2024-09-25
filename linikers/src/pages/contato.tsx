@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import world from "../../public/planeta.svg"
 import Social from "@/components/social";
+import Menu from "@/components/menu";
 
 export default function Contato() {
 
@@ -31,8 +32,12 @@ export default function Contato() {
                 position: 'relative', //planeta
             }}
         >
-            <Grid2>
-                {/* <BoxTop /> */}
+            <Grid2
+                sx={{
+                    zIndex: '10'
+                }}
+            >
+                <Menu />
             </Grid2>
             <Grid2
                 container

@@ -1,15 +1,5 @@
-// import {
-//   Button,
-//   Card,
-//   CardBody,
-//   CardSubtitle,
-//   CardText,
-//   CardTitle,
-//   Container,
-//   ListGroup,
-// } from "reactstrap";
-// import Image from "next/image";
-// import rickmorty from "../../public/rmtumbl.png";
+import Image from "next/image";
+import rickmorty from "../../public/rmtumbl.png";
 import CardPortfolio from "@/components/card";
 import MenuUser from "@/components/menu";
 import { Card, Container, Grid2 } from "@mui/material";
@@ -20,10 +10,17 @@ export default function Projetos() {
     <Container className=" bg-custom-black-0 flex flex-col items-center">
       <MenuUser />
 
-      <Grid2 className="flex flex-wrap justify-center">
+      <Grid2 className="flex flex-wrap justify-center"
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          flexWrap: 'wrap'
+        }}
+      >
         <Card
           style={{
             width: "18rem",
+            margin: '2rem',
           }}
         >
           <CardPortfolio
@@ -40,6 +37,7 @@ export default function Projetos() {
         <Card
           style={{
             width: "18rem",
+            margin: '2rem',
           }}
         >
           <CardPortfolio
@@ -55,6 +53,7 @@ export default function Projetos() {
         <Card
           style={{
             width: "18rem",
+            margin: '2rem',
           }}
         >
           <CardPortfolio
@@ -69,6 +68,7 @@ export default function Projetos() {
         <Card
           style={{
             width: "18rem",
+            margin: '2rem',
           }}
         >
           <CardPortfolio
@@ -84,6 +84,7 @@ export default function Projetos() {
         <Card
           style={{
             width: "18rem",
+            margin: '2rem',
           }}
         >
           <CardPortfolio
@@ -99,6 +100,7 @@ export default function Projetos() {
         <Card
           style={{
             width: "18rem",
+            margin: '2rem',
           }}
         >
           <CardPortfolio
@@ -114,6 +116,7 @@ export default function Projetos() {
         <Card
           style={{
             width: "18rem",
+            margin: '2rem',
           }}
         >
           <CardPortfolio
@@ -129,6 +132,7 @@ export default function Projetos() {
         <Card
           style={{
             width: "18rem",
+            margin: '2rem',
           }}
         >
           <CardPortfolio
@@ -144,6 +148,7 @@ export default function Projetos() {
         <Card
           style={{
             width: "18rem",
+            margin: '2rem',
           }}
         >
           <CardPortfolio

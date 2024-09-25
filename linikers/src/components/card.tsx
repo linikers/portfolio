@@ -1,11 +1,4 @@
-import {
-  Button,
-  Card,
-  CardBody,
-  CardSubtitle,
-  CardText,
-  CardTitle,
-} from "reactstrap";
+import { Button, Card, CardContent, Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -36,18 +29,19 @@ export default function CardPortfolio({
         height={280}
         className="rounded-xl"
       />
-      <CardBody className="text-center d-flex flex-column">
-        <CardTitle tag="h5" className="text-custom-base-2 text-xl mt-4">
+      <CardContent className="text-center d-flex flex-column">
+        <Typography variant="h5" className="text-custom-base-2 text-xl mt-4">
           {title}
-        </CardTitle>
-        <CardSubtitle
+        </Typography>
+        <Typography
+          variant="subtitle1"
           className="mb-2 text-muted text-custom-base-1 text-lg"
-          tag="h6"
         >
           {subTitle}
-        </CardSubtitle>
-        <CardText className="text-custom-base-0">{description}</CardText>
-
+        </Typography>
+        <Typography className="text-custom-base-0">
+          {description}
+        </Typography>
         <div className="">
           <Link href={url} target="_blank" className="">
             <Button className="bg-custom-base-1 btn btn-link rounded-xl px-4 py-2 m-2 mb-1">
@@ -55,7 +49,7 @@ export default function CardPortfolio({
             </Button>
           </Link>
         </div>
-      </CardBody>
+      </CardContent>
     </Card>
   );
 }
