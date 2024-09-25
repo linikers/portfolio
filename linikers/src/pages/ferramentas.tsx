@@ -1,5 +1,5 @@
 import MenuUser from "@/components/menu";
-// import { Container, Box, keyframes } from "@mui/material";
+import { Container, Box, keyframes } from "@mui/material";
 import { motion } from "framer-motion";
 import { DiJsBadge } from "react-icons/di/index.js";
 import { DiCss3 } from "react-icons/di/index.js";
@@ -17,7 +17,9 @@ import { DiReact } from "react-icons/di/index.js";
 import { DiHtml5 } from "react-icons/di/index.js";
 import { DiScrum } from "react-icons/di/index.js";
 import { TbBrandNextjs } from "react-icons/tb/index.js";
-import { Box, Container, keyframes } from "@chakra-ui/react";
+import { DiUbuntu } from "react-icons/di";
+// import { keyframes } from "@emotion/react";
+// import { Box, Container, keyframes } from "@chakra-ui/next-js";
 
 const ferramentas = [
   { icon: <DiJsBadge size={45} />},
@@ -36,17 +38,17 @@ const ferramentas = [
   { icon: <DiMongodb size={45} /> },
   { icon: <DiPostgresql size={45} /> },
   { icon: <DiSass size={45} /> },
+  { icon: <DiUbuntu size={45} /> },
 ];
 
 const scrollAnimation = keyframes`
   0% { transform: translateX(0); }
-  // 50% { transform: translateX(-50%); }
+  50% { transform: translateX(-50%); }
   100% { transform: translateX(-100%); }
-  // 50% { transform: translateX(50%); }
-  // 25% { transform: translateX(25%); }
-  // 0% { transform: translateX(0); }
+  -50% { transform: translateX(50%); }
+  0% { transform: translateX(0); }
 `
-const ScrollContainer = motion(Box);
+// const ScrollContainer = motion(Box);
 
 export default function Ferramentas() {
   return (
@@ -71,7 +73,7 @@ export default function Ferramentas() {
           width: '200%',
           // justifyContent: 'center',
           padding: '20px 0',
-          animation: `${scrollAnimation} 18s linear infinite`,
+          animation: `${scrollAnimation} 60s linear infinite`,
         }}
       >
         {ferramentas.map((ferramenta, index) => (
