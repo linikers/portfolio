@@ -19,7 +19,7 @@ export default function Contato() {
         }
     }
     return (
-        <Container className="flex flex-col"
+        <Container
             sx={{
                 backgroundColor: '#d4d0c4',
                 height: '100vh',
@@ -28,12 +28,20 @@ export default function Contato() {
                 flexDirection: 'column',
                 justifyContent: 'center',
                 alignItems: 'center',
+                position: 'relative', //planeta
             }}
         >
             <Grid2>
                 {/* <BoxTop /> */}
             </Grid2>
-            <Grid2>
+            <Grid2
+                container
+                direction='column'
+                justifyContent='center'
+                alignItems='center'
+                spacing={2}
+                sx={{ zIndex: 1 }} //acima do planeta
+            >
             <motion.span
                 className="text-green-600 text-xl font-mono mt-6"
                 initial='initial'
