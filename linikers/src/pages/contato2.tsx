@@ -2,8 +2,6 @@ import Social from "@/components/social";
 import BoxTop from "@/components/top";
 import { WhatsApp } from "@mui/icons-material";
 import { Container } from "@mui/material";
-// import { IoLogoWhatsapp } from "react-icons/io5";
-// import { Container } from "reactstrap";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
