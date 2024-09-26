@@ -51,7 +51,6 @@ export default function Contato() {
                 className="text-green-600 text-xl font-mono mt-6"
                 initial='initial'
                 animate='animate'
-                // variants={fadeVar}
             >
                 Entre em contato
             </motion.span>
@@ -73,7 +72,6 @@ export default function Contato() {
                     animate="animate"
                 >
                     <Image 
-                        // src={"../../public/planeta.svg"}
                         src={world}
                         alt="planeta" 
                         style={{

@@ -1,7 +1,6 @@
 import infoPerfil from "@/components/infoPerfil";
 import Menu from "@/components/menu";
 import { Typography } from "@material-tailwind/react";
-import profileImg from "../../public/profileImg.jpg"
 import { Box, Container, Paper } from "@mui/material";
 
 export default function Perfil() {
@@ -13,7 +12,6 @@ export default function Perfil() {
                 sx={{
                     width:'100%',
                     height: '160px',
-                    // backgroundImage: `url(${profileImg})`,
                     backgroundImage: "url('/profileImg.jpg')",
                     backgroundSize: 'cover', // cobre todo fundo
                     backgroundPosition: 'center', //center img

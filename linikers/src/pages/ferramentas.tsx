@@ -18,8 +18,6 @@ import { DiHtml5 } from "react-icons/di/index.js";
 import { DiScrum } from "react-icons/di/index.js";
 import { TbBrandNextjs } from "react-icons/tb/index.js";
 import { DiUbuntu } from "react-icons/di";
-// import { keyframes } from "@emotion/react";
-// import { Box, Container, keyframes } from "@chakra-ui/next-js";
 
 const ferramentas = [
   { icon: <DiJsBadge size={45} />},
@@ -48,7 +46,6 @@ const scrollAnimation = keyframes`
   -50% { transform: translateX(50%); }
   0% { transform: translateX(0); }
 `
-// const ScrollContainer = motion(Box);
 
 export default function Ferramentas() {
   return (
@@ -71,7 +68,6 @@ export default function Ferramentas() {
           flexDirection: 'row',
           overflow: 'hidden',
           width: '200%',
-          // justifyContent: 'center',
           padding: '20px 0',
           animation: `${scrollAnimation} 60s linear infinite`,
         }}
