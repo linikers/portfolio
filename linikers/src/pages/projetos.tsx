@@ -1,5 +1,3 @@
-import Image from "next/image";
-import rickmorty from "../../public/rmtumbl.png";
 import CardPortfolio from "@/components/card";
 import MenuUser from "@/components/menu";
 import { Card, Container, Grid2 } from "@mui/material";
