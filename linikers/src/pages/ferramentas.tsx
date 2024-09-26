@@ -1,200 +1,104 @@
-import { Container, ListGroup } from "reactstrap";
-import { motion } from "framer-motion";
-import {
-  FaReact,
-  FaJs,
-  FaCode,
-  FaBootstrap,
-  FaJsSquare,
-  FaHtml5,
-  FaCss3,
-  FaTrophy,
-} from "react-icons/fa";
-import { SiNextdotjs, SiTypescript } from "react-icons/si";
-import { BsBootstrap } from "react-icons/bs";
-import { IoLogoGithub } from "react-icons/io5";
-import { HiCode } from "react-icons/hi";
 import MenuUser from "@/components/menu";
+import { Container, Box, keyframes } from "@mui/material";
+import { motion } from "framer-motion";
+import { DiJsBadge } from "react-icons/di/index.js";
+import { DiCss3 } from "react-icons/di/index.js";
+import { DiLinux } from "react-icons/di/index.js";
+import { TbBrandTypescript } from "react-icons/tb/index.js";
+import { DiBootstrap } from "react-icons/di/index.js";
+import { DiDocker } from "react-icons/di/index.js";
+import { DiGithub } from "react-icons/di/index.js";
+import { DiGnu } from "react-icons/di/index.js";
+import { DiMagento } from "react-icons/di/index.js";
+import { DiMongodb } from "react-icons/di/index.js";
+import { DiSass } from "react-icons/di/index.js";
+import { DiPostgresql } from "react-icons/di/index.js";
+import { DiReact } from "react-icons/di/index.js";
+import { DiHtml5 } from "react-icons/di/index.js";
+import { DiScrum } from "react-icons/di/index.js";
+import { TbBrandNextjs } from "react-icons/tb/index.js";
+import { DiUbuntu } from "react-icons/di";
+// import { keyframes } from "@emotion/react";
+// import { Box, Container, keyframes } from "@chakra-ui/next-js";
+
+const ferramentas = [
+  { icon: <DiJsBadge size={45} />},
+  { icon: <TbBrandTypescript size={45} />},
+  { icon: <TbBrandNextjs size={45} /> },
+  { icon: <DiDocker size={45} /> },
+  { icon: <DiGithub size={45} /> },
+  { icon: <DiHtml5 size={45} /> },
+  { icon: <DiScrum size={45} /> },
+  { icon: <DiReact size={45} /> },
+  { icon: <DiMagento size={45} /> },
+  { icon: <DiCss3 size={45} /> },
+  { icon: <DiGnu size={45} /> },
+  { icon: <DiLinux size={45} /> },
+  { icon: <DiBootstrap size={45} /> },
+  { icon: <DiMongodb size={45} /> },
+  { icon: <DiPostgresql size={45} /> },
+  { icon: <DiSass size={45} /> },
+  { icon: <DiUbuntu size={45} /> },
+];
+
+const scrollAnimation = keyframes`
+  0% { transform: translateX(0); }
+  50% { transform: translateX(-50%); }
+  100% { transform: translateX(-100%); }
+  -50% { transform: translateX(50%); }
+  0% { transform: translateX(0); }
+`
+// const ScrollContainer = motion(Box);
 
 export default function Ferramentas() {
   return (
-    <Container className="h-screen bg-black flex flex-col justify-center items-center">
-      <MenuUser />
-      <ListGroup
-        className="h-full flex flex-col justify-center "
-        style={{ maxWidth: 400 }}
+    <Container 
+      sx={{ 
+        justifyContent: 'center', 
+        flexDirection: 'column', 
+        alignItems: 'center',
+        bgcolor: '#d4d0c4', 
+        display: 'flex', 
+        height: '100vh',
+        overflow: 'hidden',
+        width: '100%',
+      }}>
+        <MenuUser />
+      <Box
+        sx={{
+          display: 'flex',
+          whiteSpace: 'nowrap',
+          flexDirection: 'row',
+          overflow: 'hidden',
+          width: '200%',
+          // justifyContent: 'center',
+          padding: '20px 0',
+          animation: `${scrollAnimation} 60s linear infinite`,
+        }}
       >
-        <div className="flex  gap-2 text-white justify-around text-3xl">
-          <motion.div
-            initial={{ filter: "blur(0px)" }}
-            whileHover={{ filter: "blur(4px)" }}
-            whileTap={{ filter: "blur(8px)" }}
-          >
-            <FaHtml5 className="mr-2 text-3xl" />
-          </motion.div>
-          <span className="text-xl">HTML5</span>
-        </div>
-
-        <div className="flex gap-2 text-white text-3xl justify-around mt-2">
-          <motion.div
-            style={{ display: "inline-block", transformOrigin: "center" }}
-            animate={{
-              rotate: [0, 15, 0, -15, 0],
-            }}
-            exit={{
-              rotate: 1,
-            }}
-            transition={{
-              duration: 4,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-          >
-            <FaCss3 className="mr-2 text-3xl" />
-          </motion.div>
-          <span className="text-xl">CSS3</span>
-        </div>
-
-        <div className="flex gap-2 text-white text-3xl justify-around mt-2">
-          <motion.div
-            style={{ display: "inline-block", transformOrigin: "center" }}
-            animate={{
-              rotate: [0.6, 6.2, 0.6],
-            }}
-            exit={{
-              scale: 6.2,
-            }}
-            transition={{
-              duration: 4.4,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          >
-            <FaJs className="mr-2 text-3xl" />
-          </motion.div>
-          <span className="text-xl">JavaScript</span>
-        </div>
-
-        <div className="flex gap-2 text-white text-3xl justify-around mt-2">
-          <motion.div
-            style={{ display: "inline-block", transformOrigin: "center" }}
-            animate={{
-              rotate: [0, 360],
-            }}
-            exit={{
-              rotate: 0,
-            }}
-            transition={{
-              duration: 5,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-          >
-            <FaReact className="mr-2 text-3xl" />
-          </motion.div>
-          <span className="text-xl">React</span>
-        </div>
-
-        <div className="flex gap-2 text-white text-3xl justify-around mt-2">
-          <motion.div
-            style={{ display: "inline-block", transformOrigin: "center" }}
-            animate={{
-              rotate: [0, 25, -25, 0],
-            }}
-            exit={{
-              rotate: 0,
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-          >
-            <SiTypescript className="mr-2 text-3xl" />
-          </motion.div>
-          <span className="text-xl">Typescript</span>
-        </div>
-
-        <div className="flex gap-2 text-white text-3xl justify-around mt-2 ">
-          <motion.div
-            style={{ display: "inline-block", transformOrigin: "center" }}
-            animate={{
-              rotate: [0, 25, 0, -25, 0],
-            }}
-            exit={{
-              rotate: 0,
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-          >
-            <SiNextdotjs className="mr-2 text-3xl" />
-          </motion.div>
-          <span className="text-xl">Next</span>
-        </div>
-
-        <div className="flex gap-2 text-white text-3xl justify-around mt-2 ">
-          <motion.div
-            style={{ display: "inline-block", transformOrigin: "center" }}
-            animate={{
-              rotate: [0, 25, 0, -25, 0],
-            }}
-            exit={{
-              rotate: 0,
-            }}
-            transition={{
-              duration: 10,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-          >
-            <HiCode className="mr-2 text-3xl" />
-          </motion.div>
-          <span className="text-xl">Tailwind</span>
-        </div>
-
-        <div className="flex gap-2 text-white text-3xl justify-around mt-2 ">
-          <motion.div
-            style={{ display: "inline-block", transformOrigin: "center" }}
-            animate={{
-              rotate: [0, 25, 0, -25, 0],
-            }}
-            exit={{
-              rotate: 0,
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-          >
-            <BsBootstrap className="mr-2 text-3xl" />
-          </motion.div>
-          <span className="text-xl">Bootstrap</span>
-        </div>
-
-        <div className="flex gap-2 text-white text-3xl justify-around mt-2 ">
-          <motion.div
-            style={{ display: "inline-block", transformOrigin: "center" }}
-            animate={{
-              rotate: [0, 25, 0, -25, 0],
-            }}
-            exit={{
-              rotate: 0,
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-          >
-            <IoLogoGithub className="mr-2 text-3xl" />
-          </motion.div>
-          <span className="text-xl">Git</span>
-        </div>
-      </ListGroup>
+        {ferramentas.map((ferramenta, index) => (
+            <Box key={index} display='inline-block' margin='0 20px' color="secondary">
+              <motion.div
+              initial={{ scale: 1 }}
+              whileHover={{ scale: 1.2 }}
+              style={{ display: "inline-block", transformOrigin: "center" }}
+              >
+                {ferramenta.icon}
+              </motion.div>
+            </Box>
+        ))}
+        {ferramentas.map((ferramenta, index) => (
+          <Box key={index + ferramentas.length} display="inline-block" margin="0 20px" color="secondary">
+            <motion.div
+              initial={{ scale: 1 }}
+              whileHover={{ scale: 1.2 }}
+              style={{ display: "inline-block", transformOrigin: "center" }}
+            >
+              {ferramenta.icon}
+            </motion.div>
+          </Box>
+        ))}
+      </Box>
     </Container>
   );
 }

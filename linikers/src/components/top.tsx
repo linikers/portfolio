@@ -1,12 +1,16 @@
 import Image from "next/image";
-import linikers from "../../public/linikersBg.jpg";
-import { Container } from "reactstrap";
+// import linikers from "../../public/linikersBg.jpg";
 import { motion } from "framer-motion";
+import { Box, Container } from "@mui/material";
 
 export default function BoxTop() {
   return (
-    <Container className="h-screen">
-      <div className="absolute inset-0 bg-black opacity-90">
+    <Container sx={{
+      height: '100vh',
+      position: 'relative',
+      overflow: 'hidden',
+    }}>
+      <Box sx={{ position: 'absolute', inset: 0, backgroundColor: 'black', opacity: 0.9 }}>
         <motion.div
           style={{
             width: "100%",
@@ -26,7 +30,7 @@ export default function BoxTop() {
           }}
         >
           <Image
-            src={linikers}
+            src={"/../public/linikersbg.jpg"}
             alt="Imagem da sombra de um garoto"
             layout="fill"
             objectFit="cover"
@@ -34,7 +38,7 @@ export default function BoxTop() {
             className="brightness-75"
           />
         </motion.div>
-      </div>
+      </Box>
     </Container>
   );
 }
