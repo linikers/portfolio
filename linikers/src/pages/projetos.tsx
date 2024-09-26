@@ -7,7 +7,7 @@ import { Card, Container, Grid2 } from "@mui/material";
 export default function Projetos() {
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
   return (
-    <Container className=" bg-custom-black-0 flex flex-col items-center">
+    <Container className=" bg-custom-blue-1 flex flex-col items-center">
       <MenuUser />
 
       <Grid2 className="flex flex-wrap justify-center"
@@ -21,6 +21,7 @@ export default function Projetos() {
           style={{
             width: "18rem",
             margin: '2rem',
+            borderRadius: '12px',
           }}
         >
           <CardPortfolio
@@ -38,6 +39,7 @@ export default function Projetos() {
           style={{
             width: "18rem",
             margin: '2rem',
+            borderRadius: '12px',
           }}
         >
           <CardPortfolio
@@ -54,6 +56,7 @@ export default function Projetos() {
           style={{
             width: "18rem",
             margin: '2rem',
+            borderRadius: '12px',
           }}
         >
           <CardPortfolio
@@ -69,6 +72,7 @@ export default function Projetos() {
           style={{
             width: "18rem",
             margin: '2rem',
+            borderRadius: '12px',
           }}
         >
           <CardPortfolio
@@ -85,6 +89,7 @@ export default function Projetos() {
           style={{
             width: "18rem",
             margin: '2rem',
+            borderRadius: '12px',
           }}
         >
           <CardPortfolio
@@ -101,6 +106,7 @@ export default function Projetos() {
           style={{
             width: "18rem",
             margin: '2rem',
+            borderRadius: '12px',
           }}
         >
           <CardPortfolio
@@ -117,6 +123,7 @@ export default function Projetos() {
           style={{
             width: "18rem",
             margin: '2rem',
+            borderRadius: '12px',
           }}
         >
           <CardPortfolio
@@ -133,6 +140,7 @@ export default function Projetos() {
           style={{
             width: "18rem",
             margin: '2rem',
+            borderRadius: '12px',
           }}
         >
           <CardPortfolio
@@ -149,6 +157,7 @@ export default function Projetos() {
           style={{
             width: "18rem",
             margin: '2rem',
+            borderRadius: '12px',
           }}
         >
           <CardPortfolio
