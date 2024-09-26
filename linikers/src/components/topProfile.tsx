@@ -1,13 +1,14 @@
+import { Container } from "@mui/material";
 import Image from "next/image";
-import bg from "../../public/bg.jpg";
-import { Container } from "reactstrap";
+// import bg from "../../public/bg.jpg";
+// import { Container } from "reactstrap";
 
 export default function ProfileTop() {
   return (
     <Container className="h-screen">
       <div className="bg-cover bg-center">
         <Image
-          src={bg}
+          src={"../../public/bg.jpg"}
           alt="background"
           layout="fill"
           objectFit="cover"
