@@ -14,7 +14,7 @@ export default function Perfil() {
                     width:'100%',
                     height: '160px',
                     // backgroundImage: `url(${profileImg})`,
-                    backgroundImage: `url(../../public/profileImg.jpg)`,
+                    backgroundImage: "url('/profileImg.jpg')",
                     backgroundSize: 'cover', // cobre todo fundo
                     backgroundPosition: 'center', //center img
                     backgroundColor: '#3b5998',
