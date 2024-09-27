@@ -1,7 +1,5 @@
 import { Container } from "@mui/material";
 import Image from "next/image";
-// import bg from "../../public/bg.jpg";
-// import { Container } from "reactstrap";
 
 export default function ProfileTop() {
   return (
