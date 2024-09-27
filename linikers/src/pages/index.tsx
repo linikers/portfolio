@@ -3,20 +3,28 @@ import MenuUser from "@/components/menu";
 import Social from "@/components/social";
 import BoxTop from "@/components/top";
 import { Box, Container } from "@mui/material";
+import Head from "next/head";
 
 export default function Home() {
 
     return (
         <Container
-            sx={{
-                minHeight: '100vh',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-                alignContent: 'center',
-                padding: 2,
-            }}
+        sx={{
+            minHeight: '100vh',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+            alignContent: 'center',
+            padding: 2,
+        }}
         >
+            <Head>
+                <title>LinikerS Dev</title>
+                <meta 
+                    name='Desenvolvedor web - Programador de sistemas online'
+                    content="Portfolio com alguns projetos de desenvolvimento online back-end e front-end"
+                />
+            </Head>
             <Box
                 sx={{
                     position: 'absolute',
