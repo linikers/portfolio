@@ -28,7 +28,7 @@ export default function MenuUser() {
           />
         </div>
       </MenuHandler>
-      <MenuList className="z-10 text-custom-base-0 mr-6 p-2 bg-custom-black-0">
+      <MenuList className="z-10 text-custom-base-0 mr-6 p-2 bg-custom-blue-1">
         <MenuItem className="flex items-center gap-2">
           <a href="perfil" className="flex items-center gap-2">
             <UserCircleIcon strokeWidth={2} className="h-4 w-4" />
