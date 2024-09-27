@@ -80,7 +80,9 @@ export default function Contato() {
                     }} />
                 </motion.div>
             </Grid2>
-            <Grid2>
+            <Grid2 sx={{
+                zIndex: '10',
+            }}>
                 <Social />
             </Grid2>
         </Container>

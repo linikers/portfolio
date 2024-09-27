@@ -57,7 +57,7 @@ export default function Perfil() {
                         <Typography variant='h5'>
                             {info.titulo}
                         </Typography>
-                        <Typography variant='body2'>
+                        <Typography variant='body1'>
                             {info.texto} 
                         </Typography>
                     </Paper>
