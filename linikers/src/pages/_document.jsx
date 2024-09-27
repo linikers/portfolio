@@ -11,8 +11,8 @@ export default class MyDocument extends Document {
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
           />
           <meta
-            name="linikerS web developer"
-            content="LinikerS Dev desenvolvedor Front-End &  Back-End"
+            name="LinikerS web developer"
+            content="LinikerS Dev desenvolvedor Front-End Maringá-Pr "
           />
         </Head>
         <body>
