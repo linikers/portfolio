@@ -18,6 +18,7 @@ import { DiHtml5 } from "react-icons/di/index.js";
 import { DiScrum } from "react-icons/di/index.js";
 import { TbBrandNextjs } from "react-icons/tb/index.js";
 import { DiUbuntu } from "react-icons/di";
+import BoxGitDefault from "@/components/BoxGitDefault";
 
 const ferramentas = [
   { icon: <DiJsBadge size={45} />},
@@ -61,40 +62,54 @@ export default function Ferramentas() {
         width: '100%',
       }}>
         <MenuUser />
-      <Box
-        sx={{
-          display: 'flex',
-          whiteSpace: 'nowrap',
-          flexDirection: 'row',
-          overflow: 'hidden',
-          width: '200%',
-          padding: '20px 0',
-          animation: `${scrollAnimation} 60s linear infinite`,
-        }}
-      >
-        {ferramentas.map((ferramenta, index) => (
-            <Box key={index} display='inline-block' margin='0 20px' color="secondary">
+
+        <Box 
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            margin: '20px 0',
+            padding: '20px',
+            backgroundColor: '#2e3440',
+            borderRadius: '8px',
+          }}
+        >
+          <BoxGitDefault />
+        </Box>
+        <Box
+          sx={{
+            display: 'flex',
+            whiteSpace: 'nowrap',
+            flexDirection: 'row',
+            overflow: 'hidden',
+            width: '200%',
+            padding: '20px 0',
+            animation: `${scrollAnimation} 60s linear infinite`,
+          }}
+        >
+          {ferramentas.map((ferramenta, index) => (
+              <Box key={index} display='inline-block' margin='0 20px' color="secondary">
+                <motion.div
+                initial={{ scale: 1 }}
+                whileHover={{ scale: 1.2 }}
+                style={{ display: "inline-block", transformOrigin: "center" }}
+                >
+                  {ferramenta.icon}
+                </motion.div>
+              </Box>
+          ))}
+          {ferramentas.map((ferramenta, index) => (
+            <Box key={index + ferramentas.length} display="inline-block" margin="0 20px" color="secondary">
               <motion.div
-              initial={{ scale: 1 }}
-              whileHover={{ scale: 1.2 }}
-              style={{ display: "inline-block", transformOrigin: "center" }}
+                initial={{ scale: 1 }}
+                whileHover={{ scale: 1.2 }}
+                style={{ display: "inline-block", transformOrigin: "center" }}
               >
                 {ferramenta.icon}
               </motion.div>
             </Box>
-        ))}
-        {ferramentas.map((ferramenta, index) => (
-          <Box key={index + ferramentas.length} display="inline-block" margin="0 20px" color="secondary">
-            <motion.div
-              initial={{ scale: 1 }}
-              whileHover={{ scale: 1.2 }}
-              style={{ display: "inline-block", transformOrigin: "center" }}
-            >
-              {ferramenta.icon}
-            </motion.div>
-          </Box>
-        ))}
-      </Box>
+          ))}
+        </Box>
     </Container>
   );
 }
