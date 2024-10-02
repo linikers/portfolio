@@ -5,7 +5,7 @@ export default function BoxSpotify() {
     return (
         <Box>
             <iframe
-                src="https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M"
+                src="https://open.spotify.com/user/22umrt4hjqbwcwv2eaorefq3y?si=0f02a61b8538430d"
                 width='300'
                 height='380'
                 frameBorder='0'

@@ -1,5 +1,5 @@
 import MenuUser from "@/components/menu";
-import { Container, Box, keyframes } from "@mui/material";
+import { Container, Box, keyframes, Grid2, Typography } from "@mui/material";
 import { motion } from "framer-motion";
 import { DiJsBadge } from "react-icons/di/index.js";
 import { DiCss3 } from "react-icons/di/index.js";
@@ -19,6 +19,9 @@ import { DiScrum } from "react-icons/di/index.js";
 import { TbBrandNextjs } from "react-icons/tb/index.js";
 import { DiUbuntu } from "react-icons/di";
 import BoxGitDefault from "@/components/BoxGitDefault";
+import BoxDev from "@/components/BoxDev";
+
+
 
 const ferramentas = [
   { icon: <DiJsBadge size={45} />},
@@ -76,6 +79,9 @@ export default function Ferramentas() {
         >
           <BoxGitDefault />
         </Box>
+        <Grid2>
+          <BoxDev />
+        </Grid2>
         <Box
           sx={{
             display: 'flex',
