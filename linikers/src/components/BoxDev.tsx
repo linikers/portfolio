@@ -16,7 +16,7 @@ export default function BoxDev() {
         borderRadius: '50%',
         width: 120,
         height: 120,
-        backgroundColor: gradientBackground,
+        backgroundColor: '#b39298',
     };
 
     return( 
