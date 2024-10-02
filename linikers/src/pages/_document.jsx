@@ -16,9 +16,11 @@ export default class MyDocument extends Document {
             content="LinikerS Dev desenvolvedor Fron-End && Back-End"
           />
         </Head>
+
         <body>
           <Main />
           <NextScript />
+            
         </body>
       </Html>
     );
