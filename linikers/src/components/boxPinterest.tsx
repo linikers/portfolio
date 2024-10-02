@@ -1,25 +1,31 @@
+import React, { useEffect, useState } from "react";
 import { Box } from "@mui/material";
-import { useEffect } from "react";
 
-export default function BoxPin() {
+export default function BoxPinterest() {
+    const [photos, setPhotos] = useState([]);
 
     useEffect(() => {
+
         const script = document.createElement('script');
+        script.type = 'text/javascript';
         script.async = true;
         script.src = 'https://assets.pinterest.com/js/pinit.js';
         document.body.appendChild(script);
-    }, [])
+
+        return () => {
+            document.body.removeChild(script);
+        };
+    }, []);
+
     return (
-        <Box>
+        <Box sx={{ padding: '20px' }} >
             <a
-            data-pin-do='embedBoard'
-            data-pin-board-width="400"
-            data-pin-scale-height="240"
-            data-pin-scale-width="80"
-            href="https://br.pinterest.com/liniker/arte/"
-        >
-            Pins
-        </a>
+                data-pin-do="embedBoard"
+                data-pin-board-width="480"
+                data-pin-scale-height="340"
+                data-pin-scale-width="80"
+                href="https://www.pinterest.com/liniker/arte/">
+            </a>
         </Box>
-    )
+    );
 }
