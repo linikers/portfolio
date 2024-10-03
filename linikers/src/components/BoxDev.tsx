@@ -1,13 +1,16 @@
-import { BugReport, Commit, DeveloperBoard } from "@mui/icons-material";
+import { BugReport, DeveloperBoard } from "@mui/icons-material";
 import { Box, Grid2, Typography } from "@mui/material";
 import { TbUxCircle } from "react-icons/tb";
 import { DesignServices } from "@mui/icons-material";
 import { MdImportantDevices } from "react-icons/md";
 import { TbBugOff } from "react-icons/tb";
+
 export default function BoxDev() {
 
     const iconSize = 40;
-    const gradientBackground = `linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(245,245,220,1) 35%, rgba(0,212,255,1) 100%)`;
+    const gradientBackground = `radial-gradient(circle, rgba(150,150,150,2) 10%, rgba(245,245,220,4) 100%)`;
+
+
     const cssBox = {
         display: 'flex',
         flexDirection: 'column',
@@ -16,7 +19,7 @@ export default function BoxDev() {
         borderRadius: '50%',
         width: 120,
         height: 120,
-        backgroundColor: '#b39298',
+        background: gradientBackground,
     };
 
     return( 
@@ -26,21 +29,21 @@ export default function BoxDev() {
                     <TbUxCircle size={iconSize} />
                     <DesignServices fontSize="large" />
                 </Box>
-                <Typography>UX/UI Design</Typography>
+                <Typography variant="subtitle1">UX/UI Design</Typography>
             </Box>
             <Box sx={cssBox}>
                 <Box display='flex'>
                     <DeveloperBoard fontSize="large" />
                     <MdImportantDevices size={iconSize} />
                 </Box>
-                <Typography>Desenvolvimento</Typography>
+                <Typography variant="subtitle1">Desenvolvimento</Typography>
             </Box>
             <Box sx={cssBox}>
                 <Box display='flex'>
                     <BugReport fontSize="large" />
                     <TbBugOff size={iconSize} />
                 </Box>
-                <Typography>Correções</Typography>
+                <Typography variant="subtitle1">Correções</Typography>
           </Box>
         </Grid2>
     )
