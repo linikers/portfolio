@@ -9,7 +9,7 @@ export default function Perfil() {
 
     return (
         <Container maxWidth='sm'>
-            {/* capa teste */}
+
             <Box
                 sx={{
                     width:'100%',
@@ -59,7 +59,7 @@ export default function Perfil() {
                         <Typography variant='h5'>
                             {info.titulo}
                         </Typography>
-                        <Typography variant='body1'>
+                        <Typography variant='subtitle1'>
                             {info.texto} 
                         </Typography>
                     </Paper>
