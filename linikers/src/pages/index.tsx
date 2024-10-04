@@ -55,8 +55,10 @@ export default function Home() {
             <Box
                 sx={{ 
                     position: 'absolute', 
-                    bottom: 0, 
-                    zIndex: 10, 
+                    bottom: 0,
+                    left: '0%',
+                    // right:'5%',
+                    zIndex: 10,
                     display: 'flex', 
                     flexDirection: 'column',
                     alignItems: 'center',
