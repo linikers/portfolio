@@ -30,7 +30,6 @@ export default function BoxTop() {
           }}
         >
           <Image
-            // src={"/../public/linikersbg.jpg"}
             src={linikers}
             alt="Imagem da sombra de um garoto"
             layout="fill"
