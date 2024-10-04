@@ -1,5 +1,5 @@
 import Image from "next/image";
-import linikers from "../../public/linikersBg.jpg";
+// import linikers from "../../public/linikersBg.jpg";
 import { motion } from "framer-motion";
 import { Box, Container } from "@mui/material";
 
@@ -30,7 +30,8 @@ export default function BoxTop() {
           }}
         >
           <Image
-            src={linikers}
+            // src={linikers}
+            src={"../../public/linikersBg.jpg"}
             alt="Imagem da sombra de um garoto"
             layout="fill"
             objectFit="cover"
