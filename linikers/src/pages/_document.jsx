@@ -14,7 +14,7 @@ export default class MyDocument extends Document {
             name="LinikerS webDeveloper"
             content="LinikerS Dev desenvolvedor Fron-End && Back-End"
           />
-          <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+          {/* <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script> */}
         </Head>
         <title>LinikerS web Developer</title>
         <body>
