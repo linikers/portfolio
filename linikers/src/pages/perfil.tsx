@@ -1,5 +1,4 @@
 import BoxPinterest from "@/components/boxPinterest";
-import BoxSpotify from "@/components/boxSpotify";
 import infoPerfil from "@/components/infoPerfil";
 import Menu from "@/components/menu";
 import { Typography } from "@material-tailwind/react";
@@ -30,13 +29,14 @@ export default function Perfil() {
                         left: 20,
                         border: '3px solid white',
                         borderRadius: '50%',
+                        zIndex: 888,
                     }}
                 >
                     <Menu />
                 </Box>
             </Box>
             <Typography
-                variant='h5'
+                variant='body1'
                 sx={{
                     mb:2,
                     marginTop:6,
@@ -56,10 +56,10 @@ export default function Perfil() {
                             backgroundColor: '#f5f5f5',
                         }}
                     >
-                        <Typography variant='h5'>
+                        <Typography variant='body1'>
                             {info.titulo}
                         </Typography>
-                        <Typography variant='subtitle1'>
+                        <Typography variant='body2'>
                             {info.texto} 
                         </Typography>
                     </Paper>
@@ -75,7 +75,7 @@ export default function Perfil() {
                         backgroundColor: '#f5f5f5',
                     }}
                 >
-                    <Typography variant='h5'>Olha o que eu curti! </Typography>
+                    <Typography variant='body1'>Olha o que eu curti! </Typography>
                     <BoxPinterest />
                 </Paper>
             </Box>
