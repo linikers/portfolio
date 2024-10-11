@@ -1,5 +1,7 @@
 import MenuUser from "@/components/menu";
-import { Container, Box, keyframes, Grid2, Typography } from "@mui/material";
+import { Container, Box, keyframes, Grid2 } from "@mui/material";
+import BoxGitDefault from "@/components/BoxGitDefault";
+import BoxDev from "@/components/BoxDev";
 import { motion } from "framer-motion";
 import { DiJsBadge } from "react-icons/di/index.js";
 import { DiCss3 } from "react-icons/di/index.js";
@@ -18,8 +20,6 @@ import { DiHtml5 } from "react-icons/di/index.js";
 import { DiScrum } from "react-icons/di/index.js";
 import { TbBrandNextjs } from "react-icons/tb/index.js";
 import { DiUbuntu } from "react-icons/di";
-import BoxGitDefault from "@/components/BoxGitDefault";
-import BoxDev from "@/components/BoxDev";
 
 
 
@@ -64,7 +64,13 @@ export default function Ferramentas() {
         overflow: 'hidden',
         width: '100%',
       }}>
-        <MenuUser />
+        <Grid2
+          sx={{
+            zIndex: 888,
+          }}
+        >
+          <MenuUser />
+        </Grid2>
 
         <Box 
           sx={{

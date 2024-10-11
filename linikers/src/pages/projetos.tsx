@@ -6,7 +6,12 @@ export default function Projetos() {
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
   return (
     <Container className=" bg-custom-blue-1 flex flex-col items-center">
-      <MenuUser />
+      <Grid2
+        sx={{
+          zIndex: 888,
+        }}>
+        <MenuUser />
+      </Grid2>
 
       <Grid2 className="flex flex-wrap justify-center"
         sx={{
