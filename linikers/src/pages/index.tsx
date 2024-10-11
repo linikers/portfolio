@@ -142,7 +142,7 @@ export default function Home() {
           name="Desenvolvedor web - Programador de sistemas online"
           content="Portfolio com alguns projetos de desenvolvimento online back-end e front-end"
         />
-        <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+        {/* <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script> */}
       </Head>
 
       <Box
