@@ -46,7 +46,7 @@ export default function Logo() {
                 </span>
               )}
               {index === 1 && (
-                <p className="text-custom-base-2 text-2xl mt-2 mb-2 text-shadow-base-2">
+                <p className="text-custom-blue-1 text-2xl mt-2 mb-2 text-shadow-base-2">
                   {line}
                 </p>
               )}
