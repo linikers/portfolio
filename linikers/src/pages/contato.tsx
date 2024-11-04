@@ -34,7 +34,7 @@ export default function Contato() {
         >
             <Grid2
                 sx={{
-                    zIndex: '10'
+                    zIndex: 288
                 }}
             >
                 <Menu />
@@ -45,7 +45,7 @@ export default function Contato() {
                 justifyContent='center'
                 alignItems='center'
                 spacing={2}
-                sx={{ zIndex: 1 }} //acima do planeta
+                sx={{ zIndex: 8 }} //acima do planeta
             >
             <motion.span
                 className="text-green-600 text-xl font-mono mt-6"
