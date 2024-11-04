@@ -1,0 +1,13 @@
+[
+    {
+        "email": "admin@admin.app",
+        "password": "adminlink",
+        "role": "admin"
+    },
+    {
+        "email": "admin@liniker.app",
+        "password": "link1234",
+        "role": "admin"
+    }
+
+]
