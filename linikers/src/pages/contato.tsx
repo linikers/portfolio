@@ -61,7 +61,11 @@ export default function Contato() {
             >
                 Liniker&#39;S
             </motion.p>
-            <IconButton href="https://wa.me/5544984198075?text=Oi%20Liniker%20vi%20seu%20portfolio">
+            <IconButton 
+                href="https://wa.me/5544984198075?text=Oi%20Liniker%20vi%20seu%20portfolio"
+                target="_blank"
+                rel="noopener noreffer"
+            >
                 <WhatsApp />
             </IconButton>
             </Grid2>

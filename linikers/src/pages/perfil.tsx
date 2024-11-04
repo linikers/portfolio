@@ -75,7 +75,7 @@ export default function Perfil() {
                         backgroundColor: '#f5f5f5',
                     }}
                 >
-                    <Typography variant='body1'>Olha o que eu curti! </Typography>
+                    <Typography variant='body1'>Olha o que eu curti!</Typography>
                     <BoxPinterest />
                 </Paper>
             </Box>
