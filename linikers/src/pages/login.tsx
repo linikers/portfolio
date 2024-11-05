@@ -25,9 +25,15 @@ export default function Login() {
             });
 
             if (result && result.ok) {
-                window.location.href = "/perfil";
+                if (values.email === 'admin@admin.com') {
+                    window.location.href = "/admin/dashboard";
+                } else {
+                    window.location.href = "/perfil";
+                }
+            } else {
+
+                alert("Falha na autenticação. Verifique suas credenciais");
             }
-            alert("Falha na autenticação. Verifique suas credenciais");
         }
     })
 
@@ -39,7 +45,17 @@ export default function Login() {
         window.location.href = "/perfil"
     }
     return (
-        <Grid2 container justifyContent="center" alignItems="center" sx={{ minHeight: 1, backgroundColor: 'gray', maxHeight: '100%' }}>
+        <Grid2 
+            container
+            justifyContent="center"
+            alignItems="center"
+            sx={{
+                minHeight: 12,
+                backgroundColor: 'gray',
+                height: '100vh',
+                padding: 2
+            }}
+        >
             <Box 
                 component="form" 
                 onSubmit={formik.handleSubmit} 
@@ -52,7 +68,7 @@ export default function Login() {
                     backgroundColor: 'white',
                     boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',
                     transition: 'transform 0.3s, box-shadow 0.3s',
-                    '&hover': {
+                    '&:hover': {
                         transform: 'translateY(-5px)',
                         boxShadow: '0px, 8px, 30px rgba(0, 0, 0, 0.2',
                     },
@@ -86,13 +102,25 @@ export default function Login() {
                 helperText={formik.touched.senha && formik.errors.senha}
                 margin="normal"
             />
-            {/* <input type="email" name="usuario" onChange={formik.handleChange} value={formik.values.email} />
-            <input type="password" name="senha" onChange={formik.handleChange} value={formik.values.senha} /> */}
-            <Button type="submit" variant="contained" color="primary" fullWidth>
-                {isRegistering ? 'Cadastrar' : 'Login'}
+            <Button 
+                type="submit"
+                // variant="contained"
+                color="success"
+                // margin="2"
+                // color="custom-base-1"
+                fullWidth
+                sx={{ zIndex: 99}}>
+                    {isRegistering ? 'Cadastrar' : 'Login'}
+                    {/* login */}
+            </Button>
+            <Button onClick={() => signIn("google")}>
+                Entre com sua conta Google
             </Button>
             <Grid2 container justifyContent="flex-end">
-                <Button onClick={() => setIsRegistering(!isRegistering)} color="secondary">
+                <Button 
+                    color="secondary"
+                    onClick={() => setIsRegistering(!isRegistering)} 
+                >
                     {isRegistering ? 'Já tem conta? Faça login' : 'Novo por aqui? Cadastre-se'}
                 </Button>
 
