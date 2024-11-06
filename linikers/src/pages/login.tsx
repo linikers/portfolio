@@ -49,8 +49,9 @@ export default function Login() {
                 if(result && result.ok) {
                     if (values.email === 'admin@admin.app') {
                         window.location.href = "/admin/dashboard";
+                    } else {
+                        window.location.href = "/perfil";
                     }
-                    window.location.href = "/perfil";
                 }
             }
             // return
