@@ -1,9 +1,10 @@
 import { Avatar, Box, Card, CardContent, Container, Grid2, Typography } from "@mui/material";
 import ava from "../../../../public/next.svg"
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-import { Doughnut, Pie } from 'react-chartjs-2';
+import { Pie } from 'react-chartjs-2';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
+
 export const data = {
     labels: ['React', 'Mysql', 'Postgres', 'MJ', 'NextJs', 'Ts'],
     datasets: [
@@ -30,6 +31,7 @@ export const data = {
         }
     ]
 }
+
 export default function AdminPage() {
 
     return (
@@ -40,6 +42,9 @@ export default function AdminPage() {
                     mb: 4,
                     display: 'flex',
                     alignItems: 'center',
+                    justifyContent: 'center',
+                    flexDirection: { xs: 'column', sm: 'row' },
+                    textAlign: { xs: 'center', sm: 'left' }
                 }}
             >
                 <Avatar 
@@ -48,7 +53,8 @@ export default function AdminPage() {
                     sx={{
                         width: 100,
                         height: 100,
-                        mr: 2,
+                        mr: { sm: 2 },
+                        mb: { xs: 2, sm: 0 }
                     }}
                 />
                 <Box>
@@ -57,18 +63,25 @@ export default function AdminPage() {
                 </Box>
             </Card>
 
-            <Grid2 container spacing={3}>
-                <Grid2 sx={{
-                    display: 'flex',
-                }}>
-                    <Card>
-                        <CardContent>
-                            <Typography variant="h6">Ultimos Tweets</Typography>
-                            <Typography variant="h4">421</Typography>
-                        </CardContent>
-                    </Card>
+            <Grid2 container spacing={3} justifyContent="center">
+                {['Ultimos Tweets', 'Ultimos Posts Linkedin', 'Ultimos PR'].map((title, index) => (
+                    <Grid2 
+                        key={index}
+                        sx={{
+                            display: 'flex',
+                        }}>
+                        <Card sx={{ display: 'flex', justifyContent: 'center', p: 2}}>
+                            <CardContent>
+                                <Typography variant="h6" align="center">{title}</Typography>
+                                <Typography variant="h4" align="center">
+                                    {index === 0 ? '421': index === 1 ? '008' : '802'}
+                                </Typography>
+                            </CardContent>
+                        </Card>
+                    </Grid2>
+                ))}
 
-                    <Card>
+                    {/* <Card>
                         <CardContent>
                             <Typography variant="h6">Ultimos Posts Linkedin</Typography>
                             <Typography variant="h4">008</Typography>
@@ -80,16 +93,19 @@ export default function AdminPage() {
                             <Typography variant="h6">Ultimos PR</Typography>
                             <Typography variant="h4">802</Typography>
                         </CardContent>
-                    </Card>
-                </Grid2>
+                    </Card> */}
             </Grid2>
-            <Box sx={{ mt: 4 }}>
-                <Typography>Projetos distribuidos</Typography>
-                <Card sx={{ margin: 4 }}>
+            <Box sx={{
+                mt: 4,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+            }}>
+                <Typography variant="h6" align="center">Projetos distribuidos</Typography>
+                <Card sx={{ margin: 4, mt: 2, maxWidth: 600 }}>
                 <Pie data={data} />
                 </Card>
             </Box>
-            {/* <Typography>Index Admin</Typography> */}
         </Container>
     )
 }
