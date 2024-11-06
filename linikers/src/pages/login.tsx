@@ -24,26 +24,46 @@ export default function Login() {
                 password: values.senha,
             });
 
-            if (result && result.ok) {
-                if (values.email === 'admin@admin.com') {
-                    window.location.href = "/admin/dashboard";
-                } else {
+            if (isRegistering) {
+                const response = await fetch('/api/auth/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(values),
+                });
+                if (!response.ok) {
+                    const data = await response.json();
+                    alert(data.message || "erro no registro");
+                    return
+                }
+                alert("usuario registrado com sucesso");
+                setIsRegistering(false);
+            } else {
+                const result = await signIn('credentials', {
+                    redirect: false,
+                    email: values.email,
+                    password: values.senha,
+                });
+
+                if(result && result.ok) {
+                    if (values.email === 'admin@admin.app') {
+                        window.location.href = "/admin/dashboard";
+                    }
                     window.location.href = "/perfil";
                 }
-            } else {
-
-                alert("Falha na autenticação. Verifique suas credenciais");
             }
+            // return
         }
     })
 
-    const handleLogin = async (values: any) => {
-        const isAdmin = values.email;
-        if (isAdmin) {
-            window.location.href = "/admin/dashboard";
-        }
-        window.location.href = "/perfil"
-    }
+    // const handleLogin = async (values: any) => {
+    //     const isAdmin = values.email;
+    //     if (isAdmin) {
+    //         window.location.href = "/admin/dashboard";
+    //     }
+    //     window.location.href = "/perfil"
+    // }
     return (
         <Grid2 
             container
