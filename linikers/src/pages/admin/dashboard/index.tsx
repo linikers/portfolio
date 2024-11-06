@@ -1,5 +1,5 @@
 import { Avatar, Box, Card, CardContent, Container, Grid2, Typography } from "@mui/material";
-import ava from "../../../../public/next.svg"
+import ava from "../../../../public/next.svg";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
 
@@ -80,32 +80,20 @@ export default function AdminPage() {
                         </Card>
                     </Grid2>
                 ))}
-
-                    {/* <Card>
-                        <CardContent>
-                            <Typography variant="h6">Ultimos Posts Linkedin</Typography>
-                            <Typography variant="h4">008</Typography>
-                        </CardContent>
-                    </Card>
-
-                    <Card>
-                        <CardContent>
-                            <Typography variant="h6">Ultimos PR</Typography>
-                            <Typography variant="h4">802</Typography>
-                        </CardContent>
-                    </Card> */}
             </Grid2>
-            <Box sx={{
-                mt: 4,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-            }}>
+            <Box 
+                sx={{
+                    mt: 4,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                }}
+            >
                 <Typography variant="h6" align="center">Projetos distribuidos</Typography>
                 <Card sx={{ margin: 4, mt: 2, maxWidth: 600 }}>
                 <Pie data={data} />
                 </Card>
             </Box>
         </Container>
-    )
-}
+    );
+};
