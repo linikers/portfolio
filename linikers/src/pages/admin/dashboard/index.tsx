@@ -1,7 +1,9 @@
-import { Avatar, Box, Card, CardContent, Container, Grid2, Typography } from "@mui/material";
+import { Avatar, Box, Button, Card, CardContent, Container, Grid2, Typography } from "@mui/material";
 import ava from "../../../../public/next.svg";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
+import Link from "next/link";
+import Painel from "./painel";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -42,7 +44,7 @@ export default function AdminPage() {
                     mb: 4,
                     display: 'flex',
                     alignItems: 'center',
-                    justifyContent: 'center',
+                    // justifyContent: 'center',
                     flexDirection: { xs: 'column', sm: 'row' },
                     textAlign: { xs: 'center', sm: 'left' }
                 }}
@@ -60,6 +62,14 @@ export default function AdminPage() {
                 <Box>
                     <Typography variant="h5">Seja bem vindo</Typography>
                     <Typography variant="subtitle1">Admin</Typography>
+                </Box>
+                <Box sx={{ zIndex: 999}}>
+                    <Link href='/dashboard/painel'>
+                    {/* <a href="/painel"> */}
+                        <Button variant="contained">dash</Button>
+                        painel
+                    {/* </a> */}
+                    </Link>
                 </Box>
             </Card>
 
@@ -94,6 +104,7 @@ export default function AdminPage() {
                 <Pie data={data} />
                 </Card>
             </Box>
+            <Painel />
         </Container>
     );
 };
