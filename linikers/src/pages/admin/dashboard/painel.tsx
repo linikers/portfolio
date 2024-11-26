@@ -34,11 +34,12 @@ export default function Painel() {
             };
             const fetchExchangeRates = async () => {
                 try {
-                    const response = await axios.get('https://api.exchangerate-api.com/v4/latest/USD');
+                    const response = await axios.get('https://economia.awesomeapi.com.br/last/USD-BRL');
                     setExchangeRates(prevRates =>({
                         ...prevRates,
-                        usd: response.data.bpi.USD,
-                        eur: response.data.bpi.EUR,
+                        usd: response.data.USDBRL
+                        // usd: response.data.bpi.USD,
+                        // eur: response.data.bpi.EUR,
                     }))
                 } catch (error) {
                     console.error('Erro ao consultas moedas');
