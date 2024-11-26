@@ -11,7 +11,7 @@ export const data = {
     labels: ['React', 'Mysql', 'Postgres', 'MJ', 'NextJs', 'Ts'],
     datasets: [
         {
-            label: ' teste',
+            label: 'Ferramentas',
             data: [ 12, 19, 21, 8, 60, 18 ],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
@@ -50,7 +50,7 @@ export default function AdminPage() {
                 }}
             >
                 <Avatar 
-                    alt="adm img"
+                    alt="Adminimg"
                     src={ava}
                     sx={{
                         width: 100,

@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import { google } from "googleapis";
 import axios from "axios";
 import { CurrencyBitcoin } from "@mui/icons-material";
+import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
+import EuroIcon from '@mui/icons-material/Euro';
 
 interface IExchangeRates {
     bitcoin: { bid: string | null; ask: string | null };
@@ -12,11 +14,7 @@ interface IExchangeRates {
     eur: {bid: string | null; ask: string | null};
 }
 export default function Painel() {
-    // chaves google
-    // const apiKey = 'AIzaSyD0Byjbl-wRRfkETvSTrgo-cVXL4-t7Euw';
-    // const clientId = '1410261414-gu4bmncrqgmi6c6cukiguvoutn3no32k.apps.googleusercontent.com';
 
-    // function CoinData() {
         const [exchangeRates, setExchangeRates] = useState<IExchangeRates>({
             bitcoin: { bid: null, ask: null },
             usd: { bid: null, ask: null },
@@ -31,42 +29,26 @@ export default function Painel() {
                     const { USDBRL, EURBRL, BTCBRL } = response.data;
 
                     setExchangeRates({
-                        bitcoin: {bid: BTCBRL, ask: BTCBRL },
-                        usd: { bid: USDBRL, ask: USDBRL },
-                        eur: { bid: EURBRL, ask: EURBRL },
+                        bitcoin: {bid: BTCBRL.bid, ask: BTCBRL.ask },
+                        usd: { bid: USDBRL.bid, ask: USDBRL.ask },
+                        eur: { bid: EURBRL.bid, ask: EURBRL.ask },
                     })
                 } catch (error) {
                     console.error('Erro no fetch das moedas', error)
                 }
             };
-            // const fetchExchangeRates = async () => {
-            //     try {
-            //         const response = await axios.get('https://economia.awesomeapi.com.br/last/USD-BRL');
-            //         setExchangeRates(prevRates =>({
-            //             ...prevRates,
-            //             usd: response.data.USDBRL
-            //             // usd: response.data.bpi.USD,
-            //             // eur: response.data.bpi.EUR,
-            //         }))
-            //     } catch (error) {
-            //         console.error('Erro ao consultas moedas');
-            //     }
-            // }
-
-
-            // fetchBitcoinPrice();
             fetchExchangeRates();
         }, [])
-    // }
 
     return (
         <Container sx={{ mt: 4 }}>
 
             <Typography variant="h4" gutterBottom>
-                DashBoard Admin
+                Cotação Diária
             </Typography>
             <Box
                 display="flex"
+                justifyContent='center'
                 gap={2}
                 flexWrap="wrap"
             >
@@ -85,7 +67,7 @@ export default function Painel() {
 
                 <Card>
                     <CardContent>
-                        <CurrencyBitcoin />
+                        <MonetizationOnIcon />
                         <Typography variant="h6">Dolar Americano</Typography>
                         <Typography>Compra: R$
                             {exchangeRates.usd.bid}
@@ -98,7 +80,7 @@ export default function Painel() {
 
                 <Card>
                     <CardContent>
-                        <CurrencyBitcoin />
+                        <EuroIcon />
                         <Typography variant="h6">Euro</Typography>
                         <Typography>Compra: R$
                             {exchangeRates.eur.bid}
