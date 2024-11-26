@@ -13,7 +13,7 @@ interface IExchangeRates {
     usd: {bid: string | null; ask: string | null};
     eur: {bid: string | null; ask: string | null};
 }
-export default function Painel() {
+export default function PainelCotacao() {
 
         const [exchangeRates, setExchangeRates] = useState<IExchangeRates>({
             bitcoin: { bid: null, ask: null },

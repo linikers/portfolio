@@ -4,6 +4,7 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
 import Link from "next/link";
 import Painel from "./painel";
+import PainelCotacao from "./painel";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -44,31 +45,30 @@ export default function AdminPage() {
                     mb: 4,
                     display: 'flex',
                     alignItems: 'center',
-                    // justifyContent: 'center',
+                    justifyContent: 'space-between',
                     flexDirection: { xs: 'column', sm: 'row' },
                     textAlign: { xs: 'center', sm: 'left' }
                 }}
             >
-                <Avatar 
-                    alt="Adminimg"
-                    src={ava}
-                    sx={{
-                        width: 100,
-                        height: 100,
-                        mr: { sm: 2 },
-                        mb: { xs: 2, sm: 0 }
-                    }}
-                />
-                <Box>
-                    <Typography variant="h5">Seja bem vindo</Typography>
-                    <Typography variant="subtitle1">Admin</Typography>
+                <Box display='flex'>
+                    <Avatar 
+                        alt="Adminimg"
+                        src={ava}
+                        sx={{
+                            width: 100,
+                            height: 100,
+                            mr: { sm: 2 },
+                            mb: { xs: 2, sm: 0 }
+                        }}
+                    />
+                    <Box textAlign='left' sx={{ mr: { sm: 2 }}}>
+                        <Typography variant="h5">Seja bem vindo</Typography>
+                        <Typography variant="subtitle1">Admin</Typography>
+                    </Box>
                 </Box>
                 <Box sx={{ zIndex: 999}}>
                     <Link href='/dashboard/painel'>
-                    {/* <a href="/painel"> */}
                         <Button variant="contained">dash</Button>
-                        painel
-                    {/* </a> */}
                     </Link>
                 </Box>
             </Card>
@@ -104,7 +104,7 @@ export default function AdminPage() {
                 <Pie data={data} />
                 </Card>
             </Box>
-            <Painel />
+            <PainelCotacao />
         </Container>
     );
 };
