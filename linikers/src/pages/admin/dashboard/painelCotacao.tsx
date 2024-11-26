@@ -1,8 +1,5 @@
 import { Box, Card, CardContent, Container, Typography } from "@mui/material";
-import Error from "next/error";
-// import puppeteer from 'puppeteer';
 import { useEffect, useState } from "react";
-import { google } from "googleapis";
 import axios from "axios";
 import { CurrencyBitcoin } from "@mui/icons-material";
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
@@ -35,11 +32,12 @@ export default function PainelCotacao() {
                     })
                 } catch (error) {
                     console.error('Erro no fetch das moedas', error)
+
                 }
             };
             fetchExchangeRates();
         }, [])
-
+        console.log(typeof exchangeRates.usd.bid);
     return (
         <Container sx={{ mt: 4 }}>
 
@@ -70,7 +68,7 @@ export default function PainelCotacao() {
                         <MonetizationOnIcon />
                         <Typography variant="h6">Dolar Americano</Typography>
                         <Typography>Compra: R$
-                            {exchangeRates.usd.bid}
+                            {(exchangeRates.usd.bid)}
                         </Typography>
                         <Typography>Venda: R$
                             {exchangeRates.usd.ask}

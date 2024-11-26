@@ -3,8 +3,7 @@ import ava from "../../../../public/next.svg";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
 import Link from "next/link";
-import Painel from "./painel";
-import PainelCotacao from "./painel";
+import PainelCotacao from "./painelCotacao";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -84,7 +83,7 @@ export default function AdminPage() {
                             <CardContent>
                                 <Typography variant="h6" align="center">{title}</Typography>
                                 <Typography variant="h4" align="center">
-                                    {index === 0 ? '421': index === 1 ? '008' : '802'}
+                                    {index === 0 ? '421': index === 1 ? '408' : '802'}
                                 </Typography>
                             </CardContent>
                         </Card>
