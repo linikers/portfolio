@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Box } from "@mui/material";
 
 export default function BoxPinterest() {
-    const [photos, setPhotos] = useState([]);
 
     useEffect(() => {
 

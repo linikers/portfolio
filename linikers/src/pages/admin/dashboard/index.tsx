@@ -1,7 +1,9 @@
-import { Avatar, Box, Card, CardContent, Container, Grid2, Typography } from "@mui/material";
+import { Avatar, Box, Button, Card, CardContent, Container, Grid2, Typography } from "@mui/material";
 import ava from "../../../../public/next.svg";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
+import Link from "next/link";
+import PainelCotacao from "./painelCotacao";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -9,7 +11,7 @@ export const data = {
     labels: ['React', 'Mysql', 'Postgres', 'MJ', 'NextJs', 'Ts'],
     datasets: [
         {
-            label: ' teste',
+            label: 'Ferramentas',
             data: [ 12, 19, 21, 8, 60, 18 ],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
@@ -42,24 +44,31 @@ export default function AdminPage() {
                     mb: 4,
                     display: 'flex',
                     alignItems: 'center',
-                    justifyContent: 'center',
+                    justifyContent: 'space-between',
                     flexDirection: { xs: 'column', sm: 'row' },
                     textAlign: { xs: 'center', sm: 'left' }
                 }}
             >
-                <Avatar 
-                    alt="adm img"
-                    src={ava}
-                    sx={{
-                        width: 100,
-                        height: 100,
-                        mr: { sm: 2 },
-                        mb: { xs: 2, sm: 0 }
-                    }}
-                />
-                <Box>
-                    <Typography variant="h5">Seja bem vindo</Typography>
-                    <Typography variant="subtitle1">Admin</Typography>
+                <Box display='flex'>
+                    <Avatar 
+                        alt="Adminimg"
+                        src={ava}
+                        sx={{
+                            width: 100,
+                            height: 100,
+                            mr: { sm: 2 },
+                            mb: { xs: 2, sm: 0 }
+                        }}
+                    />
+                    <Box textAlign='left' sx={{ mr: { sm: 2 }}}>
+                        <Typography variant="h5">Seja bem vindo</Typography>
+                        <Typography variant="subtitle1">Admin</Typography>
+                    </Box>
+                </Box>
+                <Box sx={{ zIndex: 999}}>
+                    <Link href='/dashboard/painel'>
+                        <Button variant="contained">dash</Button>
+                    </Link>
                 </Box>
             </Card>
 
@@ -74,7 +83,7 @@ export default function AdminPage() {
                             <CardContent>
                                 <Typography variant="h6" align="center">{title}</Typography>
                                 <Typography variant="h4" align="center">
-                                    {index === 0 ? '421': index === 1 ? '008' : '802'}
+                                    {index === 0 ? '421': index === 1 ? '408' : '802'}
                                 </Typography>
                             </CardContent>
                         </Card>
@@ -94,6 +103,7 @@ export default function AdminPage() {
                 <Pie data={data} />
                 </Card>
             </Box>
+            <PainelCotacao />
         </Container>
     );
 };
