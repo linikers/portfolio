@@ -5,8 +5,17 @@ import { Box, Container } from "@mui/material";
 import Head from "next/head";
 import { useEffect } from "react";
 import "./types/global.d.ts";
+import { getAnalytics, logEvent } from "firebase/analytics";
 
 export default function Home() {
+
+  useEffect(() => {
+    const analytics = getAnalytics();
+        logEvent(analytics, 'page_view', {
+        page_name: 'contato'
+      });
+}, [])
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       const particlesJS = window.particlesJS;
