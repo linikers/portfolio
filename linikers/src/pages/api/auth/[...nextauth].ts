@@ -1,6 +1,4 @@
-// import NextAuth from "next-auth";
 import NextAuth, { AuthOptions } from "next-auth";
-// import type { AuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 
@@ -17,7 +15,6 @@ export const authOptions: AuthOptions = {
                 password: { label: "Password", type: "password"},
             },
             async authorize (credentials) {
-                // if(!credentials) return null
                 const { email, password } = credentials as { email: string; password: string};
                 
                 const users = [
@@ -37,12 +34,6 @@ export const authOptions: AuthOptions = {
 
                 const user = users.find(user => user.email === email && user.password === password);
 
-                // if(email === "admin@admin.app" && password === "adminlink") {
-                //     return {
-                //         email: "admin@admin.app",
-                //         role: "admin"
-                //     };
-                // }
                 if (user) {
                     return { id: user.id, email: user.email, role: user.role}
                 }
