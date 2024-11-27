@@ -29,17 +29,6 @@ export default function BoxTop() {
             },
           }}
         >
-          {/* <Image
-            // src={linikers}
-            src={"../../public/linikersBg.jpg"}
-            alt="Imagem da sombra de um garoto"
-            width={100}
-            height={100}
-            // layout="fill"
-            // objectFit="cover"
-            quality={100}
-            className="brightness-75"
-          /> */}
         </motion.div>
       </Box>
     </Container>
