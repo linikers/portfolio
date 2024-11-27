@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import MaquinaDeEscrever from "./maquinaEscrever";
 
 export default function Logo() {
-  const [lines, setLines] = useState<string[]>([
+  const [lines, ] = useState<string[]>([
     "   Olá, clique no avatar para saber mais sobre",
     "  LinikerS",
     " Web Developer - TS | Js | NextJs",
   ]);
   const [currentLine, setCurrentLine] = useState<number>(0);
   const [showNextLine, setShowNextLine] = useState<boolean>(false);
-  const [typingComplete, setTypingComplete] = useState<boolean>(false);
+  const [, setTypingComplete] = useState<boolean>(false);
 
   useEffect(() => {
     if (currentLine < lines.length) {

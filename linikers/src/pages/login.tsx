@@ -17,7 +17,6 @@ export default function Login() {
             senha: Yup.string().min(6,'Senha precisa no mínimo de 6 caracteres').required('Campo senha obrigatório')
         }),
         onSubmit: async (values) => {
-            // handleLogin(values);
             const result = await signIn('credentials', {
                 redirect: false,
                 email: values.email,
@@ -54,17 +53,9 @@ export default function Login() {
                     }
                 }
             }
-            // return
         }
     })
 
-    // const handleLogin = async (values: any) => {
-    //     const isAdmin = values.email;
-    //     if (isAdmin) {
-    //         window.location.href = "/admin/dashboard";
-    //     }
-    //     window.location.href = "/perfil"
-    // }
     return (
         <Grid2 
             container
@@ -95,7 +86,7 @@ export default function Login() {
                     },
                 }}
             >
-            {/* <form onSubmit={formik.handleSubmit}> */}
+
             <Typography variant='h4' gutterBottom align="center">
                 {isRegistering ? 'Cadastro' : 'Login' }
             </Typography>
@@ -125,14 +116,10 @@ export default function Login() {
             />
             <Button 
                 type="submit"
-                // variant="contained"
                 color="success"
-                // margin="2"
-                // color="custom-base-1"
                 fullWidth
                 sx={{ zIndex: 99}}>
                     {isRegistering ? 'Cadastrar' : 'Login'}
-                    {/* login */}
             </Button>
             <Button onClick={() => signIn("google")}>
                 Entre com sua conta Google
@@ -146,7 +133,6 @@ export default function Login() {
                 </Button>
 
             </Grid2>
-        {/* </form> */}
             </Box>
         </Grid2>
     )
