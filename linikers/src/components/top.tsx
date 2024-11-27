@@ -1,5 +1,3 @@
-// import Image from "next/image";
-// import linikers from "../../public/linikersBg.jpg";
 import { motion } from "framer-motion";
 import { Box, Container } from "@mui/material";
 
