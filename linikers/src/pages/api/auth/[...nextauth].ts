@@ -37,13 +37,23 @@ export const authOptions: AuthOptions = {
                 if (user) {
                     return { id: user.id, email: user.email, role: user.role}
                 }
-                return null
+                throw new Error("Credenciais inválidas");
             },
         }),
     ],
     session: {
         strategy: "jwt",
     },
+    // async session ({ session, token }) {
+    //     if (token) {
+    //         session.user = {
+    //             ...session.user,
+    //             email: token.email,
+    //             role: token.role,
+    //         };
+    //     };
+    //     return session
+    // }
     callbacks: {
         async jwt({ token, user }: {token: any, user?: { email:string, role: string } }) {
             if (user) {
@@ -62,6 +72,6 @@ export const authOptions: AuthOptions = {
         },
     },
 };
-    // const handler = NextAuth(authOptions);
-    // export { handler as GET, handler as POST }
+    const handler = NextAuth(authOptions);
+    export { handler as GET, handler as POST }
     export default NextAuth(authOptions);
