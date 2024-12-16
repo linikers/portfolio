@@ -7,12 +7,12 @@ import { getAnalytics, logEvent } from "firebase/analytics";
 import { useEffect } from "react";
 
 export default function Perfil() {
-    useEffect(() => {
-        const analytics = getAnalytics();
-            logEvent(analytics, 'page_view', {
-            page_name: 'perfil'
-          });
-    }, [])
+    // useEffect(() => {
+    //     const analytics = getAnalytics();
+    //         logEvent(analytics, 'page_view', {
+    //         page_name: 'perfil'
+    //       });
+    // }, [])
     
     return (
         <Container maxWidth='sm'>
