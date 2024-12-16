@@ -6,12 +6,12 @@ import { useEffect } from "react";
 
 export default function Projetos() {
 
-  useEffect(() => {
-    const analytics = getAnalytics();
-        logEvent(analytics, 'page_view', {
-        page_name: 'projetos'
-      });
-  }, [])
+  // useEffect(() => {
+  //   const analytics = getAnalytics();
+  //       logEvent(analytics, 'page_view', {
+  //       page_name: 'projetos'
+  //     });
+  // }, [])
 
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
   return (
