@@ -10,7 +10,7 @@ export default function Perfil() {
     useEffect(() => {
         const analytics = getAnalytics();
             logEvent(analytics, 'page_view', {
-            page_name: 'index'
+            page_name: 'perfil'
           });
     }, [])
     

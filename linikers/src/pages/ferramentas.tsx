@@ -57,7 +57,7 @@ export default function Ferramentas() {
   useEffect(() => {
     const analytics = getAnalytics();
         logEvent(analytics, 'page_view', {
-        page_name: 'index'
+        page_name: 'ferramentas'
       });
 }, [])
   return (
