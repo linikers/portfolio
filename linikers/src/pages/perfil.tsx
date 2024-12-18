@@ -3,7 +3,6 @@ import infoPerfil from "@/components/infoPerfil";
 import Menu from "@/components/menu";
 import { Typography } from "@material-tailwind/react";
 import { Box, Container, Paper } from "@mui/material";
-import { getAnalytics, logEvent } from "firebase/analytics";
 import { useEffect } from "react";
 
 export default function Perfil() {
@@ -13,8 +12,8 @@ export default function Perfil() {
           const { getAnalytics, logEvent } = require('firebase/analytics');
           try {
             const analytics = getAnalytics();
-            logEvent(analytics, 'Home', {
-            page_name: 'index'
+            logEvent(analytics, 'Perfil', {
+            page_name: 'perfil'
             })
           } catch (error) {
             
