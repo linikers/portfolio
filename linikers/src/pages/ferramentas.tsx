@@ -54,12 +54,21 @@ const scrollAnimation = keyframes`
 `
 
 export default function Ferramentas() {
-//   useEffect(() => {
-//     const analytics = getAnalytics();
-//         logEvent(analytics, 'page_view', {
-//         page_name: 'ferramentas'
-//       });
-// }, [])
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const { getAnalytics, logEvent } = require('firebase/analytics');
+      try {
+        const analytics = getAnalytics();
+        logEvent(analytics, 'Home', {
+        page_name: 'index'
+        })
+      } catch (error) {
+        
+      }    
+    }
+}, [])
+
   return (
     <Container 
       sx={{ 
