@@ -3,16 +3,23 @@ import infoPerfil from "@/components/infoPerfil";
 import Menu from "@/components/menu";
 import { Typography } from "@material-tailwind/react";
 import { Box, Container, Paper } from "@mui/material";
-import { getAnalytics, logEvent } from "firebase/analytics";
 import { useEffect } from "react";
 
 export default function Perfil() {
-    // useEffect(() => {
-    //     const analytics = getAnalytics();
-    //         logEvent(analytics, 'page_view', {
-    //         page_name: 'perfil'
-    //       });
-    // }, [])
+
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+          const { getAnalytics, logEvent } = require('firebase/analytics');
+          try {
+            const analytics = getAnalytics();
+            logEvent(analytics, 'Perfil', {
+            page_name: 'perfil'
+            })
+          } catch (error) {
+            
+          }    
+        }
+    }, [])
     
     return (
         <Container maxWidth='sm'>
