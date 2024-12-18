@@ -21,7 +21,6 @@ import { DiScrum } from "react-icons/di/index.js";
 import { TbBrandNextjs } from "react-icons/tb/index.js";
 import { DiUbuntu } from "react-icons/di";
 import { useEffect } from "react";
-import { getAnalytics, logEvent } from "firebase/analytics";
 
 
 
@@ -54,12 +53,21 @@ const scrollAnimation = keyframes`
 `
 
 export default function Ferramentas() {
-//   useEffect(() => {
-//     const analytics = getAnalytics();
-//         logEvent(analytics, 'page_view', {
-//         page_name: 'ferramentas'
-//       });
-// }, [])
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const { getAnalytics, logEvent } = require('firebase/analytics');
+      try {
+        const analytics = getAnalytics();
+        logEvent(analytics, 'Ferramentas', {
+        page_name: 'ferramentas'
+        })
+      } catch (error) {
+        
+      }    
+    }
+}, [])
+
   return (
     <Container 
       sx={{ 
