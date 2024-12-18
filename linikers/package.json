@@ -35,7 +35,6 @@
     "google-auth-library": "^9.14.2",
     "googleapis": "^144.0.0",
     "next": "13.4.3",
-    "next-auth": "^4.24.10",
     "next-sitemap": "^4.2.3",
     "particles.js": "^2.0.0",
     "postcss": "8.4.23",
