@@ -5,7 +5,6 @@ import { Box, Container } from "@mui/material";
 import Head from "next/head";
 import { useEffect } from "react";
 import "./types/global.d.ts";
-import { getAnalytics, logEvent } from "firebase/analytics";
 
 export default function Home() {
 
