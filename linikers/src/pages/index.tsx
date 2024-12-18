@@ -9,15 +9,19 @@ import { getAnalytics, logEvent } from "firebase/analytics";
 
 export default function Home() {
 
-//   useEffect(() => {
-//     if (typeof window !== 'undefined') {
-//       const { getAnalytics, logEvent } = require('firebase/analytics');      
-//       const analytics = getAnalytics();
-//           logEvent(analytics, 'Home', {
-//           page_name: 'index'
-//         });
-//     }
-// }, [])
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const { getAnalytics, logEvent } = require('firebase/analytics');
+      try {
+        const analytics = getAnalytics();
+        logEvent(analytics, 'Home', {
+        page_name: 'index'
+        })
+      } catch (error) {
+        
+      }    
+    }
+}, [])
 
   useEffect(() => {
     if (typeof window !== "undefined") {
