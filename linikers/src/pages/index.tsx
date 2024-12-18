@@ -10,10 +10,13 @@ import { getAnalytics, logEvent } from "firebase/analytics";
 export default function Home() {
 
   useEffect(() => {
-    const analytics = getAnalytics();
-        logEvent(analytics, 'Home', {
-        page_name: 'index'
-      });
+    if (typeof window !== 'undefined') {
+      const { getAnalytics, logEvent } = require('firebase/analytics');      
+      const analytics = getAnalytics();
+          logEvent(analytics, 'Home', {
+          page_name: 'index'
+        });
+    }
 }, [])
 
   useEffect(() => {
