@@ -4,10 +4,10 @@ const infoPerfil = [
       texto: `Olá, meu nome é Liniker e esta é a minha página de perfil. Aqui você
               poderá conhecer um pouco mais sobre mim e minha paixão pela
               programação. Sou um desenvolvedor entusiasmado com o desenvolvimento
-              web e projetos, especializado em JavaScript, React, Next.js, MUI,
-              Tailwind e Bootstrap, entre outras bibliotecas. Tenho trabalhado em
-              diversos projetos desafiadores, buscando constantemente aprender e
-              aprimorar minhas habilidades.`,
+              web e projetos em geral, especializado em JavaScript, React, Next.js, Vite,
+              Mongo, SQL Server, Firebase, MUI, Tailwind e Bootstrap, entre outras bibliotecas. 
+              Tenho trabalhado em diversos projetos desafiadores, buscando
+              constantemente aprender e aprimorar minhas habilidades.`,
     },
     {
       titulo: "Exploração",
@@ -24,10 +24,10 @@ const infoPerfil = [
     {
       titulo: "Experiência",
       texto: `Tenho experiência em infraestrutura, implantação de ERP e SEO.
-              Atualmente, trabalho como desenvolvedor independente e em
-              sistemas escolares. Além disso, tenho
-              experiência em trabalho em equipe e colaboração, clique no ícone
-              abaixo para conferir alguns trabalhos.`,
+              Atualmente, trabalho como desenvolvedor independente e em alguns
+              projetos de sistemas escolares especificamente. Além disso, tenho
+              experiência em trabalho em equipe e colaboração, clique no Avatar
+              e no menu selecione Projetos para conferir alguns trabalhos publicados.`,
     },
   ];
   
