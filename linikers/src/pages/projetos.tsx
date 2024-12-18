@@ -1,17 +1,23 @@
 import CardPortfolio from "@/components/card";
 import MenuUser from "@/components/menu";
 import { Card, Container, Grid2 } from "@mui/material";
-import { getAnalytics, logEvent } from "firebase/analytics";
 import { useEffect } from "react";
 
 export default function Projetos() {
 
-  // useEffect(() => {
-  //   const analytics = getAnalytics();
-  //       logEvent(analytics, 'page_view', {
-  //       page_name: 'projetos'
-  //     });
-  // }, [])
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const { getAnalytics, logEvent } = require('firebase/analytics');
+      try {
+        const analytics = getAnalytics();
+        logEvent(analytics, 'Projetos', {
+        page_name: 'projetos'
+        })
+      } catch (error) {
+        
+      }    
+    }
+}, [])
 
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
   return (
