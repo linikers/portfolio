@@ -37,7 +37,7 @@ export const authOptions: AuthOptions = {
                 if (user) {
                     return { id: user.id, email: user.email, role: user.role}
                 }
-                return null
+                throw new Error("Credenciais inválidas");
             },
         }),
     ],
@@ -62,6 +62,6 @@ export const authOptions: AuthOptions = {
         },
     },
 };
-    // const handler = NextAuth(authOptions);
-    // export { handler as GET, handler as POST }
+    const handler = NextAuth(authOptions);
+    export { handler as GET, handler as POST }
     export default NextAuth(authOptions);

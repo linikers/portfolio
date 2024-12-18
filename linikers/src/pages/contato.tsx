@@ -12,12 +12,12 @@ import { getAnalytics, logEvent } from "firebase/analytics";
 
 export default function Contato() {
     
-    useEffect(() => {
-        const analytics = getAnalytics();
-            logEvent(analytics, 'page_view', {
-            page_name: 'contato'
-          });
-    }, [])
+    // useEffect(() => {
+    //     const analytics = getAnalytics();
+    //         logEvent(analytics, 'page_view', {
+    //         page_name: 'contato'
+    //       });
+    // }, [])
 
     const blinkEffect = {
         animate: {
