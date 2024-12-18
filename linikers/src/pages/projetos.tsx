@@ -1,8 +1,18 @@
 import CardPortfolio from "@/components/card";
 import MenuUser from "@/components/menu";
 import { Card, Container, Grid2 } from "@mui/material";
+import { getAnalytics, logEvent } from "firebase/analytics";
+import { useEffect } from "react";
 
 export default function Projetos() {
+
+  // useEffect(() => {
+  //   const analytics = getAnalytics();
+  //       logEvent(analytics, 'page_view', {
+  //       page_name: 'projetos'
+  //     });
+  // }, [])
+
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
   return (
     <Container className=" bg-custom-blue-1 flex flex-col items-center">
