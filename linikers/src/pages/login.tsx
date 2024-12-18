@@ -1,4 +1,4 @@
-import { signIn, useSession } from "next-auth/react";
+// import { signIn, useSession } from "next-auth/react";
 import { Box, Button, Grid2, TextField, Typography } from "@mui/material";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -7,7 +7,7 @@ import { color } from "framer-motion";
 import shadows from "@mui/material/styles/shadows";
 
 export default function Login() {
-    const { data: session } = useSession();
+    // const { data: session } = useSession();
     const [isRegistering, setIsRegistering] = useState(false);
 
     const formik = useFormik({
@@ -17,11 +17,11 @@ export default function Login() {
             senha: Yup.string().min(6,'Senha precisa no mínimo de 6 caracteres').required('Campo senha obrigatório')
         }),
         onSubmit: async (values) => {
-            const result = await signIn('credentials', {
-                redirect: false,
-                email: values.email,
-                password: values.senha,
-            });
+            // const result = await signIn('credentials', {
+            //     redirect: false,
+            //     email: values.email,
+            //     password: values.senha,
+            // });
 
             if (isRegistering) {
                 const response = await fetch('/api/auth/register', {
@@ -39,19 +39,19 @@ export default function Login() {
                 alert("usuario registrado com sucesso");
                 setIsRegistering(false);
             } else {
-                const result = await signIn('credentials', {
-                    redirect: false,
-                    email: values.email,
-                    password: values.senha,
-                });
+                // const result = await signIn('credentials', {
+                //     redirect: false,
+                //     email: values.email,
+                //     password: values.senha,
+                // });
 
-                if(result && result.ok) {
-                    if (values.email === 'admin@admin.app') {
-                        window.location.href = "/admin/dashboard";
-                    } else {
-                        window.location.href = "/perfil";
-                    }
-                }
+                // if(result && result.ok) {
+                //     if (values.email === 'admin@admin.app') {
+                //         window.location.href = "/admin/dashboard";
+                //     } else {
+                //         window.location.href = "/perfil";
+                //     }
+                // }
             }
         }
     })
@@ -121,9 +121,9 @@ export default function Login() {
                 sx={{ zIndex: 99}}>
                     {isRegistering ? 'Cadastrar' : 'Login'}
             </Button>
-            <Button onClick={() => signIn("google")}>
+            {/* <Button onClick={() => signIn("google")}>
                 Entre com sua conta Google
-            </Button>
+            </Button> */}
             <Grid2 container justifyContent="flex-end">
                 <Button 
                     color="secondary"
