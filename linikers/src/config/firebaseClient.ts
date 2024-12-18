@@ -5,14 +5,13 @@ import { getAuth } from 'firebase/auth';
 import 'firebase/analytics';
 
 export const firebaseConfig = {
-    apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY_ID,
-    projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-    authDomain: `${process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID}.firebaseapp.com`,
-    databaseURL: `${process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID}.firebaseio.com`,
-    storageBucket: `${process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID}.appspot.com`,
-    messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-    appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
-    measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
+    apiKey: "AIzaSyCjo2qckQOdWe9JDPwqxNTBvhpnHRzjbFM",
+    authDomain: "portfoliolinikers.firebaseapp.com",
+    projectId: "portfoliolinikers",
+    storageBucket: "portfoliolinikers.firebasestorage.app",
+    messagingSenderId: "537302382611",
+    appId: "1:537302382611:web:40cd9a2390bf0ca76c27e6",
+    measurementId: "G-DGMR5208SP"
 };
 
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
