@@ -5,19 +5,22 @@ import { Box, Container } from "@mui/material";
 import Head from "next/head";
 import { useEffect } from "react";
 import "./types/global.d.ts";
-import { getAnalytics, logEvent } from "firebase/analytics";
 
 export default function Home() {
 
-//   useEffect(() => {
-//     if (typeof window !== 'undefined') {
-//       const { getAnalytics, logEvent } = require('firebase/analytics');      
-//       const analytics = getAnalytics();
-//           logEvent(analytics, 'Home', {
-//           page_name: 'index'
-//         });
-//     }
-// }, [])
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const { getAnalytics, logEvent } = require('firebase/analytics');
+      try {
+        const analytics = getAnalytics();
+        logEvent(analytics, 'Home', {
+        page_name: 'index'
+        })
+      } catch (error) {
+        
+      }    
+    }
+}, [])
 
   useEffect(() => {
     if (typeof window !== "undefined") {

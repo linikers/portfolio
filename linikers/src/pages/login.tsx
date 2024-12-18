@@ -1,14 +1,19 @@
-// import { signIn, useSession } from "next-auth/react";
+import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { Box, Button, Grid2, TextField, Typography } from "@mui/material";
+import { auth } from "@/config/firebaseClient";
+import { useRouter } from "next/router";
 import { useFormik } from "formik";
-import * as Yup from "yup";
 import { useState } from "react";
-import { color } from "framer-motion";
-import shadows from "@mui/material/styles/shadows";
+import * as Yup from "yup";
+// import { color } from "framer-motion";
+// import shadows from "@mui/material/styles/shadows";
 
 export default function Login() {
-    // const { data: session } = useSession();
     const [isRegistering, setIsRegistering] = useState(false);
+    // const [email, setEmail] = useState('');
+    // const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const router = useRouter();
 
     const formik = useFormik({
         initialValues: { email: '', senha: '' },
@@ -17,45 +22,46 @@ export default function Login() {
             senha: Yup.string().min(6,'Senha precisa no mínimo de 6 caracteres').required('Campo senha obrigatório')
         }),
         onSubmit: async (values) => {
-            // const result = await signIn('credentials', {
-            //     redirect: false,
-            //     email: values.email,
-            //     password: values.senha,
-            // });
-
-            if (isRegistering) {
-                const response = await fetch('/api/auth/register', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(values),
-                });
-                if (!response.ok) {
-                    const data = await response.json();
-                    alert(data.message || "erro no registro");
-                    return
+            try {
+                if ( isRegistering) {
+                    await createUserWithEmailAndPassword(auth, values.email, values.senha);
+                    router.push('/dashboard')
+                } else {
+                    await signInWithEmailAndPassword(auth, values.email, values.senha);
+                    router.push('/dashboard')
                 }
-                alert("usuario registrado com sucesso");
-                setIsRegistering(false);
-            } else {
-                // const result = await signIn('credentials', {
-                //     redirect: false,
-                //     email: values.email,
-                //     password: values.senha,
-                // });
-
-                // if(result && result.ok) {
-                //     if (values.email === 'admin@admin.app') {
-                //         window.location.href = "/admin/dashboard";
-                //     } else {
-                //         window.location.href = "/perfil";
-                //     }
-                // }
+            } catch (error) {
+                setError(isRegistering ? "Falha no cadastro" : "Falha no login")
             }
         }
     })
+    const handleRegister = async (email: any, senha: any) => {
+        try {
+            await createUserWithEmailAndPassword(auth, email, senha);
+            router.push('/dashboard');
+        } catch (error) {
+            setError("Falha no Cadastro");
+        }
+    }
 
+    // const handleLogin = async(e: any) => {
+    //     e.preventDefault();
+    //     try {
+    //         await signInWithEmailAndPassword(auth, email, password);
+    //         router.push('/dashboard');
+    //     } catch (error) {
+    //         setError("Falha no login");
+    //     }
+    // }
+    const handleLoginGoogle = async () => {
+        const provider = new GoogleAuthProvider();
+        try {
+            await signInWithPopup(auth, provider)
+            router.push('/dashboard');
+        } catch (error) {
+            setError('Falha no Login');
+        }
+    }
     return (
         <Grid2 
             container
@@ -118,12 +124,14 @@ export default function Login() {
                 type="submit"
                 color="success"
                 fullWidth
-                sx={{ zIndex: 99}}>
+                sx={{ zIndex: 99}}
+                // onClick={isRegistering ? handleRegister : handleLogin}
+                >
                     {isRegistering ? 'Cadastrar' : 'Login'}
             </Button>
-            {/* <Button onClick={() => signIn("google")}>
+            <Button onClick={handleLoginGoogle}>
                 Entre com sua conta Google
-            </Button> */}
+            </Button>
             <Grid2 container justifyContent="flex-end">
                 <Button 
                     color="secondary"
