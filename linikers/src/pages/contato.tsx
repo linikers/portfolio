@@ -6,9 +6,6 @@ import world from "../../public/planeta.svg"
 import Social from "@/components/social";
 import Menu from "@/components/menu";
 import { useEffect } from "react";
-// import { analytics } from '../../firebase.config';
-import { getAnalytics, logEvent } from "firebase/analytics";
-// import analytics from '../../firebase.config'
 
 export default function Contato() {
     
@@ -17,8 +14,8 @@ export default function Contato() {
           const { getAnalytics, logEvent } = require('firebase/analytics');
           try {
             const analytics = getAnalytics();
-            logEvent(analytics, 'Home', {
-            page_name: 'index'
+            logEvent(analytics, 'Contato', {
+            page_name: 'contato'
             })
           } catch (error) {
             

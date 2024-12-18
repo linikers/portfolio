@@ -21,7 +21,6 @@ import { DiScrum } from "react-icons/di/index.js";
 import { TbBrandNextjs } from "react-icons/tb/index.js";
 import { DiUbuntu } from "react-icons/di";
 import { useEffect } from "react";
-import { getAnalytics, logEvent } from "firebase/analytics";
 
 
 
@@ -60,8 +59,8 @@ export default function Ferramentas() {
       const { getAnalytics, logEvent } = require('firebase/analytics');
       try {
         const analytics = getAnalytics();
-        logEvent(analytics, 'Home', {
-        page_name: 'index'
+        logEvent(analytics, 'Ferramentas', {
+        page_name: 'ferramentas'
         })
       } catch (error) {
         
