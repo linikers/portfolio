@@ -1,11 +1,11 @@
 import { initializeApp, getApps, getApp } from 'firebase/app'
-// import firebase from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
+import { getAnalytics } from "firebase/analytics";
 import { getAuth } from 'firebase/auth';
 import 'firebase/analytics';
+// import firebase from 'firebase/app';
 // import 'firebase/auth';
 // import 'firebase/firestore';
-import { getAnalytics } from "firebase/analytics";
 
 export const firebaseConfig = {
     apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY_ID,
@@ -17,6 +17,7 @@ export const firebaseConfig = {
     appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
     measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
+
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 const auth = getAuth(app);
 const db = getFirestore(app);
