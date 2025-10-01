@@ -6,28 +6,19 @@ import { remark } from 'remark';
 import html from 'remark-html';
 import { Box, Container } from '@mui/material';
 import MenuUser from '@/components/menu';
-import Menu from "@/components/menu";
 
 const Blog = ({ post }: any) => {
         return (
             <Container>
                 <Box sx={{
                     position: "absolute",
-                    // top: "18%",
-                    // left: "36%",
-                    // right: "36%",
                     zIndex: 10,
                     display: "flex",
-                    // flexDirection: "column",
-                    // alignItems: "center",
-                    // alignContent: "center",
-                    // justifyContent: "center",
                     margin: 6,
-                    // flexGrow: 1,
                 }}>
                     <MenuUser/>
                 </Box>
-            {/* <h1>Blog</h1> */}
+
                 <Box>
                     <div className='container mx-auto py-8'>
                         {post ? (
@@ -58,8 +49,7 @@ export async function getStaticProps() {
                 .process(matterResult.content);
             const contentHtml = processedContent.toString();
 
-            // console.log("result", matterResult);
-            // console.log("conteudo", markdownContent);
+
     
       const post = {
         title: matterResult.data.title || 'Sem título' || null,
