@@ -38,6 +38,14 @@ export default function MenuUser() {
           </a>
         </MenuItem>
         <MenuItem className="flex items-center border-none gap-2 transition-all duration-300 hover:scale-105 hover:bg-transparent">
+          <a href="blog" className="flex items-center gap-2 border-none">
+            <Cog6ToothIcon strokeWidth={2} className="h-4 w-4 border-none" />
+            <Typography variant="small" className="font-normal border-none">
+              Blog
+            </Typography>
+          </a>
+        </MenuItem>
+        <MenuItem className="flex items-center border-none gap-2 transition-all duration-300 hover:scale-105 hover:bg-transparent">
           <a href="ferramentas" className="flex items-center gap-2 border-none">
             <Cog6ToothIcon strokeWidth={2} className="h-4 w-4 border-none" />
             <Typography variant="small" className="font-normal border-none">
