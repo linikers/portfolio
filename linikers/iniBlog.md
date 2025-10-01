@@ -1,8 +1,8 @@
 ---
-title: 'Inteligência Artificial: antes de dominar a máquina, domine o próprio código interno'
-date: '2024-07-04'
+title: 'I.A.: antes de dominar a máquina, domine o próprio código interno'
+date: '2025-10-01'
 ---
-Passei a vida inteira mergulhado em tecnologia. Escrevi linhas e mais linhas de código, testei protocolos, construí sistemas, acompanhei cada hype tecnológico — da explosão da internet comercial, passando pela febre das redes sociais, até chegarmos agora na era da inteligência artificial generativa. Sempre vivi a intersecção entre tecnologia e comunicação, porque no fim, programar nunca foi apenas instruir máquinas: sempre foi, em essência, uma forma de traduzir intenções humanas em lógica executável.
+Passei a vida inteira mergulhado em tecnologia. Escrevi linhas e mais linhas de código, testei protocolos, construí sistemas, acompanhei cada hype tecnológico — da explosão da internet comercial desde as conexões discadas, passando pelo mIRC, ICQ pela febre das redes sociais, até chegarmos agora na era da inteligência artificial generativa. Sempre vivi a intersecção entre tecnologia e comunicação, porque no fim, programar nunca foi apenas instruir máquinas: sempre foi, em essência, uma forma de traduzir intenções humanas em lógica executável.
 
 E é justamente por isso que me incomoda a euforia em torno da IA, esse desejo quase desesperado de delegar tudo à máquina. Vejo muitos se perguntando: como eu faço para dominar a IA? — mas poucos perguntando: o que eu preciso dominar em mim mesmo para que essa tecnologia faça sentido?
 
@@ -10,7 +10,7 @@ A falsa promessa do progresso
 
 Sei que a história da tecnologia é repleta de ilusões de “salvação”. No início da computação pessoal, acreditava-se que os PCs libertariam o ser humano de qualquer esforço. Na era da internet, vendia-se a utopia de um planeta unido, transparente, sem fronteiras. Com a chegada das redes sociais, muitos acreditaram que o mundo finalmente ouviria a voz de todos. O que tivemos, de fato? Sim, tivemos avanços incríveis. Mas também tivemos vícios digitais, solidão em massa, desinformação e guerras culturais alimentadas por algoritmos.
 
-A tecnologia nunca erra sozinha. Quem erra é a forma como a usamos — e isso tem a ver com maturidade, não com hardware.
+A tecnologia nunca erra sozinha. Quem erra é a forma como a usamos — e isso tem a ver com maturidade, não com capacidade hardware.
 
 Programar é também programar-se
 

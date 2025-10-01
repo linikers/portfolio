@@ -4,28 +4,30 @@ import path from 'path';
 import matter from 'gray-matter';
 import { remark } from 'remark';
 import html from 'remark-html';
-import { Container } from '@mui/material';
+import { Box, Container } from '@mui/material';
+import MenuUser from '@/components/menu';
+import Menu from "@/components/menu";
 
 const Blog = ({ post }: any) => {
         return (
             <Container>
-            <h1>Blog</h1>
-            <div className='container mx-auto py-8'>
-                {post ? (
-                    <div>
-                    {/* <h2>{post.title}</ h2>
-                    <p>{post.date}</p> */}
-                    {/* <div dangerouslySetInnerHTML={{ __html: post.content }} /> */}
-                        <div className='max-w-2xl mx-auto text-center'>
-                            <h1 className="text-3xl font-bold mb-4">{post.title}</h1>
-                            <h1 className='text-gray-600 mb-2'>Data da publicação: {post.date}</h1>
-                            <div className='prose' dangerouslySetInnerHTML={{ __html: post.content }} />
-                        </div>
+                <Menu />
+            {/* <h1>Blog</h1> */}
+                <Box>
+                    <div className='container mx-auto py-8'>
+                        {post ? (
+                            <div>
+                                <div className='max-w-2xl mx-auto text-center'>
+                                    <h1 className="text-3xl font-bold mb-4">{post.title}</h1>
+                                    <h1 className='text-gray-600 mb-2'>Data da publicação: {post.date}</h1>
+                                    <div className='prose' dangerouslySetInnerHTML={{ __html: post.content }} />
+                                </div>
+                            </div>
+                        ) : (
+                            <p className='text-gray-500'>Não há postagens publicadas.</p>
+                        )}
                     </div>
-                ) : (
-                    <p className='text-gray-500'>Não há postagens publicadas.</p>
-                )}
-            </div>
+                </Box>
             </Container>
         );
         };
