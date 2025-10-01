@@ -11,7 +11,21 @@ import Menu from "@/components/menu";
 const Blog = ({ post }: any) => {
         return (
             <Container>
-                <Menu />
+                <Box sx={{
+                    position: "absolute",
+                    top: "18%",
+                    left: "36%",
+                    right: "36%",
+                    zIndex: 10,
+                    display: "flex",
+                    // flexDirection: "column",
+                    // alignItems: "center",
+                    // alignContent: "center",
+                    // justifyContent: "center",
+                    flexGrow: 1,
+                }}>
+                    <MenuUser/>
+                </Box>
             {/* <h1>Blog</h1> */}
                 <Box>
                     <div className='container mx-auto py-8'>
