@@ -51,7 +51,9 @@ export async function getStaticProps() {
     
             const posts = [];
             for (const postString of postStrings) {
-                const matterResult = matter(postString);
+                // Adicionamos o '---' inicial para que o gray-matter possa identificar o frontmatter corretamente.
+                const fullPostContent = `---\n${postString.trim()}`;
+                const matterResult = matter(fullPostContent);
                 const processedContent = await remark().use(html).process(matterResult.content);
                 const contentHtml = processedContent.toString();
 
