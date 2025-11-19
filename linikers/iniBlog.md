@@ -101,7 +101,7 @@ Porque a consciência verdadeira não é o que nos faz funcionar.
 ---
 title: 'o que tive de aprender para me tornar um programador'
 date: '2025-11-19'
-
+---
 Como já contei antes, sempre trabalhei com tecnologia e sempre fui fascinado por ela — na mesma proporção em que eu era apaixonado por carros modificados. Hoje quero compartilhar um pouco do caminho que trilhei até chegar aqui.
 
 Nascido e criado em uma família tradicional brasileira, sem muito dinheiro e com acesso limitado à informação, cresci entre revistas e equipamentos de segunda e terceira mão. Por volta dos 13 anos, ganhei meu primeiro computador: um Pentium 133 MHz usado, numa época em que os AMD série K já eram populares. Na minha cidade, a internet discada ainda reinava, então meu acesso ao conhecimento vinha principalmente das bancas de jornal, com as famosas revistas de Linux. Eram nelas que eu encontrava as distros da época: Conectiva, Kurumin e Debian — muito antes de existir o Ubuntu.
