@@ -65,7 +65,7 @@ export async function getStaticProps() {
             }
             return { props: { posts } };
     } catch (error) {
-        console.error("Erro ao ler ou processar o arquivo markdown:", error);
+        console.error("Erro ao ler ou processar o arquivo:", error);
         return { props: { posts: [] } };
     }
 }
