@@ -98,3 +98,26 @@ Porque a consciência verdadeira não é o que nos faz funcionar.
 
 > “O futuro da inteligência não será o das máquinas que aprendem a sentir, mas o dos humanos que aprendem a não esquecer o que é ser humano.”
 
+---
+title: 'o que tive de aprender para me tornar um programador'
+date: '2025-11-19'
+
+Como já contei antes, sempre trabalhei com tecnologia e sempre fui fascinado por ela — na mesma proporção em que eu era apaixonado por carros modificados. Hoje quero compartilhar um pouco do caminho que trilhei até chegar aqui.
+
+Nascido e criado em uma família tradicional brasileira, sem muito dinheiro e com acesso limitado à informação, cresci entre revistas e equipamentos de segunda e terceira mão. Por volta dos 13 anos, ganhei meu primeiro computador: um Pentium 133 MHz usado, numa época em que os AMD série K já eram populares. Na minha cidade, a internet discada ainda reinava, então meu acesso ao conhecimento vinha principalmente das bancas de jornal, com as famosas revistas de Linux. Eram nelas que eu encontrava as distros da época: Conectiva, Kurumin e Debian — muito antes de existir o Ubuntu.
+
+Eu precisava de algo leve que me ajudasse a ter mais “fôlego” nas internets da vida, então meu aprendizado começou antes mesmo de eu perceber que estava aprendendo. Quando chegou a hora de escolher uma carreira, passei em Zootecnia numa instituição pública, mas nunca consegui me enxergar realmente naquela área. Em paralelo, ganhei uma bolsa para cursar Sistemas de Informação. Não pensei duas vezes — entrei na área que eu realmente queria.
+
+Já no primeiro semestre consegui meu primeiro estágio. Era na área educacional, em uma faculdade EAD, onde eu cuidava de dois laboratórios de informática. A partir dali, minha trajetória seguiu ligada à educação e à tecnologia, sempre caminhando juntas.
+
+Algum tempo atrás, me peguei pensando: como hoje eu consigo ter a calma que faltou lá no começo? A resposta veio rápida: porque hoje eu já realizei aquilo que todo iniciante busca com ansiedade.
+
+No meio dessa caminhada tive meu próprio e-commerce, que cresceu a ponto de ser vendido para a maior loja do segmento na cidade. Viajei bastante, trabalhei na estrada, vivi temporadas fora. Em certo momento decidi largar a tecnologia e seguir o sonho de ter meu próprio negócio presencial, lidando justamente com animais — exatamente o que eu não quis lá no início da carreira.
+
+E quando tudo parecia finalmente estável, organizado e funcionando, apareceu um vazio. Uma mistura de insatisfação e inquietação difícil de explicar. Parecia ingratidão — talvez essa seja a palavra mais próxima — abandonar uma vida financeiramente e socialmente confortável para começar tudo de novo. Mas ali eu percebi algo importante: não era pelo dinheiro, não era pelo status, não era para provar nada a ninguém.
+
+Eu nunca estive realmente atrás do “sucesso”. O que eu buscava, mesmo sem perceber, era conhecimento. Era variedade. Era explorar áreas que eu jamais conheceria se não tivesse coragem de mudar de rumo. E assim foi.
+
+Quando finalmente me provei capaz de fazer qualquer coisa, em qualquer área, consegui sentar, respirar e encontrar paz fazendo aquilo que realmente amo — sem carregar o medo constante de fracassar caso precisasse recomeçar de novo.
+
+Toda experiência tem valor. Por isso, corra atrás dos seus medos, mas também dos seus sonhos. Assim você olha para trás com aprendizado, e olha para frente com perspectiva e confiança.
