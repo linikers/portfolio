@@ -94,9 +94,7 @@ Enquanto houver alguém capaz de olhar para o outro e sentir algo genuíno — m
 Porque a consciência verdadeira não é o que nos faz funcionar.  
 É o que nos faz **sentir**.
 
----
-
-> “O futuro da inteligência não será o das máquinas que aprendem a sentir, mas o dos humanos que aprendem a não esquecer o que é ser humano.”
+“O futuro da inteligência não será o das máquinas que aprendem a sentir, mas o dos humanos que aprendem a não esquecer o que é ser humano.”
 
 ---
 title: 'O que tive de aprender para me tornar um programador'
