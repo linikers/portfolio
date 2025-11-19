@@ -1,4 +1,4 @@
----
+
 title: 'I.A.: antes de dominar a máquina, domine o próprio código interno'
 date: '2025-10-01'
 ---
@@ -50,7 +50,7 @@ Acredito que o verdadeiro programador do futuro não será apenas quem entende a
 
 Essa é a visão que levo depois de uma vida inteira programando: não existe inteligência artificial forte o suficiente para compensar a ausência de autodomínio humano.
 
----
+---_POST_SEPARATOR_---
 title: 'I.A. e a ilusão da consciência: quando a máquina tenta sentir o que nunca viveu'
 date: '2025-11-04'
 ---
@@ -96,7 +96,7 @@ Porque a consciência verdadeira não é o que nos faz funcionar.
 
 “O futuro da inteligência não será o das máquinas que aprendem a sentir, mas o dos humanos que aprendem a não esquecer o que é ser humano.”
 
----
+---_POST_SEPARATOR_---
 title: 'O que tive de aprender para me tornar um programador'
 date: '2025-11-19'
 ---

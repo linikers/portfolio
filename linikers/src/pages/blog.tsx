@@ -46,26 +46,20 @@ export async function getStaticProps() {
             const markdownFilePath = path.join(process.cwd(), 'iniBlog.md');
             const markdownContent = fs.readFileSync(markdownFilePath, 'utf-8');
     
-            // Divide o conteúdo pelo separador '---' para isolar as seções de frontmatter e conteúdo
-            const sections = markdownContent.split('---').filter(section => section.trim() !== '');
+            // Divide o conteúdo em posts individuais usando um separador único e mais robusto.
+            const postStrings = markdownContent.split('---_POST_SEPARATOR_---').filter(post => post.trim() !== '');
     
             const posts = [];
-            // Cada post é composto por uma seção de frontmatter e uma de conteúdo
-            for (let i = 0; i < sections.length; i += 2) {
-                if (sections[i] && sections[i + 1]) {
-                    const frontmatter = sections[i];
-                    const content = sections[i + 1];
-                    const matterResult = matter(`---\n${frontmatter}\n---\n${content}`);
-    
-                    const processedContent = await remark().use(html).process(matterResult.content);
-                    const contentHtml = processedContent.toString();
-    
-                    posts.push({
-                        title: matterResult.data.title || 'Sem título',
-                        date: matterResult.data.date || null,
-                        content: contentHtml,
-                    });
-                }
+            for (const postString of postStrings) {
+                const matterResult = matter(postString);
+                const processedContent = await remark().use(html).process(matterResult.content);
+                const contentHtml = processedContent.toString();
+
+                posts.push({
+                    title: matterResult.data.title || 'Sem título',
+                    date: matterResult.data.date || null,
+                    content: contentHtml,
+                });
             }
             return { props: { posts } };
     } catch (error) {
