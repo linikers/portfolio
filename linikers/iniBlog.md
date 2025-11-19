@@ -99,7 +99,7 @@ Porque a consciência verdadeira não é o que nos faz funcionar.
 > “O futuro da inteligência não será o das máquinas que aprendem a sentir, mas o dos humanos que aprendem a não esquecer o que é ser humano.”
 
 ---
-title: 'o que tive de aprender para me tornar um programador'
+title: 'O que tive de aprender para me tornar um programador'
 date: '2025-11-19'
 ---
 Como já contei antes, sempre trabalhei com tecnologia e sempre fui fascinado por ela — na mesma proporção em que eu era apaixonado por carros modificados. Hoje quero compartilhar um pouco do caminho que trilhei até chegar aqui.
