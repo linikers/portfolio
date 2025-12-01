@@ -7,7 +7,7 @@ export default function BackgroundRoom() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1.8, ease: "easeOut" }}
-      className="absolute inset-0 w-full h-full overflow-hidden"
+      className="backgroundRoom"
     >
       <Image
         src="/assets/bg-room.png"
