@@ -2,6 +2,7 @@
 import react, { useState } from "react";
 import BootTerminal from "../../animatedPage/bootTerminal";
 import { useRouter } from "next/navigation";
+import "./src/pages/components/backgroundDesk/Monitor/monitor.css";
 
 export default function Monitor() {
   const [finished, setFinished] = useState(false);
