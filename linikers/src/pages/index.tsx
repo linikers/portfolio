@@ -1,8 +1,11 @@
-// import MonitorBoot from "@/components/MonitorBoot";
-// import MonitorBoot from "./components/monitorBoot";
-
+import BackgroundRoom from "./components/backgroundDesk/backgroundRoom";
 import Monitor from "./components/backgroundDesk/Monitor";
 
 export default function Home() {
-  return <Monitor />;
+  return (
+    <div className="home-root">
+      <BackgroundRoom />
+      <Monitor />
+    </div>
+  );
 }

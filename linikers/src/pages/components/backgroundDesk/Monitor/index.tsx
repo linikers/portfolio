@@ -1,9 +1,6 @@
 "use client";
-
-// import BootTerminal from "@animatedPage/bootTerminal";
-import { useState } from "react";
+import react, { useState } from "react";
 import BootTerminal from "../../animatedPage/bootTerminal";
-// import router from "next/router";
 import { useRouter } from "next/navigation";
 
 export default function Monitor() {
@@ -14,9 +11,9 @@ export default function Monitor() {
     setFinished(true);
     setTimeout(() => router.push("/perfil"), 1800);
   }
-  
+
   return (
-    <div className="monitor-ui">
+    <div className="monitor-zone">
       {!finished && <BootTerminal onFinish={endBoot} />}
       {finished && (
         <div className="terminal-ready">
