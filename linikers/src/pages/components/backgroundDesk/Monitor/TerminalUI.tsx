@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
-import { animateTerminal } from "@/components/animatedPage/gsapTerminal";
+import { animateTerminal } from "../../animatedPage/gsapTerminal";
+// import { animateTerminal } from "@/components/animatedPage/gsapTerminal";
 
 const TerminalUI: React.FC = () => {
   const ref = useRef<HTMLDivElement>(null);

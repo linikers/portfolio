@@ -1,7 +1,9 @@
 import gsap from "gsap";
 
 export function animateTerminal(el: HTMLElement) {
-  const lines = [...el.querySelectorAll(".cmd")] as HTMLSpanElement[];
+//   const lines = [...el.querySelectorAll(".cmd")] as HTMLSpanElement[];
+const lines = Array.from(el.querySelectorAll(".cmd")) as HTMLSpanElement[];
+
   lines.forEach(line => (line.style.opacity = "0"));
 
   gsap.to(lines, {
