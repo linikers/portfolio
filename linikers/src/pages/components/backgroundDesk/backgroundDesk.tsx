@@ -9,8 +9,10 @@ export default function BackgroundDesk({
 }) {
   return (
     <div className={styles["desk-wrapper"]}>
-      <DeskImage />
-      {children}
+      <div className={styles["desk-container"]}>
+        <DeskImage />
+        {children}
+      </div>
     </div>
   );
 }
