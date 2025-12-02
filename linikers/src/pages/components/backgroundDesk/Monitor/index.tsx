@@ -2,7 +2,7 @@
 import react, { useState } from "react";
 import BootTerminal from "../../animatedPage/bootTerminal";
 import { useRouter } from "next/navigation";
-import "./src/pages/components/backgroundDesk/Monitor/monitor.css";
+import styles from "./monitor.module.css";
 
 export default function Monitor() {
   const [finished, setFinished] = useState(false);
@@ -10,14 +10,14 @@ export default function Monitor() {
 
   function endBoot() {
     setFinished(true);
-    setTimeout(() => router.push("/perfil"), 1800);
+    // setTimeout(() => router.push("/perfil"), 1800);
   }
 
   return (
-    <div className="monitor-zone">
+    <div className={styles.monitorZone}>
       {!finished && <BootTerminal onFinish={endBoot} />}
       {finished && (
-        <div className="terminal-ready">
+        <div className={styles.terminalReady}>
           <span>user@linikers:~$ </span>
         </div>
       )}
