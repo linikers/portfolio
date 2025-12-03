@@ -1,6 +1,6 @@
 {
   "name": "linikers",
-  "version": "0.1.2.88",
+  "version": "0.1.6.16",
   "private": true,
   "scripts": {
     "dev": "next dev",
