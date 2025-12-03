@@ -1,5 +1,5 @@
 import React from "react";
-import "./monitor.css";
+// import styles from "./monitor.module.css";
 
 interface Props {
   children: React.ReactNode;
@@ -8,9 +8,7 @@ interface Props {
 const MonitorFrame: React.FC<Props> = ({ children }) => {
   return (
     <div className="monitor-frame">
-      <div className="monitor-inner">
-        {children}
-      </div>
+      <div className="monitor-inner">{children}</div>
     </div>
   );
 };
