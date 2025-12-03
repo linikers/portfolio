@@ -10,10 +10,8 @@ export default function BackgroundRoom() {
       className="backgroundRoom"
       style={{
         position: "relative",
-        width: "100%",
-        height: "100%",
-        // maxWidth: "1536px",
-        // maxHeight: "1024px",
+        width: "1536px", // Tamanho FIXO
+        height: "1024px", // Tamanho FIXO
         margin: "0 auto",
       }}
     >

@@ -9,7 +9,7 @@ export default function Home() {
         position: "relative",
         width: "100vw",
         height: "100vh",
-        overflow: "hidden",
+        overflow: "hidden", // CRÍTICO: corta as laterais em telas menores
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
