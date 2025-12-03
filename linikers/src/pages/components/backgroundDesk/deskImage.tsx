@@ -5,7 +5,7 @@ export default function DeskImage() {
   return (
     <div className={styles["desk-bg"]}>
       <img
-        src="/desk/retro_room_pixel_dark.png"
+        src="/desk/bgroomhd.png"
         alt="desk linikerS"
         className={styles["desk-image"]}
       />
