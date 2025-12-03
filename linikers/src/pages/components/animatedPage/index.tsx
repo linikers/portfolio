@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { bootMessages } from "./bootSequence";
+import { bootMessages } from "@/utils/animatedPage/bootSequence";
 // import { animateTerminal } from "./gsapTerminal";
 import DeskScene from "../backgroundDesk";
 

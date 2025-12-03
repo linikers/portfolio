@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { bootMessages } from "./bootSequence";
+import { bootMessages } from "@/utils/animatedPage/bootSequence";
 import styles from "./terminal.module.css";
 
 export default function BootTerminal({ onFinish }: { onFinish: () => void }) {
