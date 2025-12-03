@@ -1,11 +1,34 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 export default function BackgroundRoom({
   children,
 }: {
   children?: React.ReactNode;
 }) {
+  const [scale, setScale] = useState(1);
+
+  useEffect(() => {
+    const calculateScale = () => {
+      const viewportWidth = window.innerWidth;
+      const viewportHeight = window.innerHeight;
+      const imageWidth = 1536;
+      const imageHeight = 1024;
+
+      // Calcula escala para preencher a tela (cover)
+      const scaleX = viewportWidth / imageWidth;
+      const scaleY = viewportHeight / imageHeight;
+      const newScale = Math.max(scaleX, scaleY);
+
+      setScale(newScale);
+    };
+
+    calculateScale();
+    window.addEventListener("resize", calculateScale);
+    return () => window.removeEventListener("resize", calculateScale);
+  }, []);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -14,20 +37,18 @@ export default function BackgroundRoom({
       className="backgroundRoom"
       style={{
         position: "relative",
-        width: "100%", // ← Preenche a tela
-        height: "100%", // ← Preenche a tela
-        minWidth: "1536px", // ← Tamanho mínimo (força zoom em telas menores)
-        minHeight: "1024px",
-        margin: "0 auto",
+        width: "1536px", // FIXO
+        height: "1024px", // FIXO
+        transformOrigin: "center center",
+        transform: `scale(${scale})`, // Escala responsiva
       }}
     >
       <Image
-        // src="/assets/bg-room.png"
         src="/assets/bgroomhd.png"
         alt="room background"
         fill
         style={{
-          objectFit: "cover", // ← Preenche tela toda (zoom/crop)
+          objectFit: "cover",
           imageRendering: "pixelated",
         }}
         priority
