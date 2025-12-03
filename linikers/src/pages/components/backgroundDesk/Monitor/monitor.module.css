@@ -6,12 +6,16 @@
   width: 17%;
   height: 33%;
   z-index: 10;
-  transform: rotate(0.8deg); /* Leve inclinação se necessário */
+  transform: rotate(0.6deg); /* Leve inclinação se necessário */
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  border-radius: 2% 2% 2% 2% / 2% 2% 2% 2%; /* Ajuste da curvatura */
+  border-radius: 28% 38% 2% 38% / 6% 6% 26% 6%; /* Contorno do monitor CRT */
+  
+  /* Fundo OPACO para cobrir o texto da imagem */
+  background: #0a0e12;
+  /* padding: 3%; */
 }
 
 .monitor-frame {
@@ -55,8 +59,8 @@
   left: 0;
   bottom: 0;
   right: 0;
-  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(0,0,0,0.4) 100%);
-  z-index: 21;
+  background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0.3) 100%);
+  z-index: 1;
   pointer-events: none;
 }
 
