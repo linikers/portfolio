@@ -60,3 +60,29 @@
 .text-shadow-base-2 {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
+
+// animação nova 
+.backgroundRoom {
+  position: absolute;
+  inset: 0;
+  background-image: url('/desk-2000s.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 768px) {
+  .backgroundDesk {
+    background-size: cover;
+    background-position: top center;
+  }
+}
+
+.monitor-zone {
+  position: absolute;
+  left: 55%;
+  top: 28%;
+  width: 390px;
+  height: 240px;
+  overflow: hidden;
+}
