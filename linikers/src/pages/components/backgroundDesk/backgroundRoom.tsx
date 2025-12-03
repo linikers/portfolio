@@ -1,7 +1,11 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 
-export default function BackgroundRoom() {
+export default function BackgroundRoom({
+  children,
+}: {
+  children?: React.ReactNode;
+}) {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -10,8 +14,10 @@ export default function BackgroundRoom() {
       className="backgroundRoom"
       style={{
         position: "relative",
-        width: "1536px", // Tamanho FIXO
-        height: "1024px", // Tamanho FIXO
+        width: "100%", // ← Preenche a tela
+        height: "100%", // ← Preenche a tela
+        minWidth: "1536px", // ← Tamanho mínimo (força zoom em telas menores)
+        minHeight: "1024px",
         margin: "0 auto",
       }}
     >
@@ -21,11 +27,12 @@ export default function BackgroundRoom() {
         alt="room background"
         fill
         style={{
-          objectFit: "contain",
+          objectFit: "cover", // ← Preenche tela toda (zoom/crop)
           imageRendering: "pixelated",
         }}
         priority
       />
+      {children}
     </motion.div>
   );
 }

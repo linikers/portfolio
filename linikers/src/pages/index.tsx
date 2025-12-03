@@ -16,8 +16,9 @@ export default function Home() {
         backgroundColor: "#000",
       }}
     >
-      <BackgroundRoom />
-      <Monitor />
+      <BackgroundRoom>
+        <Monitor />
+      </BackgroundRoom>
     </div>
   );
 }
