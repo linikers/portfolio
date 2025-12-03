@@ -16,7 +16,8 @@ export default function BackgroundRoom() {
       }}
     >
       <Image
-        src="/assets/bg-room.png"
+        // src="/assets/bg-room.png"
+        src="/assets/bgroomhd.png"
         alt="room background"
         fill
         style={{
