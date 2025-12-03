@@ -3,7 +3,7 @@
     color: #00ff95;
     font-size: 14px;
     padding: 12px;
-    background: rgba(10, 10, 10, 0.90);
+    background: rgba(10, 10, 10, 0.98); /* Mais opaco para cobrir o texto */
     border-radius: 4px;
     border: 1px solid #013b26;
     width: 100%;
