@@ -2,10 +2,10 @@
   position: absolute;
   
   /* Posição relativa ao canvas (1536x1024) */
-  top: 37%;
+  top: 38%;
   left: 62%;
   width: 18%;
-  height: 24%;
+  height: 22%;
   
   z-index: 10;
   transform: rotate(0.6deg);
@@ -15,7 +15,7 @@
   overflow: hidden;
   
   /* Contorno do monitor CRT - ajustado para perspectiva */
-  border-radius: 8% 8% 18% 12% / 6% 6% 10% 8%;
+  border-radius: 8% 8% 10% 12% / 6% 6% 6% 8%;
   
   /* Fundo OPACO para cobrir o texto da imagem */
   background: #0a0e12;
