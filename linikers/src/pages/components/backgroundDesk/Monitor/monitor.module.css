@@ -14,9 +14,8 @@
   align-items: center;
   overflow: hidden;
   
-  /* Contorno do monitor CRT */
-  border-radius: 28% 34% 14% 21% / 6% 6% 6% 8%;
-
+  /* Contorno do monitor CRT - ajustado para perspectiva */
+  border-radius: 8% 8% 18% 12% / 6% 6% 10% 8%;
   
   /* Fundo OPACO para cobrir o texto da imagem */
   background: #0a0e12;
