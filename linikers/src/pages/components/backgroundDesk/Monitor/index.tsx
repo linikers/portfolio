@@ -10,7 +10,7 @@ export default function Monitor() {
 
   function endBoot() {
     setFinished(true);
-    // setTimeout(() => router.push("/perfil"), 2800);
+    setTimeout(() => router.push("/perfil"), 2600);
   }
 
   return (
