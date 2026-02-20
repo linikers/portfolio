@@ -460,6 +460,18 @@ Criar o módulo completo de Gerador de Prompts com 3 páginas e 4 componentes.
 - NÃO usar App Router, Server Components, ou `route.ts`.
 ```
 
+Fase 2 concluída! ✅ Módulo Gerador de Prompts implementado com sucesso.
+
+9 arquivos criados, yarn tsc --noEmit com zero erros, nenhum arquivo existente alterado.
+
+Rotas disponíveis
+Rota Função
+/admin/gerador Formulário de configuração → gera prompt via IA
+/admin/gerador/resultado Preview markdown + regenerar/copiar/editar/publicar
+/admin/gerador/historico Seus prompts criados + toggle publicar/despublicar
+GET /api/loja/prompts Lista prompts publicados (paginado)
+POST /api/loja/prompts Criar ou atualizar prompt
+
 ---
 
 ### 🤖 PROMPT 3 — Loja Pública de Prompts
