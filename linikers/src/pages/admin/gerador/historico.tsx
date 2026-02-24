@@ -50,7 +50,7 @@ export default function HistoricoPage() {
         orderBy("createdAt", "desc"),
       );
       const snapshot = await getDocs(q);
-      const data: IPrompt[] = snapshot.docs.map((d) => {
+      const data: IPrompt[] = snapshot.docs.map((d: any) => {
         const docData = d.data();
         return {
           id: d.id,
@@ -81,7 +81,7 @@ export default function HistoricoPage() {
   };
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user: any) => {
       if (user) {
         fetchPrompts(user.uid);
       } else {
@@ -94,8 +94,8 @@ export default function HistoricoPage() {
   const handleTogglePublish = async (id: string, published: boolean) => {
     try {
       await updateDoc(doc(db, "prompts", id), { published });
-      setPrompts((prev) =>
-        prev.map((p) => (p.id === id ? { ...p, published } : p)),
+      setPrompts((prev: any) =>
+        prev.map((p: any) => (p.id === id ? { ...p, published } : p)),
       );
       setSnackbar({
         open: true,
@@ -116,7 +116,7 @@ export default function HistoricoPage() {
   const handleDelete = async (id: string) => {
     try {
       await deleteDoc(doc(db, "prompts", id));
-      setPrompts((prev) => prev.filter((p) => p.id !== id));
+      setPrompts((prev: any) => prev.filter((p: any) => p.id !== id));
       setSnackbar({
         open: true,
         message: "Prompt excluído.",
@@ -167,7 +167,7 @@ export default function HistoricoPage() {
       <Snackbar
         open={snackbar.open}
         autoHideDuration={3000}
-        onClose={() => setSnackbar((s) => ({ ...s, open: false }))}
+        onClose={() => setSnackbar((s: any) => ({ ...s, open: false }))}
       >
         <Alert severity={snackbar.severity} sx={{ width: "100%" }}>
           {snackbar.message}

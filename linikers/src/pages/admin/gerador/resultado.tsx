@@ -196,7 +196,7 @@ export default function ResultadoPage() {
             multiline
             minRows={8}
             value={editContent}
-            onChange={(e) => setEditContent(e.target.value)}
+            onChange={(e: any) => setEditContent(e.target.value)}
             label="Editar Prompt"
           />
         ) : (
@@ -254,7 +254,7 @@ export default function ResultadoPage() {
       <Snackbar
         open={snackbar.open}
         autoHideDuration={3000}
-        onClose={() => setSnackbar((s) => ({ ...s, open: false }))}
+        onClose={() => setSnackbar((s: any) => ({ ...s, open: false }))}
       >
         <Alert severity={snackbar.severity} sx={{ width: "100%" }}>
           {snackbar.message}
