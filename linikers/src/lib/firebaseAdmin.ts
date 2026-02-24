@@ -3,14 +3,12 @@
 
 import { getApps, initializeApp, cert, getApp } from "firebase-admin/app";
 import { getFirestore } from "firebase-admin/firestore";
+import { env } from "@/env.mjs";
 
 export function getAdminFirestore() {
   if (!getApps().length) {
     // Verifica se as variáveis necessárias estão presentes
-    if (
-      !process.env.FIREBASE_CLIENT_EMAIL ||
-      !process.env.FIREBASE_PRIVATE_KEY
-    ) {
+    if (!env.local.FIREBASE_CLIENT_EMAIL || !env.local.FIREBASE_PRIVATE_KEY) {
       console.error(
         "ERRO: FIREBASE_CLIENT_EMAIL ou FIREBASE_PRIVATE_KEY não configurados.",
       );
@@ -19,10 +17,10 @@ export function getAdminFirestore() {
     initializeApp({
       credential: cert({
         projectId:
-          process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID || "portfoliolinikers",
-        clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+          env.local.NEXT_PUBLIC_FIREBASE_PROJECT_ID || "portfoliolinikers",
+        clientEmail: env.local.FIREBASE_CLIENT_EMAIL,
         // Garante que as quebras de linha da private key sejam interpretadas corretamente
-        privateKey: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, "\n"),
+        privateKey: env.local.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, "\n"),
       }),
     });
   }
