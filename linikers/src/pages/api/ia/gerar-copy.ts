@@ -15,7 +15,14 @@ interface ErrorResponse {
   error: string;
 }
 
-const REDES_VALIDAS = ["instagram", "linkedin", "x", "whatsapp"];
+const REDES_VALIDAS = [
+  "instagram",
+  "linkedin",
+  "x",
+  "whatsapp",
+  "tiktok",
+  "youtube",
+];
 
 function isValidBody(body: unknown): body is GerarCopyBody {
   if (typeof body !== "object" || body === null) return false;
