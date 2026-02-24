@@ -516,7 +516,19 @@ Criar a vitrine pública da loja de prompts. Área aberta (sem auth).
 - NÃO criar rotas autenticadas aqui — loja é 100% pública.
 ```
 
----
+Fase 3 concluída! ✅ Vitrine pública da Loja de Prompts implementada com sucesso.
+
+Novidades:
+Loja Pública (/loja): Listagem com SSR, filtros e animações.
+Detalhe do Prompt (/loja/[id]): SEO otimizado, preview parcial para prompts pagos e fluxo de cópia para gratuitos.
+Correção 404: A página not-found.tsx foi renomeada para 404.tsx, agora o Next.js a utiliza corretamente.
+Firebase Admin: Centralizado para garantir performance e segurança no SSR.
+yarn tsc --noEmit retornou sucesso total.
+
+Próximo passo:
+Adicione a chave Pix no seu .env.local: NEXT_PUBLIC_PIX_KEY="sua-chave@pix.com".
+
+## Quando estiver pronto, envie o Prompt 4 (Automação de Conteúdo) para continuarmos!
 
 ### 🤖 PROMPT 4 — Gerenciador de Propaganda (Dashboard + Criar)
 

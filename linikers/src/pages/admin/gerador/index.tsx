@@ -36,8 +36,8 @@ export default function GeradorPage() {
       setFormValues(values);
       setGeneratedPrompt(response.data.prompt, response.data.provider);
       router.push("/admin/gerador/resultado");
-    } catch (err) {
-      if (axios.isAxiosError(err as any) && err.response?.data?.error) {
+    } catch (err: any) {
+      if (axios.isAxiosError(err) && err.response?.data?.error) {
         setError(err.response.data.error);
       } else {
         setError("Erro inesperado ao gerar o prompt. Tente novamente.");

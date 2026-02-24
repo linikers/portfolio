@@ -4,22 +4,8 @@
 // Usa Firebase Admin SDK.
 
 import type { NextApiRequest, NextApiResponse } from "next";
-import { getApps, initializeApp, cert, getApp } from "firebase-admin/app";
-import { getFirestore, Timestamp } from "firebase-admin/firestore";
-
-// Inicializar Firebase Admin (singleton)
-function getAdminFirestore() {
-  if (!getApps().length) {
-    initializeApp({
-      credential: cert({
-        projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-        clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
-        privateKey: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, "\n"),
-      }),
-    });
-  }
-  return getFirestore(getApp());
-}
+import { Timestamp } from "firebase-admin/firestore";
+import { getAdminFirestore } from "@/lib/firebaseAdmin";
 
 interface PromptDoc {
   title: string;
