@@ -96,10 +96,10 @@ export const getServerSideProps: GetServerSideProps = async () => {
     const snapshot = await db
       .collection("prompts")
       .where("published", "==", true)
-      .orderBy("createdAt", "desc")
+      //   .orderBy("createdAt", "desc")
       .get();
 
-    const prompts = snapshot.docs.map((doc) => {
+    const prompts = snapshot.docs.map((doc: any) => {
       const data = doc.data();
       return {
         id: doc.id,
