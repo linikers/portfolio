@@ -1,25 +1,34 @@
 import { initializeApp, getApps, getApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-import { getAnalytics } from "firebase/analytics";
+import { getAnalytics, isSupported } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
-import "firebase/analytics";
 
+/**
+ * Configuração do Firebase Client
+ * Centraliza as variáveis de ambiente com prefixo NEXT_PUBLIC_
+ */
 export const firebaseConfig = {
-  apiKey: "AIzaSyCjo2qckQOdWe9JDPwqxNTBvhpnHRzjbFM",
-  authDomain: "portfoliolinikers.firebaseapp.com",
-  projectId: "portfoliolinikers",
-  storageBucket: "portfoliolinikers.firebasestorage.app",
-  messagingSenderId: "537302382611",
-  appId: "1:537302382611:web:40cd9a2390bf0ca76c27e6",
-  measurementId: "G-DGMR5208SP",
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
+// Singleton para garantir uma única instância do Firebase App no client
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
+
+// Inicialização dos serviços
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-if (typeof window !== "undefined" && env.NODE_ENV === "production") {
-  getAnalytics(app);
+// Analytics apenas no browser e se suportado
+if (typeof window !== "undefined") {
+  isSupported().then((supported) => {
+    if (supported) getAnalytics(app);
+  });
 }
 
 export { auth, db };

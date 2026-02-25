@@ -1,28 +1,33 @@
 // src/lib/firebaseAdmin.ts
-// Singleton para o Firebase Admin SDK — compartilhado entre API Routes e getServerSideProps.
+/**
+ * Singleton para o Firebase Admin SDK.
+ * Usado exclusivamente no servidor (API Routes e getServerSideProps).
+ */
 
 import { getApps, initializeApp, cert, getApp } from "firebase-admin/app";
 import { getFirestore } from "firebase-admin/firestore";
-import { env } from "@/env.mjs";
 
 export function getAdminFirestore() {
   if (!getApps().length) {
-    // Verifica se as variáveis necessárias estão presentes
-    if (!env.local.FIREBASE_CLIENT_EMAIL || !env.local.FIREBASE_PRIVATE_KEY) {
+    const projectId = process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID;
+    const clientEmail = process.env.FIREBASE_CLIENT_EMAIL;
+    const privateKey = process.env.FIREBASE_PRIVATE_KEY;
+
+    if (!clientEmail || !privateKey) {
       console.error(
-        "ERRO: FIREBASE_CLIENT_EMAIL ou FIREBASE_PRIVATE_KEY não configurados.",
+        "🔥 ERRO FIREBASE ADMIN: Variáveis FIREBASE_CLIENT_EMAIL ou FIREBASE_PRIVATE_KEY não encontradas.",
       );
     }
 
     initializeApp({
       credential: cert({
-        projectId:
-          env.local.NEXT_PUBLIC_FIREBASE_PROJECT_ID || "portfoliolinikers",
-        clientEmail: env.local.FIREBASE_CLIENT_EMAIL,
-        // Garante que as quebras de linha da private key sejam interpretadas corretamente
-        privateKey: env.local.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, "\n"),
+        projectId: projectId || "portfoliolinikers",
+        clientEmail: clientEmail,
+        // Corrige quebras de linha na chave privada se vierem com escape
+        privateKey: privateKey?.replace(/\\n/g, "\n"),
       }),
     });
   }
+
   return getFirestore(getApp());
 }
