@@ -524,9 +524,7 @@ Detalhe do Prompt (/loja/[id]): SEO otimizado, preview parcial para prompts pago
 Correção 404: A página not-found.tsx foi renomeada para 404.tsx, agora o Next.js a utiliza corretamente.
 Firebase Admin: Centralizado para garantir performance e segurança no SSR.
 yarn tsc --noEmit retornou sucesso total.
-
-Próximo passo:
-Adicione a chave Pix no seu .env.local: NEXT_PUBLIC_PIX_KEY="sua-chave@pix.com".
+chave pix adicionada
 
 ## Quando estiver pronto, envie o Prompt 4 (Automação de Conteúdo) para continuarmos!
 
