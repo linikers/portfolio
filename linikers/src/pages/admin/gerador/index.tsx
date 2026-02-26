@@ -23,25 +23,16 @@ export default function GeradorPage() {
     setLoading(true);
 
     try {
-      const response = await axios.post<{
-        prompt: string;
-        provider: "groq" | "gemini";
-      }>("/api/ia/gerar-prompt", {
-        categoria: values.categoria,
-        plataforma: values.plataforma,
-        objetivo: values.objetivo,
-        tom: values.tom,
-      });
+      // No modo manual, não chamamos a API de IA.
+      // Futuramente aqui será feito o upload da imagem e criação do .md
 
       setFormValues(values);
-      setGeneratedPrompt(response.data.prompt, response.data.provider);
+      // Simulamos que o prompt gerado é o que o usuário digitou
+      setGeneratedPrompt(values.prompt, "groq");
+
       router.push("/admin/gerador/resultado");
     } catch (err: any) {
-      if (axios.isAxiosError(err) && err.response?.data?.error) {
-        setError(err.response.data.error);
-      } else {
-        setError("Erro inesperado ao gerar o prompt. Tente novamente.");
-      }
+      setError("Erro ao processar a publicação. Tente novamente.");
     } finally {
       setLoading(false);
     }

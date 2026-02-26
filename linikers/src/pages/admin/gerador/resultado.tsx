@@ -20,7 +20,6 @@ import {
   MdArrowBack,
 } from "react-icons/md";
 import axios from "axios";
-import { collection, addDoc, Timestamp } from "firebase/firestore";
 import { db, auth } from "@/config/firebaseClient";
 import PromptPreview from "@/components/gerador/PromptPreview";
 import PublicarModal from "@/components/gerador/PublicarModal";
@@ -134,33 +133,47 @@ export default function ResultadoPage() {
 
     setPublishing(true);
     try {
-      await addDoc(collection(db, "prompts"), {
+      const postId = `post_${Date.now()}`;
+
+      const formData = new FormData();
+      formData.append("uid", user.uid);
+      formData.append("postId", postId);
+      formData.append("prompt", currentContent);
+
+      const metadata = {
         title: payload.title,
         description: payload.description,
-        content: currentContent,
-        category: formValues?.categoria || "outro",
-        platform: formValues?.plataforma || "geral",
         price: payload.price,
-        published: false,
-        createdAt: Timestamp.now(),
+        createdAt: new Date().toISOString(),
         uid: user.uid,
+        provider: provider || "manual",
+      };
+      formData.append("metadata", JSON.stringify(metadata));
+
+      if (formValues?.imagem) {
+        formData.append("imagem", formValues.imagem);
+      }
+
+      // Chamada para a API que resolve no Servidor (sem erro de CORS)
+      await axios.post("/api/gerador/salvar", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
       });
 
       setModalOpen(false);
       setSnackbar({
         open: true,
-        message: "Prompt salvo como rascunho!",
+        message: "Publicação realizada com sucesso! (Arquivos no Storage)",
         severity: "success",
       });
 
-      // Pequeno delay para o snackbar aparecer antes do redirect
       setTimeout(() => {
         router.push("/admin/gerador/historico");
       }, 800);
-    } catch {
+    } catch (error: any) {
+      console.error("Erro ao publicar via API:", error);
       setSnackbar({
         open: true,
-        message: "Erro ao salvar. Tente novamente.",
+        message: "Erro ao salvar arquivos via servidor. Tente novamente.",
         severity: "error",
       });
     } finally {

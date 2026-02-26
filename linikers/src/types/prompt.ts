@@ -61,11 +61,16 @@ export interface PublicarPromptPayload {
   price: number;
 }
 
-/** Form values para o FormGerador */
+/** Form values para o FormGerador (Agora suportando modo manual e upload) */
 export interface GeradorFormValues {
-  categoria: PromptCategory | "";
-  plataforma: string;
-  objetivo: string;
-  tom: string;
-  idioma: string;
+  // Campos Legados (IA)
+  categoria?: PromptCategory | "";
+  plataforma?: string;
+  objetivo?: string;
+  tom?: string;
+  idioma?: string;
+
+  // Novos Campos (Manual/Upload)
+  prompt: string;
+  imagem: File | null;
 }

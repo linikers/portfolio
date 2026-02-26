@@ -1,6 +1,6 @@
 // Componente puro: recebe onSubmit via props, sem fetching direto.
 
-import React from "react";
+import * as React from "react";
 import {
   Box,
   Button,
@@ -17,6 +17,8 @@ import {
   TextField,
   Typography,
   SelectChangeEvent,
+  Paper,
+  IconButton,
 } from "@mui/material";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -27,6 +29,7 @@ import {
   PROMPT_TONES,
 } from "@/types/prompt";
 import type { GeradorFormValues } from "@/types/prompt";
+import { MdCloudUpload, MdDelete, MdImage } from "react-icons/md";
 
 interface FormGeradorProps {
   onSubmit: (values: GeradorFormValues) => void | Promise<void>;
@@ -34,6 +37,7 @@ interface FormGeradorProps {
 }
 
 const validationSchema = Yup.object({
+  /* BLOCO IA DESATIVADO - FUTURA REATIVAÇÃO
   categoria: Yup.string().required("Selecione uma categoria"),
   plataforma: Yup.string().required("Selecione uma plataforma"),
   objetivo: Yup.string()
@@ -41,6 +45,11 @@ const validationSchema = Yup.object({
     .required("Descreva o objetivo do prompt"),
   tom: Yup.string().required("Selecione o tom de voz"),
   idioma: Yup.string().required("Selecione o idioma"),
+  */
+  prompt: Yup.string()
+    .min(10, "O prompt deve ter pelo menos 10 caracteres")
+    .required("O conteúdo do prompt é obrigatório"),
+  imagem: Yup.mixed().required("A imagem do produto é obrigatória"),
 });
 
 const initialValues: GeradorFormValues = {
@@ -49,9 +58,13 @@ const initialValues: GeradorFormValues = {
   objetivo: "",
   tom: "",
   idioma: "pt-BR",
+  prompt: "",
+  imagem: null,
 };
 
 export default function FormGerador({ onSubmit, isLoading }: FormGeradorProps) {
+  const [preview, setPreview] = React.useState<string | null>(null);
+
   const formik = useFormik<GeradorFormValues>({
     initialValues,
     validationSchema,
@@ -61,6 +74,31 @@ export default function FormGerador({ onSubmit, isLoading }: FormGeradorProps) {
     },
   });
 
+  // Gerar preview da imagem
+  React.useEffect(() => {
+    if (!formik.values.imagem) {
+      setPreview(null);
+      return;
+    }
+
+    const objectUrl = URL.createObjectURL(formik.values.imagem);
+    setPreview(objectUrl);
+
+    // Free memory when component unmounts
+    return () => URL.revokeObjectURL(objectUrl);
+  }, [formik.values.imagem]);
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.currentTarget.files?.[0];
+    if (file) {
+      formik.setFieldValue("imagem", file);
+    }
+  };
+
+  const handleRemoveImage = () => {
+    formik.setFieldValue("imagem", null);
+  };
+
   return (
     <Box
       component="form"
@@ -68,14 +106,13 @@ export default function FormGerador({ onSubmit, isLoading }: FormGeradorProps) {
       className="flex flex-col gap-6 w-full max-w-2xl mx-auto"
     >
       <Typography variant="h5" component="h1" className="font-semibold">
-        ⚡ Gerador de Prompts com IA
+        📝 Publicador de Prompts
       </Typography>
       <Typography variant="body2" color="text.secondary">
-        Configure os parâmetros abaixo e a IA vai gerar um prompt otimizado para
-        você.
+        Cole seu prompt otimizado e anexe uma imagem do produto para publicação.
       </Typography>
 
-      {/* Categoria */}
+      {/* BLOCO IA DESATIVADO - FUTURA REATIVAÇÃO
       <FormControl
         fullWidth
         error={formik.touched.categoria && Boolean(formik.errors.categoria)}
@@ -105,7 +142,6 @@ export default function FormGerador({ onSubmit, isLoading }: FormGeradorProps) {
         )}
       </FormControl>
 
-      {/* Plataforma */}
       <FormControl
         fullWidth
         error={formik.touched.plataforma && Boolean(formik.errors.plataforma)}
@@ -135,7 +171,6 @@ export default function FormGerador({ onSubmit, isLoading }: FormGeradorProps) {
         )}
       </FormControl>
 
-      {/* Objetivo */}
       <TextField
         fullWidth
         multiline
@@ -150,8 +185,106 @@ export default function FormGerador({ onSubmit, isLoading }: FormGeradorProps) {
         error={formik.touched.objetivo && Boolean(formik.errors.objetivo)}
         helperText={formik.touched.objetivo && formik.errors.objetivo}
       />
+      */}
 
-      {/* Tom de Voz */}
+      {/* Novo Campo: Upload de Imagem */}
+      <Box>
+        <FormLabel
+          error={formik.touched.imagem && Boolean(formik.errors.imagem)}
+          sx={{ mb: 1, display: "block", fontWeight: 500 }}
+        >
+          Imagem do Produto *
+        </FormLabel>
+
+        {!preview ? (
+          <Paper
+            variant="outlined"
+            sx={{
+              p: 4,
+              borderStyle: "dashed",
+              textAlign: "center",
+              cursor: "pointer",
+              bgcolor: "grey.50",
+              "&:hover": { bgcolor: "grey.100" },
+              borderColor:
+                formik.touched.imagem && formik.errors.imagem
+                  ? "error.main"
+                  : "divider",
+            }}
+            component="label"
+          >
+            <input
+              type="file"
+              hidden
+              accept="image/*"
+              onChange={handleFileChange}
+              disabled={isLoading}
+            />
+            <MdCloudUpload size={48} color="#666" />
+            <Typography variant="body1" sx={{ mt: 1 }}>
+              Clique para fazer upload ou arraste a imagem
+            </Typography>
+            <Typography variant="caption" color="text.secondary">
+              PNG, JPG ou WEBP (Max 5MB)
+            </Typography>
+          </Paper>
+        ) : (
+          <Box sx={{ position: "relative", width: "100%", height: 300 }}>
+            <img
+              src={preview}
+              alt="Preview"
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "contain",
+                borderRadius: 8,
+                backgroundColor: "#f5f5f5",
+              }}
+            />
+            <IconButton
+              onClick={handleRemoveImage}
+              sx={{
+                position: "absolute",
+                top: 8,
+                right: 8,
+                bgcolor: "rgba(255,255,255,0.8)",
+                "&:hover": { bgcolor: "#fff" },
+              }}
+              color="error"
+              disabled={isLoading}
+            >
+              <MdDelete />
+            </IconButton>
+          </Box>
+        )}
+        {formik.touched.imagem && formik.errors.imagem && (
+          <Typography
+            variant="caption"
+            color="error"
+            sx={{ mt: 0.5, display: "block" }}
+          >
+            {formik.errors.imagem as string}
+          </Typography>
+        )}
+      </Box>
+
+      {/* Novo Campo: Prompt Manual */}
+      <TextField
+        fullWidth
+        multiline
+        rows={8}
+        label="Conteúdo do Prompt (Markdown suportado) *"
+        name="prompt"
+        placeholder="Cole aqui o texto final do seu prompt..."
+        value={formik.values.prompt}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        disabled={isLoading}
+        error={formik.touched.prompt && Boolean(formik.errors.prompt)}
+        helperText={formik.touched.prompt && formik.errors.prompt}
+      />
+
+      {/* BLOCO IA DESATIVADO - FUTURA REATIVAÇÃO
       <FormControl error={formik.touched.tom && Boolean(formik.errors.tom)}>
         <FormLabel id="tom-label">Tom de Voz</FormLabel>
         <RadioGroup
@@ -179,7 +312,6 @@ export default function FormGerador({ onSubmit, isLoading }: FormGeradorProps) {
         )}
       </FormControl>
 
-      {/* Idioma */}
       <FormControl
         fullWidth
         error={formik.touched.idioma && Boolean(formik.errors.idioma)}
@@ -203,19 +335,14 @@ export default function FormGerador({ onSubmit, isLoading }: FormGeradorProps) {
           ))}
         </Select>
       </FormControl>
+      */}
 
       {/* Submit */}
       {isLoading ? (
         <Box className="flex flex-col items-center gap-4 py-4">
           <CircularProgress size={32} />
-          <Skeleton
-            variant="rectangular"
-            width="100%"
-            height={80}
-            sx={{ borderRadius: 2 }}
-          />
           <Typography variant="body2" color="text.secondary">
-            Gerando prompt com IA...
+            Processando publicação...
           </Typography>
         </Box>
       ) : (
@@ -229,9 +356,11 @@ export default function FormGerador({ onSubmit, isLoading }: FormGeradorProps) {
             fontWeight: 600,
             textTransform: "none",
             fontSize: "1rem",
+            bgcolor: "primary.main",
+            "&:hover": { bgcolor: "primary.dark" },
           }}
         >
-          🚀 Gerar com IA
+          🚀 Publicar Prompt
         </Button>
       )}
     </Box>

@@ -6,6 +6,7 @@
 
 import { getApps, initializeApp, cert, getApp } from "firebase-admin/app";
 import { getFirestore } from "firebase-admin/firestore";
+import { getStorage } from "firebase-admin/storage";
 
 export function getAdminFirestore() {
   if (!getApps().length) {
@@ -26,8 +27,18 @@ export function getAdminFirestore() {
         // Corrige quebras de linha na chave privada se vierem com escape
         privateKey: privateKey?.replace(/\\n/g, "\n"),
       }),
+      storageBucket:
+        process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET ||
+        "portfoliolinikers.firebasestorage.app",
     });
   }
 
   return getFirestore(getApp());
+}
+
+export function getAdminStorage() {
+  if (!getApps().length) {
+    getAdminFirestore(); // Garante a inicialização
+  }
+  return getStorage(getApp());
 }
