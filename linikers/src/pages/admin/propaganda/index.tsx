@@ -11,12 +11,13 @@ import {
 import { MdAdd } from "react-icons/md";
 import { useRouter } from "next/router";
 import type { GetServerSideProps } from "next";
-import { onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged, User } from "firebase/auth";
 import { auth } from "@/config/firebaseClient";
 import { getAdminFirestore } from "@/lib/firebaseAdmin";
+import { QueryDocumentSnapshot } from "firebase-admin/firestore";
 import { usePropagandaStore } from "@/store/propaganda.store";
 import PropagandaDashboard from "@/components/propaganda/PropagandaDashboard";
-import MenuUser from "@/components/menu";
+import PropagandaLayout from "@/components/propaganda/PropagandaLayout";
 import type { IPost } from "@/types/propaganda";
 
 interface PropagandaIndexProps {
@@ -33,7 +34,7 @@ export default function PropagandaIndex({
     // Sync store with initial server data
     usePropagandaStore.setState({ posts: initialPosts });
 
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user: User | null) => {
       if (user) {
         fetchPosts(user.uid);
       }
@@ -56,11 +57,7 @@ export default function PropagandaIndex({
   };
 
   return (
-    <Container maxWidth="lg" className="py-10">
-      <Box sx={{ position: "relative", zIndex: 10, mb: 4 }}>
-        <MenuUser />
-      </Box>
-
+    <PropagandaLayout>
       <Box className="flex flex-col gap-6">
         <Box className="flex justify-between items-center">
           <Box>
@@ -95,7 +92,7 @@ export default function PropagandaIndex({
           onDelete={handleDelete}
         />
       </Box>
-    </Container>
+    </PropagandaLayout>
   );
 }
 
@@ -108,7 +105,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
       .limit(20)
       .get();
 
-    const initialPosts = snapshot.docs.map((doc) => {
+    const initialPosts = snapshot.docs.map((doc: QueryDocumentSnapshot) => {
       const data = doc.data();
       return {
         id: doc.id,

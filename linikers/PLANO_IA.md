@@ -654,6 +654,16 @@ compartilhado com sidebar de navegação.
 - NÃO instalar novas dependências — react-big-calendar e date-fns já estarão instalados.
 ```
 
+Módulo de Propaganda 100% finalizado! 📣🎯
+
+Concluí a Fase 5, entregando a experiência completa de gestão de marketing:
+
+Sidebar de Navegação: Unifiquei todas as telas do módulo em um layout profissional com menu lateral.
+Calendário Dinâmico: Visualize suas publicações no calendário, com cores por rede e um painel lateral de detalhes para editar ou pausar agendamentos.
+Gestão de Campanhas Pagas: Painel financeiro focado em anúncios impulsionados, com acompanhamento de investimento e retorno (ROI).
+Tipagem Estrita: Refatorei o código para usar tipos oficiais do Firebase Admin e Auth, eliminando os avisos de any.
+Os novos caminhos estão disponíveis em /admin/propaganda.
+
 ---
 
 ## 10. Análise de Custos

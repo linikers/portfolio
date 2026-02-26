@@ -9,9 +9,9 @@ import {
   Alert,
 } from "@mui/material";
 import { useRouter } from "next/router";
-import { onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged, User } from "firebase/auth";
 import { auth } from "@/config/firebaseClient";
-import MenuUser from "@/components/menu";
+import PropagandaLayout from "@/components/propaganda/PropagandaLayout";
 import EditorPublicacao from "@/components/propaganda/EditorPublicacao";
 import { usePropagandaStore } from "@/store/propaganda.store";
 import type { PropagandaFormValues } from "@/types/propaganda";
@@ -24,7 +24,7 @@ export default function CriarPropagandaPage() {
   const { edit } = router.query;
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user: User | null) => {
       if (user) {
         setUserId(user.uid);
       } else {
@@ -34,7 +34,7 @@ export default function CriarPropagandaPage() {
     return () => unsubscribe();
   }, [router]);
 
-  const editingPost = edit ? posts.find((p) => p.id === edit) : null;
+  const editingPost = edit ? posts.find((p: any) => p.id === edit) : null;
 
   const handleSubmit = async (values: PropagandaFormValues) => {
     if (!userId) return;
@@ -52,11 +52,7 @@ export default function CriarPropagandaPage() {
   };
 
   return (
-    <Container maxWidth="md" className="py-10">
-      <Box sx={{ position: "relative", zIndex: 10, mb: 4 }}>
-        <MenuUser />
-      </Box>
-
+    <PropagandaLayout>
       <Box className="flex flex-col gap-6">
         <Box>
           <Typography variant="h4" fontWeight="bold">
@@ -85,6 +81,6 @@ export default function CriarPropagandaPage() {
           initialValues={editingPost || undefined}
         />
       </Box>
-    </Container>
+    </PropagandaLayout>
   );
 }
