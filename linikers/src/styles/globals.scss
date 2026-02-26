@@ -61,11 +61,11 @@
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
 
-// animação nova 
+// animação nova
 .backgroundRoom {
   position: absolute;
   inset: 0;
-  background-image: url('/desk-2000s.png');
+  background-image: url("/desk-2000s.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -85,4 +85,10 @@
   width: 390px;
   height: 240px;
   overflow: hidden;
+}
+
+// Debug para interatividade
+.debug-form-active {
+  border: 2px solid lime !important;
+  pointer-events: auto !important;
 }

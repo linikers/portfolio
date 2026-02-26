@@ -49,7 +49,7 @@ export default function GeradorPage() {
 
   return (
     <Container maxWidth="md" className="py-10">
-      <Box sx={{ position: "relative", zIndex: 10 }}>
+      <Box sx={{ position: "relative", zIndex: 10, mb: 4 }}>
         <MenuUser />
       </Box>
       <Box className="flex flex-col gap-6">

@@ -30,7 +30,8 @@ export default class MyDocument extends Document {
                         left: 0, 
                         background: 'https://images.unsplash.com/photo-1518818419601-72c8673f5852?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80',
                         backgroundSize: 'cover',
-                        zIndex: 1 
+                        zIndex: 1,
+                        pointerEvents: "none" 
                     }}
                 ></div>
         </body>

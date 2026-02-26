@@ -1,7 +1,6 @@
-// src/components/gerador/FormGerador.tsx
-// Formulário de configuração do gerador — Formik + Yup + MUI.
 // Componente puro: recebe onSubmit via props, sem fetching direto.
 
+import React from "react";
 import {
   Box,
   Button,
@@ -17,6 +16,7 @@ import {
   Skeleton,
   TextField,
   Typography,
+  SelectChangeEvent,
 } from "@mui/material";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -55,7 +55,8 @@ export default function FormGerador({ onSubmit, isLoading }: FormGeradorProps) {
   const formik = useFormik<GeradorFormValues>({
     initialValues,
     validationSchema,
-    onSubmit: async (values) => {
+    enableReinitialize: true,
+    onSubmit: async (values: GeradorFormValues) => {
       await onSubmit(values);
     },
   });
@@ -85,8 +86,11 @@ export default function FormGerador({ onSubmit, isLoading }: FormGeradorProps) {
           label="Categoria"
           name="categoria"
           value={formik.values.categoria}
-          onChange={formik.handleChange}
+          onChange={(e: SelectChangeEvent) =>
+            formik.setFieldValue("categoria", e.target.value)
+          }
           onBlur={formik.handleBlur}
+          disabled={isLoading}
         >
           {PROMPT_CATEGORIES.map((cat) => (
             <MenuItem key={cat.value} value={cat.value}>
@@ -112,8 +116,11 @@ export default function FormGerador({ onSubmit, isLoading }: FormGeradorProps) {
           label="Plataforma Alvo"
           name="plataforma"
           value={formik.values.plataforma}
-          onChange={formik.handleChange}
+          onChange={(e: SelectChangeEvent) =>
+            formik.setFieldValue("plataforma", e.target.value)
+          }
           onBlur={formik.handleBlur}
+          disabled={isLoading}
         >
           {PROMPT_PLATFORMS.map((p) => (
             <MenuItem key={p.value} value={p.value}>
@@ -139,6 +146,7 @@ export default function FormGerador({ onSubmit, isLoading }: FormGeradorProps) {
         value={formik.values.objetivo}
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
+        disabled={isLoading}
         error={formik.touched.objetivo && Boolean(formik.errors.objetivo)}
         helperText={formik.touched.objetivo && formik.errors.objetivo}
       />
@@ -150,14 +158,16 @@ export default function FormGerador({ onSubmit, isLoading }: FormGeradorProps) {
           aria-labelledby="tom-label"
           name="tom"
           value={formik.values.tom}
-          onChange={formik.handleChange}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            formik.setFieldValue("tom", e.target.value)
+          }
           row
         >
           {PROMPT_TONES.map((t) => (
             <FormControlLabel
               key={t.value}
               value={t.value}
-              control={<Radio />}
+              control={<Radio disabled={isLoading} />}
               label={t.label}
             />
           ))}
@@ -180,8 +190,11 @@ export default function FormGerador({ onSubmit, isLoading }: FormGeradorProps) {
           label="Idioma"
           name="idioma"
           value={formik.values.idioma}
-          onChange={formik.handleChange}
+          onChange={(e: SelectChangeEvent) =>
+            formik.setFieldValue("idioma", e.target.value)
+          }
           onBlur={formik.handleBlur}
+          disabled={isLoading}
         >
           {PROMPT_IDIOMAS.map((i) => (
             <MenuItem key={i.value} value={i.value}>

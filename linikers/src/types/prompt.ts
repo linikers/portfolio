@@ -15,6 +15,7 @@ export interface IPrompt {
 }
 
 export type PromptCategory =
+  | "carros"
   | "marketing"
   | "copywriting"
   | "seo"
@@ -22,6 +23,7 @@ export type PromptCategory =
   | "outro";
 
 export const PROMPT_CATEGORIES: { value: PromptCategory; label: string }[] = [
+  { value: "carros", label: "Carros" },
   { value: "marketing", label: "Marketing" },
   { value: "copywriting", label: "Copywriting" },
   { value: "seo", label: "SEO" },
