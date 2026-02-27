@@ -14,9 +14,11 @@ import {
 } from "@mui/material";
 import { MdAdd } from "react-icons/md";
 // We'll fetch prompts from the local API endpoint
-import { auth, db } from "@/config/firebaseClient";
+import { auth } from "@/config/firebaseClient";
 import { onAuthStateChanged } from "firebase/auth";
-import { doc, setDoc, deleteDoc } from "firebase/firestore";
+import { doc, deleteDoc } from "firebase/firestore";
+// We removed setDoc from here because publication will be handled server-side
+import { db } from "@/config/firebaseClient";
 import HistoricoList from "@/components/gerador/HistoricoList";
 import type { IPrompt } from "@/types/prompt";
 
@@ -66,20 +68,25 @@ export default function HistoricoPage() {
 
   const handleTogglePublish = async (id: string, published: boolean) => {
     try {
-      // Find the prompt from local state to ensure we merge all necessary data
+      // Find the prompt from local state
       const targetPrompt = prompts.find((p) => p.id === id);
-      if (targetPrompt) {
-        // Using setDoc with merge in case the document is somehow missing
-        await setDoc(
-          doc(db, "prompts", id),
-          {
-            ...targetPrompt,
-            published,
-          },
-          { merge: true },
-        );
-      } else {
-        await setDoc(doc(db, "prompts", id), { published }, { merge: true });
+
+      // Call API to update both metadata.json and Firestore via Admin SDK
+      const res = await fetch("/api/gerador/toggle-publish", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id,
+          published,
+          promptData: targetPrompt,
+        }),
+      });
+
+      if (!res.ok) {
+        const errorText = await res.text();
+        throw new Error(errorText || "Erro desconhecido na API");
       }
 
       setPrompts((prev: any) =>
@@ -92,10 +99,11 @@ export default function HistoricoPage() {
           : "Prompt removido da loja.",
         severity: "success",
       });
-    } catch {
+    } catch (error: any) {
+      console.error("[Historico] Erro completo ao publicar:", error);
       setSnackbar({
         open: true,
-        message: "Erro ao atualizar status.",
+        message: `Erro ao atualizar status: ${error.message || "Desconhecido"}`,
         severity: "error",
       });
     }
