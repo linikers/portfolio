@@ -18,8 +18,8 @@ import {
   CardContent,
 } from "@mui/material";
 import { FaInstagram, FaLinkedin, FaTwitter, FaWhatsapp } from "react-icons/fa";
-import { format } from "date-fns";
-import { ptBR } from "date-fns/locale";
+// import { format } from "date-fns";
+// import { ptBR } from "date-fns/locale";
 import type { IPost } from "@/types/propaganda";
 import { STATUS_OPTIONS } from "@/types/propaganda";
 
