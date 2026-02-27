@@ -1,8 +1,16 @@
 // src/pages/api/gerador/salvar.ts
 import { NextApiRequest, NextApiResponse } from "next";
-import { getAdminStorage } from "@/lib/firebaseAdmin";
 import formidable from "formidable";
 import fs from "fs";
+import path from "path";
+import { v2 as cloudinary } from "cloudinary";
+
+// Configuração do Cloudinary
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 // Desativar o body parser padrão do Next.js para lidar com multipart/form-data
 export const config = {
@@ -33,42 +41,36 @@ export default async function handler(
       return res.status(400).json({ error: "UID and PostID are required" });
     }
 
-    const bucket = getAdminStorage().bucket();
-    const baseFolder = `prompts/${uid}/${postId}`;
+    const baseFolder = path.join(process.cwd(), "prompts", uid, postId);
 
-    // 1. Upload da Imagem (se houver)
+    // Cria a pasta localmente se não existir
+    if (!fs.existsSync(baseFolder)) {
+      fs.mkdirSync(baseFolder, { recursive: true });
+    }
+
+    // 1. Upload da Imagem para o Cloudinary (se houver)
     let imageUrl = "";
     const imageFile = files.imagem?.[0];
     if (imageFile) {
-      const fileName = `produto_${Date.now()}`;
-      const destination = `${baseFolder}/${fileName}`;
-
-      await bucket.upload(imageFile.filepath, {
-        destination,
-        metadata: {
-          contentType: imageFile.mimetype || "image/jpeg",
+      const uploadResponse = await cloudinary.uploader.upload(
+        imageFile.filepath,
+        {
+          folder: `portfolio/prompts/${uid}/${postId}`,
         },
-      });
-
-      // Tornar o arquivo público ou obter URL assinada (Simulando URL estática para o exemplo)
-      // Em produção, recomenda-se usar getDownloadURL ou tornar público se necessário
-      imageUrl = `https://firebasestorage.googleapis.com/v0/b/${bucket.name}/o/${encodeURIComponent(destination)}?alt=media`;
+      );
+      imageUrl = uploadResponse.secure_url;
     }
 
     // 2. Upload do Prompt (.md)
-    const promptRef = bucket.file(`${baseFolder}/prompt.md`);
-    await promptRef.save(prompt || "", {
-      metadata: { contentType: "text/markdown" },
-    });
+    const promptPath = path.join(baseFolder, "prompt.md");
+    fs.writeFileSync(promptPath, prompt || "", "utf8");
 
     // 3. Upload dos Metadados (.json)
-    const metaRef = bucket.file(`${baseFolder}/metadata.json`);
     const finalMetadata = JSON.parse(metadata || "{}");
     if (imageUrl) finalMetadata.imageUrl = imageUrl;
 
-    await metaRef.save(JSON.stringify(finalMetadata, null, 2), {
-      metadata: { contentType: "application/json" },
-    });
+    const metaPath = path.join(baseFolder, "metadata.json");
+    fs.writeFileSync(metaPath, JSON.stringify(finalMetadata, null, 2), "utf8");
 
     return res.status(200).json({ success: true, postId });
   } catch (error: any) {
