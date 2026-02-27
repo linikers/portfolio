@@ -13,18 +13,10 @@ import {
   Typography,
 } from "@mui/material";
 import { MdAdd } from "react-icons/md";
-import {
-  collection,
-  query,
-  where,
-  orderBy,
-  getDocs,
-  doc,
-  updateDoc,
-  deleteDoc,
-} from "firebase/firestore";
-import { db, auth } from "@/config/firebaseClient";
+// We'll fetch prompts from the local API endpoint
+import { auth, db } from "@/config/firebaseClient";
 import { onAuthStateChanged } from "firebase/auth";
+import { doc, setDoc, deleteDoc } from "firebase/firestore";
 import HistoricoList from "@/components/gerador/HistoricoList";
 import type { IPrompt } from "@/types/prompt";
 
@@ -44,29 +36,10 @@ export default function HistoricoPage() {
   const fetchPrompts = async (uid: string) => {
     setLoading(true);
     try {
-      const q = query(
-        collection(db, "prompts"),
-        where("uid", "==", uid),
-        orderBy("createdAt", "desc"),
-      );
-      const snapshot = await getDocs(q);
-      const data: IPrompt[] = snapshot.docs.map((d: any) => {
-        const docData = d.data();
-        return {
-          id: d.id,
-          title: docData.title || "",
-          description: docData.description || "",
-          content: docData.content || "",
-          category: docData.category || "outro",
-          platform: docData.platform || "geral",
-          price: docData.price ?? 0,
-          published: docData.published ?? false,
-          createdAt:
-            docData.createdAt?.toDate?.()?.toISOString() ||
-            new Date().toISOString(),
-          uid: docData.uid || uid,
-        };
-      });
+      const res = await fetch(`/api/gerador/listar?uid=${uid}`);
+      if (!res.ok) throw new Error("Failed to fetch prompts");
+      const json = await res.json();
+      const data: IPrompt[] = json.prompts;
       setPrompts(data);
     } catch (err) {
       console.error("[Historico] Erro ao buscar prompts:", err);
@@ -93,7 +66,22 @@ export default function HistoricoPage() {
 
   const handleTogglePublish = async (id: string, published: boolean) => {
     try {
-      await updateDoc(doc(db, "prompts", id), { published });
+      // Find the prompt from local state to ensure we merge all necessary data
+      const targetPrompt = prompts.find((p) => p.id === id);
+      if (targetPrompt) {
+        // Using setDoc with merge in case the document is somehow missing
+        await setDoc(
+          doc(db, "prompts", id),
+          {
+            ...targetPrompt,
+            published,
+          },
+          { merge: true },
+        );
+      } else {
+        await setDoc(doc(db, "prompts", id), { published }, { merge: true });
+      }
+
       setPrompts((prev: any) =>
         prev.map((p: any) => (p.id === id ? { ...p, published } : p)),
       );

@@ -1,6 +1,8 @@
 // src/pages/api/gerador/salvar.ts
 import { NextApiRequest, NextApiResponse } from "next";
 import formidable from "formidable";
+import { db } from "@/config/firebaseClient";
+import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import fs from "fs";
 import path from "path";
 import { v2 as cloudinary } from "cloudinary";
@@ -72,6 +74,18 @@ export default async function handler(
     const metaPath = path.join(baseFolder, "metadata.json");
     fs.writeFileSync(metaPath, JSON.stringify(finalMetadata, null, 2), "utf8");
 
+    // 4. Create Firestore document for the prompt
+    const promptDocRef = doc(db, "prompts", `${uid}_${postId}`);
+    await setDoc(promptDocRef, {
+      uid,
+      postId,
+      // Spread all metadata fields (title, description, price, category, platform, etc.)
+      ...JSON.parse(metadata || "{}"),
+      content: prompt || "",
+      imageUrl,
+      createdAt: serverTimestamp(),
+      published: false,
+    });
     return res.status(200).json({ success: true, postId });
   } catch (error: any) {
     console.error("🔥 [API Publicar] Erro:", error);

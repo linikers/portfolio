@@ -12,6 +12,7 @@ export interface IPrompt {
   published: boolean;
   createdAt: string; // ISO string (serializado do Firestore Timestamp)
   uid: string;
+  imageUrl?: string;
 }
 
 export type PromptCategory =

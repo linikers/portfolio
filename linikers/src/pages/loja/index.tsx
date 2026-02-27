@@ -113,6 +113,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
         createdAt:
           data.createdAt?.toDate?.()?.toISOString() || new Date().toISOString(),
         uid: data.uid || "",
+        imageUrl: data.imageUrl || "",
       };
     });
 

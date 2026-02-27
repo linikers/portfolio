@@ -44,49 +44,62 @@ export default function PromptCard({ prompt }: PromptCardProps) {
           "&:hover": { boxShadow: 6 },
         }}
       >
-        <CardContent sx={{ flexGrow: 1 }}>
-          <Box
-            display="flex"
-            justifyContent="space-between"
-            alignItems="flex-start"
-            mb={2}
-          >
-            <Chip
-              label={prompt.category}
-              size="small"
-              color="primary"
-              variant="outlined"
-              sx={{ textTransform: "capitalize" }}
-            />
-            <Typography variant="h6" color="success.main" fontWeight="bold">
-              {prompt.price === 0 ? "Grátis" : `R$ ${prompt.price.toFixed(2)}`}
+        <CardContent sx={{ flexGrow: 1, p: 0 }}>
+          {prompt.imageUrl && (
+            <Box sx={{ width: "100%", height: 160, overflow: "hidden" }}>
+              <img
+                src={prompt.imageUrl}
+                alt={prompt.title}
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              />
+            </Box>
+          )}
+          <Box p={2}>
+            <Box
+              display="flex"
+              justifyContent="space-between"
+              alignItems="flex-start"
+              mb={2}
+            >
+              <Chip
+                label={prompt.category}
+                size="small"
+                color="primary"
+                variant="outlined"
+                sx={{ textTransform: "capitalize" }}
+              />
+              <Typography variant="h6" color="success.main" fontWeight="bold">
+                {prompt.price === 0
+                  ? "Grátis"
+                  : `R$ ${prompt.price.toFixed(2)}`}
+              </Typography>
+            </Box>
+
+            <Typography
+              variant="h6"
+              component="h2"
+              gutterBottom
+              fontWeight="bold"
+              noWrap
+            >
+              {prompt.title}
+            </Typography>
+
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              sx={{
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                display: "-webkit-box",
+                WebkitLineClamp: 3,
+                WebkitBoxOrient: "vertical",
+                minHeight: "4.5em",
+              }}
+            >
+              {prompt.description}
             </Typography>
           </Box>
-
-          <Typography
-            variant="h6"
-            component="h2"
-            gutterBottom
-            fontWeight="bold"
-            noWrap
-          >
-            {prompt.title}
-          </Typography>
-
-          <Typography
-            variant="body2"
-            color="text.secondary"
-            sx={{
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-              display: "-webkit-box",
-              WebkitLineClamp: 3,
-              WebkitBoxOrient: "vertical",
-              minHeight: "4.5em",
-            }}
-          >
-            {prompt.description}
-          </Typography>
         </CardContent>
         <Box p={2} pt={0}>
           <Button
