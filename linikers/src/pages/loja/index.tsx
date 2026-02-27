@@ -17,9 +17,7 @@ const containerVariants = {
   initial: { opacity: 0 },
   animate: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
+    transition: { staggerChildren: 0.08 },
   },
 };
 
@@ -36,57 +34,96 @@ export default function LojaPage({ prompts }: LojaPageProps) {
   });
 
   return (
-    <Container maxWidth="lg" className="py-12">
+    <Box
+      sx={{
+        minHeight: "100vh",
+        background: "linear-gradient(180deg, #0E0E0E 0%, #111 100%)",
+        color: "#F5F5F5",
+      }}
+    >
       <Head>
         <title>Loja de Prompts | Linikers</title>
         <meta
           name="description"
-          content="Explore nossa vitrine de prompts otimizados para IA. Copywriting, Marketing, SEO e muito mais."
+          content="Prompts profissionais validados para alavancar seu workflow."
         />
       </Head>
 
-      <Box className="flex flex-col gap-2 mb-10">
-        <Typography variant="h3" component="h1" fontWeight="bold">
-          Loja de Prompts
-        </Typography>
-        <Typography variant="h6" color="text.secondary">
-          Prompts profissionais validados para alavancar seu workflow.
-        </Typography>
-      </Box>
+      <Container maxWidth="lg" sx={{ py: 12 }}>
+        {/* HERO */}
+        <Box sx={{ mb: 10 }}>
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <Typography
+              variant="h3"
+              fontWeight={900}
+              sx={{ textTransform: "uppercase", letterSpacing: 3 }}
+            >
+              PROMPTS NÃO SÃO DECORAÇÃO
+            </Typography>
 
-      <LojaFilters
-        search={search}
-        category={category}
-        onSearchChange={setSearch}
-        onCategoryChange={setCategory}
-      />
+            <Typography
+              variant="h6"
+              sx={{
+                mt: 2,
+                maxWidth: 600,
+                color: "rgba(255,255,255,0.6)",
+              }}
+            >
+              São ferramentas para dominar IA, automação e criação.
+            </Typography>
+          </motion.div>
+        </Box>
 
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={category + search}
-          variants={containerVariants}
-          initial="initial"
-          animate="animate"
+        {/* FILTROS */}
+        <Box
+          sx={{
+            mb: 8,
+            p: 3,
+            border: "1px solid rgba(255,255,255,0.1)",
+            background: "rgba(255,255,255,0.02)",
+          }}
         >
-          <Grid container spacing={3}>
-            {filteredPrompts.map((prompt) => (
-              <Grid item key={prompt.id} xs={12} sm={6} lg={4}>
-                <PromptCard prompt={prompt} />
-              </Grid>
-            ))}
-            {filteredPrompts.length === 0 && (
-              <Grid item xs={12}>
-                <Box py={8} textAlign="center">
-                  <Typography variant="h6" color="text.secondary">
-                    Nenhum prompt encontrado para os filtros selecionados.
-                  </Typography>
-                </Box>
-              </Grid>
-            )}
-          </Grid>
-        </motion.div>
-      </AnimatePresence>
-    </Container>
+          <LojaFilters
+            search={search}
+            category={category}
+            onSearchChange={setSearch}
+            onCategoryChange={setCategory}
+          />
+        </Box>
+
+        {/* GRID */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={category + search}
+            variants={containerVariants}
+            initial="initial"
+            animate="animate"
+          >
+            <Grid container spacing={4}>
+              {filteredPrompts.map((prompt) => (
+                <Grid item key={prompt.id} xs={12} sm={6} lg={4}>
+                  <PromptCard prompt={prompt} />
+                </Grid>
+              ))}
+
+              {filteredPrompts.length === 0 && (
+                <Grid item xs={12}>
+                  <Box py={10} textAlign="center">
+                    <Typography sx={{ color: "rgba(255,255,255,0.5)" }}>
+                      Nenhum prompt encontrado.
+                    </Typography>
+                  </Box>
+                </Grid>
+              )}
+            </Grid>
+          </motion.div>
+        </AnimatePresence>
+      </Container>
+    </Box>
   );
 }
 
@@ -96,7 +133,6 @@ export const getServerSideProps: GetServerSideProps = async () => {
     const snapshot = await db
       .collection("prompts")
       .where("published", "==", true)
-      //   .orderBy("createdAt", "desc")
       .get();
 
     const prompts = snapshot.docs.map((doc: any) => {
@@ -117,17 +153,9 @@ export const getServerSideProps: GetServerSideProps = async () => {
       };
     });
 
-    return {
-      props: {
-        prompts,
-      },
-    };
+    return { props: { prompts } };
   } catch (error) {
     console.error("[Loja SSR] Erro:", error);
-    return {
-      props: {
-        prompts: [],
-      },
-    };
+    return { props: { prompts: [] } };
   }
 };

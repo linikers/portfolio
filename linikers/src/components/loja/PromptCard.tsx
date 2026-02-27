@@ -30,8 +30,9 @@ export default function PromptCard({ prompt }: PromptCardProps) {
   return (
     <motion.div
       variants={itemVariants}
-      whileHover={{ y: -5 }}
-      transition={{ duration: 0.3 }}
+      whileHover={{ y: -6, rotate: 0.5 }}
+      transition={{ type: "spring", stiffness: 200 }}
+      style={{ height: "100%" }}
     >
       <Card
         onClick={handleDetails}
@@ -40,20 +41,47 @@ export default function PromptCard({ prompt }: PromptCardProps) {
           height: "100%",
           display: "flex",
           flexDirection: "column",
-          transition: "box-shadow 0.3s",
-          "&:hover": { boxShadow: 6 },
+          background: "#151515",
+          border: "2px solid #222",
+          boxShadow: "8px 8px 0px #000",
+          transition: "all .2s ease",
+          "&:hover": {
+            boxShadow: "12px 12px 0px #FF003C",
+            transform: "translate(-2px,-2px)",
+          },
         }}
       >
         <CardContent sx={{ flexGrow: 1, p: 0 }}>
           {prompt.imageUrl && (
-            <Box sx={{ width: "100%", height: 160, overflow: "hidden" }}>
+            <Box
+              sx={{
+                width: "100%",
+                height: 160,
+                overflow: "hidden",
+                position: "relative",
+              }}
+            >
               <img
                 src={prompt.imageUrl}
                 alt={prompt.title}
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  filter: "grayscale(40%) contrast(110%)",
+                }}
+              />
+              <Box
+                sx={{
+                  position: "absolute",
+                  inset: 0,
+                  background:
+                    "linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.8))",
+                }}
               />
             </Box>
           )}
+
           <Box p={2}>
             <Box
               display="flex"
@@ -64,13 +92,23 @@ export default function PromptCard({ prompt }: PromptCardProps) {
               <Chip
                 label={prompt.category}
                 size="small"
-                color="primary"
-                variant="outlined"
-                sx={{ textTransform: "capitalize" }}
+                sx={{
+                  background: "transparent",
+                  border: "1px solid #FF003C",
+                  color: "#FF003C",
+                  fontWeight: 700,
+                  textTransform: "uppercase",
+                  fontSize: 11,
+                }}
               />
-              <Typography variant="h6" color="success.main" fontWeight="bold">
+
+              <Typography
+                variant="h6"
+                fontWeight="bold"
+                sx={{ color: "#00F0FF" }}
+              >
                 {prompt.price === 0
-                  ? "Grátis"
+                  ? "GRÁTIS"
                   : `R$ ${prompt.price.toFixed(2)}`}
               </Typography>
             </Box>
@@ -79,7 +117,11 @@ export default function PromptCard({ prompt }: PromptCardProps) {
               variant="h6"
               component="h2"
               gutterBottom
-              fontWeight="bold"
+              fontWeight={900}
+              sx={{
+                textTransform: "uppercase",
+                letterSpacing: "1px",
+              }}
               noWrap
             >
               {prompt.title}
@@ -87,8 +129,8 @@ export default function PromptCard({ prompt }: PromptCardProps) {
 
             <Typography
               variant="body2"
-              color="text.secondary"
               sx={{
+                color: "rgba(255,255,255,0.7)",
                 overflow: "hidden",
                 textOverflow: "ellipsis",
                 display: "-webkit-box",
@@ -101,14 +143,23 @@ export default function PromptCard({ prompt }: PromptCardProps) {
             </Typography>
           </Box>
         </CardContent>
+
         <Box p={2} pt={0}>
           <Button
             fullWidth
             variant="contained"
-            color="inherit"
-            sx={{ textTransform: "none" }}
+            onClick={handleDetails}
+            sx={{
+              background: "#FF003C",
+              color: "#fff",
+              fontWeight: 700,
+              letterSpacing: 1,
+              "&:hover": {
+                background: "#cc0030",
+              },
+            }}
           >
-            Ver Detalhes
+            VER DETALHES
           </Button>
         </Box>
       </Card>
