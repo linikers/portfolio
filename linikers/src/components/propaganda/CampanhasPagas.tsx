@@ -135,7 +135,7 @@ export default function CampanhasPagas({
                     ))}
                   </Box>
                 </TableCell>
-                <TableCell fontWeight="bold">
+                <TableCell sx={{ fontWeight: "bold" }}>
                   R$ {post.budget?.toLocaleString("pt-BR")}
                 </TableCell>
                 <TableCell

@@ -2,6 +2,8 @@
 import { useState } from "react";
 import { Container, Grid, Typography, Box } from "@mui/material";
 import { motion, AnimatePresence } from "framer-motion";
+
+const AnimatePresenceProxy: any = AnimatePresence;
 import Head from "next/head";
 import type { GetServerSideProps } from "next";
 import { getAdminFirestore } from "@/lib/firebaseAdmin";
@@ -96,7 +98,7 @@ export default function LojaPage({ prompts }: LojaPageProps) {
         </Box>
 
         {/* GRID */}
-        <AnimatePresence mode="wait">
+        <AnimatePresenceProxy mode="wait">
           <motion.div
             key={category + search}
             variants={containerVariants}
@@ -121,7 +123,7 @@ export default function LojaPage({ prompts }: LojaPageProps) {
               )}
             </Grid>
           </motion.div>
-        </AnimatePresence>
+        </AnimatePresenceProxy>
       </Container>
     </Box>
   );
