@@ -53,25 +53,25 @@ export const data = {
 const STORE_MENU_ITEMS = [
   {
     title: "Gerador de Prompts",
-    icon: <MdAddCircle size={40} />,
+    icon: (<MdAddCircle size={40} />) as any,
     link: "/admin/gerador",
     color: "#4f46e5",
   },
   {
     title: "Histórico de Prompts",
-    icon: <MdHistory size={40} />,
+    icon: (<MdHistory size={40} />) as any,
     link: "/admin/gerador/historico",
     color: "#0891b2",
   },
   {
     title: "Propagandas",
-    icon: <MdCampaign size={40} />,
+    icon: (<MdCampaign size={40} />) as any,
     link: "/admin/propaganda",
     color: "#db2777",
   },
   {
     title: "Ver Loja",
-    icon: <MdStore size={40} />,
+    icon: (<MdStore size={40} />) as any,
     link: "/loja",
     color: "#059669",
   },
@@ -109,7 +109,7 @@ export default function AdminPage() {
         </Box>
         <Box sx={{ zIndex: 999 }}>
           <Link href="/dashboard/painel">
-            <Button variant="contained" startIcon={<MdDashboard />}>
+            <Button variant="contained" startIcon={(<MdDashboard />) as any}>
               Dashboard Global
             </Button>
           </Link>

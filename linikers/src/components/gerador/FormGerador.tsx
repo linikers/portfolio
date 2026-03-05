@@ -21,6 +21,7 @@ import {
   IconButton,
 } from "@mui/material";
 import { useFormik } from "formik";
+import Image from "next/image";
 import * as Yup from "yup";
 import {
   PROMPT_CATEGORIES,
@@ -230,16 +231,16 @@ export default function FormGerador({ onSubmit, isLoading }: FormGeradorProps) {
           </Paper>
         ) : (
           <Box sx={{ position: "relative", width: "100%", height: 300 }}>
-            <img
+            <Image
               src={preview}
               alt="Preview"
+              fill
               style={{
-                width: "100%",
-                height: "100%",
                 objectFit: "contain",
                 borderRadius: 8,
                 backgroundColor: "#f5f5f5",
               }}
+              unoptimized
             />
             <IconButton
               onClick={handleRemoveImage}

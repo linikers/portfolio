@@ -45,7 +45,7 @@ export default function PagasPage({ initialPosts }: PagasPageProps) {
         {initialPosts.length === 0 ? (
           <Alert severity="info" sx={{ mt: 4 }}>
             Nenhuma campanha paga encontrada. Crie uma nova publicação e marque
-            a opção "Impulsionar".
+            a opção &quot;Impulsionar&quot;.
           </Alert>
         ) : (
           <CampanhasPagas

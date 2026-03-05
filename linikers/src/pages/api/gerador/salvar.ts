@@ -1,10 +1,8 @@
 // src/pages/api/gerador/salvar.ts
 import { NextApiRequest, NextApiResponse } from "next";
 import formidable from "formidable";
-import { getAdminFirestore } from "@/lib/firebaseAdmin";
+import { getAdminFirestore, getAdminStorage } from "@/lib/firebaseAdmin";
 import { Timestamp } from "firebase-admin/firestore";
-import fs from "fs";
-import path from "path";
 import { v2 as cloudinary } from "cloudinary";
 
 // Configuração do Cloudinary
@@ -43,13 +41,6 @@ export default async function handler(
       return res.status(400).json({ error: "UID and PostID are required" });
     }
 
-    const baseFolder = path.join(process.cwd(), "prompts", uid, postId);
-
-    // Cria a pasta localmente se não existir
-    if (!fs.existsSync(baseFolder)) {
-      fs.mkdirSync(baseFolder, { recursive: true });
-    }
-
     // 1. Upload da Imagem para o Cloudinary (se houver)
     let imageUrl = "";
     const imageFile = files.imagem?.[0];
@@ -63,16 +54,39 @@ export default async function handler(
       imageUrl = uploadResponse.secure_url;
     }
 
-    // 2. Upload do Prompt (.md)
-    const promptPath = path.join(baseFolder, "prompt.md");
-    fs.writeFileSync(promptPath, prompt || "", "utf8");
+    // 2. Preparar arquivos para o Firebase Storage
+    const bucket = getAdminStorage().bucket();
+    const basePath = `prompts/${uid}/${postId}`;
 
-    // 3. Upload dos Metadados (.json)
+    // Upload do Prompt (.md) para o Firebase Storage
+    const promptFile = bucket.file(`${basePath}/prompt.md`);
+    await promptFile.save(prompt || "", {
+      contentType: "text/markdown",
+      public: true,
+      metadata: {
+        firebaseStorageDownloadTokens: postId,
+      },
+    });
+
+    // Link público aproximado
+    const promptUrl = `https://firebasestorage.googleapis.com/v0/b/${bucket.name}/o/${encodeURIComponent(
+      `${basePath}/prompt.md`,
+    )}?alt=media`;
+
+    // 3. Upload dos Metadados (.json) para o Firebase Storage
     const finalMetadata = JSON.parse(metadata || "{}");
     if (imageUrl) finalMetadata.imageUrl = imageUrl;
+    finalMetadata.promptUrl = promptUrl;
 
-    const metaPath = path.join(baseFolder, "metadata.json");
-    fs.writeFileSync(metaPath, JSON.stringify(finalMetadata, null, 2), "utf8");
+    const metaFile = bucket.file(`${basePath}/metadata.json`);
+    await metaFile.save(JSON.stringify(finalMetadata, null, 2), {
+      contentType: "application/json",
+      public: true,
+    });
+
+    const metaUrl = `https://firebasestorage.googleapis.com/v0/b/${bucket.name}/o/${encodeURIComponent(
+      `${basePath}/metadata.json`,
+    )}?alt=media`;
 
     // 4. Create Firestore document for the prompt using Admin SDK
     const db = getAdminFirestore();
@@ -85,11 +99,13 @@ export default async function handler(
       ...finalMetadata,
       content: prompt || "",
       imageUrl,
+      promptUrl,
+      metaUrl,
       createdAt: Timestamp.now(),
       published: false,
     });
 
-    return res.status(200).json({ success: true, postId });
+    return res.status(200).json({ success: true, postId, promptUrl });
   } catch (error: any) {
     console.error("🔥 [API Publicar] Erro:", error);
     return res.status(500).json({ error: error.message });

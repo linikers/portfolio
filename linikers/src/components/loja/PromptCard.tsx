@@ -10,6 +10,7 @@ import {
   Chip,
   Button,
 } from "@mui/material";
+import Image from "next/image";
 
 interface PromptCardProps {
   prompt: IPrompt;
@@ -61,12 +62,11 @@ export default function PromptCard({ prompt }: PromptCardProps) {
                 position: "relative",
               }}
             >
-              <img
+              <Image
                 src={prompt.imageUrl}
                 alt={prompt.title}
+                fill
                 style={{
-                  width: "100%",
-                  height: "100%",
                   objectFit: "cover",
                   filter: "grayscale(40%) contrast(110%)",
                 }}
