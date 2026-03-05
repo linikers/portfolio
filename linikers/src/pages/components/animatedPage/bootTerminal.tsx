@@ -17,7 +17,7 @@ export default function BootTerminal({ onFinish }: { onFinish: () => void }) {
     } else {
       setTimeout(() => onFinish(), 600);
     }
-  }, [currentIndex]);
+  }, [currentIndex, onFinish]);
 
   return (
     <div className={styles.terminal}>

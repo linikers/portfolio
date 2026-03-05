@@ -9,11 +9,15 @@ export default function AnimatedPage({ onFinish }: { onFinish?: () => void }) {
   const [done, setDone] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => {
-      setDone(true);
-      if (onFinish) onFinish();
-    }, bootMessages.length * 250 + 800);
-  }, []);
+    const timeout = setTimeout(
+      () => {
+        setDone(true);
+        if (onFinish) onFinish();
+      },
+      bootMessages.length * 250 + 800,
+    );
+    return () => clearTimeout(timeout);
+  }, [onFinish]);
 
   if (!done) {
     return <DeskScene>{/* terminal já aparece no monitor */}</DeskScene>;

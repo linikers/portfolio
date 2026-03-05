@@ -5,6 +5,10 @@
 /.pnp
 .pnp.js
 
+# Yarn 4 (Berry)
+.yarn/unplugged
+.yarn/install-state.gz
+
 # testing
 /coverage
 
