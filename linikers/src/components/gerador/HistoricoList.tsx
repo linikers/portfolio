@@ -18,6 +18,10 @@ import {
   Typography,
 } from "@mui/material";
 import { MdDelete, MdPublish, MdUnpublished } from "react-icons/md";
+
+const DeleteIcon: any = MdDelete;
+const PublishIcon: any = MdPublish;
+const UnpublishIcon: any = MdUnpublished;
 import type { IPrompt } from "@/types/prompt";
 
 interface HistoricoListProps {
@@ -129,9 +133,9 @@ export default function HistoricoList({
                       color={prompt.published ? "warning" : "success"}
                     >
                       {prompt.published ? (
-                        <MdUnpublished size={18} />
+                        <UnpublishIcon size={18} />
                       ) : (
-                        <MdPublish size={18} />
+                        <PublishIcon size={18} />
                       )}
                     </IconButton>
                   </Tooltip>
@@ -141,7 +145,7 @@ export default function HistoricoList({
                       onClick={() => onDelete(prompt.id)}
                       color="error"
                     >
-                      <MdDelete size={18} />
+                      <DeleteIcon size={18} />
                     </IconButton>
                   </Tooltip>
                 </Box>

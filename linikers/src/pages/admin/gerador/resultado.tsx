@@ -19,6 +19,12 @@ import {
   MdRefresh,
   MdArrowBack,
 } from "react-icons/md";
+
+const CopyIcon: any = MdContentCopy;
+const EditIcon: any = MdEdit;
+const PublishIcon: any = MdPublish;
+const RefreshIcon: any = MdRefresh;
+const BackIcon: any = MdArrowBack;
 import axios from "axios";
 import { db, auth } from "@/config/firebaseClient";
 import PromptPreview from "@/components/gerador/PromptPreview";
@@ -190,7 +196,7 @@ export default function ResultadoPage() {
         <Box className="flex items-center justify-between">
           <Box className="flex items-center gap-2">
             <Button
-              startIcon={<MdArrowBack />}
+              startIcon={<BackIcon />}
               onClick={() => router.push("/admin/gerador")}
               sx={{ textTransform: "none" }}
             >
@@ -220,7 +226,7 @@ export default function ResultadoPage() {
         <Box className="flex flex-wrap gap-2">
           <Button
             variant="outlined"
-            startIcon={<MdRefresh />}
+            startIcon={<RefreshIcon />}
             onClick={handleRegenerate}
             disabled={isLoading}
             sx={{ textTransform: "none" }}
@@ -229,7 +235,7 @@ export default function ResultadoPage() {
           </Button>
           <Button
             variant="outlined"
-            startIcon={<MdContentCopy />}
+            startIcon={<CopyIcon />}
             onClick={handleCopy}
             sx={{ textTransform: "none" }}
           >
@@ -237,7 +243,7 @@ export default function ResultadoPage() {
           </Button>
           <Button
             variant="outlined"
-            startIcon={<MdEdit />}
+            startIcon={<EditIcon />}
             onClick={handleEdit}
             color={isEditing ? "success" : "inherit"}
             sx={{ textTransform: "none" }}
@@ -246,7 +252,7 @@ export default function ResultadoPage() {
           </Button>
           <Button
             variant="contained"
-            startIcon={<MdPublish />}
+            startIcon={<PublishIcon />}
             onClick={() => setModalOpen(true)}
             sx={{ textTransform: "none", fontWeight: 600, ml: "auto" }}
           >

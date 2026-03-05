@@ -12,6 +12,9 @@ import {
   Alert,
 } from "@mui/material";
 import { MdContentCopy, MdQrCode2 } from "react-icons/md";
+
+const CopyIcon: any = MdContentCopy;
+const QrCodeIcon: any = MdQrCode2;
 import { useState } from "react";
 
 interface ComprarModalProps {
@@ -65,7 +68,7 @@ export default function ComprarModal({
               mb: 2,
             }}
           >
-            <MdQrCode2 size={150} className="text-gray-800" />
+            <QrCodeIcon size={150} className="text-gray-800" />
           </Paper>
 
           <Alert severity="info" sx={{ width: "100%", mb: 2 }}>
@@ -101,7 +104,7 @@ export default function ComprarModal({
             <Typography variant="body2" noWrap sx={{ maxWidth: "80%" }}>
               {pixKey}
             </Typography>
-            <MdContentCopy size={18} />
+            <CopyIcon size={18} />
           </Box>
           {copied && (
             <Typography variant="caption" color="success.main">

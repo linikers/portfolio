@@ -9,6 +9,8 @@ import {
   Link as MuiLink,
 } from "@mui/material";
 import { MdAdd } from "react-icons/md";
+
+const AddIcon: any = MdAdd;
 import { useRouter } from "next/router";
 import type { GetServerSideProps } from "next";
 import { onAuthStateChanged, User } from "firebase/auth";
@@ -78,7 +80,7 @@ export default function PropagandaIndex({
           </Box>
           <Button
             variant="contained"
-            startIcon={<MdAdd />}
+            startIcon={<AddIcon />}
             onClick={() => router.push("/admin/propaganda/criar")}
             size="large"
           >

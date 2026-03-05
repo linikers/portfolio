@@ -18,6 +18,14 @@ import {
 } from "@mui/material";
 import { MdEdit, MdDelete, MdContentCopy } from "react-icons/md";
 import { FaInstagram, FaLinkedin, FaTwitter, FaWhatsapp } from "react-icons/fa";
+
+const EditIcon: any = MdEdit;
+const DeleteIcon: any = MdDelete;
+const CopyIcon: any = MdContentCopy;
+const InstagramIcon: any = FaInstagram;
+const LinkedinIcon: any = FaLinkedin;
+const TwitterIcon: any = FaTwitter;
+const WhatsappIcon: any = FaWhatsapp;
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -48,10 +56,10 @@ interface PropagandaDashboardProps {
 }
 
 const platformIcons: Record<string, JSX.Element> = {
-  instagram: <FaInstagram className="text-[#E1306C]" />,
-  linkedin: <FaLinkedin className="text-[#0077B5]" />,
-  x: <FaTwitter className="text-[#000000]" />, // X (Twitter)
-  whatsapp: <FaWhatsapp className="text-[#25D366]" />,
+  instagram: <InstagramIcon className="text-[#E1306C]" />,
+  linkedin: <LinkedinIcon className="text-[#0077B5]" />,
+  x: <TwitterIcon className="text-[#000000]" />, // X (Twitter)
+  whatsapp: <WhatsappIcon className="text-[#25D366]" />,
 };
 
 export default function PropagandaDashboard({
@@ -196,14 +204,14 @@ export default function PropagandaDashboard({
                     </TableCell>
                     <TableCell align="right">
                       <IconButton size="small" onClick={() => onEdit(post)}>
-                        <MdEdit />
+                        <EditIcon />
                       </IconButton>
                       <IconButton
                         size="small"
                         color="error"
                         onClick={() => onDelete(post.id)}
                       >
-                        <MdDelete />
+                        <DeleteIcon />
                       </IconButton>
                     </TableCell>
                   </TableRow>

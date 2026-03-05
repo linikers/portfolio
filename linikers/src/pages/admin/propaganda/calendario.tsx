@@ -12,6 +12,14 @@ import {
 } from "@mui/material";
 import { MdClose, MdEdit, MdPauseCircle } from "react-icons/md";
 import { FaInstagram, FaLinkedin, FaTwitter, FaWhatsapp } from "react-icons/fa";
+
+const CloseIcon: any = MdClose;
+const EditIconAlt: any = MdEdit;
+const PauseIcon: any = MdPauseCircle;
+const InstagramIcon: any = FaInstagram;
+const LinkedinIcon: any = FaLinkedin;
+const TwitterIcon: any = FaTwitter;
+const WhatsappIcon: any = FaWhatsapp;
 import { useRouter } from "next/router";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
@@ -28,10 +36,10 @@ interface CalendarioPageProps {
 }
 
 const platformIcons: Record<string, JSX.Element> = {
-  instagram: <FaInstagram />,
-  linkedin: <FaLinkedin />,
-  x: <FaTwitter />,
-  whatsapp: <FaWhatsapp />,
+  instagram: <InstagramIcon />,
+  linkedin: <LinkedinIcon />,
+  x: <TwitterIcon />,
+  whatsapp: <WhatsappIcon />,
 };
 
 export default function CalendarioPage({ initialPosts }: CalendarioPageProps) {
@@ -87,7 +95,7 @@ export default function CalendarioPage({ initialPosts }: CalendarioPageProps) {
                   Detalhes do Post
                 </Typography>
                 <IconButton onClick={() => setSelectedEvent(null)}>
-                  <MdClose />
+                  <CloseIcon />
                 </IconButton>
               </Box>
 
@@ -191,7 +199,7 @@ export default function CalendarioPage({ initialPosts }: CalendarioPageProps) {
                   <Button
                     fullWidth
                     variant="contained"
-                    startIcon={<MdEdit />}
+                    startIcon={<EditIconAlt />}
                     onClick={() =>
                       router.push(
                         `/admin/propaganda/criar?edit=${selectedEvent.id}`,
@@ -204,7 +212,7 @@ export default function CalendarioPage({ initialPosts }: CalendarioPageProps) {
                     fullWidth
                     variant="outlined"
                     color="warning"
-                    startIcon={<MdPauseCircle />}
+                    startIcon={<PauseIcon />}
                     onClick={handlePause}
                     disabled={selectedEvent.resource.status === "paused"}
                   >

@@ -9,6 +9,9 @@ import {
   InputAdornment,
 } from "@mui/material";
 import { MdSearch, MdFilterList } from "react-icons/md";
+
+const SearchIcon: any = MdSearch;
+const FilterIcon: any = MdFilterList;
 import { PROMPT_CATEGORIES } from "@/types/prompt";
 
 interface LojaFiltersProps {
@@ -34,7 +37,7 @@ export default function LojaFilters({
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">
-              <MdSearch size={20} className="text-gray-400" />
+              <SearchIcon size={20} className="text-gray-400" />
             </InputAdornment>
           ),
         }}
@@ -51,7 +54,7 @@ export default function LojaFilters({
           onChange={(e) => onCategoryChange(e.target.value)}
           startAdornment={
             <InputAdornment position="start">
-              <MdFilterList size={18} className="text-gray-400" />
+              <FilterIcon size={18} className="text-gray-400" />
             </InputAdornment>
           }
         >

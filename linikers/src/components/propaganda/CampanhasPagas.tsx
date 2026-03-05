@@ -18,6 +18,11 @@ import {
   CardContent,
 } from "@mui/material";
 import { FaInstagram, FaLinkedin, FaTwitter, FaWhatsapp } from "react-icons/fa";
+
+const InstagramIcon: any = FaInstagram;
+const LinkedinIcon: any = FaLinkedin;
+const TwitterIcon: any = FaTwitter;
+const WhatsappIcon: any = FaWhatsapp;
 // import { format } from "date-fns";
 // import { ptBR } from "date-fns/locale";
 import type { IPost } from "@/types/propaganda";
@@ -29,10 +34,10 @@ interface CampanhasPagasProps {
 }
 
 const platformIcons: Record<string, JSX.Element> = {
-  instagram: <FaInstagram className="text-[#E1306C]" />,
-  linkedin: <FaLinkedin className="text-[#0077B5]" />,
-  x: <FaTwitter className="text-[#000000]" />,
-  whatsapp: <FaWhatsapp className="text-[#25D366]" />,
+  instagram: <InstagramIcon className="text-[#E1306C]" />,
+  linkedin: <LinkedinIcon className="text-[#0077B5]" />,
+  x: <TwitterIcon className="text-[#000000]" />,
+  whatsapp: <WhatsappIcon className="text-[#25D366]" />,
 };
 
 export default function CampanhasPagas({

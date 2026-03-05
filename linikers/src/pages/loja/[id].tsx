@@ -16,6 +16,10 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import type { GetServerSideProps } from "next";
 import { MdArrowBack, MdContentCopy, MdShoppingCart } from "react-icons/md";
+
+const BackIcon: any = MdArrowBack;
+const CopyIcon: any = MdContentCopy;
+const CartIcon: any = MdShoppingCart;
 import { getAdminFirestore } from "@/lib/firebaseAdmin";
 import type { IPrompt } from "@/types/prompt";
 import ReactMarkdown from "react-markdown";
@@ -150,7 +154,7 @@ export default function PromptDetailPage({ prompt }: PromptDetailPageProps) {
         <Box display="flex" gap={2}>
           <Button
             variant="outlined"
-            startIcon={<MdArrowBack />}
+            startIcon={<BackIcon />}
             onClick={() => router.push("/loja")}
             sx={{ textTransform: "none" }}
           >
@@ -161,7 +165,7 @@ export default function PromptDetailPage({ prompt }: PromptDetailPageProps) {
             <Button
               fullWidth
               variant="contained"
-              startIcon={<MdContentCopy />}
+              startIcon={<CopyIcon />}
               onClick={handleCopy}
               color={copied ? "success" : "primary"}
               sx={{ textTransform: "none", fontWeight: "bold" }}
@@ -172,7 +176,7 @@ export default function PromptDetailPage({ prompt }: PromptDetailPageProps) {
             <Button
               fullWidth
               variant="contained"
-              startIcon={<MdShoppingCart />}
+              startIcon={<CartIcon />}
               onClick={() => setModalOpen(true)}
               sx={{ textTransform: "none", fontWeight: "bold" }}
             >

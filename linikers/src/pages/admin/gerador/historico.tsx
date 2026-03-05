@@ -13,6 +13,8 @@ import {
   Typography,
 } from "@mui/material";
 import { MdAdd } from "react-icons/md";
+
+const AddIcon: any = MdAdd;
 // We'll fetch prompts from the local API endpoint
 import { auth } from "@/config/firebaseClient";
 import { onAuthStateChanged } from "firebase/auth";
@@ -138,7 +140,7 @@ export default function HistoricoPage() {
           <Button
             href="/admin/gerador"
             variant="contained"
-            startIcon={<MdAdd />}
+            startIcon={<AddIcon />}
             sx={{ textTransform: "none", fontWeight: 600 }}
           >
             Criar Novo

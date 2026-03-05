@@ -19,6 +19,8 @@ const localizer = dateFnsLocalizer({
   locales,
 });
 
+const CalendarStyled: any = Calendar;
+
 interface CalendarioConteudoProps {
   events: any[]; // react-big-calendar Event format
   onSelectEvent: (event: any) => void;
@@ -72,7 +74,7 @@ export default function CalendarioConteudo({
         boxShadow: 1,
       }}
     >
-      <Calendar
+      <CalendarStyled
         localizer={localizer}
         events={events}
         startAccessor="start"

@@ -18,6 +18,10 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { MdAutoAwesome, MdPreview, MdSend } from "react-icons/md";
+
+const AwesomeIcon: any = MdAutoAwesome;
+const PreviewIcon: any = MdPreview;
+const SendIcon: any = MdSend;
 import {
   PLATFORM_OPTIONS,
   PropagandaFormValues,
@@ -183,11 +187,7 @@ export default function EditorPublicacao({
             <Button
               size="small"
               startIcon={
-                isGenerating ? (
-                  <CircularProgress size={16} />
-                ) : (
-                  <MdAutoAwesome />
-                )
+                isGenerating ? <CircularProgress size={16} /> : <AwesomeIcon />
               }
               onClick={handleGerarIA}
               disabled={isGenerating}
@@ -299,7 +299,7 @@ export default function EditorPublicacao({
           type="submit"
           variant="contained"
           size="large"
-          startIcon={isLoading ? <CircularProgress size={20} /> : <MdSend />}
+          startIcon={isLoading ? <CircularProgress size={20} /> : <SendIcon />}
           disabled={isLoading}
           sx={{ px: 4 }}
         >

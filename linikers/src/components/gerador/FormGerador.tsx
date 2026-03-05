@@ -32,6 +32,10 @@ import {
 import type { GeradorFormValues } from "@/types/prompt";
 import { MdCloudUpload, MdDelete, MdImage } from "react-icons/md";
 
+const UploadIcon: any = MdCloudUpload;
+const DeleteIcon: any = MdDelete;
+const ImageIcon: any = MdImage;
+
 interface FormGeradorProps {
   onSubmit: (values: GeradorFormValues) => void | Promise<void>;
   isLoading: boolean;
@@ -221,7 +225,7 @@ export default function FormGerador({ onSubmit, isLoading }: FormGeradorProps) {
               onChange={handleFileChange}
               disabled={isLoading}
             />
-            <MdCloudUpload size={48} color="#666" />
+            <UploadIcon size={48} color="#666" />
             <Typography variant="body1" sx={{ mt: 1 }}>
               Clique para fazer upload ou arraste a imagem
             </Typography>
@@ -254,7 +258,7 @@ export default function FormGerador({ onSubmit, isLoading }: FormGeradorProps) {
               color="error"
               disabled={isLoading}
             >
-              <MdDelete />
+              <DeleteIcon />
             </IconButton>
           </Box>
         )}

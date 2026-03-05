@@ -22,6 +22,12 @@ import {
   MdPayments,
   MdArrowBack,
 } from "react-icons/md";
+
+const DashboardIcon: any = MdDashboard;
+const AddIcon: any = MdAddCircle;
+const CalendarIcon: any = MdCalendarMonth;
+const PaymentsIcon: any = MdPayments;
+const BackIcon: any = MdArrowBack;
 import MenuUser from "@/components/menu";
 
 const drawerWidth = 240;
@@ -36,22 +42,22 @@ const navItems: NavItem[] = [
   {
     label: "Dashboard",
     path: "/admin/propaganda",
-    icon: <MdDashboard size={22} />,
+    icon: <DashboardIcon size={22} />,
   },
   {
     label: "Nova Publicação",
     path: "/admin/propaganda/criar",
-    icon: <MdAddCircle size={22} />,
+    icon: <AddIcon size={22} />,
   },
   {
     label: "Calendário",
     path: "/admin/propaganda/calendario",
-    icon: <MdCalendarMonth size={22} />,
+    icon: <CalendarIcon size={22} />,
   },
   {
     label: "Campanhas Pagas",
     path: "/admin/propaganda/pagas",
-    icon: <MdPayments size={22} />,
+    icon: <PaymentsIcon size={22} />,
   },
 ];
 
@@ -126,7 +132,7 @@ export default function PropagandaLayout({
         <ListItem disablePadding>
           <ListItemButton onClick={() => router.push("/dashboard")}>
             <ListItemIcon sx={{ minWidth: 40 }}>
-              <MdArrowBack size={22} />
+              <BackIcon size={22} />
             </ListItemIcon>
             <ListItemText primary="Voltar ao Painel" />
           </ListItemButton>
