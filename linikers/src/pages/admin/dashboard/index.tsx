@@ -21,6 +21,12 @@ import {
   MdDashboard,
 } from "react-icons/md";
 
+const AddIcon: any = MdAddCircle;
+const HistoryIcon: any = MdHistory;
+const CampaignIcon: any = MdCampaign;
+const StoreIcon: any = MdStore;
+const DashboardIcon: any = MdDashboard;
+
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export const data = {
@@ -53,25 +59,25 @@ export const data = {
 const STORE_MENU_ITEMS = [
   {
     title: "Gerador de Prompts",
-    icon: (<MdAddCircle size={40} />) as any,
+    icon: <AddIcon size={40} />,
     link: "/admin/gerador",
     color: "#4f46e5",
   },
   {
     title: "Histórico de Prompts",
-    icon: (<MdHistory size={40} />) as any,
+    icon: <HistoryIcon size={40} />,
     link: "/admin/gerador/historico",
     color: "#0891b2",
   },
   {
     title: "Propagandas",
-    icon: (<MdCampaign size={40} />) as any,
+    icon: <CampaignIcon size={40} />,
     link: "/admin/propaganda",
     color: "#db2777",
   },
   {
     title: "Ver Loja",
-    icon: (<MdStore size={40} />) as any,
+    icon: <StoreIcon size={40} />,
     link: "/loja",
     color: "#059669",
   },
@@ -109,7 +115,7 @@ export default function AdminPage() {
         </Box>
         <Box sx={{ zIndex: 999 }}>
           <Link href="/dashboard/painel">
-            <Button variant="contained" startIcon={(<MdDashboard />) as any}>
+            <Button variant="contained" startIcon={<DashboardIcon />}>
               Dashboard Global
             </Button>
           </Link>

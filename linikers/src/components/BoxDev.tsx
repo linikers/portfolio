@@ -5,6 +5,10 @@ import { DesignServices } from "@mui/icons-material";
 import { MdImportantDevices } from "react-icons/md";
 import { TbBugOff } from "react-icons/tb";
 
+const UxIcon: any = TbUxCircle;
+const BugIcon: any = TbBugOff;
+const DeviceIcon: any = MdImportantDevices;
+
 export default function BoxDev() {
   const iconSize = 40;
   const gradientBackground = `radial-gradient(circle, rgba(150,150,150,2) 10%, rgba(245,245,220,4) 100%)`;
@@ -24,7 +28,7 @@ export default function BoxDev() {
     <Grid2 container spacing={4}>
       <Box sx={cssBox}>
         <Box display="flex">
-          <TbUxCircle size={iconSize} /> as any
+          <UxIcon size={iconSize} />
           <DesignServices fontSize="large" />
         </Box>
         <Typography variant="subtitle1">UX/UI Design</Typography>
@@ -32,14 +36,14 @@ export default function BoxDev() {
       <Box sx={cssBox}>
         <Box display="flex">
           <DeveloperBoard fontSize="large" />
-          <MdImportantDevices size={iconSize} /> as any
+          <DeviceIcon size={iconSize} />
         </Box>
         <Typography variant="subtitle1">Desenvolvimento</Typography>
       </Box>
       <Box sx={cssBox}>
         <Box display="flex">
           <BugReport fontSize="large" />
-          <TbBugOff size={iconSize} /> as any
+          <BugIcon size={iconSize} />
         </Box>
         <Typography variant="subtitle1">Correções</Typography>
       </Box>
