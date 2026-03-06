@@ -65,5 +65,6 @@
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
     "@types/react-big-calendar": "^1"
-  }
+  },
+  "packageManager": "yarn@4.13.0"
 }

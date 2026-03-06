@@ -24,8 +24,8 @@ export function getAdminFirestore() {
       credential: cert({
         projectId: projectId || "portfoliolinikers",
         clientEmail: clientEmail,
-        // Corrige quebras de linha na chave privada se vierem com escape
-        privateKey: privateKey?.replace(/\\n/g, "\n"),
+        // Corrige quebras de linha na chave privada (suporta \\n literal e \n escapado)
+        privateKey: privateKey?.replace(/\\\\n|\\n/g, "\n"),
       }),
       storageBucket:
         process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET ||

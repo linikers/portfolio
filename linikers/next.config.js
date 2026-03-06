@@ -6,7 +6,11 @@ const path = require("path");
 module.exports = {
   ...nextConfig,
   images: {
-    domains: ['github-readme-stats.vercel.app'],
+    domains: [
+      'github-readme-stats.vercel.app',
+      'res.cloudinary.com',
+      'firebasestorage.googleapis.com',
+    ],
   },
   webpack: (config, { dev, isServer }) => {
     if (!dev && !isServer) {
