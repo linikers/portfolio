@@ -81,14 +81,7 @@ export default function LojaPage({ prompts }: LojaPageProps) {
         </Box>
 
         {/* FILTROS */}
-        <Box
-          sx={{
-            mb: 8,
-            p: 3,
-            border: "1px solid rgba(255,255,255,0.1)",
-            background: "rgba(255,255,255,0.02)",
-          }}
-        >
+        <Box sx={{ mb: 8 }}>
           <LojaFilters
             search={search}
             category={category}
