@@ -125,6 +125,40 @@ title: 'Você quer viver o mundo real, mas sente que o mundo ao redor não permi
 date: '2025-03-31'
 ---
 
-Eu estou ficando louco, isso não é um teste. Estamos colapsados com a quantidade de informação, necessidade de conhecimento e nos afastamos cada dia mais do humano como ser evolutivo, sinto que quanto mais mordomias são criadas mais sentimos dor, mais perdidos ficamos e menos tempo sobra para viver a realidade. Estamos nos desconectando do mundo real, de atividades braçais e vivencias olho a olho, isso tem adoecido a sociedade num geral, sinto que estamos em buraco cavado por nós mesmos. E ninguém quer sair, estamos cada vez mais fundo, com histórias de um mundo perfeito rodeado por tecnologia. Balela que vem sendo vendida há anos enquanto uma grande massa se afunda em vicios, incluíndo digitais com jogos, apostas, redes sociais e outras drogas parecem nem surtir o mesmo efeito no mundo real. Parece que todos querem fugir do mundo real, viveriam o resto da vida de merda deitados num sofá scrollando a tela e reclamando da vida. Uma viagem vira um post perfeito e reclamação pois o caminho para o paraiso da foto é ingrime. As interações reais andam frias e cada vez mais distantes inclusive nos olhares. Eu realmente estou ficando louco tentando desbravar a realidade me desconctando cada vez mais da tecnologia e cada vez mais me afogo em tudo que temos que aprender, atualizar e melhorar. Para então ter a mente clara para viver o mundo real. Sim trabalhos braçais, contatos reais e fisicos, cada vez menos conseguimos reunir pessoas para fazer o que sempre fizemos desde os primordios em volta da fogueira contato histórias, rindo ou chorando mas reunidos. Um click é suficiente para mover o peso de conexão real. Entre todos pensamentos intrusivos o que martela em momentos impróprios é: Vivemos numa matrix e não percebemos, a introdução foi tão satifatória que alguns ainda acham estarmos longe disso enquanto reclama do seu relacionamento vendo um casal intagramavél e toda sua perfeição. O mundo digital pode mostrar tudo que você deseja e criar seu próprio atrito e confusão mental sem te forçar a levantar da cama. As métricas estão cada vez mais absurdas que ninguém suporta o próprio trabalho, relacionamento, amizades, familia e todo esse acumulo de desejo pela vida do outro que acaba afundando pessoas em drogas legalizadas que apagam os sonhos reais.
-Eu já estou louco, enlouqueci quando não consegui mais dormir, quando o corpo pedia por descanso mas a mente sequer desacelerava. Eu enlouqueci quando me neguei a me  tratar com drogas farmacologicas, quando me afastei de quem não vivia o mundo palpavel e quando me neguei a aceitar que agora funciona assim. 
-Não! O mundo digital é distorcido, não é real, nada daquilo existe fora da sua tela. 
+Eu estou ficando louco. Isso não é um teste.
+
+Estamos colapsando diante da quantidade de informação e da exigência constante de aprender, evoluir e acompanhar tudo. E, no meio disso, estamos nos afastando do que nos torna humanos. Quanto mais conforto criamos, mais dor sentimos. Quanto mais facilidades surgem, mais perdidos ficamos, e menos tempo temos para viver a realidade.
+
+Estamos nos desconectando do mundo real. Das atividades simples, do contato olho no olho, das experiências físicas. Isso não é progresso limpo, mas isso está adoecendo a sociedade. Cavamos um buraco e continuamos cavando, mesmo sabendo disso.
+
+Vendem há anos a ideia de um mundo perfeito mediado pela tecnologia. Mas o que vemos é uma massa cada vez mais afundada em vícios — não só químicos, mas digitais: jogos, apostas, redes sociais. Fugir virou padrão. Viver virou exceção.
+
+As pessoas assistiriam a própria vida passar, deitadas num sofá, rolando a tela e reclamando do vazio que sentem. Uma viagem já não é vivida, é performada. A foto é perfeita, mas o caminho é incômodo. E isso basta para gerar frustração.
+
+As interações reais esfriaram. Os olhares não se encontram mais como antes.
+
+E eu… eu estou no meio disso tentando escapar. Tentando viver o que é real. Me afastando da tecnologia, mas ao mesmo tempo me afogando na necessidade de aprender, evoluir e acompanhar. É um paradoxo sufocante: preciso dominar o sistema para poder sair dele.
+
+Quero mente clara. Quero vida real.
+
+Trabalhos manuais. Conversas presenciais. Gente reunida como sempre foi, contando histórias, rindo, chorando, compartilhando existência. Hoje, um clique substitui tudo isso. E a gente aceita.
+
+Entre pensamentos intrusivos, uma ideia insiste: vivemos em uma simulação confortável demais para ser questionada. Uma “matrix” onde tudo é apresentado de forma tão convincente que poucos percebem.
+
+Enquanto isso, pessoas comparam suas vidas com versões editadas de outras. Relacionamentos reais são corroídos por expectativas irreais. Métricas substituem significado. E ninguém parece satisfeito com o próprio trabalho, com suas relações, com a própria vida.
+
+Esse acúmulo de desejo pela vida do outro está afundando pessoas — em vícios, em remédios, em fuga.
+
+Eu comecei a enlouquecer quando perdi o sono. Quando o corpo implorava por descanso e a mente não parava. Quando me recusei a anestesiar isso com drogas. Quando me afastei do que não era palpável. Quando me neguei a aceitar que “é assim que funciona agora”.
+
+Talvez a sanidade hoje seja resistência.
+
+Precisamos entender a máquina sem nos tornarmos parte dela. Precisamos distinguir o que realmente precisamos daquilo que fomos ensinados a desejar.
+
+Sonhar não é o problema.
+O problema é acreditar que dá para viver em um sonho sem pagar o preço da realidade.
+
+O mundo digital é uma distorção.
+Ele não é a realidade.
+
+Nada daquilo existe fora da tela.
