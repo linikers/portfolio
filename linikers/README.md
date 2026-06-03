@@ -1,31 +1,91 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# LinikerS.dev — Portfólio & Hub Pessoal
 
-## Getting Started
+Portfólio interativo + plataforma de ferramentas com IA, loja de prompts, blog, painel admin e marketing.
 
-First, run the development server:
+## Stack
+
+| Camada | Tecnologia |
+|--------|-----------|
+| Framework | Next.js 13.4 (Pages Router) |
+| Linguagem | TypeScript |
+| UI | MUI v6 + Tailwind CSS + SCSS |
+| Animações | Framer Motion + GSAP |
+| Autenticação | Firebase Auth (email/senha + Google) |
+| Banco | Firestore (via Firebase Admin) |
+| Estado | Zustand |
+| IA | Groq (Llama 3.3 70B) + Gemini 1.5 Flash (fallback) |
+| Analytics | Firebase Analytics |
+| Pagamento | (futuro) |
+
+## Funcionalidades
+
+### Páginas Públicas
+- **Home** — Tela de boot retrô com animação em canvas + terminal sequencial
+- **Projetos** — Portfólio de projetos com cards e links
+- **Ferramentas** — Carrossel infinito com tecnologias dominadas
+- **Blog** — Posts em markdown com renderização SSR
+- **Loja de Prompts** — Catálogo de prompts com busca, filtros e SSR via Firestore
+- **Contato** — WhatsApp + redes sociais
+- **Perfil** — Página pessoal com integração Pinterest
+
+### Painel Admin (`/admin/dashboard`)
+- **Dashboard** — Visão geral com gráficos e atalhos
+- **Gerador de Prompts** — Cria prompts com IA (Groq → Gemini fallback) e publica na loja
+- **Propaganda & Marketing** — CRUD de posts, calendário de conteúdo, campanhas pagas
+- **Cotação** — Painel com BTC, USD, EUR em tempo real (AwesomeAPI)
+
+## Estrutura
+
+```
+linikers/
+├── src/
+│   ├── components/       # Componentes reutilizáveis
+│   ├── pages/            # Rotas Next.js (Pages Router)
+│   │   ├── admin/        # Painel administrativo
+│   │   ├── api/          # API routes
+│   │   ├── loja/         # Loja de prompts
+│   │   └── components/   # Componentes de página (backgroundDesk, animatedPage)
+│   ├── lib/              # Firebase, IA, utilitários
+│   ├── store/            # Zustand stores
+│   ├── styles/           # Estilos globais
+│   ├── types/            # Tipos TypeScript
+│   └── config/           # Configurações (Firebase client)
+├── public/               # Assets estáticos
+└── docs/                 # Documentação
+```
+
+## Desenvolvimento
 
 ```bash
+yarn dev        # Inicia dev server
+yarn build      # Build de produção
+yarn start      # Inicia produção
+yarn lint       # Linter
+```
 
-yarn dev
+## Variáveis de Ambiente
 
+```env
+# Firebase
+NEXT_PUBLIC_FIREBASE_API_KEY=
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=
+NEXT_PUBLIC_FIREBASE_APP_ID=
+NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=
+FIREBASE_CLIENT_EMAIL=
+FIREBASE_PRIVATE_KEY=
+FIREBASE_PROJECT_ID=
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# IA
+GROQ_API_KEY=
+GEMINI_API_KEY=
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# Cloudinary
+CLOUDINARY_URL=
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Deploy
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Automatizado via Vercel — pushes na branch principal disparam deploy.
