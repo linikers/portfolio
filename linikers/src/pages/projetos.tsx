@@ -14,7 +14,7 @@ export default function Projetos() {
         page_name: 'projetos'
         })
       } catch (error) {
-        
+        console.warn("[Analytics] Erro ao logar página projetos:", error);
       }    
     }
 }, [])

@@ -17,9 +17,9 @@ export default function Contato() {
             logEvent(analytics, 'Contato', {
             page_name: 'contato'
             })
-          } catch (error) {
-            
-          }    
+      } catch (error) {
+        console.warn("[Analytics] Erro ao logar página contato:", error);
+      }    
         }
     }, [])
 
