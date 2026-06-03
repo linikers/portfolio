@@ -165,39 +165,13 @@ export default function AdminPage() {
       </Box>
 
       <Typography variant="h5" fontWeight={600} sx={{ mb: 3 }}>
-        📊 Atividade Recente
+        📊 Em Breve
       </Typography>
-      <Grid2 container spacing={3} justifyContent="center" sx={{ mb: 6 }}>
-        {["Ultimos Tweets", "Ultimos Posts Linkedin", "Ultimos PR"].map(
-          (title, index) => (
-            <Grid2
-              key={index}
-              size={{ xs: 12, sm: 4 }}
-              sx={{
-                display: "flex",
-              }}
-            >
-              <Card
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  p: 2,
-                  width: "100%",
-                }}
-              >
-                <CardContent>
-                  <Typography variant="h6" align="center">
-                    {title}
-                  </Typography>
-                  <Typography variant="h4" align="center">
-                    {index === 0 ? "421" : index === 1 ? "408" : "802"}
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid2>
-          ),
-        )}
-      </Grid2>
+      <Box sx={{ textAlign: "center", py: 4, color: "text.secondary" }}>
+        <Typography variant="body1">
+          Gráficos e métricas em tempo real em breve.
+        </Typography>
+      </Box>
 
       <Box
         sx={{
