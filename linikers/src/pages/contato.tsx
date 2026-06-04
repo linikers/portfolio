@@ -37,12 +37,14 @@ export default function Contato() {
     return (
         <Container
             sx={{
+                backgroundColor: '#d4d0c4',
                 height: '100vh',
+                width: '100vw',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'center',
                 alignItems: 'center',
-                position: 'relative',
+                position: 'relative', //planeta
             }}
         >
             <Grid2
@@ -61,14 +63,14 @@ export default function Contato() {
                 sx={{ zIndex: 8 }} //acima do planeta
             >
             <motion.span
-                className="text-cyan-400 text-xl font-mono mt-6"
+                className="text-green-600 text-xl font-mono mt-6"
                 initial='initial'
                 animate='animate'
             >
                 Entre em contato
             </motion.span>
             <motion.p
-            className="text-white text-5xl font-mono mt-6"
+            className="text-gray-800 text-5xl font-mono mt-6 text-stroke"
                 initial='initial'
                 animate='animate'
             >

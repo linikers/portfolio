@@ -69,7 +69,7 @@ export default function Login() {
       alignItems="center"
       sx={{
         minHeight: 12,
-        backgroundColor: "background.default",
+        backgroundColor: "gray",
         height: "100vh",
         padding: 2,
       }}
@@ -83,7 +83,7 @@ export default function Login() {
           maxWidth: 400,
           width: "100%",
           borderRadius: 2,
-          backgroundColor: "background.paper",
+          backgroundColor: "white",
           boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)",
           transition: "transform 0.3s, box-shadow 0.3s",
           "&:hover": {
