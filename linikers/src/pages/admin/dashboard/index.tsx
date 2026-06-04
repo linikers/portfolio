@@ -27,6 +27,7 @@ const HistoryIcon: any = MdHistory;
 const CampaignIcon: any = MdCampaign;
 const StoreIcon: any = MdStore;
 const DashboardIcon: any = MdDashboard;
+const MLIcon: any = SiMercadopago;
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -89,8 +90,6 @@ const STORE_MENU_ITEMS = [
     color: "#009EE3",
   },
 ];
-
-const MLIcon: any = SiMercadopago;
 
 export default function AdminPage() {
   return (
