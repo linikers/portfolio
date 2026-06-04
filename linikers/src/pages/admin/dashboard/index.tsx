@@ -20,6 +20,7 @@ import {
   MdStore,
   MdDashboard,
 } from "react-icons/md";
+import { SiMercadopago } from "react-icons/si";
 
 const AddIcon: any = MdAddCircle;
 const HistoryIcon: any = MdHistory;
@@ -81,7 +82,15 @@ const STORE_MENU_ITEMS = [
     link: "/loja",
     color: "#059669",
   },
+  {
+    title: "ML Campanhas",
+    icon: <MLIcon size={40} />,
+    link: "/admin/ml",
+    color: "#009EE3",
+  },
 ];
+
+const MLIcon: any = SiMercadopago;
 
 export default function AdminPage() {
   return (
