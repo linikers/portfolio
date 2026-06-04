@@ -142,7 +142,7 @@ export default function PropagandaLayout({
   );
 
   return (
-    <Box sx={{ display: "flex", minHeight: "100vh", bgcolor: "#f8fafc" }}>
+    <Box sx={{ display: "flex", minHeight: "100vh", bgcolor: "background.default" }}>
       {/* Sidebar Desktop */}
       {!isMobile && (
         <Drawer
@@ -153,8 +153,9 @@ export default function PropagandaLayout({
             "& .MuiDrawer-paper": {
               width: drawerWidth,
               boxSizing: "border-box",
-              borderRight: "1px solid #e2e8f0",
-              bgcolor: "white",
+              borderRight: 1,
+              borderColor: "divider",
+              bgcolor: "background.paper",
             },
           }}
         >
@@ -172,8 +173,9 @@ export default function PropagandaLayout({
             p: 2,
             display: "flex",
             justifyContent: "flex-end",
-            bgcolor: "white",
-            borderBottom: "1px solid #e2e8f0",
+            bgcolor: "background.paper",
+            borderBottom: 1,
+            borderColor: "divider",
           }}
         >
           <MenuUser />

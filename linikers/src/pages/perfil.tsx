@@ -29,7 +29,7 @@ export default function Perfil() {
           backgroundImage: "url('/profileImg.jpg')",
           backgroundSize: "cover", // cobre todo fundo
           backgroundPosition: "center", //center img
-          backgroundColor: "#3b5998",
+          backgroundColor: "primary.main",
           position: "relative",
           mb: 8,
           borderRadius: "8px",
@@ -66,7 +66,7 @@ export default function Perfil() {
               padding: 2,
               marginBottom: 2,
               borderRadius: 2,
-              backgroundColor: "#f5f5f5",
+              backgroundColor: "action.hover",
             }}
           >
             <Typography variant="body1">{info.titulo}</Typography>
@@ -81,7 +81,7 @@ export default function Perfil() {
             padding: 2,
             marginBottom: 2,
             borderRadius: 2,
-            backgroundColor: "#f5f5f5",
+            backgroundColor: "action.hover",
           }}
         >
           <Typography variant="body1">Olha o que eu curti!</Typography>

@@ -87,7 +87,7 @@ export default function Ferramentas() {
         justifyContent: "center",
         flexDirection: "column",
         alignItems: "center",
-        bgcolor: "#d4d0c4",
+        bgcolor: "background.default",
         display: "flex",
         height: "100vh",
         overflow: "hidden",
@@ -109,7 +109,9 @@ export default function Ferramentas() {
           alignItems: "center",
           margin: "20px 0",
           padding: "20px",
-          backgroundColor: "#2e3440",
+          backgroundColor: "background.paper",
+          border: 1,
+          borderColor: "divider",
           borderRadius: "8px",
         }}
       >
