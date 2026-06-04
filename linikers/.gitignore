@@ -5,6 +5,10 @@
 /.pnp
 .pnp.js
 
+# Yarn 4 (Berry)
+.yarn/unplugged
+.yarn/install-state.gz
+
 # testing
 /coverage
 
@@ -25,7 +29,6 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
-.env
 .env*.local
 
 # vercel

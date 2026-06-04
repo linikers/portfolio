@@ -1,16 +1,16 @@
 "use client";
 import react, { useState } from "react";
 import BootTerminal from "../../animatedPage/bootTerminal";
+import { useRouter } from "next/navigation";
 import styles from "./monitor.module.css";
 
-export default function Monitor({ onBootComplete }: { onBootComplete?: () => void }) {
+export default function Monitor() {
   const [finished, setFinished] = useState(false);
+  const router = useRouter();
 
   function endBoot() {
     setFinished(true);
-    if (onBootComplete) {
-      onBootComplete();
-    }
+    setTimeout(() => router.push("/perfil"), 2600);
   }
 
   return (

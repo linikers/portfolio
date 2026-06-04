@@ -14,9 +14,7 @@ export default function Perfil() {
         logEvent(analytics, "Perfil", {
           page_name: "perfil",
         });
-      } catch (error) {
-        console.warn("[Analytics] Erro ao logar página perfil:", error);
-      }
+      } catch (error) {}
     }
   }, []);
 
@@ -29,7 +27,7 @@ export default function Perfil() {
           backgroundImage: "url('/profileImg.jpg')",
           backgroundSize: "cover", // cobre todo fundo
           backgroundPosition: "center", //center img
-          backgroundColor: "primary.main",
+          backgroundColor: "#3b5998",
           position: "relative",
           mb: 8,
           borderRadius: "8px",
@@ -66,7 +64,7 @@ export default function Perfil() {
               padding: 2,
               marginBottom: 2,
               borderRadius: 2,
-              backgroundColor: "action.hover",
+              backgroundColor: "#f5f5f5",
             }}
           >
             <Typography variant="body1">{info.titulo}</Typography>
@@ -81,7 +79,7 @@ export default function Perfil() {
             padding: 2,
             marginBottom: 2,
             borderRadius: 2,
-            backgroundColor: "action.hover",
+            backgroundColor: "#f5f5f5",
           }}
         >
           <Typography variant="body1">Olha o que eu curti!</Typography>

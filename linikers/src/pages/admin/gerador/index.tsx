@@ -9,6 +9,7 @@ import axios from "axios";
 import FormGerador from "@/components/gerador/FormGerador";
 import { useGeradorStore } from "@/store/gerador.store";
 import type { GeradorFormValues } from "@/types/prompt";
+// import Navbar from "@/components/navbar";
 import MenuUser from "@/components/menu";
 
 export default function GeradorPage() {
