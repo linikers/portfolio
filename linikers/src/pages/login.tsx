@@ -10,9 +10,13 @@ import { useRouter } from "next/router";
 import { useFormik } from "formik";
 import { useState } from "react";
 import * as Yup from "yup";
+// import { color } from "framer-motion";
+// import shadows from "@mui/material/styles/shadows";
 
 export default function Login() {
   const [isRegistering, setIsRegistering] = useState(false);
+  // const [email, setEmail] = useState('');
+  // const [password, setPassword] = useState('');
   const [error, setError] = useState("");
   const router = useRouter();
 
@@ -53,6 +57,15 @@ export default function Login() {
     }
   };
 
+  // const handleLogin = async(e: any) => {
+  //     e.preventDefault();
+  //     try {
+  //         await signInWithEmailAndPassword(auth, email, password);
+  //         router.push('/dashboard');
+  //     } catch (error) {
+  //         setError("Falha no login");
+  //     }
+  // }
   const handleLoginGoogle = async () => {
     const provider = new GoogleAuthProvider();
     try {

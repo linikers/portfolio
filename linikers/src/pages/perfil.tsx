@@ -14,9 +14,7 @@ export default function Perfil() {
         logEvent(analytics, "Perfil", {
           page_name: "perfil",
         });
-      } catch (error) {
-        console.warn("[Analytics] Erro ao logar página perfil:", error);
-      }
+      } catch (error) {}
     }
   }, []);
 

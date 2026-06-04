@@ -63,7 +63,10 @@ const ferramentas = [
 
 const scrollAnimation = keyframes`
   0% { transform: translateX(0); }
+  50% { transform: translateX(-50%); }
   100% { transform: translateX(-100%); }
+  -50% { transform: translateX(50%); }
+  0% { transform: translateX(0); }
 `;
 
 export default function Ferramentas() {
@@ -75,9 +78,7 @@ export default function Ferramentas() {
         logEvent(analytics, "Ferramentas", {
           page_name: "ferramentas",
         });
-      } catch (error) {
-        console.warn("[Analytics] Erro ao logar página ferramentas:", error);
-      }
+      } catch (error) {}
     }
   }, []);
 
