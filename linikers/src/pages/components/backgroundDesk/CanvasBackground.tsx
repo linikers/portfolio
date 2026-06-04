@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import Monitor from "./Monitor";
 // import Monitor from "../Monitor";
 
-export default function CanvasBackground() {
+export default function CanvasBackground({ onBootComplete }: { onBootComplete?: () => void }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState(1);
@@ -90,7 +90,7 @@ export default function CanvasBackground() {
         />
 
         {/* Monitor overlay - agora % do canvas! */}
-        <Monitor />
+        <Monitor onBootComplete={onBootComplete} />
       </div>
     </div>
   );

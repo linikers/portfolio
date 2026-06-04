@@ -10,13 +10,9 @@ import { useRouter } from "next/router";
 import { useFormik } from "formik";
 import { useState } from "react";
 import * as Yup from "yup";
-// import { color } from "framer-motion";
-// import shadows from "@mui/material/styles/shadows";
 
 export default function Login() {
   const [isRegistering, setIsRegistering] = useState(false);
-  // const [email, setEmail] = useState('');
-  // const [password, setPassword] = useState('');
   const [error, setError] = useState("");
   const router = useRouter();
 
@@ -57,15 +53,6 @@ export default function Login() {
     }
   };
 
-  // const handleLogin = async(e: any) => {
-  //     e.preventDefault();
-  //     try {
-  //         await signInWithEmailAndPassword(auth, email, password);
-  //         router.push('/dashboard');
-  //     } catch (error) {
-  //         setError("Falha no login");
-  //     }
-  // }
   const handleLoginGoogle = async () => {
     const provider = new GoogleAuthProvider();
     try {
@@ -82,7 +69,7 @@ export default function Login() {
       alignItems="center"
       sx={{
         minHeight: 12,
-        backgroundColor: "gray",
+        backgroundColor: "background.default",
         height: "100vh",
         padding: 2,
       }}
@@ -96,7 +83,7 @@ export default function Login() {
           maxWidth: 400,
           width: "100%",
           borderRadius: 2,
-          backgroundColor: "white",
+          backgroundColor: "background.paper",
           boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)",
           transition: "transform 0.3s, box-shadow 0.3s",
           "&:hover": {
