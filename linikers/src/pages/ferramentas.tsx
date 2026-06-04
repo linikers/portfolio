@@ -63,10 +63,7 @@ const ferramentas = [
 
 const scrollAnimation = keyframes`
   0% { transform: translateX(0); }
-  50% { transform: translateX(-50%); }
   100% { transform: translateX(-100%); }
-  -50% { transform: translateX(50%); }
-  0% { transform: translateX(0); }
 `;
 
 export default function Ferramentas() {
@@ -78,7 +75,9 @@ export default function Ferramentas() {
         logEvent(analytics, "Ferramentas", {
           page_name: "ferramentas",
         });
-      } catch (error) {}
+      } catch (error) {
+        console.warn("[Analytics] Erro ao logar página ferramentas:", error);
+      }
     }
   }, []);
 
@@ -88,7 +87,7 @@ export default function Ferramentas() {
         justifyContent: "center",
         flexDirection: "column",
         alignItems: "center",
-        bgcolor: "#d4d0c4",
+        bgcolor: "background.default",
         display: "flex",
         height: "100vh",
         overflow: "hidden",
@@ -110,7 +109,9 @@ export default function Ferramentas() {
           alignItems: "center",
           margin: "20px 0",
           padding: "20px",
-          backgroundColor: "#2e3440",
+          backgroundColor: "background.paper",
+          border: 1,
+          borderColor: "divider",
           borderRadius: "8px",
         }}
       >
