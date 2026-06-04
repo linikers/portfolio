@@ -37,7 +37,7 @@ export default function PainelCotacao() {
     };
     fetchExchangeRates();
   }, []);
-
+  console.log(typeof exchangeRates.usd.bid);
   return (
     <Container sx={{ mt: 4 }}>
       <Typography variant="h4" gutterBottom>
