@@ -188,6 +188,23 @@ export default function Projetos() {
             url="https://linikers.github.io/Geek-Commerce/"
           />
         </Card>
+
+        <Card
+          style={{
+            width: "18rem",
+            margin: '2rem',
+            borderRadius: '12px',
+          }}
+        >
+          <CardPortfolio
+            imgUrl={`${basePath}/hermes-tumbl.png`}
+            altText="Hermes Agent"
+            title="Hermes Agent"
+            subTitle="Dashboard Interativo"
+            description="IA agente autonoma da Nous Research com dashboard web - status do gateway, sessões, logs, analytics, cron jobs, configurações e muito mais."
+            url="https://defined-dock-plugin-provision.trycloudflare.com"
+          />
+        </Card>
       </Grid2>
     </Container>
   );
