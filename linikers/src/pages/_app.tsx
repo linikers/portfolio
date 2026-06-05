@@ -2,12 +2,14 @@ import type { AppProps } from "next/app";
 import { useState, useCallback, useEffect } from "react";
 import { ThemeProvider as MuiThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
+import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 import PaletteIcon from "@mui/icons-material/Palette";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import "@/styles/globals.scss";
 
-// 5 temas retro inline (sem dependencia de modulo externo)
 const themes = [
   { id: "terminal-verde", name: "Terminal Verde", primary: "#00ff41", bg: "#0a0a0a", paper: "#0d0d0d", text: "#00ff41", secondary: "#00cc33", radius: 2, font: "'IBM Plex Mono', monospace" },
   { id: "synthwave", name: "Synthwave", primary: "#ff00ff", bg: "#0d0221", paper: "#150530", text: "#f0e6ff", secondary: "#b39ddb", radius: 0, font: "'Orbitron', sans-serif" },
@@ -52,25 +54,31 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
     const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved && themes.some(t => t.id === saved)) setThemeId(saved);
+    if (saved && themes.some((t) => t.id === saved)) setThemeId(saved);
   }, []);
 
   const cycle = useCallback(() => {
-    setThemeId(prev => {
-      const idx = themes.findIndex(t => t.id === prev);
+    setThemeId((prev) => {
+      const idx = themes.findIndex((t) => t.id === prev);
       const next = themes[(idx + 1) % themes.length];
       localStorage.setItem(STORAGE_KEY, next.id);
       return next.id;
     });
   }, []);
 
-  const themeMeta = themes.find(t => t.id === themeId) || themes[0];
+  const themeMeta = themes.find((t) => t.id === themeId) || themes[0];
   const theme = buildTheme(themeMeta);
 
   return (
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
-      <Component {...pageProps} />
+      <Box sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+        <Navbar />
+        <Box component="main" sx={{ flex: 1 }}>
+          <Component {...pageProps} />
+        </Box>
+        <Footer />
+      </Box>
       <Tooltip title={`Tema: ${themeMeta.name} (${themes.length} temas)`} placement="left">
         <IconButton
           onClick={cycle}
