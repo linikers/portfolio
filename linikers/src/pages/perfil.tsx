@@ -1,7 +1,6 @@
 import BoxPinterest from "@/components/boxPinterest";
 import infoPerfil from "@/components/infoPerfil";
 import Menu from "@/components/menu";
-// import { Typography } from "@material-tailwind/react";
 import { Box, Container, Paper, Typography } from "@mui/material";
 import { useEffect } from "react";
 
