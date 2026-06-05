@@ -1,24 +1,10 @@
-import MenuUser from "@/components/menu";
-import { Container, Box, keyframes, Grid2 } from "@mui/material";
+import { Container, Typography, Box, keyframes } from "@mui/material";
 import BoxGitDefault from "@/components/BoxGitDefault";
 import BoxDev from "@/components/BoxDev";
 import { motion } from "framer-motion";
 import {
-  DiJsBadge,
-  DiCss3,
-  DiLinux,
-  DiBootstrap,
-  DiDocker,
-  DiGithub,
-  DiGnu,
-  DiMagento,
-  DiMongodb,
-  DiSass,
-  DiPostgresql,
-  DiReact,
-  DiHtml5,
-  DiScrum,
-  DiUbuntu,
+  DiJsBadge, DiCss3, DiLinux, DiDocker, DiGithub, DiMongodb,
+  DiSass, DiPostgresql, DiReact, DiHtml5, DiScrum, DiUbuntu,
 } from "react-icons/di";
 import { TbBrandTypescript, TbBrandNextjs } from "react-icons/tb";
 
@@ -26,11 +12,8 @@ const JsIcon: any = DiJsBadge;
 const CssIcon: any = DiCss3;
 const LinuxIcon: any = DiLinux;
 const TsIcon: any = TbBrandTypescript;
-const BootstrapIcon: any = DiBootstrap;
 const DockerIcon: any = DiDocker;
 const GithubIcon: any = DiGithub;
-const GnuIcon: any = DiGnu;
-const MagentoIcon: any = DiMagento;
 const MongodbIcon: any = DiMongodb;
 const SassIcon: any = DiSass;
 const PostgresqlIcon: any = DiPostgresql;
@@ -39,130 +22,101 @@ const HtmlIcon: any = DiHtml5;
 const ScrumIcon: any = DiScrum;
 const NextIcon: any = TbBrandNextjs;
 const UbuntuIcon: any = DiUbuntu;
-import { useEffect } from "react";
 
 const ferramentas = [
-  { icon: <JsIcon size={45} /> },
-  { icon: <TsIcon size={45} /> },
-  { icon: <NextIcon size={45} /> },
-  { icon: <DockerIcon size={45} /> },
-  { icon: <GithubIcon size={45} /> },
-  { icon: <HtmlIcon size={45} /> },
-  { icon: <ScrumIcon size={45} /> },
-  { icon: <ReactIcon size={45} /> },
-  { icon: <MagentoIcon size={45} /> },
-  { icon: <CssIcon size={45} /> },
-  { icon: <GnuIcon size={45} /> },
-  { icon: <LinuxIcon size={45} /> },
-  { icon: <BootstrapIcon size={45} /> },
-  { icon: <MongodbIcon size={45} /> },
-  { icon: <PostgresqlIcon size={45} /> },
-  { icon: <SassIcon size={45} /> },
-  { icon: <UbuntuIcon size={45} /> },
+  { icon: <JsIcon size={40} /> },
+  { icon: <TsIcon size={40} /> },
+  { icon: <NextIcon size={40} /> },
+  { icon: <DockerIcon size={40} /> },
+  { icon: <GithubIcon size={40} /> },
+  { icon: <HtmlIcon size={40} /> },
+  { icon: <ScrumIcon size={40} /> },
+  { icon: <ReactIcon size={40} /> },
+  { icon: <CssIcon size={40} /> },
+  { icon: <LinuxIcon size={40} /> },
+  { icon: <MongodbIcon size={40} /> },
+  { icon: <PostgresqlIcon size={40} /> },
+  { icon: <SassIcon size={40} /> },
+  { icon: <UbuntuIcon size={40} /> },
 ];
 
-const scrollAnimation = keyframes`
+const scrollAnim = keyframes`
   0% { transform: translateX(0); }
-  100% { transform: translateX(-100%); }
+  100% { transform: translateX(-50%); }
 `;
 
 export default function Ferramentas() {
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const { getAnalytics, logEvent } = require("firebase/analytics");
-      try {
-        const analytics = getAnalytics();
-        logEvent(analytics, "Ferramentas", {
-          page_name: "ferramentas",
-        });
-      } catch (error) {
-        console.warn("[Analytics] Erro ao logar página ferramentas:", error);
-      }
-    }
-  }, []);
-
   return (
-    <Container
-      sx={{
-        justifyContent: "center",
-        flexDirection: "column",
-        alignItems: "center",
-        bgcolor: "background.default",
-        display: "flex",
-        height: "100vh",
-        overflow: "hidden",
-        width: "100%",
-      }}
-    >
-      <Grid2
+    <Container maxWidth="lg" sx={{ py: 6 }}>
+      <Typography
+        variant="h2"
         sx={{
-          zIndex: 888,
+          fontFamily: "monospace",
+          fontWeight: 900,
+          mb: 1,
+          fontSize: { xs: "1.5rem", md: "2rem" },
         }}
       >
-        <MenuUser />
-      </Grid2>
+        ferramentas/
+      </Typography>
+      <Typography
+        variant="body1"
+        sx={{ color: "text.secondary", fontFamily: "monospace", fontSize: "0.85rem", mb: 4 }}
+      >
+        $ which dev
+      </Typography>
 
+      {/* GitHub Stats */}
       <Box
         sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          margin: "20px 0",
-          padding: "20px",
-          backgroundColor: "background.paper",
-          border: 1,
+          p: 3,
+          mb: 4,
+          borderRadius: 2,
+          background: "rgba(255,255,255,0.02)",
+          border: "1px solid",
           borderColor: "divider",
-          borderRadius: "8px",
+          display: "flex",
+          justifyContent: "center",
         }}
       >
         <BoxGitDefault />
       </Box>
-      <Grid2>
+
+      {/* Dev Badges */}
+      <Box sx={{ display: "flex", justifyContent: "center", mb: 4 }}>
         <BoxDev />
-      </Grid2>
+      </Box>
+
+      {/* Scrolling Icons */}
       <Box
         sx={{
-          display: "flex",
-          whiteSpace: "nowrap",
-          flexDirection: "row",
           overflow: "hidden",
-          width: "200%",
-          padding: "20px 0",
-          animation: `${scrollAnimation} 60s linear infinite`,
+          whiteSpace: "nowrap",
+          py: 3,
+          borderTop: "1px solid",
+          borderBottom: "1px solid",
+          borderColor: "divider",
         }}
       >
-        {ferramentas.map((ferramenta, index) => (
-          <Box
-            key={index}
-            display="inline-block"
-            margin="0 20px"
-            color="secondary"
-          >
+        <Box
+          sx={{
+            display: "inline-flex",
+            animation: `${scrollAnim} 40s linear infinite`,
+            gap: 3,
+          }}
+        >
+          {[...ferramentas, ...ferramentas].map((f, i) => (
             <motion.div
-              initial={{ scale: 1 }}
+              key={i}
               whileHover={{ scale: 1.2 }}
-              style={{ display: "inline-block", transformOrigin: "center" }}
+              style={{ display: "inline-flex", color: "inherit" }}
             >
-              {ferramenta.icon}
+              <Box sx={{ color: "text.secondary", "&:hover": { color: "primary.main" }, transition: "color 0.2s" }}>
+                {f.icon}
+              </Box>
             </motion.div>
-          </Box>
-        ))}
-        {ferramentas.map((ferramenta, index) => (
-          <Box
-            key={index + ferramentas.length}
-            display="inline-block"
-            margin="0 20px"
-            color="secondary"
-          >
-            <motion.div
-              initial={{ scale: 1 }}
-              whileHover={{ scale: 1.2 }}
-              style={{ display: "inline-block", transformOrigin: "center" }}
-            >
-              {ferramenta.icon}
-            </motion.div>
-          </Box>
-        ))}
+          ))}
+        </Box>
       </Box>
     </Container>
   );

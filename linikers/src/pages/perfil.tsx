@@ -1,92 +1,89 @@
+import { Container, Typography, Box, Paper } from "@mui/material";
 import BoxPinterest from "@/components/boxPinterest";
 import infoPerfil from "@/components/infoPerfil";
-import Menu from "@/components/menu";
-import { Box, Container, Paper, Typography } from "@mui/material";
-import { useEffect } from "react";
 
 export default function Perfil() {
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const { getAnalytics, logEvent } = require("firebase/analytics");
-      try {
-        const analytics = getAnalytics();
-        logEvent(analytics, "Perfil", {
-          page_name: "perfil",
-        });
-      } catch (error) {
-        console.warn("[Analytics] Erro ao logar página perfil:", error);
-      }
-    }
-  }, []);
-
   return (
-    <Container maxWidth="sm">
+    <Container maxWidth="sm" sx={{ py: 6 }}>
+      {/* Header */}
       <Box
         sx={{
           width: "100%",
-          height: "160px",
+          height: 180,
           backgroundImage: "url('/profileImg.jpg')",
-          backgroundSize: "cover", // cobre todo fundo
-          backgroundPosition: "center", //center img
-          backgroundColor: "primary.main",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          borderRadius: 3,
+          mb: 4,
           position: "relative",
-          mb: 8,
-          borderRadius: "8px",
+          border: "1px solid",
+          borderColor: "divider",
+        }}
+      />
+
+      <Typography
+        variant="h2"
+        sx={{
+          fontFamily: "monospace",
+          fontWeight: 900,
+          mb: 1,
+          fontSize: { xs: "1.5rem", md: "2rem" },
         }}
       >
-        <Box
-          sx={{
-            position: "absolute",
-            bottom: -50,
-            left: 20,
-            border: "3px solid white",
-            borderRadius: "50%",
-            zIndex: 888,
-          }}
-        >
-          <Menu />
-        </Box>
-      </Box>
+        perfil/
+      </Typography>
       <Typography
         variant="body1"
-        sx={{
-          mb: 2,
-          marginTop: 6,
-        }}
+        sx={{ color: "text.secondary", fontFamily: "monospace", fontSize: "0.85rem", mb: 4 }}
       >
-        LinikerS dev
+        $ cat ~/about.md
       </Typography>
-      <Box>
-        {infoPerfil.map((info, index) => (
-          <Paper
-            key={index}
-            elevation={3}
-            sx={{
-              padding: 2,
-              marginBottom: 2,
-              borderRadius: 2,
-              backgroundColor: "action.hover",
-            }}
-          >
-            <Typography variant="body1">{info.titulo}</Typography>
-            <Typography variant="body2">{info.texto}</Typography>
-          </Paper>
-        ))}
-      </Box>
-      <Box>
+
+      {/* Info cards */}
+      {infoPerfil.map((info: any, index: number) => (
         <Paper
-          elevation={3}
+          key={index}
+          elevation={0}
           sx={{
-            padding: 2,
-            marginBottom: 2,
+            p: 2.5,
+            mb: 2,
             borderRadius: 2,
-            backgroundColor: "action.hover",
+            background: "rgba(255,255,255,0.02)",
+            border: "1px solid",
+            borderColor: "divider",
           }}
         >
-          <Typography variant="body1">Olha o que eu curti!</Typography>
-          <BoxPinterest />
+          <Typography
+            variant="subtitle2"
+            sx={{ fontFamily: "monospace", fontWeight: 700, color: "primary.main", mb: 0.5, fontSize: "0.75rem", letterSpacing: 1 }}
+          >
+            ▸ {info.titulo}
+          </Typography>
+          <Typography variant="body2" sx={{ color: "text.secondary", fontSize: "0.85rem", lineHeight: 1.7 }}>
+            {info.texto}
+          </Typography>
         </Paper>
-      </Box>
+      ))}
+
+      {/* Pinterest */}
+      <Paper
+        elevation={0}
+        sx={{
+          p: 2.5,
+          borderRadius: 2,
+          background: "rgba(255,255,255,0.02)",
+          border: "1px solid",
+          borderColor: "divider",
+        }}
+      >
+        <Typography
+          variant="subtitle2"
+          sx={{ fontFamily: "monospace", fontWeight: 700, color: "primary.main", mb: 1, fontSize: "0.75rem", letterSpacing: 1 }}
+        >
+          ▸ Olha o que eu curti!
+        </Typography>
+        <BoxPinterest />
+      </Paper>
     </Container>
   );
 }
