@@ -1,6 +1,6 @@
 import CardPortfolio from "@/components/card";
 import MenuUser from "@/components/menu";
-import { Card, Container, Grid2 } from "@mui/material";
+import { Card, Container, Grid2, Box } from "@mui/material";
 import { useEffect } from "react";
 
 export default function Projetos() {
@@ -21,7 +21,7 @@ export default function Projetos() {
 
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
   return (
-    <Container className=" bg-custom-blue-1 flex flex-col items-center">
+    <Container sx={{ py: 4, minHeight: "100vh" }}>
       <Grid2
         sx={{
           zIndex: 888,
@@ -29,11 +29,12 @@ export default function Projetos() {
         <MenuUser />
       </Grid2>
 
-      <Grid2 className="flex flex-wrap justify-center"
+      <Box
         sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          flexWrap: 'wrap'
+          display: "flex",
+          justifyContent: "center",
+          flexWrap: "wrap",
+          gap: 3,
         }}
       >
         <Card
@@ -188,7 +189,7 @@ export default function Projetos() {
             url="https://linikers.github.io/Geek-Commerce/"
           />
         </Card>
-      </Grid2>
+      </Box>
     </Container>
   );
 }

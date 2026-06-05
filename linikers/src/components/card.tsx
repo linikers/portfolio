@@ -1,6 +1,6 @@
-import { Button, Card, CardContent, Typography } from "@mui/material";
-import Image from "next/image";
+import { Button, Card, CardContent, CardMedia, Typography, Box } from "@mui/material";
 import Link from "next/link";
+import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 
 interface iCardPortfilioProps {
   imgUrl: string;
@@ -20,35 +20,87 @@ export default function CardPortfolio({
   url,
 }: iCardPortfilioProps) {
   return (
-    <Card className="card-image-wrapper m-4 border border-custom-base-1 rounded-xl">
-      <Image
-        src={imgUrl}
+    <Card
+      sx={{
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        borderRadius: 3,
+        overflow: "hidden",
+        transition: "all 0.25s",
+        "&:hover": {
+          transform: "translateY(-4px)",
+          boxShadow: "0 8px 30px rgba(0,0,0,0.4)",
+          borderColor: "primary.main",
+        },
+      }}
+    >
+      <CardMedia
+        component="img"
+        height="200"
+        image={imgUrl}
         alt={altText}
-        quality={75}
-        width={280}
-        height={280}
-        className="rounded-xl"
+        sx={{ objectFit: "cover" }}
       />
-      <CardContent className="text-center d-flex flex-column">
-        <Typography variant="h5" className="text-custom-base-2 text-xl mt-4">
+      <CardContent
+        sx={{
+          flex: 1,
+          display: "flex",
+          flexDirection: "column",
+          gap: 1,
+          p: 2.5,
+        }}
+      >
+        <Typography
+          variant="h6"
+          sx={{
+            fontWeight: 700,
+            fontFamily: "monospace",
+            fontSize: "1rem",
+          }}
+        >
           {title}
         </Typography>
         <Typography
-          variant="subtitle1"
-          className="mb-2 text-muted text-custom-base-1 text-lg"
+          variant="body2"
+          sx={{
+            color: "primary.main",
+            fontFamily: "monospace",
+            fontSize: "0.75rem",
+            textTransform: "uppercase",
+            letterSpacing: 1,
+          }}
         >
           {subTitle}
         </Typography>
-        <Typography className="text-custom-base-0">
+        <Typography
+          variant="body2"
+          sx={{
+            color: "text.secondary",
+            fontSize: "0.85rem",
+            lineHeight: 1.6,
+            flex: 1,
+          }}
+        >
           {description}
         </Typography>
-        <div className="">
-          <Link href={url} target="_blank" className="">
-            <Button className="bg-custom-base-1 btn btn-link rounded-xl px-4 py-2 m-2 mb-1">
+        <Box sx={{ mt: "auto", pt: 1 }}>
+          <Link href={url} target="_blank" style={{ textDecoration: "none" }}>
+            <Button
+              variant="outlined"
+              size="small"
+              endIcon={<OpenInNewIcon fontSize="small" />}
+              fullWidth
+              sx={{
+                fontFamily: "monospace",
+                fontSize: "0.8rem",
+                textTransform: "none",
+              }}
+            >
               Acessar
             </Button>
           </Link>
-        </div>
+        </Box>
       </CardContent>
     </Card>
   );
