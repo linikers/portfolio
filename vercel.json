@@ -1,5 +1,0 @@
-{
-  "buildCommand": "cd linikers && next build",
-  "installCommand": "cd linikers && npm install --legacy-peer-deps",
-  "outputDirectory": "linikers/.next"
-}
