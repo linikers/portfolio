@@ -305,6 +305,36 @@ export default function Home() {
                     ))}
                   </Box>
                 </motion.div>
+
+                {/* CTA — iniciar conversa */}
+                <motion.div variants={itemVariants}>
+                  <Button
+                    href="/contato"
+                    variant="contained"
+                    size="large"
+                    endIcon={<Box component="span" sx={{ fontFamily: "monospace" }}>→</Box>}
+                    sx={{
+                      mt: 3,
+                      background: "linear-gradient(135deg, #22d3ee 0%, #a78bfa 100%)",
+                      color: "#000",
+                      fontWeight: 700,
+                      fontFamily: "monospace",
+                      fontSize: "1rem",
+                      px: 4,
+                      py: 1.5,
+                      borderRadius: 2,
+                      textTransform: "none",
+                      transition: "all 0.25s",
+                      "&:hover": {
+                        transform: "translateY(-2px)",
+                        boxShadow: "0 8px 30px rgba(34,211,238,0.3)",
+                        background: "linear-gradient(135deg, #22d3ee 0%, #a78bfa 100%)",
+                      },
+                    }}
+                  >
+                    $ iniciar conversa
+                  </Button>
+                </motion.div>
               </Box>
 
               <motion.div variants={itemVariants}>
