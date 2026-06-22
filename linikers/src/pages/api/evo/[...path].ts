@@ -1,10 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
-const EVOLUTION_API = process.env.EVOLUTION_API_URL || "http://2.24.115.130:8085";
-const API_KEY = process.env.EVOLUTION_API_KEY || "nfe-brasil-2026";
+const EVO_URL = "http://2.24.115.130:8085";
+const EVO_KEY = "nfe-brasil-2026";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  // CORS
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
@@ -13,20 +12,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(200).end();
   }
 
-  // Pega o path depois de /api/evo/
   const { path } = req.query;
   if (!path || !Array.isArray(path)) {
     return res.status(400).json({ error: "Missing path" });
   }
 
   const evoPath = `/${path.join("/")}`;
-  const url = `${EVOLUTION_API}${evoPath}`;
+  const url = `${EVO_URL}${evoPath}`;
 
   try {
     const apiResp = await fetch(url, {
       method: req.method,
       headers: {
-        apikey: API_KEY,
+        apikey: EVO_KEY,
         "Content-Type": "application/json",
       },
     });
