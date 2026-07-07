@@ -19,15 +19,19 @@ export const firebaseConfig = {
 };
 
 // Singleton para garantir uma única instância do Firebase App no client
-const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
+let app: any = null;
+let auth: any = null;
+let db: any = null;
+let storage: any = null;
 
-// Inicialização dos serviços
-const auth = getAuth(app);
-const db = getFirestore(app);
-const storage = getStorage(app);
-
-// Analytics apenas no browser e se suportado
+// So inicializa no browser — server-side build nao precisa de Firebase Client
 if (typeof window !== "undefined") {
+  app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
+  auth = getAuth(app);
+  db = getFirestore(app);
+  storage = getStorage(app);
+
+  // Analytics apenas se suportado
   isSupported().then((supported) => {
     if (supported) getAnalytics(app);
   });
