@@ -52,20 +52,34 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       }));
 
     } else if (q) {
-      // Passo 1: Geocode a cidade/regiao (extrair do query)
       const queryStr = typeof q === "string" ? q : String(q);
 
-      // Tenta geocode com o texto completo primeiro
+      // Extrai possivel cidade do query (geralmente ultima palavra)
+      const parts = queryStr.trim().split(/\s+/);
+      const cidadeCandidate = parts[parts.length - 1];
+
+      // Tenta geocode só a cidade primeiro (mais preciso)
       let geoRes = await fetch(
-        `${OSM_SEARCH}?q=${encodeURIComponent(queryStr)}&format=json&limit=3&addressdetails=1`,
+        `${OSM_SEARCH}?q=${encodeURIComponent(cidadeCandidate)}&format=json&limit=3&countrycodes=br`,
         { headers: { "User-Agent": "LinikersPortfolio/1.0" } }
       );
       if (!geoRes.ok) throw new Error("Geo error");
       let geoData = await geoRes.json();
 
-      // Se achou resultados, usa o primeiro como localizacao
+      // Se a cidade nao achou, tenta o query completo
+      if (geoData.length === 0) {
+        geoRes = await fetch(
+          `${OSM_SEARCH}?q=${encodeURIComponent(queryStr)}&format=json&limit=3&countrycodes=br`,
+          { headers: { "User-Agent": "LinikersPortfolio/1.0" } }
+        );
+        if (!geoRes.ok) throw new Error("Geo error");
+        geoData = await geoRes.json();
+      }
+
       if (geoData.length > 0) {
-        const loc = geoData[0];
+        // Pega a primeira cidade/regiao (preferir type=city, town, village)
+        const loc = geoData.find((r: any) => ["city", "town", "village", "municipality"].includes(r.type))
+          || geoData[0];
         const centerLat = loc.lat;
         const centerLon = loc.lon;
 
