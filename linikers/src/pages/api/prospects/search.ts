@@ -67,7 +67,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       let geoData = await geoRes.json();
 
       // Filtra APENAS resultados do tipo city/town/village — nada de estabelecimentos
-      let loc = geoData.find((r: any) => ["city", "town", "village", "municipality"].includes(r.type));
+      // Usa addresstype (ex: "municipality") com fallback pra type (ex: "administrative")
+      const isCity = (r: any) => ["city","town","village","municipality","administrative"].includes(r.addresstype || r.type);
+      let loc = geoData.find(isCity);
 
       // Se nao achou, tenta o query completo com mesmo filtro
       if (!loc) {
@@ -77,7 +79,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         );
         if (!geoRes.ok) throw new Error("Geo error");
         geoData = await geoRes.json();
-        loc = geoData.find((r: any) => ["city", "town", "village", "municipality"].includes(r.type));
+        loc = geoData.find(isCity);
       }
 
       if (loc) {
