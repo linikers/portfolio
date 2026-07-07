@@ -42,14 +42,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         out center;
       `;
 
-      const res2 = await fetchWithTimeout(OSM_OVERPASS, {
-        method: "POST",
-        body: `data=${encodeURIComponent(overpassQuery)}`,
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-          "Accept": "*/*",
-        },
-      });
+      const res2 = await fetchWithTimeout(
+        `${OSM_OVERPASS}?data=${encodeURIComponent(overpassQuery)}`,
+        { method: "GET" }
+      );
 
       if (!res2.ok) throw new Error(`Overpass retornou ${res2.status}`);
 
@@ -115,14 +111,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           out center;
         `;
 
-        const osmRes = await fetchWithTimeout(OSM_OVERPASS, {
-          method: "POST",
-          body: `data=${encodeURIComponent(overpassQuery)}`,
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-            "Accept": "*/*",
-          },
-        });
+        const osmRes = await fetchWithTimeout(
+          `${OSM_OVERPASS}?data=${encodeURIComponent(overpassQuery)}`,
+          { method: "GET" }
+        );
 
         if (!osmRes.ok) throw new Error(`Overpass retornou ${osmRes.status}`);
         const osmData = await osmRes.json();
