@@ -5,6 +5,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 const OSM_SEARCH = "https://nominatim.openstreetmap.org/search";
 const OSM_OVERPASS = "https://overpass-api.de/api/interpreter";
+const OVERPASS_PROXY = "http://2.24.115.130:3099/overpass";
 const FETCH_TIMEOUT = 4000;
 const UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36";
 
@@ -41,13 +42,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     let businesses: any[] = [];
 
     if (lat && lon) {
-      // Busca por coordenadas - Overpass direto
-      const qs = `[out:json][timeout:3];(node["shop"](around:${rad},${lat},${lon});node["craft"](around:${rad},${lat},${lon});node["amenity"](around:${rad},${lat},${lon}););out body;`;
+      // Busca por coordenadas - Overpass via proxy
+      const overQ = `[out:json][timeout:5];node["shop"](around:${rad},${lat},${lon});node["craft"](around:${rad},${lat},${lon});out body;`;
       try {
-        const r = await fetchFast(OSM_OVERPASS, {
+        const r = await fetchFast(OVERPASS_PROXY, {
           method: "POST",
-          body: `data=${encodeURIComponent(qs)}`,
-          headers: { "Content-Type": "application/x-www-form-urlencoded", "User-Agent": UA, "Accept": "application/json" },
+          body: JSON.stringify({ query: overQ }),
+          headers: { "Content-Type": "application/json", "User-Agent": UA },
         });
         if (r.ok) {
           const d = await r.json();
@@ -78,13 +79,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       }
 
       if (loc) {
-        // Overpass em volta da cidade
-        const overQ = `[out:json][timeout:3];(node["shop"](around:${rad},${loc.lat},${loc.lon});node["craft"](around:${rad},${loc.lat},${loc.lon});node["amenity"](around:${rad},${loc.lat},${loc.lon}););out body;`;
+        // Overpass — busca via proxy ou direto como fallback
+        const overQ = `[out:json][timeout:5];node["shop"](around:${rad},${loc.lat},${loc.lon});node["craft"](around:${rad},${loc.lat},${loc.lon});out body;`;
         try {
-          const r = await fetchFast(OSM_OVERPASS, {
+          const r = await fetchFast(OVERPASS_PROXY, {
             method: "POST",
-            body: `data=${encodeURIComponent(overQ)}`,
-            headers: { "Content-Type": "application/x-www-form-urlencoded", "User-Agent": UA, "Accept": "application/json" },
+            body: JSON.stringify({ query: overQ }),
+            headers: { "Content-Type": "application/json", "User-Agent": UA },
           });
           if (r.ok) {
             const d = await r.json();
