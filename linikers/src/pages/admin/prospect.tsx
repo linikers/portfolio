@@ -71,9 +71,50 @@ export default function ProspectPage() {
     if (!searchQuery.trim()) return;
     setSearching(true);
     try {
+      // Passo 1: Geocode da cidade via server (Nominatim)
       const res = await fetch(`/api/prospects/search?q=${encodeURIComponent(searchQuery)}`);
       const data = await res.json();
-      setSearchResults(data.businesses || []);
+      
+      // Passo 2: Se achou cidade, busca negocios via Overpass (do browser, funciona)
+      const { coords } = data;
+      if (coords) {
+        const radius = 5000;
+        const overpassQuery = `
+          [out:json][timeout:15];
+          (
+            node["shop"](around:${radius},${coords.lat},${coords.lon});
+            node["craft"](around:${radius},${coords.lat},${coords.lon});
+            node["amenity"](around:${radius},${coords.lat},${coords.lon});
+            way["shop"](around:${radius},${coords.lat},${coords.lon});
+            way["craft"](around:${radius},${coords.lat},${coords.lon});
+            way["amenity"](around:${radius},${coords.lat},${coords.lon});
+          );
+          out body;
+          out center;
+        `;
+
+        const osmRes = await fetch(
+          `https://overpass-api.de/api/interpreter?data=${encodeURIComponent(overpassQuery)}`
+        );
+        
+        if (osmRes.ok) {
+          const osmData = await osmRes.json();
+          const businesses = (osmData.elements || [])
+            .filter((el: any) => el.tags?.name)
+            .map((el: any) => ({
+              id: `osm_${el.type}_${el.id}`,
+              name: el.tags?.name || el.tags?.operator || el.tags?.brand || "Sem nome",
+              address: [el.tags?.["addr:street"], el.tags?.["addr:housenumber"], el.tags?.["addr:city"]].filter(Boolean).join(", ") || "",
+              phone: el.tags?.phone || el.tags?.["contact:phone"] || "",
+              website: el.tags?.website || el.tags?.["contact:website"] || "",
+              category: el.tags?.shop || el.tags?.craft || el.tags?.office || el.tags?.amenity || "",
+              lat: el.lat || el.center?.lat,
+              lon: el.lon || el.center?.lon,
+            }))
+            .slice(0, 30);
+          setSearchResults(businesses);
+        }
+      }
     } catch (e) {
       console.error(e);
     } finally {
