@@ -15,64 +15,115 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     let businesses: any[] = [];
 
     if (lat && lon) {
-      // Busca por localizacao (coordenadas) - mais precisa
+      // Busca por coordenadas - Overpass direto
       const overpassQuery = `
-        [out:json][timeout:15];
+        [out:json][timeout:20];
         (
           node["shop"](around:${radius},${lat},${lon});
-          node["office"](around:${radius},${lat},${lon});
           node["craft"](around:${radius},${lat},${lon});
+          node["office"](around:${radius},${lat},${lon});
           node["amenity"](around:${radius},${lat},${lon});
           way["shop"](around:${radius},${lat},${lon});
-          way["office"](around:${radius},${lat},${lon});
           way["craft"](around:${radius},${lat},${lon});
+          way["office"](around:${radius},${lat},${lon});
+          way["amenity"](around:${radius},${lat},${lon});
         );
         out body;
         out center;
       `;
 
-      const osmRes = await fetch(OSM_OVERPASS, {
+      const res2 = await fetch(OSM_OVERPASS, {
         method: "POST",
         body: `data=${encodeURIComponent(overpassQuery)}`,
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
       });
+      if (!res2.ok) throw new Error("OSM error");
 
-      if (!osmRes.ok) throw new Error("OSM error");
-      const osmData = await osmRes.json();
-
-      businesses = (osmData.elements || []).map((el: any) => ({
+      const data = await res2.json();
+      businesses = (data.elements || []).map((el: any) => ({
         id: `osm_${el.type}_${el.id}`,
-        name: el.tags?.name || el.tags?.operator || "Sem nome",
-        address: [
-          el.tags?.["addr:street"],
-          el.tags?.["addr:housenumber"],
-          el.tags?.["addr:city"],
-        ].filter(Boolean).join(", ") || "",
+        name: el.tags?.name || el.tags?.operator || el.tags?.brand || "Sem nome",
+        address: [el.tags?.["addr:street"], el.tags?.["addr:housenumber"], el.tags?.["addr:city"]].filter(Boolean).join(", ") || "",
         phone: el.tags?.phone || el.tags?.["contact:phone"] || "",
         website: el.tags?.website || el.tags?.["contact:website"] || "",
-        category: el.tags?.shop || el.tags?.office || el.tags?.craft || el.tags?.amenity || "",
+        category: el.tags?.shop || el.tags?.craft || el.tags?.office || el.tags?.amenity || "",
         lat: el.lat || el.center?.lat,
         lon: el.lon || el.center?.lon,
       }));
 
     } else if (q) {
-      // Busca por texto (endereco + tipo de negocio)
-      const geoRes = await fetch(
-        `${OSM_SEARCH}?q=${encodeURIComponent(q as string)}&format=json&limit=10&addressdetails=1`,
+      const queryStr = typeof q === "string" ? q : String(q);
+
+      // Extrai possivel cidade do query (geralmente ultima palavra)
+      const parts = queryStr.trim().split(/\s+/);
+      const cidadeCandidate = parts[parts.length - 1];
+
+      // Tenta geocode só a cidade (prioriza resultado do tipo city/town)
+      let geoRes = await fetch(
+        `${OSM_SEARCH}?q=${encodeURIComponent(cidadeCandidate)}&format=json&limit=10&countrycodes=br`,
         { headers: { "User-Agent": "LinikersPortfolio/1.0" } }
       );
       if (!geoRes.ok) throw new Error("Geo error");
-      const geoData = await geoRes.json();
+      let geoData = await geoRes.json();
 
-      businesses = geoData.map((el: any) => ({
-        id: `geo_${el.osm_type}_${el.osm_id}`,
-        name: el.display_name?.split(",")[0] || el.name || "Sem nome",
-        address: el.display_name || "",
-        phone: el.address?.phone || "",
-        category: el.type || el.category || "",
-        lat: el.lat,
-        lon: el.lon,
-      }));
+      // Filtra APENAS resultados do tipo city/town/village — nada de estabelecimentos
+      let loc = geoData.find((r: any) => ["city", "town", "village", "municipality"].includes(r.type));
+
+      // Se nao achou, tenta o query completo com mesmo filtro
+      if (!loc) {
+        geoRes = await fetch(
+          `${OSM_SEARCH}?q=${encodeURIComponent(queryStr)}&format=json&limit=10&countrycodes=br`,
+          { headers: { "User-Agent": "LinikersPortfolio/1.0" } }
+        );
+        if (!geoRes.ok) throw new Error("Geo error");
+        geoData = await geoRes.json();
+        loc = geoData.find((r: any) => ["city", "town", "village", "municipality"].includes(r.type));
+      }
+
+      if (loc) {
+        const centerLat = loc.lat;
+        const centerLon = loc.lon;
+
+        // Passo 2: Busca negocios perto dessa localizacao via Overpass
+        const overpassQuery = `
+          [out:json][timeout:25];
+          (
+            node["shop"](around:${radius},${centerLat},${centerLon});
+            node["craft"](around:${radius},${centerLat},${centerLon});
+            node["office"](around:${radius},${centerLat},${centerLon});
+            node["amenity"](around:${radius},${centerLat},${centerLon});
+            way["shop"](around:${radius},${centerLat},${centerLon});
+            way["craft"](around:${radius},${centerLat},${centerLon});
+            way["office"](around:${radius},${centerLat},${centerLon});
+            way["amenity"](around:${radius},${centerLat},${centerLon});
+          );
+          out body;
+          out center;
+        `;
+
+        const osmRes = await fetch(OSM_OVERPASS, {
+          method: "POST",
+          body: `data=${encodeURIComponent(overpassQuery)}`,
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        });
+
+        if (!osmRes.ok) throw new Error("OSM error");
+        const osmData = await osmRes.json();
+
+        businesses = (osmData.elements || [])
+          .filter((el: any) => el.tags?.name) // So com nome
+          .map((el: any) => ({
+            id: `osm_${el.type}_${el.id}`,
+            name: el.tags?.name || el.tags?.operator || el.tags?.brand || "Sem nome",
+            address: [el.tags?.["addr:street"], el.tags?.["addr:housenumber"], el.tags?.["addr:city"]].filter(Boolean).join(", ") || "",
+            phone: el.tags?.phone || el.tags?.["contact:phone"] || "",
+            website: el.tags?.website || el.tags?.["contact:website"] || "",
+            category: el.tags?.shop || el.tags?.craft || el.tags?.office || el.tags?.amenity || "",
+            lat: el.lat || el.center?.lat,
+            lon: el.lon || el.center?.lon,
+          }))
+          .slice(0, 30); // Limita a 30 resultados
+      }
     }
 
     return res.status(200).json({ businesses, count: businesses.length });
