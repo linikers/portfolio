@@ -4,12 +4,8 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
 const OSM_SEARCH = "https://nominatim.openstreetmap.org/search";
-const OVERPASS_MIRRORS = [
-  "https://overpass-api.de/api/interpreter",
-  "https://overpass.kumi.systems/api/interpreter",
-  "https://overpass.openstreetmap.ie/api/interpreter",
-];
-const FETCH_TIMEOUT = 9000;
+const OSM_OVERPASS = "https://overpass-api.de/api/interpreter";
+const FETCH_TIMEOUT = 5000;
 const UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36";
 
 async function fetchOSM(url: string, options: RequestInit = {}) {
@@ -31,22 +27,20 @@ async function fetchOSM(url: string, options: RequestInit = {}) {
 }
 
 async function queryOverpass(qs: string): Promise<any[] | null> {
-  for (const mirror of OVERPASS_MIRRORS) {
-    try {
-      const res = await fetchOSM(mirror, {
-        method: "POST",
-        body: `data=${encodeURIComponent(qs)}`,
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      });
-      if (res.ok) {
-        const data = await res.json();
-        return data.elements || [];
-      }
-    } catch (e) {
-      console.error(`Overpass mirror ${mirror} falhou:`, (e as any)?.message);
+  try {
+    const res = await fetchOSM(OSM_OVERPASS, {
+      method: "POST",
+      body: `data=${encodeURIComponent(qs)}`,
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    });
+    if (res.ok) {
+      const data = await res.json();
+      return data.elements || [];
     }
+  } catch (e) {
+    console.error("Overpass falhou:", (e as any)?.message);
   }
-  return null; // Todos os mirrors falharam
+  return null;
 }
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -62,7 +56,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     if (lat && lon) {
       // Busca por coordenadas via Overpass (tenta mirrors)
-      const qs = `[out:json][timeout:8];(node["shop"](around:${rad},${lat},${lon});node["craft"](around:${rad},${lat},${lon});node["amenity"](around:${rad},${lat},${lon});way["shop"](around:${rad},${lat},${lon});way["craft"](around:${rad},${lat},${lon});way["amenity"](around:${rad},${lat},${lon}););out body;`;
+      const qs = `[out:json][timeout:5];(node["shop"](around:${rad},${lat},${lon});node["craft"](around:${rad},${lat},${lon});node["amenity"](around:${rad},${lat},${lon});way["shop"](around:${rad},${lat},${lon});way["craft"](around:${rad},${lat},${lon});way["amenity"](around:${rad},${lat},${lon}););out body;`;
       const elements = await queryOverpass(qs);
       if (elements) {
         businesses = elements.map((el: any) => ({
@@ -100,7 +94,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const cc = { lat: loc.lat, lon: loc.lon };
 
         // Busca negocios via Overpass (tenta mirrors, query numa linha)
-        const qs = `[out:json][timeout:8];(node["shop"](around:${rad},${cc.lat},${cc.lon});node["craft"](around:${rad},${cc.lat},${cc.lon});node["amenity"](around:${rad},${cc.lat},${cc.lon});way["shop"](around:${rad},${cc.lat},${cc.lon});way["craft"](around:${rad},${cc.lat},${cc.lon});way["amenity"](around:${rad},${cc.lat},${cc.lon}););out body;`;
+        const qs = `[out:json][timeout:5];(node["shop"](around:${rad},${cc.lat},${cc.lon});node["craft"](around:${rad},${cc.lat},${cc.lon});node["amenity"](around:${rad},${cc.lat},${cc.lon});way["shop"](around:${rad},${cc.lat},${cc.lon});way["craft"](around:${rad},${cc.lat},${cc.lon});way["amenity"](around:${rad},${cc.lat},${cc.lon}););out body;`;
         const elements = await queryOverpass(qs);
 
         if (elements) {
