@@ -82,19 +82,28 @@ export default function ProspectPage() {
   };
 
   const addFromSearch = async (biz: any) => {
-    await fetch("/api/prospects", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name: biz.name,
-        address: biz.address,
-        phone: biz.phone,
-        website: biz.website,
-        category: biz.category,
-        source: "maps",
-      }),
-    });
-    fetchProspects();
+    try {
+      const res = await fetch("/api/prospects", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: biz.name,
+          address: biz.address,
+          phone: biz.phone,
+          website: biz.website,
+          category: biz.category,
+          source: "maps",
+        }),
+      });
+      if (!res.ok) {
+        const err = await res.json();
+        console.error("Erro ao adicionar lead:", err);
+        return; // Bypass silencioso pra recarregar
+      }
+      fetchProspects();
+    } catch (e) {
+      console.error("Erro ao adicionar lead:", e);
+    }
   };
 
   const updateStatus = async (id: string, status: string) => {
@@ -220,9 +229,11 @@ export default function ProspectPage() {
                           <AddIcon fontSize="small" />
                         </Button>
                         {biz.phone && (
-                          <IconButton size="small" href={`tel:${biz.phone}`} sx={{ color: "#22c55e" }}>
-                            <PhoneIcon fontSize="small" />
-                          </IconButton>
+                          <Tooltip title={biz.phone}>
+                            <IconButton size="small" href={`tel:${biz.phone}`} sx={{ color: "#22c55e" }}>
+                              <PhoneIcon fontSize="small" />
+                            </IconButton>
+                          </Tooltip>
                         )}
                       </TableCell>
                     </TableRow>

@@ -1,9 +1,11 @@
 // /api/prospects - CRUD de leads de prospeccao
+// No Vercel serverless, usa /tmp (unico diretorio gravavel)
 import type { NextApiRequest, NextApiResponse } from "next";
 import fs from "fs";
 import path from "path";
 
 const DATA_PATH = path.join(process.cwd(), "src/data/prospects.json");
+const TMP_PATH = "/tmp/prospects.json";
 
 interface Prospect {
   id: string;
@@ -21,12 +23,25 @@ interface Prospect {
 }
 
 function readProspects(): Prospect[] {
-  if (!fs.existsSync(DATA_PATH)) return [];
-  return JSON.parse(fs.readFileSync(DATA_PATH, "utf-8"));
+  for (const p of [TMP_PATH, DATA_PATH]) {
+    try {
+      if (fs.existsSync(p)) return JSON.parse(fs.readFileSync(p, "utf-8"));
+    } catch {}
+  }
+  return [];
 }
 
 function writeProspects(data: Prospect[]) {
-  fs.writeFileSync(DATA_PATH, JSON.stringify(data, null, 2));
+  try {
+    fs.writeFileSync(TMP_PATH, JSON.stringify(data, null, 2));
+    return;
+  } catch {}
+  try {
+    fs.mkdirSync(path.dirname(DATA_PATH), { recursive: true });
+    fs.writeFileSync(DATA_PATH, JSON.stringify(data, null, 2));
+  } catch (e) {
+    console.error("Erro ao salvar prospects:", e);
+  }
 }
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
