@@ -54,10 +54,21 @@ export default function ProspectPage() {
     try {
       const res = await fetch(`/api/prospects?status=${status}`);
       const data = await res.json();
-      setProspects(data.prospects);
-      setStats(data.stats);
+      if (data.prospects) {
+        setProspects(data.prospects);
+        setStats(data.stats);
+        localStorage.setItem("crm_prospects", JSON.stringify(data.prospects));
+        localStorage.setItem("crm_stats", JSON.stringify(data.stats));
+      }
     } catch (e) {
       console.error(e);
+      // Fallback: cache do localStorage se API falhou
+      const cached = localStorage.getItem("crm_prospects");
+      if (cached) {
+        setProspects(JSON.parse(cached));
+        const s = localStorage.getItem("crm_stats");
+        if (s) setStats(JSON.parse(s));
+      }
     } finally {
       setLoading(false);
     }
