@@ -45,7 +45,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const res2 = await fetchWithTimeout(OSM_OVERPASS, {
         method: "POST",
         body: `data=${encodeURIComponent(overpassQuery)}`,
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+          "Accept": "*/*",
+        },
       });
 
       if (!res2.ok) throw new Error(`Overpass retornou ${res2.status}`);
@@ -115,7 +118,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const osmRes = await fetchWithTimeout(OSM_OVERPASS, {
           method: "POST",
           body: `data=${encodeURIComponent(overpassQuery)}`,
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+            "Accept": "*/*",
+          },
         });
 
         if (!osmRes.ok) throw new Error(`Overpass retornou ${osmRes.status}`);
