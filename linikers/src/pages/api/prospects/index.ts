@@ -5,7 +5,7 @@ import fs from "fs";
 
 const TMP_PATH = "/tmp/prospects.json";
 
-interface Prospect {
+export interface Prospect {
   id: string;
   name: string;
   address?: string;
@@ -46,18 +46,37 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     case "GET": {
       const { status } = req.query;
       let prospects = readProspects();
+      const total = prospects.length;
       if (status && status !== "all") {
         prospects = prospects.filter((p) => p.status === status);
       }
-      const stats = {
-        total: prospects.length,
-        new: prospects.filter((p) => p.status === "new").length,
-        contacted: prospects.filter((p) => p.status === "contacted").length,
-        interested: prospects.filter((p) => p.status === "interested").length,
-        converted: prospects.filter((p) => p.status === "converted").length,
-        lost: prospects.filter((p) => p.status === "lost").length,
-      };
-      return res.status(200).json({ prospects, stats });
+
+      // Metricas do funil
+      const newCount = prospects.filter((p) => p.status === "new").length;
+      const contactedCount = prospects.filter((p) => p.status === "contacted").length;
+      const interestedCount = prospects.filter((p) => p.status === "interested").length;
+      const convertedCount = prospects.filter((p) => p.status === "converted").length;
+      const lostCount = prospects.filter((p) => p.status === "lost").length;
+
+      // Taxa de conversao (convertidos / total que saiu do funil)
+      const closed = convertedCount + lostCount;
+      const conversionRate = closed > 0 ? (convertedCount / closed) * 100 : 0;
+
+      // Tempo medio ate converter (dias)
+      const converted = prospects.filter((p) => p.status === "converted" && p.createdAt && p.updatedAt);
+      let avgDaysToConvert = 0;
+      if (converted.length > 0) {
+        const totalDays = converted.reduce((sum, p) => {
+          const start = new Date(p.createdAt).getTime();
+          const end = new Date(p.contactedAt || p.updatedAt).getTime();
+          return sum + Math.max(0, (end - start) / 86400000);
+        }, 0);
+        avgDaysToConvert = Math.round((totalDays / converted.length) * 10) / 10;
+      }
+
+      const stats = { total, new: newCount, contacted: contactedCount, interested: interestedCount, converted: convertedCount, lost: lostCount };
+      const metrics = { conversionRate: Math.round(conversionRate * 10) / 10, avgDaysToConvert };
+      return res.status(200).json({ prospects, stats, metrics });
     }
 
     case "POST": {
