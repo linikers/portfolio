@@ -20,11 +20,13 @@ import {
   Payment,
   TrendingUp,
   WhatsApp,
-  Store,
+  Storefront,
   LocationOn,
+  Star,
+  People,
+  Timeline,
 } from "@mui/icons-material";
 import SEO from "@/components/SEO";
-import Link from "next/link";
 
 // ─── Packages ───────────────────────────────
 const packages = [
@@ -90,38 +92,24 @@ const faq = [
   { q: "Aceita pagamento parcelado?", a: "Sim. Pode ser no PIX (à vista com 10% off) ou parcelado em até 6x no cartão." },
 ];
 
-// ─── Stats ───────────────────────────────────
-const stats = [
-  { value: "65%", label: "das pequenas empresas já vendem online em Maringá" },
-  { value: "R$ 2,5 bi", label: "faturamento do e-commerce regional em 2025" },
-  { value: "+40%", label: "crescimento de lojas virtuais na região desde 2023" },
-];
-
 export default function EcommerceMaringa() {
   return (
     <>
       <SEO
-        title="E-commerce em Maringá"
-        description="Criação de lojas virtuais e landing pages em Maringá. Site profissional em 7 dias, SEO incluso, sem mensalidade. Atendo toda a região de Maringá."
+        title="Criação de Lojas Virtuais em Maringá"
+        description="Criação de lojas virtuais e landing pages em Maringá. Site profissional em 7 dias com SEO incluso e suporte direto no WhatsApp."
         canonical="https://linikers.cloud/ecommerce-maringa"
       />
 
       {/* ─── HERO ────────────────────────────── */}
       <Box
         sx={{
-          minHeight: "90vh",
+          minHeight: "85vh",
           display: "flex",
           alignItems: "center",
           position: "relative",
           overflow: "hidden",
-          "&::before": {
-            content: '""',
-            position: "absolute",
-            inset: 0,
-            background:
-              "radial-gradient(ellipse 600px 400px at 70% 50%, rgba(34,211,238,0.06), transparent), radial-gradient(ellipse 500px 500px at 30% 80%, rgba(168,85,247,0.04), transparent)",
-            pointerEvents: "none",
-          },
+          background: "linear-gradient(180deg, rgba(99,102,241,0.04) 0%, transparent 60%)",
         }}
       >
         <Container maxWidth="lg">
@@ -132,29 +120,28 @@ export default function EcommerceMaringa() {
                 label="Maringá / Paraná"
                 variant="outlined"
                 sx={{
-                  fontFamily: "monospace",
-                  fontSize: "0.7rem",
-                  color: "primary.main",
-                  borderColor: "primary.main",
+                  color: "#6366f1",
+                  borderColor: "#6366f1",
+                  fontWeight: 500,
                   mb: 3,
-                  borderRadius: 1,
+                  borderRadius: 2,
                 }}
               />
 
               <Typography
                 variant="h2"
                 sx={{
-                  fontWeight: 900,
-                  fontSize: { xs: "2rem", md: "3.5rem" },
-                  lineHeight: 1.15,
+                  fontWeight: 800,
+                  fontSize: { xs: "1.8rem", md: "3.2rem" },
+                  lineHeight: 1.2,
                   mb: 2,
                 }}
               >
                 Sua loja virtual em{" "}
-                <Box component="span" sx={{ color: "primary.main" }}>
+                <Box component="span" sx={{ color: "#6366f1" }}>
                   7 dias
                 </Box>
-                , feita por um dev de Maringá
+                , pronta pra vender
               </Typography>
 
               <Typography
@@ -162,15 +149,15 @@ export default function EcommerceMaringa() {
                 sx={{
                   color: "text.secondary",
                   fontWeight: 400,
-                  fontSize: { xs: "1rem", md: "1.15rem" },
+                  fontSize: { xs: "1rem", md: "1.1rem" },
                   lineHeight: 1.7,
                   mb: 5,
-                  maxWidth: 550,
-                  opacity: 0.85,
+                  maxWidth: 560,
                 }}
               >
                 Landing pages a partir de R$ 499 e lojas completas a partir de R$ 1.999.
-                SEO incluso, sem mensalidade escondida, suporte direto no WhatsApp.
+                SEO incluso, suporte direto no WhatsApp e sem mensalidade.
+                Atendo toda a região de Maringá.
               </Typography>
 
               <Stack direction={{ xs: "column", sm: "row" }} gap={2}>
@@ -181,36 +168,38 @@ export default function EcommerceMaringa() {
                   size="large"
                   startIcon={<WhatsApp />}
                   sx={{
-                    background: "linear-gradient(135deg, #22d3ee, #a78bfa)",
-                    color: "#000",
-                    fontWeight: 700,
-                    fontFamily: "monospace",
+                    background: "#6366f1",
+                    color: "#fff",
+                    fontWeight: 600,
                     fontSize: "1rem",
                     px: 4,
                     py: 1.8,
                     textTransform: "none",
                     borderRadius: 2,
+                    boxShadow: "0 4px 14px rgba(99,102,241,0.3)",
                     "&:hover": {
-                      transform: "translateY(-2px)",
-                      boxShadow: "0 8px 30px rgba(34,211,238,0.3)",
+                      background: "#4f46e5",
+                      boxShadow: "0 6px 20px rgba(99,102,241,0.4)",
                     },
                   }}
                 >
-                  $ iniciar orçamento
+                  Solicitar orçamento
                 </Button>
                 <Button
                   href="#pacotes"
                   variant="outlined"
                   size="large"
                   sx={{
-                    fontFamily: "monospace",
+                    color: "text.primary",
+                    borderColor: "divider",
                     fontSize: "1rem",
                     textTransform: "none",
                     px: 4,
                     borderRadius: 2,
+                    "&:hover": { borderColor: "#6366f1", color: "#6366f1" },
                   }}
                 >
-                  Ver pacotes ↓
+                  Ver pacotes
                 </Button>
               </Stack>
             </Grid2>
@@ -235,79 +224,124 @@ export default function EcommerceMaringa() {
       </Box>
 
       {/* ─── STATS ───────────────────────────── */}
-      <Box sx={{ borderTop: "1px solid", borderBottom: "1px solid", borderColor: "divider", py: 6, my: 4 }}>
+      <Box sx={{ borderTop: "1px solid", borderColor: "divider", py: 8 }}>
         <Container maxWidth="lg">
           <Typography
             variant="h6"
-            sx={{ fontFamily: "monospace", fontWeight: 700, color: "primary.main", mb: 4, fontSize: "0.85rem" }}
+            sx={{ color: "#6366f1", fontWeight: 700, mb: 1, fontSize: "0.9rem" }}
           >
-            {'// e-commerce em Maringá'}
+            E-commerce em Maringá
           </Typography>
-          <Grid2 container spacing={4}>
-            {stats.map((s) => (
-              <Grid2 key={s.label} size={{ xs: 12, md: 4 }}>
-                <Paper
-                  sx={{
-                    p: 3,
-                    background: "rgba(255,255,255,0.02)",
-                    border: "1px solid",
-                    borderColor: "divider",
-                    borderRadius: 3,
-                    textAlign: "center",
-                  }}
-                >
-                  <Typography
-                    variant="h3"
-                    sx={{ fontWeight: 900, color: "primary.main", fontSize: { xs: "2rem", md: "2.5rem" }, fontFamily: "monospace" }}
-                  >
-                    {s.value}
-                  </Typography>
-                  <Typography variant="body2" sx={{ color: "text.secondary", mt: 1, fontSize: "0.85rem", lineHeight: 1.5 }}>
-                    {s.label}
-                  </Typography>
-                </Paper>
-              </Grid2>
-            ))}
+          <Typography variant="body2" sx={{ color: "text.secondary", mb: 4, fontSize: "0.9rem" }}>
+            O mercado digital na região está crescendo rápido
+          </Typography>
+          <Grid2 container spacing={3}>
+            <Grid2 size={{ xs: 12, md: 4 }}>
+              <Paper
+                elevation={0}
+                sx={{
+                  p: 4,
+                  textAlign: "center",
+                  border: "1px solid",
+                  borderColor: "divider",
+                  borderRadius: 3,
+                  bgcolor: "rgba(99,102,241,0.03)",
+                }}
+              >
+                <Typography variant="h3" sx={{ fontWeight: 800, color: "#6366f1", fontSize: "2.5rem", mb: 1 }}>
+                  65%
+                </Typography>
+                <Typography variant="body2" sx={{ color: "text.secondary", fontSize: "0.9rem", lineHeight: 1.5 }}>
+                  das pequenas empresas já vendem online em Maringá
+                </Typography>
+              </Paper>
+            </Grid2>
+            <Grid2 size={{ xs: 12, md: 4 }}>
+              <Paper
+                elevation={0}
+                sx={{
+                  p: 4,
+                  textAlign: "center",
+                  border: "1px solid",
+                  borderColor: "divider",
+                  borderRadius: 3,
+                  bgcolor: "rgba(99,102,241,0.03)",
+                }}
+              >
+                <Typography variant="h3" sx={{ fontWeight: 800, color: "#6366f1", fontSize: "2.5rem", mb: 1 }}>
+                  R$ 2,5 bi
+                </Typography>
+                <Typography variant="body2" sx={{ color: "text.secondary", fontSize: "0.9rem", lineHeight: 1.5 }}>
+                  faturamento do e-commerce regional em 2025
+                </Typography>
+              </Paper>
+            </Grid2>
+            <Grid2 size={{ xs: 12, md: 4 }}>
+              <Paper
+                elevation={0}
+                sx={{
+                  p: 4,
+                  textAlign: "center",
+                  border: "1px solid",
+                  borderColor: "divider",
+                  borderRadius: 3,
+                  bgcolor: "rgba(99,102,241,0.03)",
+                }}
+              >
+                <Typography variant="h3" sx={{ fontWeight: 800, color: "#6366f1", fontSize: "2.5rem", mb: 1 }}>
+                  +40%
+                </Typography>
+                <Typography variant="body2" sx={{ color: "text.secondary", fontSize: "0.9rem", lineHeight: 1.5 }}>
+                  crescimento de lojas virtuais na região desde 2023
+                </Typography>
+              </Paper>
+            </Grid2>
           </Grid2>
         </Container>
       </Box>
 
-      {/* ─── WHY E-COMMERCE ──────────────────── */}
-      <Box sx={{ py: 6, my: 2 }}>
+      {/* ─── BENEFITS ────────────────────────── */}
+      <Box sx={{ py: 8 }}>
         <Container maxWidth="lg">
-          <Typography
-            variant="h6"
-            sx={{ fontFamily: "monospace", fontWeight: 700, color: "primary.main", mb: 3, fontSize: "0.85rem" }}
-          >
-            {'// por que vender online?'}
-          </Typography>
+          <Box sx={{ textAlign: "center", mb: 6 }}>
+            <Typography
+              variant="h3"
+              sx={{ fontWeight: 800, fontSize: { xs: "1.5rem", md: "2rem" }, mb: 1 }}
+            >
+              Por que vender online?
+            </Typography>
+            <Typography variant="body1" sx={{ color: "text.secondary", fontSize: "0.95rem", maxWidth: 500, mx: "auto" }}>
+              Seu concorrente já está na internet. Não fique pra trás.
+            </Typography>
+          </Box>
+
           <Grid2 container spacing={3}>
             {[
-              { icon: <Store />, title: "Loja 24h", desc: "Enquanto você dorme, sua loja trabalha. Cliente compra de qualquer lugar a qualquer hora." },
-              { icon: <LocationOn />, title: "Alcance regional", desc: "Começa em Maringá, mas vende pra cidade toda e região metropolitana. Sem fronteiras." },
-              { icon: <TrendingUp />, title: "Crescimento real", desc: "E-commerce na região cresceu 40% em 2 anos. Seu concorrente já está online." },
-              { icon: <Payment />, title: "Receba mais", desc: "PIX, cartão, boleto. Aceita tudo. Parcela sem juros. Cliente compra mais." },
-              { icon: <Speed />, title: "Rápido de criar", desc: "Landing page em 3 dias, loja completa em 7. Não é obra de meses." },
-              { icon: <Code />, title: "Sem mensalidade", desc: "Você paga uma vez e o site é seu. Só a hospedagem (R$ 20-40/mês) que é recorrente." },
+              { icon: <Storefront sx={{ fontSize: 32 }} />, title: "Loja aberta 24h", desc: "Enquanto você dorme, sua loja trabalha. Cliente compra de qualquer lugar, a qualquer hora." },
+              { icon: <LocationOn sx={{ fontSize: 32 }} />, title: "Alcance regional", desc: "Comece em Maringá e atenda toda a região metropolitana. Sem limitação geográfica." },
+              { icon: <TrendingUp sx={{ fontSize: 32 }} />, title: "Mercado em alta", desc: "O e-commerce regional cresceu 40% em dois anos. É agora ou nunca." },
+              { icon: <Payment sx={{ fontSize: 32 }} />, title: "Receba mais", desc: "Aceite PIX, cartão de crédito e boleto. Parcelamento sem juros. Mais formas de pagamento, mais vendas." },
+              { icon: <Speed sx={{ fontSize: 32 }} />, title: "Rápido pra criar", desc: "Landing page em 3 dias, loja completa em 7. Sem burocracia, sem enrolação." },
+              { icon: <Code sx={{ fontSize: 32 }} />, title: "Sem mensalidade", desc: "Você paga uma vez e o sistema é seu. Só a hospedagem (R$ 20-40/mês) é recorrente." },
             ].map((item) => (
               <Grid2 key={item.title} size={{ xs: 12, sm: 6, md: 4 }}>
                 <Paper
+                  elevation={0}
                   sx={{
                     p: 3,
                     height: "100%",
-                    background: "rgba(255,255,255,0.02)",
                     border: "1px solid",
                     borderColor: "divider",
                     borderRadius: 3,
                     transition: "all 0.25s",
-                    "&:hover": { borderColor: "primary.main", transform: "translateY(-2px)" },
+                    "&:hover": { borderColor: "#6366f1" },
                   }}
                 >
-                  <Box sx={{ color: "primary.main", mb: 1.5 }}>{item.icon}</Box>
-                  <Typography variant="subtitle2" sx={{ fontWeight: 700, fontFamily: "monospace", mb: 0.5 }}>
+                  <Box sx={{ color: "#6366f1", mb: 1.5 }}>{item.icon}</Box>
+                  <Typography variant="subtitle2" sx={{ fontWeight: 700, mb: 0.5, fontSize: "1rem" }}>
                     {item.title}
                   </Typography>
-                  <Typography variant="body2" sx={{ color: "text.secondary", fontSize: "0.85rem", lineHeight: 1.6 }}>
+                  <Typography variant="body2" sx={{ color: "text.secondary", fontSize: "0.9rem", lineHeight: 1.6 }}>
                     {item.desc}
                   </Typography>
                 </Paper>
@@ -318,41 +352,41 @@ export default function EcommerceMaringa() {
       </Box>
 
       {/* ─── PACKAGES ────────────────────────── */}
-      <Box id="pacotes" sx={{ py: 6, my: 4 }}>
+      <Box id="pacotes" sx={{ py: 8, my: 2 }}>
         <Container maxWidth="lg">
-          <Typography
-            variant="h3"
-            sx={{ fontWeight: 900, fontSize: { xs: "1.6rem", md: "2.2rem" }, textAlign: "center", mb: 1 }}
-          >
-            Pacotes
-          </Typography>
-          <Typography
-            variant="body1"
-            sx={{ color: "text.secondary", textAlign: "center", mb: 6, fontFamily: "monospace", fontSize: "0.85rem" }}
-          >
-            $ escolha o plano ideal pro seu negócio
-          </Typography>
+          <Box sx={{ textAlign: "center", mb: 6 }}>
+            <Typography
+              variant="h3"
+              sx={{ fontWeight: 800, fontSize: { xs: "1.5rem", md: "2rem" }, mb: 1 }}
+            >
+              Pacotes
+            </Typography>
+            <Typography variant="body1" sx={{ color: "text.secondary", fontSize: "0.95rem" }}>
+              Escolha o plano ideal pro seu negócio
+            </Typography>
+          </Box>
 
           <Grid2 container spacing={4} justifyContent="center">
             {packages.map((pkg) => (
               <Grid2 key={pkg.name} size={{ xs: 12, sm: 6, md: 4 }}>
                 <Paper
+                  elevation={0}
                   sx={{
                     p: 4,
                     height: "100%",
                     display: "flex",
                     flexDirection: "column",
                     background: pkg.highlight
-                      ? "linear-gradient(180deg, rgba(34,211,238,0.08) 0%, rgba(168,85,247,0.04) 100%)"
+                      ? "linear-gradient(180deg, rgba(99,102,241,0.08) 0%, transparent 100%)"
                       : "rgba(255,255,255,0.02)",
-                    border: pkg.highlight ? "2px solid" : "1px solid",
-                    borderColor: pkg.highlight ? "primary.main" : "divider",
+                    border: pkg.highlight ? "2px solid #6366f1" : "1px solid",
+                    borderColor: pkg.highlight ? "#6366f1" : "divider",
                     borderRadius: 3,
                     position: "relative",
                     transition: "all 0.3s",
                     "&:hover": {
                       transform: "translateY(-4px)",
-                      boxShadow: pkg.highlight ? "0 8px 40px rgba(34,211,238,0.15)" : "0 4px 20px rgba(0,0,0,0.2)",
+                      boxShadow: pkg.highlight ? "0 8px 30px rgba(99,102,241,0.15)" : "0 4px 20px rgba(0,0,0,0.2)",
                     },
                   }}
                 >
@@ -364,19 +398,19 @@ export default function EcommerceMaringa() {
                         position: "absolute",
                         top: -12,
                         right: 24,
-                        background: "linear-gradient(135deg, #22d3ee, #a78bfa)",
-                        color: "#000",
+                        background: "#6366f1",
+                        color: "#fff",
                         fontWeight: 700,
-                        fontFamily: "monospace",
-                        fontSize: "0.6rem",
+                        fontSize: "0.65rem",
+                        borderRadius: 1.5,
                       }}
                     />
                   )}
 
-                  <Typography variant="h5" sx={{ fontWeight: 800, fontFamily: "monospace", mb: 0.5 }}>
+                  <Typography variant="h5" sx={{ fontWeight: 800, mb: 0.5 }}>
                     {pkg.name}
                   </Typography>
-                  <Typography variant="body2" sx={{ color: "text.secondary", fontSize: "0.8rem", mb: 2, minHeight: 40 }}>
+                  <Typography variant="body2" sx={{ color: "text.secondary", fontSize: "0.85rem", mb: 2, minHeight: 40 }}>
                     {pkg.desc}
                   </Typography>
 
@@ -384,11 +418,11 @@ export default function EcommerceMaringa() {
                     <Typography
                       variant="h3"
                       component="span"
-                      sx={{ fontWeight: 900, fontSize: "2.5rem", fontFamily: "monospace" }}
+                      sx={{ fontWeight: 800, fontSize: "2.5rem" }}
                     >
                       {pkg.price}
                     </Typography>
-                    <Typography variant="body2" component="span" sx={{ color: "text.secondary", fontSize: "0.75rem", ml: 0.5 }}>
+                    <Typography variant="body2" component="span" sx={{ color: "text.secondary", fontSize: "0.8rem", ml: 0.5 }}>
                       à vista
                     </Typography>
                   </Box>
@@ -396,8 +430,8 @@ export default function EcommerceMaringa() {
                   <Box sx={{ flex: 1, mb: 3 }}>
                     {pkg.items.map((item) => (
                       <Box key={item} sx={{ display: "flex", gap: 1, mb: 1.2 }}>
-                        <CheckCircle sx={{ fontSize: 18, color: "primary.main", mt: 0.3, flexShrink: 0 }} />
-                        <Typography variant="body2" sx={{ fontSize: "0.82rem", lineHeight: 1.5 }}>
+                        <CheckCircle sx={{ fontSize: 18, color: "#6366f1", mt: 0.3, flexShrink: 0 }} />
+                        <Typography variant="body2" sx={{ fontSize: "0.88rem", lineHeight: 1.5 }}>
                           {item}
                         </Typography>
                       </Box>
@@ -411,19 +445,20 @@ export default function EcommerceMaringa() {
                     fullWidth
                     startIcon={<WhatsApp />}
                     sx={{
-                      fontFamily: "monospace",
-                      fontWeight: 700,
+                      fontWeight: 600,
                       textTransform: "none",
                       py: 1.5,
                       borderRadius: 2,
-                      ...(pkg.highlight && {
-                        background: "linear-gradient(135deg, #22d3ee, #a78bfa)",
-                        color: "#000",
-                        "&:hover": {
-                          background: "linear-gradient(135deg, #22d3ee, #a78bfa)",
-                          boxShadow: "0 4px 20px rgba(34,211,238,0.3)",
-                        },
-                      }),
+                      ...(pkg.highlight
+                        ? {
+                            background: "#6366f1",
+                            "&:hover": { background: "#4f46e5" },
+                          }
+                        : {
+                            color: "text.primary",
+                            borderColor: "divider",
+                            "&:hover": { borderColor: "#6366f1", color: "#6366f1" },
+                          }),
                     }}
                   >
                     {pkg.cta}
@@ -435,91 +470,94 @@ export default function EcommerceMaringa() {
         </Container>
       </Box>
 
-      {/* ─── CARCREW CASE ────────────────────── */}
-      <Box sx={{ py: 6, my: 4 }}>
+      {/* ─── CASE ────────────────────────────── */}
+      <Box sx={{ py: 8 }}>
         <Container maxWidth="md">
           <Paper
+            elevation={0}
             sx={{
               p: { xs: 3, md: 5 },
               textAlign: "center",
-              background: "linear-gradient(135deg, rgba(34,211,238,0.04), rgba(168,85,247,0.04))",
               border: "1px solid",
               borderColor: "divider",
               borderRadius: 4,
+              bgcolor: "rgba(99,102,241,0.02)",
             }}
           >
-            <Typography variant="h6" sx={{ fontFamily: "monospace", color: "primary.main", mb: 2, fontSize: "0.75rem" }}>
-              {'// CASE REAL'}
-            </Typography>
+            <Chip
+              label="CASO REAL"
+              size="small"
+              sx={{ background: "rgba(99,102,241,0.1)", color: "#6366f1", fontWeight: 600, fontSize: "0.7rem", mb: 2, borderRadius: 1.5 }}
+            />
             <Typography
               variant="h4"
-              sx={{ fontWeight: 900, mb: 2, fontSize: { xs: "1.3rem", md: "1.8rem" }, fontFamily: "monospace" }}
+              sx={{ fontWeight: 800, mb: 2, fontSize: { xs: "1.3rem", md: "1.8rem" } }}
             >
               CarCrew Commerce
             </Typography>
-            <Typography variant="body1" sx={{ color: "text.secondary", maxWidth: 500, mx: "auto", mb: 2, fontSize: "0.9rem", lineHeight: 1.7 }}>
+            <Typography variant="body1" sx={{ color: "text.secondary", maxWidth: 500, mx: "auto", mb: 3, fontSize: "0.95rem", lineHeight: 1.7 }}>
               E-commerce de suspensão automotiva em Maringá. Loja completa com catálogo, carrinho, admin, SEO e integração com PIX.
               Cliente aparecendo nas primeiras posições do Google.
             </Typography>
-            <Box sx={{ display: "flex", justifyContent: "center", gap: 4, flexWrap: "wrap", mb: 3 }}>
+            <Stack direction="row" spacing={4} justifyContent="center" sx={{ mb: 3 }} flexWrap="wrap">
               <Box>
-                <Typography variant="h5" sx={{ fontWeight: 900, color: "primary.main", fontFamily: "monospace" }}>121</Typography>
+                <Typography variant="h5" sx={{ fontWeight: 800, color: "#6366f1" }}>121</Typography>
                 <Typography variant="caption" sx={{ color: "text.secondary" }}>avaliações 5★</Typography>
               </Box>
               <Box>
-                <Typography variant="h5" sx={{ fontWeight: 900, color: "primary.main", fontFamily: "monospace" }}>3</Typography>
-                <Typography variant="caption" sx={{ color: "text.secondary" }}>páginas indexadas no Google</Typography>
+                <Typography variant="h5" sx={{ fontWeight: 800, color: "#6366f1" }}>3</Typography>
+                <Typography variant="caption" sx={{ color: "text.secondary" }}>páginas no Google</Typography>
               </Box>
               <Box>
-                <Typography variant="h5" sx={{ fontWeight: 900, color: "primary.main", fontFamily: "monospace" }}>7</Typography>
+                <Typography variant="h5" sx={{ fontWeight: 800, color: "#6366f1" }}>7</Typography>
                 <Typography variant="caption" sx={{ color: "text.secondary" }}>dias pra ficar pronto</Typography>
               </Box>
-            </Box>
+            </Stack>
             <Button
               href="https://carcrew.com.br"
               target="_blank"
               variant="outlined"
               startIcon={<ShoppingCart />}
-              sx={{ fontFamily: "monospace", textTransform: "none" }}
+              sx={{ color: "text.primary", borderColor: "divider", textTransform: "none", "&:hover": { borderColor: "#6366f1", color: "#6366f1" } }}
             >
-              Ver loja funcionando →
+              Ver loja funcionando
             </Button>
           </Paper>
         </Container>
       </Box>
 
       {/* ─── FAQ ──────────────────────────────── */}
-      <Box sx={{ py: 6, my: 4 }}>
+      <Box sx={{ py: 8, my: 4 }}>
         <Container maxWidth="md">
-          <Typography
-            variant="h3"
-            sx={{ fontWeight: 900, fontSize: { xs: "1.5rem", md: "2rem" }, textAlign: "center", mb: 1 }}
-          >
-            Dúvidas frequentes
-          </Typography>
-          <Typography
-            variant="body1"
-            sx={{ color: "text.secondary", textAlign: "center", mb: 5, fontFamily: "monospace", fontSize: "0.85rem" }}
-          >
-            $ man help e-commerce
-          </Typography>
+          <Box sx={{ textAlign: "center", mb: 5 }}>
+            <Typography
+              variant="h3"
+              sx={{ fontWeight: 800, fontSize: { xs: "1.5rem", md: "2rem" }, mb: 1 }}
+            >
+              Dúvidas frequentes
+            </Typography>
+            <Typography variant="body1" sx={{ color: "text.secondary", fontSize: "0.95rem" }}>
+              Tudo que você precisa saber antes de começar
+            </Typography>
+          </Box>
 
           {faq.map((item) => (
             <Accordion
               key={item.q}
+              elevation={0}
               sx={{
-                background: "transparent",
+                bgcolor: "transparent",
                 border: "1px solid",
                 borderColor: "divider",
                 borderRadius: "12px !important",
                 mb: 1.5,
                 "&::before": { display: "none" },
-                "&.Mui-expanded": { borderColor: "primary.main" },
+                "&.Mui-expanded": { borderColor: "#6366f1" },
               }}
             >
-              <AccordionSummary expandIcon={<ExpandMore sx={{ color: "primary.main" }} />}>
-                <Typography sx={{ fontFamily: "monospace", fontWeight: 600, fontSize: "0.9rem" }}>
-                  $ {item.q}
+              <AccordionSummary expandIcon={<ExpandMore sx={{ color: "#6366f1" }} />}>
+                <Typography sx={{ fontWeight: 600, fontSize: "0.95rem" }}>
+                  {item.q}
                 </Typography>
               </AccordionSummary>
               <AccordionDetails>
@@ -533,16 +571,25 @@ export default function EcommerceMaringa() {
       </Box>
 
       {/* ─── FINAL CTA ───────────────────────── */}
-      <Box sx={{ py: 8, my: 4, borderTop: "1px solid", borderColor: "divider" }}>
-        <Container maxWidth="sm" sx={{ textAlign: "center" }}>
+      <Box
+        sx={{
+          py: 8,
+          textAlign: "center",
+          borderTop: "1px solid",
+          borderColor: "divider",
+          mt: 4,
+          background: "linear-gradient(180deg, rgba(99,102,241,0.03) 0%, transparent 100%)",
+        }}
+      >
+        <Container maxWidth="sm">
           <Typography
             variant="h3"
-            sx={{ fontWeight: 900, fontSize: { xs: "1.5rem", md: "2rem" }, mb: 2, fontFamily: "monospace" }}
+            sx={{ fontWeight: 800, fontSize: { xs: "1.5rem", md: "2rem" }, mb: 2 }}
           >
             Vamos criar sua loja?
           </Typography>
-          <Typography variant="body1" sx={{ color: "text.secondary", mb: 4, fontSize: "0.9rem", lineHeight: 1.7, fontFamily: "monospace" }}>
-            $ echo &ldquo;sem enrolação, sem mensalidade, sem mistério&rdquo;
+          <Typography variant="body1" sx={{ color: "text.secondary", mb: 4, fontSize: "0.95rem", lineHeight: 1.7 }}>
+            Sem enrolação, sem mensalidade, sem mistério. Me chama no WhatsApp e a gente conversa.
           </Typography>
           <Button
             href="https://wa.me/5544984198075?text=Oi!%20Vim%20pela%20p%C3%A1gina%20de%20e-commerce%20de%20Maring%C3%A1%20e%20quero%20saber%20mais"
@@ -551,25 +598,25 @@ export default function EcommerceMaringa() {
             size="large"
             startIcon={<WhatsApp />}
             sx={{
-              background: "linear-gradient(135deg, #22d3ee, #a78bfa)",
-              color: "#000",
-              fontWeight: 700,
-              fontFamily: "monospace",
+              background: "#6366f1",
+              color: "#fff",
+              fontWeight: 600,
               fontSize: "1.1rem",
               px: 6,
               py: 2,
               textTransform: "none",
-              borderRadius: 3,
+              borderRadius: 2.5,
+              boxShadow: "0 4px 14px rgba(99,102,241,0.3)",
               "&:hover": {
-                transform: "translateY(-2px)",
-                boxShadow: "0 8px 30px rgba(34,211,238,0.3)",
+                background: "#4f46e5",
+                boxShadow: "0 6px 20px rgba(99,102,241,0.4)",
               },
             }}
           >
-            $ whatsapp agora
+            Fale no WhatsApp
           </Button>
-          <Typography variant="caption" sx={{ display: "block", mt: 2, color: "text.secondary", opacity: 0.5, fontFamily: "monospace" }}>
-            ▸ resposta em até 30 min em horário comercial
+          <Typography variant="caption" sx={{ display: "block", mt: 2, color: "text.secondary", opacity: 0.6 }}>
+            Resposta em até 30 min em horário comercial
           </Typography>
         </Container>
       </Box>
