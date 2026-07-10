@@ -1,4 +1,5 @@
 import { Container, Typography, Box, Grid2, Chip, Stack } from "@mui/material";
+import SEO from "@/components/SEO";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
@@ -58,7 +59,12 @@ const anteriores = [
 
 export default function Projetos() {
   return (
-    <Container maxWidth="lg" sx={{ py: 6 }}>
+    <>
+      <SEO
+        title="Projetos"
+        description="Portfólio de projetos de desenvolvimento: polyLink, CarCrew Commerce, ERC20 Token Lab, Taiff Connect e mais. Soluções em Next.js, React, Web3."
+      />
+      <Container maxWidth="lg" sx={{ py: 8 }}>
       {/* ─── Header ─────────────────────────── */}
       <Typography
         variant="h2"
@@ -264,5 +270,6 @@ export default function Projetos() {
         ))}
       </Grid2>
     </Container>
+    </>
   );
 }

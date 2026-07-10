@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import SEO from "@/components/SEO";
 import {
   Box,
   Container,
@@ -175,6 +176,12 @@ export default function Home() {
 
   // ─── LANDING PHASE ─────────────────────────
   return (
+    <>
+      <SEO
+        title="Desenvolvedor Full Stack"
+        description="Criação de sites, landing pages, sistemas web, bots e automação. Next.js, React, TypeScript, Web3. LinikerS — soluções inteligentes para seu negócio."
+        ogImage="/profileImg.jpg"
+      />
       <MotionBox
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -232,7 +239,7 @@ export default function Home() {
 
                 <motion.div variants={itemVariants}>
                   <Typography
-                    variant="h2"
+                    variant="h1"
                     sx={{
                       fontWeight: 900,
                       fontSize: { xs: "2.5rem", md: "3.75rem" },
@@ -442,5 +449,6 @@ export default function Home() {
           </motion.div>
         </Container>
       </MotionBox>
+    </>
   );
 }

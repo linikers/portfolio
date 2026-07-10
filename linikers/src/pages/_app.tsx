@@ -8,6 +8,7 @@ import Tooltip from "@mui/material/Tooltip";
 import PaletteIcon from "@mui/icons-material/Palette";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Head from "next/head";
 import "@/styles/globals.scss";
 
 const themes = [
@@ -70,7 +71,15 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   const theme = buildTheme(themeMeta);
 
   return (
-    <MuiThemeProvider theme={theme}>
+    <>
+      <Head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#0a0a0a" />
+        <link rel="icon" href="/favicon.png" />
+        <meta name="google-site-verification" content="f3b6fe1ad59f5971" />
+      </Head>
+      <MuiThemeProvider theme={theme}>
       <CssBaseline />
       <Box sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
         <Navbar />
@@ -98,5 +107,6 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         </IconButton>
       </Tooltip>
     </MuiThemeProvider>
+    </>
   );
 }

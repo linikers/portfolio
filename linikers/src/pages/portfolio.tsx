@@ -1,5 +1,6 @@
 // Pagina publica de portfolio para leads/prospects
 import { Box, Container, Typography, Paper, Grid, Chip, Button, Avatar } from "@mui/material";
+import SEO from "@/components/SEO";
 import {
   Code as CodeIcon,
   Web as WebIcon,
@@ -45,7 +46,12 @@ export default function PortfolioPage() {
   const { ref } = router.query;
 
   return (
-    <Box sx={{ minHeight: "100vh", background: "#0a0a0f", py: 6 }}>
+    <>
+      <SEO
+        title="Portfólio"
+        description="Portfólio de Liniker Souza — Desenvolvedor Full Stack especializado em Next.js, React, Node, TypeScript e Web3. Projetos, cases e contato."
+      />
+      <Box sx={{ minHeight: "100vh", background: "#0a0a0f", py: 6 }}>
       <Container maxWidth="lg">
         {/* Header */}
         <Box sx={{ textAlign: "center", mb: 6 }}>
@@ -142,5 +148,6 @@ export default function PortfolioPage() {
         </Paper>
       </Container>
     </Box>
+    </>
   );
 }
