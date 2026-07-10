@@ -72,7 +72,7 @@ const packages = [
       "Integração com ERP/estoque",
       "Automação de marketing (e-mail)",
       "Painel admin completo + múltiplos vendedores",
-      "Performance otimizada (Vercel Edge)",
+      "Performance otimizada (CDN AWS)",
       "Suporte prioritário 30 dias",
     ],
     cta: "Quero esse",
@@ -84,9 +84,9 @@ const packages = [
 const faq = [
   { q: "Preciso ter CNPJ?", a: "Não obrigatoriamente. Dá pra começar como MEI (R$ 70/mês) e emitir nota fiscal. Se for vender como PJ, melhor. Posso te ajudar com isso também." },
   { q: "Quanto tempo demora pra ficar pronto?", a: "Landing page em 3 dias, e-commerce completo em 5 a 7 dias úteis. O que segura é seu conteúdo (fotos, descrições dos produtos)." },
-  { q: "Preciso saber programação?", a: "Não. Você só manda as fotos e descrições. Eu cuido de tudo — programação, design, domínio, hospedagem e SEO." },
+  { q: "Preciso saber programação?", a: "Não. Você só manda as fotos e descrições. Eu cuido de tudo: programação, design, domínio, hospedagem e SEO." },
   { q: "O site aparece no Google?", a: "Sim. Todos os meus projetos têm SEO completo: meta tags, Open Graph, sitemap.xml, robots.txt e Google Analytics. Já tem cliente meu nas primeiras páginas." },
-  { q: "E se eu quiser mudar algo depois?", a: "Você tem um painel simples pra alterar textos e fotos. Se precisar de mudanças maiores, é só chamar — faço ajustes rápidos." },
+  { q: "E se eu quiser mudar algo depois?", a: "Você tem um painel simples pra alterar textos e fotos. Se precisar de mudanças maiores, é só chamar. Faço ajustes rápidos." },
   { q: "Aceita pagamento parcelado?", a: "Sim. Pode ser no PIX (à vista com 10% off) ou parcelado em até 6x no cartão." },
 ];
 
@@ -217,53 +217,18 @@ export default function EcommerceMaringa() {
 
             <Grid2 size={{ xs: 12, md: 5 }}>
               <Box
+                component="img"
+                src="/ecommerce-hero.png"
+                alt="Loja virtual profissional — layout responsivo para desktop e celular"
                 sx={{
-                  p: 4,
+                  width: "100%",
+                  height: "auto",
+                  borderRadius: 3,
                   border: "1px solid",
                   borderColor: "divider",
-                  borderRadius: 3,
-                  background: "rgba(255,255,255,0.02)",
-                  backdropFilter: "blur(8px)",
+                  display: "block",
                 }}
-              >
-                <Typography variant="overline" sx={{ fontFamily: "monospace", color: "primary.main", fontSize: "0.65rem" }}>
-                  ÚLTIMO PROJETO
-                </Typography>
-                <Box
-                  component="img"
-                  src="/carcrew-thumb.png"
-                  alt="CarCrew Commerce"
-                  sx={{
-                    width: "100%",
-                    height: 180,
-                    objectFit: "cover",
-                    borderRadius: 2,
-                    my: 2,
-                    border: "1px solid",
-                    borderColor: "divider",
-                  }}
-                />
-                <Typography variant="subtitle1" sx={{ fontWeight: 700, fontFamily: "monospace" }}>
-                  CarCrew Commerce
-                </Typography>
-                <Typography variant="body2" sx={{ color: "text.secondary", fontFamily: "monospace", fontSize: "0.75rem", mb: 1 }}>
-                  E-commerce automotivo • Maringá
-                </Typography>
-                <Typography variant="body2" sx={{ color: "text.secondary", fontSize: "0.8rem", lineHeight: 1.6 }}>
-                  &ldquo;Loja completa com catálogo, carrinho, admin, SEO no topo do Google e integração com PIX. Tudo rodando na Vercel.&rdquo;
-                </Typography>
-                <Box sx={{ mt: 2, display: "flex", gap: 0.5 }}>
-                  {["Next.js", "MUI", "Cloudinary", "SEO", "PIX"].map((t) => (
-                    <Chip
-                      key={t}
-                      label={t}
-                      size="small"
-                      variant="outlined"
-                      sx={{ fontFamily: "monospace", fontSize: "0.6rem", borderColor: "divider", color: "text.secondary" }}
-                    />
-                  ))}
-                </Box>
-              </Box>
+              />
             </Grid2>
           </Grid2>
         </Container>
