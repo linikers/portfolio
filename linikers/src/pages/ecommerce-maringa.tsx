@@ -250,7 +250,7 @@ export default function EcommerceMaringa() {
                   E-commerce automotivo • Maringá
                 </Typography>
                 <Typography variant="body2" sx={{ color: "text.secondary", fontSize: "0.8rem", lineHeight: 1.6 }}>
-                  "Loja completa com catálogo, carrinho, admin, SEO no topo do Google e integração com PIX. Tudo rodando na Vercel."
+                  &ldquo;Loja completa com catálogo, carrinho, admin, SEO no topo do Google e integração com PIX. Tudo rodando na Vercel.&rdquo;
                 </Typography>
                 <Box sx={{ mt: 2, display: "flex", gap: 0.5 }}>
                   {["Next.js", "MUI", "Cloudinary", "SEO", "PIX"].map((t) => (
@@ -276,7 +276,7 @@ export default function EcommerceMaringa() {
             variant="h6"
             sx={{ fontFamily: "monospace", fontWeight: 700, color: "primary.main", mb: 4, fontSize: "0.85rem" }}
           >
-            // e-commerce em Maringá
+            {'// e-commerce em Maringá'}
           </Typography>
           <Grid2 container spacing={4}>
             {stats.map((s) => (
@@ -314,7 +314,7 @@ export default function EcommerceMaringa() {
             variant="h6"
             sx={{ fontFamily: "monospace", fontWeight: 700, color: "primary.main", mb: 3, fontSize: "0.85rem" }}
           >
-            // por que vender online?
+            {'// por que vender online?'}
           </Typography>
           <Grid2 container spacing={3}>
             {[
@@ -484,7 +484,7 @@ export default function EcommerceMaringa() {
             }}
           >
             <Typography variant="h6" sx={{ fontFamily: "monospace", color: "primary.main", mb: 2, fontSize: "0.75rem" }}>
-              // CASE REAL
+              {'// CASE REAL'}
             </Typography>
             <Typography
               variant="h4"
@@ -577,7 +577,7 @@ export default function EcommerceMaringa() {
             Vamos criar sua loja?
           </Typography>
           <Typography variant="body1" sx={{ color: "text.secondary", mb: 4, fontSize: "0.9rem", lineHeight: 1.7, fontFamily: "monospace" }}>
-            $ echo "sem enrolação, sem mensalidade, sem mistério"
+            $ echo &ldquo;sem enrolação, sem mensalidade, sem mistério&rdquo;
           </Typography>
           <Button
             href="https://wa.me/5544984198075?text=Oi!%20Vim%20pela%20p%C3%A1gina%20de%20e-commerce%20de%20Maring%C3%A1%20e%20quero%20saber%20mais"
