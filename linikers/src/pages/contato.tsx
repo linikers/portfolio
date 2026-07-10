@@ -1,5 +1,6 @@
 import { Container, Typography, Box, IconButton, Stack } from "@mui/material";
 import { WhatsApp } from "@mui/icons-material";
+import SEO from "@/components/SEO";
 import { FaGithub, FaLinkedin, FaXTwitter, FaInstagram } from "react-icons/fa6";
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -18,7 +19,12 @@ const socials = [
 
 export default function Contato() {
   return (
-    <Container
+    <>
+      <SEO
+        title="Contato"
+        description="Entre em contato com LinikerS para orçamentos de sites, landing pages, sistemas web, bots e automação. Respondo em até 24h."
+      />
+      <Container
       maxWidth="sm"
       sx={{
         minHeight: "80vh",
@@ -119,5 +125,6 @@ export default function Contato() {
         ▸ response.time: ~24h
       </Typography>
     </Container>
+    </>
   );
 }

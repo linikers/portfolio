@@ -1,4 +1,5 @@
 import { Container, Typography, Box } from "@mui/material";
+import SEO from "@/components/SEO";
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
@@ -7,7 +8,12 @@ import html from "remark-html";
 
 export default function Blog({ posts }: any) {
   return (
-    <Container maxWidth="md" sx={{ py: 6 }}>
+    <>
+      <SEO
+        title="Blog"
+        description="Artigos sobre tecnologia, desenvolvimento web, Next.js, React, TypeScript, Web3 e automação. Por LinikerS."
+      />
+      <Container maxWidth="md" sx={{ py: 6 }}>
       <Typography
         variant="h2"
         sx={{
@@ -73,9 +79,9 @@ export default function Blog({ posts }: any) {
         </Typography>
       )}
     </Container>
+    </>
   );
 }
-
 export async function getStaticProps() {
   try {
     const markdownFilePath = path.join(process.cwd(), "iniBlog.md");
