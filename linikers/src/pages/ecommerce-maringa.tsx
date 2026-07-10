@@ -74,7 +74,7 @@ const packages = [
       "Integração com ERP/estoque",
       "Automação de marketing (e-mail)",
       "Painel admin completo + múltiplos vendedores",
-      "Performance otimizada (Vercel Edge)",
+      "Performance otimizada (CDN AWS)",
       "Suporte prioritário 30 dias",
     ],
     cta: "Quero esse",
@@ -86,9 +86,9 @@ const packages = [
 const faq = [
   { q: "Preciso ter CNPJ?", a: "Não obrigatoriamente. Dá pra começar como MEI (R$ 70/mês) e emitir nota fiscal. Se for vender como PJ, melhor. Posso te ajudar com isso também." },
   { q: "Quanto tempo demora pra ficar pronto?", a: "Landing page em 3 dias, e-commerce completo em 5 a 7 dias úteis. O que segura é seu conteúdo (fotos, descrições dos produtos)." },
-  { q: "Preciso saber programação?", a: "Não. Você só manda as fotos e descrições. Eu cuido de tudo — programação, design, domínio, hospedagem e SEO." },
+  { q: "Preciso saber programação?", a: "Não. Você só manda as fotos e descrições. Eu cuido de tudo: programação, design, domínio, hospedagem e SEO." },
   { q: "O site aparece no Google?", a: "Sim. Todos os meus projetos têm SEO completo: meta tags, Open Graph, sitemap.xml, robots.txt e Google Analytics. Já tem cliente meu nas primeiras páginas." },
-  { q: "E se eu quiser mudar algo depois?", a: "Você tem um painel simples pra alterar textos e fotos. Se precisar de mudanças maiores, é só chamar — faço ajustes rápidos." },
+  { q: "E se eu quiser mudar algo depois?", a: "Você tem um painel simples pra alterar textos e fotos. Se precisar de mudanças maiores, é só chamar. Faço ajustes rápidos." },
   { q: "Aceita pagamento parcelado?", a: "Sim. Pode ser no PIX (à vista com 10% off) ou parcelado em até 6x no cartão." },
 ];
 
@@ -245,12 +245,12 @@ export default function EcommerceMaringa() {
                     fontSize: "0.9rem",
                     lineHeight: 1.6,
                     fontStyle: "italic",
-                    borderLeft: "2px solid",
-                    borderColor: "#6366f1",
-                    pl: 2,
+                    bgcolor: "rgba(99,102,241,0.04)",
+                    borderRadius: 2,
+                    p: 2,
                   }}
                 >
-                  &ldquo;Loja completa com catálogo, carrinho, admin, SEO no topo do Google e integração com PIX. Tudo rodando na Vercel.&rdquo;
+                  &ldquo;Loja completa com catálogo, carrinho, admin, SEO no topo do Google e integração com PIX. Infraestrutura AWS escalável.&rdquo;
                 </Typography>
               </Paper>
             </Grid2>
