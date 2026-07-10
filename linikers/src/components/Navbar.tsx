@@ -13,6 +13,7 @@ import { useRouter } from "next/router";
 
 const navLinks = [
   { href: "/", label: "HOME" },
+  { href: "/ecommerce-maringa", label: "E-COMM" },
   { href: "/projetos", label: "PROJETOS" },
   { href: "/ferramentas", label: "FERRAMENTAS" },
   { href: "/criativo", label: "CRIATIVO" },
