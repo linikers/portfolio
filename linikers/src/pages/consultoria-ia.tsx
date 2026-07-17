@@ -1,4 +1,4 @@
-import { Container, Typography, Box, Button, Stack, Grid, Card, CardContent, List, ListItem, ListItemIcon, ListItemText, Divider } from "@mui/material";
+import { Container, Typography, Box, Button, Stack, Grid2 as Grid, Card, CardContent, List, ListItem, ListItemIcon, ListItemText, Divider } from "@mui/material";
 import SEO from "@/components/SEO";
 import Image from "next/image";
 import { FaWhatsapp, FaChartLine, FaRobot, FaBrain, FaDollarSign } from "react-icons/fa6";

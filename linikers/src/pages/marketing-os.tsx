@@ -1,4 +1,4 @@
-import { Container, Typography, Box, Button, Card, CardContent, List, ListItem, ListItemText, Grid } from "@mui/material";
+import { Container, Typography, Box, Button, Card, CardContent, List, ListItem, ListItemText, Grid2 as Grid } from "@mui/material";
 import SEO from "@/components/SEO";
 import { motion } from "framer-motion";
 
