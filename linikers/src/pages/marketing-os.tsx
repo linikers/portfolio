@@ -1,8 +1,24 @@
-import { Container, Typography, Box, Button, Card, CardContent, List, ListItem, ListItemText, Grid2 as Grid } from "@mui/material";
+import { Container, Typography, Box, Button, Card, List, ListItem, ListItemText, Grid2 as Grid } from "@mui/material";
 import SEO from "@/components/SEO";
+import Head from "next/head";
 import { motion } from "framer-motion";
 
 const fadeUp = { initial: { opacity: 0, y: 30 }, whileInView: { opacity: 1, y: 0 }, transition: { duration: 0.6 } };
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "Marketing OS - Automação de Google Ads com IA",
+  applicationCategory: "MarketingApplication",
+  operatingSystem: "Web",
+  offers: [
+    { "@type": "Offer", name: "Essential", price: "97", priceCurrency: "BRL" },
+    { "@type": "Offer", name: "Pro", price: "197", priceCurrency: "BRL" },
+    { "@type": "Offer", name: "Enterprise", price: "497", priceCurrency: "BRL" },
+  ],
+  areaServed: [{ "@type": "City", name: "Maringá" }, { "@type": "Country", name: "Brasil" }],
+  description: "Sistema inteligente de automação de Google Ads e Meta Ads com IA. Cria, gerencia e otimiza campanhas automaticamente.",
+};
 
 const planos = [
   {
@@ -23,11 +39,11 @@ const planos = [
 ];
 
 const features = [
-  { icon: "🤖", title: "IA que Cria Campanhas", desc: "A inteligência artificial cria e otimiza campanhas automaticamente baseada nos seus objetivos" },
+  { icon: "🤖", title: "IA que Cria Campanhas", desc: "A inteligência artificial cria e otimiza campanhas de Google Ads automaticamente baseada nos seus objetivos" },
   { icon: "📊", title: "Dashboard em Tempo Real", desc: "Gráficos de gasto, ROAS, CTR, CPC e impressões atualizados em tempo real" },
-  { icon: "🎯", title: "Google & Meta Ads", desc: "Gerencie Google Ads e Facebook/Instagram Ads em um só lugar" },
-  { icon: "📈", title: "Otimização Contínua", desc: "A IA ajusta lances, orçamentos e segmentação automaticamente" },
-  { icon: "🔐", title: "Segurança OAuth", desc: "Conexão segura via OAuth 2.0 sem compartilhar senhas" },
+  { icon: "🎯", title: "Google & Meta Ads", desc: "Gerencie Google Ads e Facebook/Instagram Ads em um só lugar com análise unificada" },
+  { icon: "📈", title: "Otimização Contínua", desc: "A IA ajusta lances, orçamentos e segmentação automaticamente para melhor performance" },
+  { icon: "🔐", title: "Segurança OAuth", desc: "Conexão segura via OAuth 2.0 com suas contas de anúncio sem compartilhar senhas" },
   { icon: "📱", title: "Suporte Premium", desc: "Suporte direto via WhatsApp com respostas em até 2h úteis" },
 ];
 
@@ -35,22 +51,30 @@ export default function MarketingOS() {
   return (
     <>
       <SEO
-        title="Marketing OS - Automação de Marketing com IA"
-        description="Sistema inteligente que cria, gerencia e otimiza suas campanhas de Google Ads e Meta Ads automaticamente."
+        title="Automação de Google Ads com IA | Marketing OS"
+        description="Sistema inteligente de automação de Google Ads e Meta Ads com IA. Cria, gerencia e otimiza campanhas automaticamente. Planos a partir de R$ 97/mês. Atendimento em Maringá e todo Brasil."
+        ogImage="/profileImg.jpg"
       />
+      <Head>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+        <meta name="keywords" content="automação de Google Ads, gestão de campanhas Google Ads, ferramenta de marketing com IA, otimização de Google Ads, gerenciar anúncios online, sistema de anúncios Google, Maringá, Brasil" />
+        <meta name="geo.region" content="BR-PR" />
+        <meta name="geo.placename" content="Maringá" />
+      </Head>
       <Container maxWidth="lg" sx={{ py: { xs: 6, md: 10 }, minHeight: "80vh" }}>
         
         {/* Hero */}
         <motion.div {...fadeUp}>
           <Box sx={{ textAlign: "center", mb: 6 }}>
             <Typography variant="overline" sx={{ color: "#00ff41", letterSpacing: 3, border: "1px solid #00ff41", px: 2, py: 0.5, display: "inline-block", mb: 2, fontSize: "0.65rem" }}>
-              ✦ MARKETING OS
+              ✦ AUTOMAÇÃO DE GOOGLE ADS COM IA
             </Typography>
-            <Typography variant="h3" sx={{ fontWeight: 700, mb: 2, color: "#fff", fontSize: { xs: "1.8rem", md: "2.5rem" } }}>
-              Automação de Marketing <span style={{ color: "#00ff41" }}>com IA</span>
+            <Typography variant="h1" sx={{ fontWeight: 700, mb: 2, color: "#fff", fontSize: { xs: "1.8rem", md: "2.5rem" } }}>
+              Automação de Google Ads <span style={{ color: "#00ff41" }}>com Inteligência Artificial</span>
             </Typography>
-            <Typography sx={{ color: "#00cc33", maxWidth: 700, mx: "auto", mb: 4, fontSize: "0.9rem" }}>
-              Sistema inteligente que cria, gerencia e otimiza suas campanhas de Google Ads e Meta Ads automaticamente.
+            <Typography sx={{ color: "#00cc33", maxWidth: 750, mx: "auto", mb: 4, fontSize: "0.9rem" }}>
+              O Marketing OS cria, gerencia e otimiza suas campanhas de Google Ads e Meta Ads automaticamente. 
+              Menos trabalho manual, mais resultados. Atendimento em Maringá e todo Brasil.
             </Typography>
             <Button variant="contained" href="https://wa.me/5544984198075?text=Quero%20testar%20Marketing%20OS" target="_blank" sx={{ bgcolor: "#00ff41", color: "#000", fontFamily: "monospace", fontWeight: 600, px: 4, py: 1.5, mr: 1, '&:hover': { bgcolor: "#00cc33" } }}>
               TESTAR GRÁTIS
@@ -63,14 +87,14 @@ export default function MarketingOS() {
 
         {/* Features */}
         <motion.div {...fadeUp}>
-          <Typography variant="h4" sx={{ textAlign: "center", mb: 4, fontWeight: 700, color: "#fff" }}>
-            Tudo que você <span style={{ color: "#00ff41" }}>precisa</span>
+          <Typography variant="h2" sx={{ textAlign: "center", mb: 4, fontWeight: 700, color: "#fff" }}>
+            Tudo que você <span style={{ color: "#00ff41" }}>precisa</span> para gerenciar Google Ads
           </Typography>
           <Grid container spacing={2} sx={{ mb: 8 }}>
             {features.map((f) => (
               <Grid size={{ xs: 12, sm: 6, md: 4 }} key={f.title}>
                 <Card sx={{ bgcolor: "rgba(255,255,255,0.01)", border: "1px solid #1e293b", textAlign: "center", p: 3, height: "100%" }}>
-                  <Typography variant="h3" sx={{ mb: 1 }}>{f.icon}</Typography>
+                  <Typography variant="h3" sx={{ mb: 1, fontSize: "1.8rem" }}>{f.icon}</Typography>
                   <Typography variant="subtitle1" sx={{ color: "#fff", fontWeight: 600, mb: 1 }}>{f.title}</Typography>
                   <Typography variant="body2" sx={{ color: "#00cc33", fontSize: "0.75rem" }}>{f.desc}</Typography>
                 </Card>
@@ -81,8 +105,8 @@ export default function MarketingOS() {
 
         {/* Plans */}
         <motion.div {...fadeUp}>
-          <Typography variant="h4" sx={{ textAlign: "center", mb: 4, fontWeight: 700, color: "#fff" }}>
-            Planos <span style={{ color: "#00ff41" }}>Marketing OS</span>
+          <Typography variant="h2" sx={{ textAlign: "center", mb: 4, fontWeight: 700, color: "#fff" }}>
+            Planos de <span style={{ color: "#00ff41" }}>Automação de Google Ads</span>
           </Typography>
           <Grid container spacing={3} justifyContent="center">
             {planos.map((p) => (
@@ -119,10 +143,10 @@ export default function MarketingOS() {
 
         {/* CTA */}
         <Box sx={{ textAlign: "center", mt: 8, pt: 6, borderTop: "1px solid #1e293b" }}>
-          <Typography variant="h4" sx={{ fontWeight: 700, mb: 1, color: "#fff" }}>
+          <Typography variant="h2" sx={{ fontWeight: 700, mb: 1, color: "#fff", fontSize: "1.5rem" }}>
             Teste grátis por <span style={{ color: "#00ff41" }}>7 dias</span>
           </Typography>
-          <Typography sx={{ color: "#00cc33", mb: 3, fontSize: "0.85rem" }}>Sem compromisso. Sem cartão de crédito.</Typography>
+          <Typography sx={{ color: "#00cc33", mb: 3, fontSize: "0.85rem" }}>Sem compromisso. Sem cartão de crédito. Atendimento em Maringá e todo Brasil.</Typography>
           <Button variant="contained" href="https://wa.me/5544984198075?text=Quero%20testar%20Marketing%20OS" target="_blank" sx={{ bgcolor: "#00ff41", color: "#000", fontFamily: "monospace", fontWeight: 600, px: 4, py: 1.5, '&:hover': { bgcolor: "#00cc33" } }}>
             QUERO TESTAR GRÁTIS
           </Button>
