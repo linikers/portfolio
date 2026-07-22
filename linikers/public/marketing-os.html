@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marketing OS — O Sistema Operacional do seu Marketing</title>
+<meta name="description" content="Campanhas, leads, canais e operações funcionando em um único sistema. Marketing OS.">
+<style>
+/* ═══════════════════════════════════════
+   MARKETING OS — Landing Page
+   Sistema Operacional do Marketing
+   Visual: Editorial técnico anos 90
+   ═══════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
+
+/* ── Reset ── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* ── Variáveis ── */
+:root {
+  --black: #1a1a1a;
+  --near-black: #2a2a2a;
+  --cream: #f5f0e8;
+  --cream-dark: #e8e0d0;
+  --cream-paper: #f0ebe0;
+  --gray-light: #d4d0c8;
+  --gray-mid: #888480;
+  --gray-text: #666260;
+  --blue-deep: #1a3a5c;
+  --blue-mid: #2a5a8c;
+  --blue-light: #4a8abc;
+  --green-term: #33cc66;
+  --green-dim: #227744;
+  --white: #ffffff;
+
+  --font-display: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+  --border: 2px solid var(--near-black);
+  --border-light: 1px solid var(--gray-light);
+  --shadow: 4px 4px 0 var(--near-black);
+  --shadow-sm: 2px 2px 0 var(--near-black);
+}
+
+/* ── Body ── */
+body {
+  font-family: var(--font-display);
+  background: var(--cream);
+  color: var(--black);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Paper Texture ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.008) 2px,
+      rgba(0,0,0,0.008) 4px
+    );
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ── Container ── */
+.container { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+
+/* ── Top Bar ── */
+.topbar {
+  background: var(--black);
+  color: var(--cream);
+  padding: 10px 0;
+  border-bottom: 3px solid var(--blue-deep);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.topbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.topbar .logo {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--cream);
+  text-decoration: none;
+}
+.topbar .logo em { color: var(--green-term); font-style: normal; }
+.topbar nav { display: flex; gap: 24px; }
+.topbar nav a {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gray-light);
+  text-decoration: none;
+  transition: 0.2s;
+}
+.topbar nav a:hover { color: var(--green-term); }
+
+/* ── Hero ── */
+.hero {
+  padding: 100px 0 80px;
+  background: var(--black);
+  border-bottom: 4px solid var(--blue-deep);
+  position: relative;
+  overflow: hidden;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0; right: 0;
+  width: 300px; height: 300px;
+  background: radial-gradient(circle at 100% 100%, rgba(42,90,140,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero .container { position: relative; z-index: 1; }
+.hero .badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 4px;
+  color: var(--green-term);
+  border: 1px solid var(--green-dim);
+  padding: 4px 14px;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+}
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--white);
+  max-width: 800px;
+  margin-bottom: 20px;
+  letter-spacing: -1px;
+}
+.hero h1 span {
+  color: var(--blue-light);
+  display: block;
+}
+.hero p {
+  font-size: 1.1rem;
+  color: var(--gray-light);
+  max-width: 640px;
+  margin-bottom: 36px;
+  line-height: 1.7;
+}
+.hero .cta-group { display: flex; gap: 16px; flex-wrap: wrap; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 14px 36px;
+  cursor: pointer;
+  transition: 0.2s;
+  border: none;
+}
+.btn-primary {
+  background: var(--blue-deep);
+  color: var(--white);
+  box-shadow: var(--shadow-sm);
+}
+.btn-primary:hover {
+  background: var(--blue-mid);
+  box-shadow: 3px 3px 0 var(--near-black);
+  transform: translate(-1px, -1px);
+}
+.btn-outline {
+  background: transparent;
+  color: var(--gray-light);
+  border: 1px solid var(--gray-mid);
+  box-shadow: none;
+}
+.btn-outline:hover {
+  border-color: var(--green-term);
+  color: var(--green-term);
+}
+
+.hero .meta {
+  margin-top: 50px;
+  display: flex;
+  gap: 40px;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--gray-mid);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.hero .meta span { color: var(--green-term); }
+
+/* ── Seções genéricas ── */
+section { padding: 80px 0; }
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 4px;
+  color: var(--blue-deep);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 16px;
+  color: var(--black);
+}
+.section-title span { color: var(--blue-deep); }
+
+.section-sub {
+  font-size: 0.95rem;
+  color: var(--gray-text);
+  max-width: 600px;
+  margin-bottom: 48px;
+  line-height: 1.7;
+}
+
+/* ── Como Funciona ── */
+.how-it-works { border-bottom: 1px solid var(--cream-dark); }
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.step {
+  border: var(--border-light);
+  padding: 24px;
+  background: var(--cream-paper);
+  position: relative;
+}
+.step .num {
+  font-family: var(--font-mono);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--blue-deep);
+  opacity: 0.3;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.step h4 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--black);
+}
+.step p {
+  font-size: 0.8rem;
+  color: var(--gray-text);
+  line-height: 1.5;
+}
+
+/* ── Módulos ── */
+.modules { background: var(--white); border-bottom: 1px solid var(--cream-dark); }
+.module-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: var(--gray-light);
+  border: var(--border-light);
+}
+.module-item {
+  background: var(--cream-paper);
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.module-item .icon {
+  font-size: 1.5rem;
+  margin-bottom: 4px;
+}
+.module-item h4 {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--black);
+}
+.module-item p {
+  font-size: 0.75rem;
+  color: var(--gray-text);
+  line-height: 1.5;
+}
+.module-item .tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  background: var(--blue-deep);
+  color: var(--white);
+  align-self: flex-start;
+  margin-top: 4px;
+}
+.module-item .tag.green { background: var(--green-dim); }
+
+/* ── Agentes ── */
+.agents { border-bottom: 1px solid var(--cream-dark); }
+.agent-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+.agent-card {
+  border: var(--border-light);
+  padding: 28px;
+  background: var(--cream-paper);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.agent-card h4 {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--blue-deep);
+  letter-spacing: 1px;
+}
+.agent-card .role {
+  font-size: 0.7rem;
+  color: var(--gray-mid);
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.agent-card p {
+  font-size: 0.8rem;
+  color: var(--gray-text);
+  line-height: 1.6;
+}
+.agent-card .events {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+.agent-card .events span {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 1px;
+  padding: 2px 8px;
+  border: 1px solid var(--gray-light);
+  color: var(--gray-mid);
+  background: var(--white);
+}
+
+/* ── Canais ── */
+.channels { background: var(--white); border-bottom: 1px solid var(--cream-dark); }
+.channel-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.channel-card {
+  border: var(--border-light);
+  padding: 24px;
+  text-align: center;
+  background: var(--cream-paper);
+}
+.channel-card .icon { font-size: 2rem; margin-bottom: 8px; }
+.channel-card h4 {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+.channel-card .status {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.channel-card .status.on { color: var(--green-dim); }
+.channel-card .status.soon { color: var(--gray-mid); }
+
+/* ── Painel ── */
+.panel { border-bottom: 1px solid var(--cream-dark); }
+.panel-showcase {
+  border: var(--border);
+  background: var(--near-black);
+  padding: 40px;
+  position: relative;
+}
+.panel-showcase .screen {
+  background: var(--black);
+  border: 1px solid #444;
+  padding: 24px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--cream);
+}
+.panel-showcase .screen .header {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #333;
+}
+.panel-showcase .screen .header div {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+}
+.panel-showcase .screen .header .r { background: #ff5f56; }
+.panel-showcase .screen .header .y { background: #ffbd2e; }
+.panel-showcase .screen .header .g { background: #27c93f; }
+
+.panel-showcase .screen .line {
+  display: grid;
+  grid-template-columns: 120px 1fr 80px 80px;
+  gap: 16px;
+  padding: 6px 0;
+  border-bottom: 1px solid #222;
+}
+.panel-showcase .screen .line.h { color: var(--blue-light); font-weight: 600; }
+.panel-showcase .screen .line .green { color: var(--green-term); }
+.panel-showcase .screen .line .blue { color: var(--blue-light); }
+
+.panel-showcase .caption {
+  margin-top: 20px;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--gray-mid);
+  letter-spacing: 1px;
+  text-align: center;
+}
+.panel-features {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-top: 32px;
+}
+.panel-features .item {
+  padding: 16px;
+  border: var(--border-light);
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.panel-features .item .check { color: var(--green-dim); font-weight: 700; }
+
+/* ── Benefícios ── */
+.benefits { background: var(--black); color: var(--white); border-bottom: 1px solid #333; }
+.benefits .section-title { color: var(--white); }
+.benefits .section-title span { color: var(--blue-light); }
+.benefits .section-sub { color: var(--gray-mid); }
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.benefit-item {
+  border: 1px solid #333;
+  padding: 28px;
+}
+.benefit-item .number {
+  font-family: var(--font-mono);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--blue-deep);
+  opacity: 0.4;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+.benefit-item h4 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--white);
+}
+.benefit-item p {
+  font-size: 0.78rem;
+  color: var(--gray-mid);
+  line-height: 1.6;
+}
+
+/* ── Casos de Uso ── */
+.use-cases { border-bottom: 1px solid var(--cream-dark); }
+.cases-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+  background: var(--gray-light);
+  border: var(--border-light);
+}
+.case-item {
+  background: var(--cream-paper);
+  padding: 32px;
+}
+.case-item h4 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.case-item p {
+  font-size: 0.78rem;
+  color: var(--gray-text);
+  line-height: 1.6;
+}
+
+/* ── CTA Final ── */
+.cta-final {
+  padding: 100px 0;
+  background: var(--black);
+  text-align: center;
+  border-bottom: 4px solid var(--blue-deep);
+}
+.cta-final h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 16px;
+}
+.cta-final h2 span { color: var(--blue-light); }
+.cta-final p {
+  font-size: 1rem;
+  color: var(--gray-mid);
+  max-width: 500px;
+  margin: 0 auto 36px;
+}
+.cta-final .btn-group { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+/* ── Footer ── */
+footer {
+  background: var(--near-black);
+  padding: 30px 0;
+  text-align: center;
+  border-top: 1px solid #444;
+}
+footer p {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--gray-mid);
+  letter-spacing: 1px;
+}
+footer p em { color: var(--green-term); font-style: normal; }
+
+/* ── Responsivo ── */
+@media (max-width: 900px) {
+  .steps { grid-template-columns: repeat(2, 1fr); }
+  .module-grid { grid-template-columns: repeat(2, 1fr); }
+  .agent-grid { grid-template-columns: 1fr; }
+  .channel-grid { grid-template-columns: 1fr; }
+  .benefits-grid { grid-template-columns: 1fr; }
+  .cases-grid { grid-template-columns: 1fr; }
+  .panel-features { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 2.2rem; }
+}
+@media (max-width: 600px) {
+  .steps { grid-template-columns: 1fr; }
+  .module-grid { grid-template-columns: 1fr; }
+  .topbar nav { display: none; }
+  .hero h1 { font-size: 1.8rem; }
+  .hero .meta { flex-direction: column; gap: 8px; }
+  .container { padding: 0 20px; }
+  section { padding: 50px 0; }
+  .panel-showcase { padding: 16px; }
+  .panel-showcase .screen .line {
+    grid-template-columns: 1fr;
+    font-size: 0.6rem;
+    gap: 2px;
+  }
+  .panel-showcase .screen .line.h { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════ Top Bar ═══════════ -->
+<div class="topbar">
+  <div class="container">
+    <a href="/" class="logo">[ <em>◆</em> ] marketing <em>os</em></a>
+    <nav>
+      <a href="#como-funciona">[como funciona]</a>
+      <a href="#modulos">[módulos]</a>
+      <a href="#agentes">[agentes]</a>
+      <a href="#beneficios">[benefícios]</a>
+    </nav>
+  </div>
+</div>
+
+<!-- ═══════════ Hero ═══════════ -->
+<section class="hero">
+  <div class="container">
+    <div class="badge">◆ marketing os v1.0</div>
+    <h1>O Sistema Operacional<span>do seu Marketing.</span></h1>
+    <p>Campanhas, leads, canais e operações funcionando em um único sistema. Tudo orquestrado por agentes especializados que trabalham 24 horas por dia.</p>
+    <div class="cta-group">
+      <a href="#modulos" class="btn btn-primary">Conhecer o Sistema</a>
+      <a href="https://wa.me/5544984198075?text=Quero%20testar%20Marketing%20OS" class="btn btn-outline" target="_blank">Falar com Consultor →</a>
+    </div>
+    <div class="meta">
+      <div>google ads <span>●</span> meta ads <span>●</span> whatsapp</div>
+      <div>6 agentes especializados</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ Como Funciona ═══════════ -->
+<section class="how-it-works" id="como-funciona">
+  <div class="container">
+    <div class="section-label">◆ fluxo operacional</div>
+    <h2 class="section-title">Como o <span>Sistema</span> funciona</h2>
+    <p class="section-sub">Cada ação de marketing entra como um evento. O sistema roteia para o agente certo, que analisa, decide e executa — tudo em ciclo contínuo.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="num">01</div>
+        <h4>Evento entra</h4>
+        <p>Lead novo, campanha criada, mensagem enviada — tudo vira um evento no barramento central.</p>
+      </div>
+      <div class="step">
+        <div class="num">02</div>
+        <h4>Supervisor roteia</h4>
+        <p>O supervisor identifica o tipo de evento e encaminha para o especialista correto.</p>
+      </div>
+      <div class="step">
+        <div class="num">03</div>
+        <h4>Agente processa</h4>
+        <p>Cada especialista analisa o contexto, toma decisões e coordena a execução.</p>
+      </div>
+      <div class="step">
+        <div class="num">04</div>
+        <h4>Ação executada</h4>
+        <p>O resultado é publicado como novo evento — fechando o ciclo e gerando métricas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ Módulos ═══════════ -->
+<section class="modules" id="modulos">
+  <div class="container">
+    <div class="section-label">◆ módulos do sistema</div>
+    <h2 class="section-title">Tudo em <span>um só lugar</span></h2>
+    <p class="section-sub">Seis módulos que cobrem o ciclo completo do marketing operacional.</p>
+    <div class="module-grid">
+      <div class="module-item">
+        <div class="icon">📊</div>
+        <h4>Campanhas</h4>
+        <p>Criação, agendamento, execução e relatórios de campanhas multicanal.</p>
+        <span class="tag">ativo</span>
+      </div>
+      <div class="module-item">
+        <div class="icon">👤</div>
+        <h4>Contatos</h4>
+        <p>Gestão de leads, segmentação por estágio do funil, histórico de interações.</p>
+        <span class="tag">ativo</span>
+      </div>
+      <div class="module-item">
+        <div class="icon">📨</div>
+        <h4>Canais</h4>
+        <p>WhatsApp integrado. Email e SMS prontos para ativar.</p>
+        <span class="tag">ativo</span>
+      </div>
+      <div class="module-item">
+        <div class="icon">📈</div>
+        <h4>Anúncios</h4>
+        <p>Google Ads e Meta Ads conectados via OAuth. Dashboard com métricas, alertas e exportação.</p>
+        <span class="tag">ativo</span>
+      </div>
+      <div class="module-item">
+        <div class="icon">🧠</div>
+        <h4>Agentes IA</h4>
+        <p>Especialistas que analisam métricas, tomam decisões e sugerem otimizações.</p>
+        <span class="tag green">internal</span>
+      </div>
+      <div class="module-item">
+        <div class="icon">📋</div>
+        <h4>Relatórios</h4>
+        <p>Eventos, métricas, alertas automáticos e exportação CSV/PDF.</p>
+        <span class="tag">ativo</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ Agentes ═══════════ -->
+<section class="agents" id="agentes">
+  <div class="container">
+    <div class="section-label">◆ agentes especializados</div>
+    <h2 class="section-title">Seis especialistas <span>trabalhando</span></h2>
+    <p class="section-sub">Cada agente cobre um domínio específico. Eles se comunicam por eventos — nenhum depende do outro.</p>
+    <div class="agent-grid">
+      <div class="agent-card">
+        <h4>Campaign Specialst</h4>
+        <div class="role">Analisa e gerencia campanhas</div>
+        <p>Valida dados, seleciona audiência, agenda mensagens e coordena a execução multicanal.</p>
+        <div class="events">
+          <span>campanha.criada</span>
+          <span>campanha.iniciada</span>
+          <span>msg.falhou</span>
+        </div>
+      </div>
+      <div class="agent-card">
+        <h4>Lead Specialist</h4>
+        <div class="role">Processa novos contatos</div>
+        <p>Cadastra leads, atualiza estágio do funil e prepara contatos para campanhas.</p>
+        <div class="events">
+          <span>lead.criado</span>
+          <span>lead.atualizado</span>
+        </div>
+      </div>
+      <div class="agent-card">
+        <h4>Channel Specialist</h4>
+        <div class="role">Gerencia canais de envio</div>
+        <p>Roteia mensagens para o canal correto — WhatsApp, Email ou SMS — e monitora entregas.</p>
+        <div class="events">
+          <span>msg.enviada</span>
+          <span>msg.entregue</span>
+          <span>msg.falhou</span>
+        </div>
+      </div>
+      <div class="agent-card">
+        <h4>Analytics Specialist</h4>
+        <div class="role">Métricas e relatórios</div>
+        <p>Coleta métricas de campanhas, calcula KPIs e alimenta os dashboards em tempo real.</p>
+        <div class="events">
+          <span>campanha.concluida</span>
+          <span>campanha.falha</span>
+        </div>
+      </div>
+      <div class="agent-card">
+        <h4>Optimizer Specialist</h4>
+        <div class="role">Otimização contínua</div>
+        <p>Analisa resultados e ajusta lances, orçamentos e segmentação para melhor performance.</p>
+        <div class="events">
+          <span>campanha.concluida</span>
+        </div>
+      </div>
+      <div class="agent-card">
+        <h4>Pricing Specialist</h4>
+        <div class="role">Análise financeira</div>
+        <p>Avalia preços, margens, concorrência e recomenda estratégias de precificação.</p>
+        <div class="events">
+          <span>chamada direta</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ Canais ═══════════ -->
+<section class="channels">
+  <div class="container">
+    <div class="section-label">◆ canais suportados</div>
+    <h2 class="section-title">Conecte seus <span>canais</span></h2>
+    <p class="section-sub">Disparo multicanal com tracking individual e taxa-limite por canal.</p>
+    <div class="channel-grid">
+      <div class="channel-card">
+        <div class="icon">💬</div>
+        <h4>WhatsApp</h4>
+        <p style="font-size:0.75rem;color:var(--gray-text);margin-bottom:8px;">API oficial integrada. Envio de texto, imagens e templates.</p>
+        <div class="status on">● operacional</div>
+      </div>
+      <div class="channel-card">
+        <div class="icon">✉️</div>
+        <h4>Email</h4>
+        <p style="font-size:0.75rem;color:var(--gray-text);margin-bottom:8px;">Adapter implementado com rate-limiter e tracking de abertura.</p>
+        <div class="status on">● operacional</div>
+      </div>
+      <div class="channel-card">
+        <div class="icon">📱</div>
+        <h4>SMS</h4>
+        <p style="font-size:0.75rem;color:var(--gray-text);margin-bottom:8px;">Infraestrutura pronta. Adapter, rate-limiter e tracker.</p>
+        <div class="status soon">○ em breve</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ Painel ═══════════ -->
+<section class="panel">
+  <div class="container">
+    <div class="section-label">◆ painel de controle</div>
+    <h2 class="section-title">Visão completa <span>em tempo real</span></h2>
+    <p class="section-sub">Acompanhe campanhas, métricas de anúncios e operações em um único dashboard.</p>
+    <div class="panel-showcase">
+      <div class="screen">
+        <div class="header">
+          <div class="r"></div>
+          <div class="y"></div>
+          <div class="g"></div>
+        </div>
+        <div class="line h">
+          <span>campanha</span>
+          <span>status</span>
+          <span>gasto</span>
+          <span>roas</span>
+        </div>
+        <div class="line">
+          <span class="blue">carros usados — search</span>
+          <span class="green">● ativa</span>
+          <span>R$ 4.320</span>
+          <span>3.2x</span>
+        </div>
+        <div class="line">
+          <span class="blue">pneus promo — shopping</span>
+          <span class="green">● ativa</span>
+          <span>R$ 2.180</span>
+          <span>4.7x</span>
+        </div>
+        <div class="line">
+          <span class="blue">ofertas julho — display</span>
+          <span>○ pausada</span>
+          <span>R$ 890</span>
+          <span>1.8x</span>
+        </div>
+        <div class="line">
+          <span class="blue">lançamento — meta ads</span>
+          <span class="green">● ativa</span>
+          <span>R$ 1.540</span>
+          <span>2.9x</span>
+        </div>
+      </div>
+      <div class="caption">dashboard — google ads + meta ads (dados simulados para demonstração)</div>
+    </div>
+    <div class="panel-features">
+      <div class="item"><span class="check">✔</span> Gráficos de gasto, ROAS, CTR, CPC</div>
+      <div class="item"><span class="check">✔</span> Alertas automáticos de baixo ROAS e CPA alto</div>
+      <div class="item"><span class="check">✔</span> Comparação com período anterior</div>
+      <div class="item"><span class="check">✔</span> Exportação CSV e PDF</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ Benefícios ═══════════ -->
+<section class="benefits" id="beneficios">
+  <div class="container">
+    <div class="section-label" style="color:var(--blue-light);">◆ por que marketing os</div>
+    <h2 class="section-title">Organização. <span>Controle. Execução.</span></h2>
+    <p class="section-sub">Não é mais uma ferramenta de IA. É a infraestrutura que o seu marketing precisava.</p>
+    <div class="benefits-grid">
+      <div class="benefit-item">
+        <div class="number">01</div>
+        <h4>Um sistema, todos os canais</h4>
+        <p>Google Ads, Meta Ads, WhatsApp, Email — tudo gerenciado de um único lugar. Sem alternar entre abas.</p>
+      </div>
+      <div class="benefit-item">
+        <div class="number">02</div>
+        <h4>Agentes que nunca dormem</h4>
+        <p>Enquanto você opera o negócio, os agentes monitoram métricas, processam leads e mantêm campanhas no ar.</p>
+      </div>
+      <div class="benefit-item">
+        <div class="number">03</div>
+        <h4>Decisões baseadas em dados</h4>
+        <p>Cada ação vira um evento. Cada evento gera métrica. Cada métrica alimenta a próxima decisão.</p>
+      </div>
+      <div class="benefit-item">
+        <div class="number">04</div>
+        <h4>Arquitetura que escala</h4>
+        <p>Componentes desacoplados, barramento de eventos, agentes independentes. Cresce sem reestruturar.</p>
+      </div>
+      <div class="benefit-item">
+        <div class="number">05</div>
+        <h4>Conectado com as plataformas</h4>
+        <p>OAuth com Google e Meta. API do WhatsApp. Pronto para Mercado Livre, Amazon e Shopee.</p>
+      </div>
+      <div class="benefit-item">
+        <div class="number">06</div>
+        <h4>Feito para PMEs</h4>
+        <p>Complexidade técnica abstraída. Você configura em minutos, não em dias.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ Casos de Uso ═══════════ -->
+<section class="use-cases">
+  <div class="container">
+    <div class="section-label">◆ casos de uso</div>
+    <h2 class="section-title">Para quem o <span>Sistema</span> foi feito</h2>
+    <p class="section-sub">Empresas que precisam organizar o marketing operacional sem depender de plataformas desconectadas.</p>
+    <div class="cases-grid">
+      <div class="case-item">
+        <h4>Loja que anuncia no Google e Facebook</h4>
+        <p>Unifica campanhas, métricas e orçamento em um dashboard só. Sem planilha, sem login em dois lugares.</p>
+      </div>
+      <div class="case-item">
+        <h4>Prestador de serviços com captação de leads</h4>
+        <p>Lead chega → agente processa → campanha dispara → funil avança. Tudo automático.</p>
+      </div>
+      <div class="case-item">
+        <h4>Agência que gerencia múltiplos clientes</h4>
+        <p>Contas separadas por cliente. Relatórios automáticos. Visão consolidada ou individual.</p>
+      </div>
+      <div class="case-item">
+        <h4>E-commerce que opera em marketplaces</h4>
+        <p>Análise de preços, concorrência e margens. Decisão de precificação assistida por agente.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CTA Final ═══════════ -->
+<section class="cta-final">
+  <div class="container">
+    <h2>Pronto para <span>organizar</span> seu marketing?</h2>
+    <p>Teste grátis por 7 dias. Sem compromisso. Sem cartão de crédito.</p>
+    <div class="btn-group">
+      <a href="https://wa.me/5544984198075?text=Quero%20testar%20Marketing%20OS" class="btn btn-primary" target="_blank">Testar Grátis →</a>
+      <a href="https://marketing.linikers.cloud" class="btn btn-outline" style="color:var(--gray-mid);border-color:var(--gray-mid);">Acessar Dashboard</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ Footer ═══════════ -->
+<footer>
+  <div class="container">
+    <p>root@linikers:~$ <em>◆</em> echo "marketing os — sistema operacional do marketing"<br>
+    © 2026 LinikerS &nbsp;|&nbsp; built with next.js + prisma + postgresql</p>
+  </div>
+</footer>
+
+</body>
+</html>
