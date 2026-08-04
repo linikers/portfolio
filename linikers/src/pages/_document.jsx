@@ -4,9 +4,9 @@ import Document, { Html, Head, Main, NextScript } from "next/document";
 export default class MyDocument extends Document {
   render() {
     return (
-      <Html lang="Pt-Br">
+      <Html lang="pt-BR">
         <Head>
-          <link rel="icon" href="../../public/favicon.png" />
+          <link rel="icon" href="/favicon.png" />
           <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -17,7 +17,6 @@ export default class MyDocument extends Document {
           />
           <script async src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
         </Head>
-        <title>LinikerS web Developer</title>
         <body>
           <Main />
           <NextScript />
