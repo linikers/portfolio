@@ -130,11 +130,8 @@ export default function Home() {
     />
   );
 
-  if (phase === "boot" || phase === "glitch") {
-    return (
-      <>
-        {seo}
-        <Box
+  const bootOverlay = (
+    <Box
         sx={{
           position: "fixed",
           inset: 0,
@@ -181,9 +178,7 @@ export default function Home() {
           ))}
         </Box>
       </Box>
-      </>
     );
-  }
 
   // ─── LANDING PHASE ─────────────────────────
   return (
@@ -215,7 +210,7 @@ export default function Home() {
         />
 
         <Container maxWidth="lg" sx={{ position: "relative", zIndex: 1, py: 8 }}>
-          <motion.div variants={containerVariants} initial="hidden" animate="show">
+          <motion.div variants={containerVariants} initial="hidden" animate={phase === "landing" ? "show" : "hidden"}>
             {/* Hero */}
             <Box
               sx={{
@@ -456,6 +451,7 @@ export default function Home() {
           </motion.div>
         </Container>
       </MotionBox>
+      {phase !== "landing" && bootOverlay}
     </>
   );
 }
