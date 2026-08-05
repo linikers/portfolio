@@ -122,9 +122,19 @@ export default function Home() {
   }, [phase]);
 
   // ─── BOOT PHASE ────────────────────────────
+  const seo = (
+    <SEO
+      title="Desenvolvedor Full Stack"
+      description="Criação de sites, landing pages, sistemas web, bots e automação. Next.js, React, TypeScript, Web3. LinikerS — soluções inteligentes para seu negócio."
+      ogImage="/profileImg.jpg"
+    />
+  );
+
   if (phase === "boot" || phase === "glitch") {
     return (
-      <Box
+      <>
+        {seo}
+        <Box
         sx={{
           position: "fixed",
           inset: 0,
@@ -171,17 +181,14 @@ export default function Home() {
           ))}
         </Box>
       </Box>
+      </>
     );
   }
 
   // ─── LANDING PHASE ─────────────────────────
   return (
     <>
-      <SEO
-        title="Desenvolvedor Full Stack"
-        description="Criação de sites, landing pages, sistemas web, bots e automação. Next.js, React, TypeScript, Web3. LinikerS — soluções inteligentes para seu negócio."
-        ogImage="/profileImg.jpg"
-      />
+      {seo}
       <MotionBox
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

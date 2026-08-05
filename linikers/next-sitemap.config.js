@@ -11,7 +11,7 @@ module.exports = {
       },
     ],
   },
-  exclude: ["/admin/**", "/api/**", "/login", "/whatsapp-qr"],
+  exclude: ["/admin", "/admin/**", "/api/**", "/login", "/whatsapp-qr", "/components/**"],
   generateIndexSitemap: false,
   outDir: "public",
 };
