@@ -7,6 +7,7 @@ export default class MyDocument extends Document {
       <Html lang="pt-BR">
         <Head>
           <link rel="icon" href="/favicon.png" />
+          <meta name="facebook-domain-verification" content="7ka2lllvr6hc9j4lmmajjhyj10ogmu" />
           <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
