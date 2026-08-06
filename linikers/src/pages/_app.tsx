@@ -78,6 +78,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <meta name="theme-color" content="#0a0a0a" />
         <link rel="icon" href="/favicon.png" />
         <meta name="google-site-verification" content="f3b6fe1ad59f5971" />
+        <meta name="facebook-domain-verification" content="7ka2lllvr6hc9j4lmmajjhyj10ogmu" />
       </Head>
       <MuiThemeProvider theme={theme}>
       <CssBaseline />
