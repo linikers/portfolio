@@ -17,6 +17,21 @@ export default class MyDocument extends Document {
             content="LinikerS Dev desenvolvedor Fron-End && Back-End"
           />
           <script async src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+          {/* Google tag (gtag.js) — Google Ads AW-18460150717.
+              Fica no _document para sair no HTML de TODAS as páginas, uma vez só.
+              Não duplicar em _app nem em páginas individuais. */}
+          <script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=AW-18460150717"
+          ></script>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'AW-18460150717');`,
+            }}
+          />
         </Head>
         <body>
           <Main />
