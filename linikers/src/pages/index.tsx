@@ -124,8 +124,8 @@ export default function Home() {
   // ─── BOOT PHASE ────────────────────────────
   const seo = (
     <SEO
-      title="Desenvolvedor Full Stack"
-      description="Criação de sites, landing pages, sistemas web, bots e automação. Next.js, React, TypeScript, Web3. LinikerS — soluções inteligentes para seu negócio."
+      title="Criação de Sites e Sistemas Sob Medida | LinikerS"
+      description="Criação de sites, landing pages e sistemas web sob medida para vender mais. Código próprio, entrega combinada e suporte com quem desenvolve. Peça seu orçamento."
       ogImage="/profileImg.jpg"
     />
   );
