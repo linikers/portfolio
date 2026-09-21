@@ -1,6 +1,7 @@
 import { Container, Typography, Box, IconButton, Stack } from "@mui/material";
 import { WhatsApp } from "@mui/icons-material";
 import SEO from "@/components/SEO";
+import { WHATSAPP_LINK, registrarConversaoWhatsApp } from "@/lib/conversaoWhatsapp";
 import { FaGithub, FaLinkedin, FaXTwitter, FaInstagram } from "react-icons/fa6";
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -95,8 +96,9 @@ export default function Contato() {
       </Stack>
 
       <IconButton
-        href="https://wa.me/5544984198075"
+        href={WHATSAPP_LINK}
         target="_blank"
+        onClick={registrarConversaoWhatsApp}
         sx={{
           bgcolor: "#25D366",
           color: "#fff",
