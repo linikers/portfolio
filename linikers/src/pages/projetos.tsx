@@ -7,6 +7,12 @@ import Button from "@mui/material/Button";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import Link from "next/link";
 import Image from "next/image";
+import { WHATSAPP_NUMERO } from "@/lib/conversaoWhatsapp";
+
+/** CTA desta página: o portfólio gera interesse — sem botão, o clique de anúncio morre aqui. */
+const LINK_WHATSAPP = `https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent(
+  "Vi seus projetos e quero um orçamento"
+)}`;
 
 // ─── Projetos em Destaque ───────────────────────────
 const destaques = [
@@ -83,6 +89,27 @@ export default function Projetos() {
       >
         $ ls -la ~/workspace/
       </Typography>
+
+      <Box sx={{ mb: 6, display: "flex", alignItems: "center", gap: 2, flexWrap: "wrap" }}>
+        <Button
+          href={LINK_WHATSAPP}
+          target="_blank"
+          rel="noopener noreferrer"
+          variant="contained"
+          sx={{
+            bgcolor: "#22d3ee",
+            color: "#000",
+            fontFamily: "monospace",
+            fontWeight: 600,
+            "&:hover": { bgcolor: "#0fb6d0" },
+          }}
+        >
+          QUERO ALGO ASSIM
+        </Button>
+        <Typography sx={{ color: "text.secondary", fontFamily: "monospace", fontSize: "0.8rem" }}>
+          orçamento em 24h no WhatsApp
+        </Typography>
+      </Box>
 
       {/* ─── Destaques ───────────────────────── */}
       <Typography
