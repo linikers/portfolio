@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import SEO from "@/components/SEO";
+import { WHATSAPP_LINK, registrarConversaoWhatsApp } from "@/lib/conversaoWhatsapp";
 import {
   Box,
   Container,
@@ -315,10 +316,14 @@ export default function Home() {
                   </Box>
                 </motion.div>
 
-                {/* CTA — iniciar conversa */}
+                {/* CTA — conversão: clique no WhatsApp (é o que a ação "Clique WhatsApp - site" mede) */}
                 <motion.div variants={itemVariants}>
                   <Button
-                    href="/contato"
+                    component="a"
+                    href={WHATSAPP_LINK}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={registrarConversaoWhatsApp}
                     variant="contained"
                     size="large"
                     endIcon={<Box component="span" sx={{ fontFamily: "monospace" }}>→</Box>}
@@ -341,7 +346,7 @@ export default function Home() {
                       },
                     }}
                   >
-                    $ iniciar conversa
+                    $ pedir orçamento no whatsapp
                   </Button>
                 </motion.div>
               </Box>
