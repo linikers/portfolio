@@ -10,6 +10,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Head from "next/head";
 import "@/styles/globals.scss";
+import { instalarConversaoWhatsApp } from "@/lib/conversaoWhatsapp";
 
 const themes = [
   { id: "terminal-verde", name: "Terminal Verde", primary: "#00ff41", bg: "#0a0a0a", paper: "#0d0d0d", text: "#00ff41", secondary: "#00cc33", radius: 2, font: "'IBM Plex Mono', monospace" },
@@ -66,6 +67,10 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       return next.id;
     });
   }, []);
+
+  // Mede o clique no WhatsApp em todo o site: botões, ícones do rodapé e as landing
+  // pages das sitelinks. Um listener global cobre também pontos criados depois.
+  useEffect(() => instalarConversaoWhatsApp(), []);
 
   const themeMeta = themes.find((t) => t.id === themeId) || themes[0];
   const theme = buildTheme(themeMeta);
