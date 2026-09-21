@@ -25,6 +25,19 @@ export const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIC
  */
 export const WHATSAPP_CONVERSION_SEND_TO = "";
 
+/**
+ * Medição por URL (Plano B): o clique passa por `/ir/whatsapp` e a conversão é medida
+ * pelo **carregamento dessa página**, via a ação de conversão por URL do Google Ads.
+ * Não precisa de rótulo/snippet — usa a tag que já está no site.
+ *
+ * Ligado por padrão porque foi o caminho escolhido; desligar (false) volta ao disparo
+ * por evento, que exige o rótulo acima.
+ */
+export const MEDIR_CLIQUE_POR_URL = true;
+
+/** Rota de passagem que o Google Ads deve medir (adicionar em "Páginas da Web"). */
+export const ROTA_MEDIDA = "/ir/whatsapp";
+
 /** Janela anti-duplo-disparo: um clique pode passar pelo botão E pelo listener global. */
 const JANELA_ANTI_DUPLO_MS = 500;
 let ultimoDisparo = 0;
@@ -37,9 +50,12 @@ let ultimoDisparo = 0;
  */
 export function registrarConversaoWhatsApp(): boolean {
   if (!WHATSAPP_CONVERSION_SEND_TO) {
-    // Sem rótulo: fica explícito no console que a medição está desligada de propósito.
+    // Sem rótulo: se a medição por URL está ligada, o clique ainda é contado (na rota
+    // medida); se não está, fica explícito no console que nada será registrado.
     console.info(
-      "[conversao] clique no WhatsApp detectado, mas a medição está desligada (WHATSAPP_CONVERSION_SEND_TO vazio)"
+      MEDIR_CLIQUE_POR_URL
+        ? `[conversao] clique roteado para ${ROTA_MEDIDA} (medido por URL)`
+        : "[conversao] clique no WhatsApp detectado, mas a medição está desligada"
     );
     return false;
   }
@@ -66,9 +82,22 @@ export function instalarConversaoWhatsApp(): () => void {
   if (typeof document === "undefined") return () => {};
   const aoClicar = (ev: MouseEvent) => {
     const alvo = ev.target as HTMLElement | null;
-    const link = alvo?.closest?.('a[href*="wa.me/"]');
+    const link = alvo?.closest?.('a[href*="wa.me/"]') as HTMLAnchorElement | null;
     if (!link) return;
+
     registrarConversaoWhatsApp();
+
+    // Plano B: o clique passa pela rota medida. A mensagem pré-escrita de cada botão
+    // vai junto no parâmetro `to`, então nenhuma landing perde sua copy.
+    if (MEDIR_CLIQUE_POR_URL && link.href.startsWith("https://wa.me/")) {
+      ev.preventDefault();
+      const medido = `${ROTA_MEDIDA}?to=${encodeURIComponent(link.href)}`;
+      if (link.target === "_blank") {
+        window.open(medido, "_blank", "noopener");
+      } else {
+        window.location.href = medido;
+      }
+    }
   };
   document.addEventListener("click", aoClicar, true);
   return () => document.removeEventListener("click", aoClicar, true);
