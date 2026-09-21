@@ -290,7 +290,7 @@ export default function Home() {
                     {[
                       { icon: <GitHubIcon size={18} />, url: "https://github.com/linikers", label: "GitHub" },
                       { icon: <LinkedInIcon size={18} />, url: "https://linkedin.com/in/linikers", label: "LinkedIn" },
-                      { icon: <WhatsAppIcon size={18} />, url: "https://wa.me/5544984198075", label: "WhatsApp" },
+                      { icon: <WhatsAppIcon size={18} />, url: WHATSAPP_LINK, label: "WhatsApp" },
                       { icon: <XIcon size={18} />, url: "https://x.com/linikers", label: "X" },
                       { icon: <InstagramIcon size={18} />, url: "https://instagram.com/linikers", label: "Instagram" },
                     ].map((s) => (
@@ -298,6 +298,7 @@ export default function Home() {
                         key={s.label}
                         href={s.url}
                         target="_blank"
+                        onClick={s.label === "WhatsApp" ? registrarConversaoWhatsApp : undefined}
                         variant="outlined"
                         size="small"
                         startIcon={s.icon}
