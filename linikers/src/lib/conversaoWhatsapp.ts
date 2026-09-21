@@ -36,13 +36,22 @@ let ultimoDisparo = 0;
  * a conversão seria contada duas vezes).
  */
 export function registrarConversaoWhatsApp(): boolean {
-  if (!WHATSAPP_CONVERSION_SEND_TO) return false;
+  if (!WHATSAPP_CONVERSION_SEND_TO) {
+    // Sem rótulo: fica explícito no console que a medição está desligada de propósito.
+    console.info(
+      "[conversao] clique no WhatsApp detectado, mas a medição está desligada (WHATSAPP_CONVERSION_SEND_TO vazio)"
+    );
+    return false;
+  }
   const agora = Date.now();
   if (agora - ultimoDisparo < JANELA_ANTI_DUPLO_MS) return false;
   const gtag = (window as unknown as { gtag?: (...args: unknown[]) => void }).gtag;
   if (typeof gtag !== "function") return false;
   ultimoDisparo = agora;
   gtag("event", "conversion", { send_to: WHATSAPP_CONVERSION_SEND_TO });
+  // Marcador para teste: dá pra conferir no console do navegador que o evento saiu,
+  // sem esperar o Google processar.
+  console.info("[conversao] disparada:", WHATSAPP_CONVERSION_SEND_TO);
   return true;
 }
 
