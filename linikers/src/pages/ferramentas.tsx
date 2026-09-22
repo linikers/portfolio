@@ -1,7 +1,13 @@
-import { Container, Typography, Box, Grid2, Card, CardContent, Chip, keyframes } from "@mui/material";
+import { Container, Typography, Box, Grid2, Card, CardContent, Chip, keyframes, Button } from "@mui/material";
 import BoxGitDefault from "@/components/BoxGitDefault";
 import BoxDev from "@/components/BoxDev";
 import { motion } from "framer-motion";
+import { WHATSAPP_NUMERO } from "@/lib/conversaoWhatsapp";
+
+/** CTA desta página: quem lê a stack é cliente em potencial — sem botão, o clique morre aqui. */
+const LINK_WHATSAPP = `https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent(
+  "Quero essa stack no meu projeto"
+)}`;
 import {
   DiJsBadge, DiCss3, DiLinux, DiDocker, DiGithub, DiMongodb,
   DiSass, DiPostgresql, DiReact, DiHtml5, DiScrum, DiUbuntu,
@@ -41,6 +47,27 @@ export default function Ferramentas() {
       <Typography variant="body1" sx={{ color: "text.secondary", fontFamily: "monospace", fontSize: "0.85rem", mb: 6 }}>
         $ which dev && dpkg -l | grep skill
       </Typography>
+
+      <Box sx={{ mb: 6, display: "flex", alignItems: "center", gap: 2, flexWrap: "wrap" }}>
+        <Button
+          href={LINK_WHATSAPP}
+          target="_blank"
+          rel="noopener noreferrer"
+          variant="contained"
+          sx={{
+            bgcolor: "#22d3ee",
+            color: "#000",
+            fontFamily: "monospace",
+            fontWeight: 600,
+            "&:hover": { bgcolor: "#0fb6d0" },
+          }}
+        >
+          QUERO ESSA STACK NO MEU PROJETO
+        </Button>
+        <Typography sx={{ color: "text.secondary", fontFamily: "monospace", fontSize: "0.8rem" }}>
+          orçamento em 24h no WhatsApp
+        </Typography>
+      </Box>
 
       {/* Skill Cards */}
       <Grid2 container spacing={3} sx={{ mb: 6 }}>
