@@ -23,7 +23,19 @@ const PROFISSIONAIS = [
   { id: "bruno", nome: "Bruno", iniciais: "B" },
 ];
 
-const DIAS = ["Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"];
+const DIAS = (() => {
+  /** Próxima data real de cada dia da semana (a demo mostra data, não só "amanhã"). */
+  const nomes = ["Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"];
+  const hoje = new Date();
+  return nomes.map((rotulo, i) => {
+    const d = new Date(hoje);
+    d.setDate(d.getDate() + ((i + 1 - d.getDay() + 7) % 7));
+    const data = `${String(d.getDate()).padStart(2, "0")}/${String(
+      d.getMonth() + 1
+    ).padStart(2, "0")}`;
+    return { rotulo, data, chave: `${rotulo} ${data}` };
+  });
+})();
 
 const HORARIOS = [
   "09:00",
@@ -82,7 +94,7 @@ export default function AgendaDemoPage() {
             <h1 className={s.demoMarca}>Navalha &amp; Cia</h1>
             <p className={s.demoTaglinha}>Agende seu horário em 20 segundos</p>
             <p className={s.demoSublinha}>
-              Seg a sáb, 9h às 20h · dados de exemplo, sem reserva real
+              Seg a sáb, 9h às 18h · dados de exemplo, sem reserva real
             </p>
           </header>
 
@@ -142,17 +154,20 @@ export default function AgendaDemoPage() {
             <div className={s.demoDias}>
               {DIAS.map((item) => (
                 <button
-                  key={item}
+                  key={item.chave}
                   type="button"
                   disabled={!profissionalId}
-                  className={`${s.demoDia} ${dia === item ? s.demoDiaOn : ""}`}
-                  aria-pressed={dia === item}
+                  className={`${s.demoDia} ${
+                    dia === item.chave ? s.demoDiaOn : ""
+                  }`}
+                  aria-pressed={dia === item.chave}
                   onClick={() => {
-                    setDia(item);
+                    setDia(item.chave);
                     setHora(null);
                   }}
                 >
-                  {item}
+                  <span className={s.demoDiaRotulo}>{item.rotulo}</span>
+                  <span className={s.demoDiaData}>{item.data}</span>
                 </button>
               ))}
             </div>
@@ -195,7 +210,7 @@ export default function AgendaDemoPage() {
                   <span className={s.demoBolhaRotulo}>
                     Lembrete automático (exemplo)
                   </span>
-                  Lembrete: amanhã às {hora} você tem{" "}
+                  Lembrete: {dia} às {hora} você tem{" "}
                   {servico.nome.toLowerCase()} na Navalha &amp; Cia.
                 </div>
                 <div className={s.demoAcoes}>
