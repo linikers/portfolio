@@ -1,5 +1,6 @@
 import type { AppProps } from "next/app";
 import { useState, useCallback, useEffect } from "react";
+import { useRouter } from "next/router";
 import { ThemeProvider as MuiThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
@@ -53,6 +54,11 @@ const defaultId = "terminal-verde";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   const [themeId, setThemeId] = useState(defaultId);
+  const router = useRouter();
+
+  // A família de rotas /bside (Bside Digital Studio) tem identidade própria:
+  // nada de Navbar, Footer, botão de tema nem meta/favicon do portfólio vazando.
+  const ehBside = router.pathname.startsWith("/bside");
 
   useEffect(() => {
     const saved = localStorage.getItem(STORAGE_KEY);
@@ -80,39 +86,49 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       <Head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="theme-color" content="#0a0a0a" />
-        <link rel="icon" href="/favicon.png" />
+        {/* Na rota /bside o tema e o favicon são os da Bside (ver Seo.tsx) */}
+        {!ehBside && <meta name="theme-color" content="#0a0a0a" />}
+        {!ehBside && <link rel="icon" href="/favicon.png" />}
         <meta name="google-site-verification" content="f3b6fe1ad59f5971" />
         <meta name="facebook-domain-verification" content="7ka2lllvr6hc9j4lmmajjhyj10ogmu" />
       </Head>
       <MuiThemeProvider theme={theme}>
       <CssBaseline />
-      <Box sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
-        <Navbar />
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          minHeight: "100vh",
+          ...(ehBside ? { bgcolor: "#0A1628" } : {}),
+        }}
+      >
+        {!ehBside && <Navbar />}
         <Box component="main" sx={{ flex: 1 }}>
           <Component {...pageProps} />
         </Box>
-        <Footer />
+        {!ehBside && <Footer />}
       </Box>
-      <Tooltip title={`Tema: ${themeMeta.name} (${themes.length} temas)`} placement="left">
-        <IconButton
-          onClick={cycle}
-          size="small"
-          sx={{
-            position: "fixed",
-            bottom: 20,
-            right: 20,
-            zIndex: 10000,
-            bgcolor: "background.paper",
-            border: "1px solid",
-            borderColor: "divider",
-            "&:hover": { bgcolor: "primary.main", color: "primary.contrastText", borderColor: "primary.main" },
-          }}
-        >
-          <PaletteIcon fontSize="small" />
-        </IconButton>
-      </Tooltip>
-    </MuiThemeProvider>
+      {!ehBside && (
+        <Tooltip title={`Tema: ${themeMeta.name} (${themes.length} temas)`} placement="left">
+          <IconButton
+            onClick={cycle}
+            size="small"
+            sx={{
+              position: "fixed",
+              bottom: 20,
+              right: 20,
+              zIndex: 10000,
+              bgcolor: "background.paper",
+              border: "1px solid",
+              borderColor: "divider",
+              "&:hover": { bgcolor: "primary.main", color: "primary.contrastText", borderColor: "primary.main" },
+            }}
+          >
+            <PaletteIcon fontSize="small" />
+          </IconButton>
+        </Tooltip>
+      )}
+      </MuiThemeProvider>
     </>
   );
 }
