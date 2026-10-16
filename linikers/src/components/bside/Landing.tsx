@@ -222,6 +222,9 @@ function Hero() {
             <p className={s.btnMicro}>
               Resposta no mesmo dia, de segunda a sexta. Sem compromisso.
             </p>
+            <p className={s.btnMicro}>
+              Quem te responde no WhatsApp é a Márcia, do nosso time.
+            </p>
           </div>
           <a className={`${s.btn} ${s.btnContorno} ${s.btnGrande}`} href="#modelos">
             Ver modelos por segmento ↓
