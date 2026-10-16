@@ -886,7 +886,9 @@
   line-height: 1.55;
   color: var(--dim-2);
 }
-.passoSeta {
+.passos .passoSeta {
+  /* Especificidade (0,2,0) de propósito: o reset .root svg { display: block }
+     (0,1,1) vencia esta regra e as setas apareciam cortadas no celular. */
   display: none;
   position: absolute;
   top: 30px;
@@ -894,7 +896,7 @@
   transform: rotate(-12deg);
 }
 @media (min-width: 900px) {
-  .passoSeta {
+  .passos .passoSeta {
     display: block;
   }
 }
