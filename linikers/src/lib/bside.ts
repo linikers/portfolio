@@ -8,11 +8,12 @@
  * - Toda mensagem abre com "Oi, Márcia!" e termina com "Meu negócio é: ",
  *   codificada com encodeURIComponent (o `text=` não aceita espaço cru).
  *
- * ATENÇÃO (confirmar antes do merge): o número abaixo veio de
- * WHATSAPP_HOME_CHANNEL (formato 55DDDDDNUMBER). Confirmar com o dono se o
- * celular entra com o 9 ou sem, porque o wa.me só resolve o número exato.
+ * Número confirmado pelo dono: é o de vendas (linha que o bridge atende),
+ * DDD 44 99152-8386, 13 dígitos com o 9. Substituiu o pessoal que tinha
+ * entrado por engano (o do WHATSAPP_HOME_CHANNEL). O wa.me só resolve o
+ * número exato, então o formato fica travado aqui.
  */
-export const WA_NUM = "5544984198075";
+export const WA_NUM = "5544991528386";
 
 /** Monta um link wa.me com a mensagem pré-preenchida. */
 export const wa = (mensagem: string) =>
