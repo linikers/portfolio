@@ -8,14 +8,16 @@ import Head from "next/head";
  * Bside a marca pública é só "Bside Digital Studio" (regra dura da direção
  * de arte), então o head é montado à mão, sem sufixo e sem menção ao portfólio.
  *
- * As fontes do Combo A (Orbitron + Manrope + JetBrains Mono) são pedidas aqui:
+ * As fontes do Combo A (Exo 2 + Manrope + JetBrains Mono) são pedidas aqui:
  * só esta família de rotas (/bside e demos) carrega os arquivos.
+ * Exo 2 entrou no lugar do Orbitron porque o Orbitron não tem acentuação
+ * PT-BR confortável (ã, ç, ê ficavam feios nos títulos).
  */
 
 const SITE = "https://linikers.cloud";
 
 const FONTES =
-  "https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800;900&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap";
+  "https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;700;800&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap";
 
 interface BsideSeoProps {
   title: string;
