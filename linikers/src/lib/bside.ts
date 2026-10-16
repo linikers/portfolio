@@ -103,5 +103,7 @@ export const waAgendaEscolha = (
  */
 export const waCardapioPedido = (itens: number, total: string) =>
   wa(
-    `Oi, Márcia! Testei o cardápio de exemplo (pedido: ${itens} itens · R$ ${total}) e quero um cardápio assim para o meu. Meu negócio é: `
+    `Oi, Márcia! Testei o cardápio de exemplo (pedido: ${itens} ${
+      itens === 1 ? "item" : "itens"
+    } · R$ ${total}) e quero um cardápio assim para o meu. Meu negócio é: `
   );
