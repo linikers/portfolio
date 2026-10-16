@@ -18,7 +18,7 @@
   --dim-2: rgba(255, 255, 255, 0.62);
 
   /* Tipo */
-  --font-display: "Orbitron", "Eurostile", "Arial Narrow", sans-serif;
+  --font-display: "Exo 2", "Eurostile", "Arial Narrow", sans-serif;
   --font-body: "Manrope", "Inter", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 
@@ -43,7 +43,9 @@
   font-family: var(--font-body);
   font-size: 17px;
   line-height: 1.6;
-  overflow-x: hidden;
+  /* clip (e não hidden): hidden cria um contêiner de rolagem e mata o
+     position: sticky do header. clip corta o mesmo transbordo sem isso. */
+  overflow-x: clip;
 }
 
 /* Reset local: nada do portfólio vaza para dentro da família /bside */
@@ -248,53 +250,12 @@
 }
 
 /* ------------------------------------------------------------------ */
-/* Logo (provisória em texto; asset final entra depois)                */
+/* Logo (asset final bside-logo.svg; ver seção 0 da direção de arte)    */
 /* ------------------------------------------------------------------ */
 
 .logo {
-  display: inline-flex;
-  flex-direction: column;
-  gap: 2px;
-  line-height: 1;
-  color: var(--white);
-}
-.logoRow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.14em;
-}
-.logoB {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 1.22em;
-  color: transparent;
-  -webkit-text-stroke: 1.6px var(--cyan);
-  transform: skewX(-12deg);
-  letter-spacing: 0.02em;
-}
-@supports not (-webkit-text-stroke: 1px #000) {
-  .logoB {
-    color: var(--cyan);
-  }
-}
-.logoSide {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 1.05em;
-  letter-spacing: 0.03em;
-  color: var(--white);
-}
-.logoPix {
-  margin-left: 0.1em;
-}
-.logoDigital {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 0.36em;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--cyan);
-  padding-left: 0.08em;
+  display: block;
+  height: auto;
 }
 
 /* ------------------------------------------------------------------ */
@@ -315,6 +276,17 @@
   align-items: center;
   gap: 16px;
   min-height: 72px;
+  /* Respiro vertical: a logo precisa de folga do topo e do filete (módulo de
+     8px). padding-block (e não o shorthand) para o recuo lateral continuar
+     vindo do .container, alinhando a logo ao conteúdo da página. */
+  padding-block: 8px;
+}
+/* Header fechado em 72px: 56px de logo + 8px de respiro em cima e embaixo.
+   Mesma proporção do asset (925x550, ~94px de largura); muda só o tamanho de
+   exibição no header (o footer segue nos 168px). */
+.headerInner .logo {
+  height: 56px;
+  width: auto;
 }
 .logoLink {
   display: inline-flex;
@@ -335,7 +307,6 @@
 }
 @media (max-width: 480px) {
   .logoLink .logo {
-    transform: scale(0.82);
     transform-origin: left center;
   }
 }
@@ -491,13 +462,15 @@
 }
 .celulas {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  /* minmax(0,1fr): com 1fr puro o min-content do card estoura a coluna e a
+     grade passa da tela em 360/320px. */
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
   margin-top: 40px;
 }
 @media (min-width: 900px) {
   .celulas {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 24px;
   }
   .celulaLarga {
@@ -515,6 +488,18 @@
   color: var(--white);
   text-decoration: none;
   transition: transform var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+/* Telas estreitas (320-379px): card de 132px não comporta a palavra mais longa
+   do título ("AGENDAMENTO", 15px). Padding e fonte menores para o texto caber
+   dentro do card, sem cortar palavra no meio. */
+@media (max-width: 379px) {
+  .celula {
+    padding: 14px;
+  }
+  .celulaNome {
+    font-size: 13px;
+    letter-spacing: 0.02em;
+  }
 }
 @media (hover: hover) and (min-width: 900px) {
   .celula:hover {
@@ -853,6 +838,10 @@
   color: var(--dim-2);
 }
 .precoLinha a {
+  /* Área de toque: o link inline tinha 18px de altura (público 30-60 no
+     celular erra o toque). padding vertical (13+18+13 = 44px) aumenta o alvo
+     sem mexer no line box: o layout da frase fica idêntico. */
+  padding: 13px 0;
   color: var(--cyan-300);
   text-decoration: underline;
   text-underline-offset: 3px;
@@ -901,7 +890,9 @@
   line-height: 1.55;
   color: var(--dim-2);
 }
-.passoSeta {
+.passos .passoSeta {
+  /* Especificidade (0,2,0) de propósito: o reset .root svg { display: block }
+     (0,1,1) vencia esta regra e as setas apareciam cortadas no celular. */
   display: none;
   position: absolute;
   top: 30px;
@@ -909,7 +900,7 @@
   transform: rotate(-12deg);
 }
 @media (min-width: 900px) {
-  .passoSeta {
+  .passos .passoSeta {
     display: block;
   }
 }
@@ -1034,6 +1025,9 @@ details[open] .faqMarcador {
   color: var(--dim);
 }
 .linkInline {
+  /* Mesma razão dos links das linhas de preço (23px -> 49px de alvo), também
+     só com padding vertical para não mexer no layout do parágrafo do FAQ. */
+  padding: 13px 0;
   color: var(--cyan-300);
   text-decoration: underline;
   text-underline-offset: 3px;
@@ -1250,7 +1244,9 @@ details[open] .faqMarcador {
   font-family: var(--font-body);
   font-size: 17px;
   line-height: 1.6;
-  overflow-x: hidden;
+  /* Pelo mesmo motivo da LP: clip em vez de hidden (não cria caixa de
+     rolagem, quebra menos coisas e corta igual). */
+  overflow-x: clip;
   padding-bottom: 88px;
 }
 @media (min-width: 900px) {
