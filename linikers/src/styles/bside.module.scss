@@ -248,53 +248,12 @@
 }
 
 /* ------------------------------------------------------------------ */
-/* Logo (provisória em texto; asset final entra depois)                */
+/* Logo (asset final bside-logo.svg; ver seção 0 da direção de arte)    */
 /* ------------------------------------------------------------------ */
 
 .logo {
-  display: inline-flex;
-  flex-direction: column;
-  gap: 2px;
-  line-height: 1;
-  color: var(--white);
-}
-.logoRow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.14em;
-}
-.logoB {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 1.22em;
-  color: transparent;
-  -webkit-text-stroke: 1.6px var(--cyan);
-  transform: skewX(-12deg);
-  letter-spacing: 0.02em;
-}
-@supports not (-webkit-text-stroke: 1px #000) {
-  .logoB {
-    color: var(--cyan);
-  }
-}
-.logoSide {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 1.05em;
-  letter-spacing: 0.03em;
-  color: var(--white);
-}
-.logoPix {
-  margin-left: 0.1em;
-}
-.logoDigital {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 0.36em;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--cyan);
-  padding-left: 0.08em;
+  display: block;
+  height: auto;
 }
 
 /* ------------------------------------------------------------------ */

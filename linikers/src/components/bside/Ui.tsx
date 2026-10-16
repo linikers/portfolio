@@ -13,39 +13,22 @@ import { wa, WA_MSG } from "@/lib/bside";
 /* ------------------------------------------------------------------ */
 
 /**
- * Logo provisória desenhada em texto/SVG (o arquivo final `bside-logo.svg`
- * ainda não existe no repo; quando o dono exportar, este componente é
- * substituído pelo asset, mantendo os mesmos tamanhos 132px / 168px).
- * Assinaturas mantidas: B de contorno inclinado, "SIDE" branco, "DIGITAL"
- * em caixa alta com tracking largo e a grade de pixels saindo do "S" para a direita.
+ * Logo oficial da Bside (redesenho vetorial de `bside-logo.svg`).
+ * Asset final em public/bside/bside-logo.svg: monograma "BS" inclinado
+ * (B em contorno ciano, S solido branco) com a dispersao de pixels, o
+ * "DIGITAL" de tracking largo e a tagline entre filetes. Fundo transparente
+ * (renderiza sobre o navy da LP). Tamanhos da direcao de arte: 132 no header,
+ * 168 no footer. Proporcao do arquivo: 925 x 550.
  */
 export function BsLogo({ size = 132 }: { size?: number }) {
   return (
-    <span
+    <img
       className={s.logo}
-      style={{ fontSize: size * 0.2 }}
-      role="img"
-      aria-label="Bside Digital Studio"
-    >
-      <span className={s.logoRow} aria-hidden="true">
-        <span className={s.logoB}>B</span>
-        <span className={s.logoSide}>SIDE</span>
-        <svg
-          className={s.logoPix}
-          width="15"
-          height="15"
-          viewBox="0 0 15 15"
-          fill="none"
-        >
-          <rect x="0" y="1" width="5" height="5" fill="#00B8E6" />
-          <rect x="7" y="6" width="3" height="3" fill="#FFFFFF" opacity=".85" />
-          <rect x="12" y="10" width="2" height="2" fill="#00B8E6" opacity=".55" />
-        </svg>
-      </span>
-      <span className={s.logoDigital} aria-hidden="true">
-        Digital
-      </span>
-    </span>
+      src="/bside/bside-logo.svg"
+      alt="Bside Digital Studio"
+      width={size}
+      height={Math.round((size * 550) / 925)}
+    />
   );
 }
 
