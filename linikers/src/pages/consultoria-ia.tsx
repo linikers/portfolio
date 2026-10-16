@@ -48,7 +48,7 @@ export default function ConsultoriaIA() {
               Em Maringá ou em qualquer lugar do Brasil, nossa inteligência artificial analisa mercado, 
               concorrência e custos para recomendar o preço perfeito. Maximize sua margem com dados reais.
             </Typography>
-            <Button variant="contained" href="https://wa.me/5544984198075?text=Quero%20consultoria%20IA%20de%20precifica%C3%A7%C3%A3o" target="_blank" sx={{ bgcolor: "#00ff41", color: "#000", fontFamily: "monospace", fontWeight: 600, px: 4, py: 1.5, '&:hover': { bgcolor: "#00cc33" } }}>
+            <Button variant="contained" href="https://wa.me/5544991528386?text=Quero%20consultoria%20IA%20de%20precifica%C3%A7%C3%A3o" target="_blank" sx={{ bgcolor: "#00ff41", color: "#000", fontFamily: "monospace", fontWeight: 600, px: 4, py: 1.5, '&:hover': { bgcolor: "#00cc33" } }}>
               QUERO SABER MAIS
             </Button>
           </Box>
@@ -67,7 +67,7 @@ export default function ConsultoriaIA() {
                   </ListItem>
                 ))}
               </List>
-              <Button variant="contained" fullWidth href="https://wa.me/5544984198075?text=Quero%20consultoria%20IA%20de%20precifica%C3%A7%C3%A3o" target="_blank" sx={{ mt: 2, bgcolor: "#00ff41", color: "#000", fontFamily: "monospace", fontWeight: 600, '&:hover': { bgcolor: "#00cc33" } }}>
+              <Button variant="contained" fullWidth href="https://wa.me/5544991528386?text=Quero%20consultoria%20IA%20de%20precifica%C3%A7%C3%A3o" target="_blank" sx={{ mt: 2, bgcolor: "#00ff41", color: "#000", fontFamily: "monospace", fontWeight: 600, '&:hover': { bgcolor: "#00cc33" } }}>
                 CONTRATAR CONSULTORIA DE PRECIFICAÇÃO
               </Button>
             </Card>
@@ -108,7 +108,7 @@ export default function ConsultoriaIA() {
             Pronto para <span style={{ color: "#00ff41" }}>maximizar</span> seus lucros com precificação inteligente?
           </Typography>
           <Typography sx={{ color: "#00cc33", mb: 3, fontSize: "0.85rem" }}>Primeira análise gratuita. Sem compromisso. Atendimento em Maringá e todo Brasil.</Typography>
-          <Button variant="contained" href="https://wa.me/5544984198075?text=Quero%20consultoria%20IA%20de%20precifica%C3%A7%C3%A3o" target="_blank" sx={{ bgcolor: "#00ff41", color: "#000", fontFamily: "monospace", fontWeight: 600, px: 4, py: 1.5, '&:hover': { bgcolor: "#00cc33" } }}>
+          <Button variant="contained" href="https://wa.me/5544991528386?text=Quero%20consultoria%20IA%20de%20precifica%C3%A7%C3%A3o" target="_blank" sx={{ bgcolor: "#00ff41", color: "#000", fontFamily: "monospace", fontWeight: 600, px: 4, py: 1.5, '&:hover': { bgcolor: "#00cc33" } }}>
             FALAR NO WHATSAPP
           </Button>
         </Box>
