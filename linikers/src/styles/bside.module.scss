@@ -1504,7 +1504,9 @@ details[open] .faqMarcador {
   line-height: 1.6;
   color: var(--dim-2);
 }
-.demoRodape a {
+/* Só links de texto: os botões (.btn*) mantêm a cor própria (ciano sempre com
+   texto navy) — sem este escopo o CTA do rodapé ficava ciano sobre ciano (1,35:1). */
+.demoRodape a:not(.btn) {
   color: var(--cyan-300);
   text-decoration: underline;
   text-underline-offset: 3px;
