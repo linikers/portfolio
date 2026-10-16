@@ -274,6 +274,9 @@
   align-items: center;
   gap: 16px;
   min-height: 72px;
+  /* Respiro vertical: a logo nova (132px de largura ~ 78px de altura) precisa
+     de folga do topo e do filete, senão encosta nos dois (módulo de 8px). */
+  padding: 8px 0;
 }
 .logoLink {
   display: inline-flex;
