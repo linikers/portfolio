@@ -85,6 +85,12 @@ export function instalarConversaoWhatsApp(): () => void {
     const link = alvo?.closest?.('a[href*="wa.me/"]') as HTMLAnchorElement | null;
     if (!link) return;
 
+    // A família de rotas /bside (Bside Digital Studio) fica FORA desta medição:
+    // ela tem número próprio e o fallback da rota /ir/whatsapp mandaria o lead
+    // para o número do portfólio com a marca errada. Aqui o clique segue o
+    // fluxo padrão do navegador e abre o WhatsApp certo, direto.
+    if (window.location.pathname.startsWith("/bside")) return;
+
     registrarConversaoWhatsApp();
 
     // Plano B: o clique passa pela rota medida. A mensagem pré-escrita de cada botão

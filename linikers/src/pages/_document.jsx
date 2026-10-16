@@ -3,20 +3,31 @@ import Document, { Html, Head, Main, NextScript } from "next/document";
 
 export default class MyDocument extends Document {
   render() {
+    // A família /bside tem head próprio (favicon, fontes e marca da Bside);
+    // aqui fica só o que é global de verdade (gtag do Google Ads).
+    const pagina = this.props?.__NEXT_DATA__?.page || "";
+    const ehBside = pagina.startsWith("/bside");
+
     return (
       <Html lang="pt-BR">
         <Head>
-          <link rel="icon" href="/favicon.png" />
+          {!ehBside && <link rel="icon" href="/favicon.png" />}
           <meta name="facebook-domain-verification" content="7ka2lllvr6hc9j4lmmajjhyj10ogmu" />
-          <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-          />
-          <meta
-            name="LinikerS webDeveloper"
-            content="LinikerS Dev desenvolvedor Fron-End && Back-End"
-          />
-          <script async src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+          {!ehBside && (
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+            />
+          )}
+          {!ehBside && (
+            <meta
+              name="LinikerS webDeveloper"
+              content="LinikerS Dev desenvolvedor Fron-End && Back-End"
+            />
+          )}
+          {!ehBside && (
+            <script async src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+          )}
           {/* Google tag (gtag.js) — Google Ads AW-18460150717.
               Fica no _document para sair no HTML de TODAS as páginas, uma vez só.
               Não duplicar em _app nem em páginas individuais. */}
@@ -36,7 +47,8 @@ gtag('config', 'AW-18460150717');`,
         <body>
           <Main />
           <NextScript />
-          <div id="particles-js" 
+          {!ehBside && (
+            <div id="particles-js" 
                     style={{ 
                         position: "absolute", 
                         width: "100%", 
@@ -49,6 +61,7 @@ gtag('config', 'AW-18460150717');`,
                         pointerEvents: "none" 
                     }}
                 ></div>
+          )}
         </body>
       </Html>
     );
