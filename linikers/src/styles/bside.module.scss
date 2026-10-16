@@ -540,6 +540,11 @@
   line-height: 1.5;
   color: var(--dim-2);
 }
+.celulaNota {
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--dim-2);
+}
 .celulaCta {
   background: transparent;
   border-style: dashed;
@@ -762,6 +767,9 @@
   color: var(--cyan);
 }
 .precoSub {
+  /* Reserva duas linhas: mantém o valor alinhado entre os cards mesmo quando
+     um subtítulo quebra em duas linhas e o vizinho não. */
+  min-height: 3.2em;
   font-size: 14px;
   line-height: 1.55;
   color: var(--dim-2);
@@ -1411,6 +1419,11 @@ details[open] .faqMarcador {
   gap: 8px;
 }
 .demoDia {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
   min-height: 48px;
   padding: 4px;
   border: 1px solid var(--line);
@@ -1424,6 +1437,16 @@ details[open] .faqMarcador {
   border-color: var(--cyan);
   color: var(--cyan);
   background: rgba(0, 184, 230, 0.08);
+}
+.demoDiaRotulo {
+  font-weight: 600;
+}
+.demoDiaData {
+  font-size: 11px;
+  color: var(--dim-2);
+}
+.demoDiaOn .demoDiaData {
+  color: var(--cyan);
 }
 .demoHoras {
   display: grid;
