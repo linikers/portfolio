@@ -462,13 +462,15 @@
 }
 .celulas {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  /* minmax(0,1fr): com 1fr puro o min-content do card estoura a coluna e a
+     grade passa da tela em 360/320px. */
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
   margin-top: 40px;
 }
 @media (min-width: 900px) {
   .celulas {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 24px;
   }
   .celulaLarga {
@@ -486,6 +488,18 @@
   color: var(--white);
   text-decoration: none;
   transition: transform var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+/* Telas estreitas (320-379px): card de 132px não comporta a palavra mais longa
+   do título ("AGENDAMENTO", 15px). Padding e fonte menores para o texto caber
+   dentro do card, sem cortar palavra no meio. */
+@media (max-width: 379px) {
+  .celula {
+    padding: 14px;
+  }
+  .celulaNome {
+    font-size: 13px;
+    letter-spacing: 0.02em;
+  }
 }
 @media (hover: hover) and (min-width: 900px) {
   .celula:hover {
