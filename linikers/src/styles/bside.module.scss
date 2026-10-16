@@ -43,7 +43,9 @@
   font-family: var(--font-body);
   font-size: 17px;
   line-height: 1.6;
-  overflow-x: hidden;
+  /* clip (e não hidden): hidden cria um contêiner de rolagem e mata o
+     position: sticky do header. clip corta o mesmo transbordo sem isso. */
+  overflow-x: clip;
 }
 
 /* Reset local: nada do portfólio vaza para dentro da família /bside */
@@ -274,9 +276,17 @@
   align-items: center;
   gap: 16px;
   min-height: 72px;
-  /* Respiro vertical: a logo nova (132px de largura ~ 78px de altura) precisa
-     de folga do topo e do filete, senão encosta nos dois (módulo de 8px). */
-  padding: 8px 0;
+  /* Respiro vertical: a logo precisa de folga do topo e do filete (módulo de
+     8px). padding-block (e não o shorthand) para o recuo lateral continuar
+     vindo do .container, alinhando a logo ao conteúdo da página. */
+  padding-block: 8px;
+}
+/* Header fechado em 72px: 56px de logo + 8px de respiro em cima e embaixo.
+   Mesma proporção do asset (925x550, ~94px de largura); muda só o tamanho de
+   exibição no header (o footer segue nos 168px). */
+.headerInner .logo {
+  height: 56px;
+  width: auto;
 }
 .logoLink {
   display: inline-flex;
@@ -297,7 +307,6 @@
 }
 @media (max-width: 480px) {
   .logoLink .logo {
-    transform: scale(0.82);
     transform-origin: left center;
   }
 }
@@ -1212,7 +1221,9 @@ details[open] .faqMarcador {
   font-family: var(--font-body);
   font-size: 17px;
   line-height: 1.6;
-  overflow-x: hidden;
+  /* Pelo mesmo motivo da LP: clip em vez de hidden (não cria caixa de
+     rolagem, quebra menos coisas e corta igual). */
+  overflow-x: clip;
   padding-bottom: 88px;
 }
 @media (min-width: 900px) {
