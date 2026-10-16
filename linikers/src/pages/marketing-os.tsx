@@ -56,7 +56,7 @@ export default function MarketingOS() {
             <Button variant="contained" href="#modulos" sx={{ background: "#1a3a5c", color: "#fff", fontFamily: "monospace", fontWeight: 600, px: 4, py: 1.5, boxShadow: "2px 2px 0 #1a1a1a", "&:hover": { background: "#2a5a8c", boxShadow: "3px 3px 0 #1a1a1a" } }}>
               CONHECER O SISTEMA
             </Button>
-            <Button variant="outlined" href="https://wa.me/5544984198075?text=Quero%20testar%20Marketing%20OS" target="_blank" sx={{ borderColor: "#888480", color: "#d4d0c8", fontFamily: "monospace", fontWeight: 600, px: 4, py: 1.5, "&:hover": { borderColor: "#33cc66", color: "#33cc66" } }}>
+            <Button variant="outlined" href="https://wa.me/5544991528386?text=Quero%20testar%20Marketing%20OS" target="_blank" sx={{ borderColor: "#888480", color: "#d4d0c8", fontFamily: "monospace", fontWeight: 600, px: 4, py: 1.5, "&:hover": { borderColor: "#33cc66", color: "#33cc66" } }}>
               FALAR COM CONSULTOR →
             </Button>
           </Box>
@@ -277,7 +277,7 @@ export default function MarketingOS() {
           </Typography>
           <Typography sx={{ color: "#888480", mb: 4, maxWidth: 500, mx: "auto" }}>Teste grátis por 7 dias. Sem compromisso. Sem cartão de crédito.</Typography>
           <Box sx={{ display: "flex", gap: 2, justifyContent: "center", flexWrap: "wrap" }}>
-            <Button variant="contained" href="https://wa.me/5544984198075?text=Quero%20testar%20Marketing%20OS" target="_blank" sx={{ background: "#1a3a5c", color: "#fff", fontFamily: "monospace", fontWeight: 600, px: 4, py: 1.5, boxShadow: "2px 2px 0 #1a1a1a", "&:hover": { background: "#2a5a8c" } }}>
+            <Button variant="contained" href="https://wa.me/5544991528386?text=Quero%20testar%20Marketing%20OS" target="_blank" sx={{ background: "#1a3a5c", color: "#fff", fontFamily: "monospace", fontWeight: 600, px: 4, py: 1.5, boxShadow: "2px 2px 0 #1a1a1a", "&:hover": { background: "#2a5a8c" } }}>
               TESTAR GRÁTIS →
             </Button>
             <Button variant="outlined" href="https://marketing.linikers.cloud" sx={{ borderColor: "#888480", color: "#888480", fontFamily: "monospace", fontWeight: 600, px: 4, py: 1.5, "&:hover": { borderColor: "#4a8abc", color: "#4a8abc" } }}>

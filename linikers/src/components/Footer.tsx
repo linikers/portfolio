@@ -12,7 +12,7 @@ const InstagramIcon: any = FaInstagram;
 const socials = [
   { icon: <GitHubIcon size={16} />, url: "https://github.com/linikers", label: "GitHub" },
   { icon: <LinkedInIcon size={16} />, url: "https://linkedin.com/in/linikers", label: "LinkedIn" },
-  { icon: <WhatsAppIcon size={16} />, url: "https://wa.me/5544984198075", label: "WhatsApp" },
+  { icon: <WhatsAppIcon size={16} />, url: "https://wa.me/5544991528386", label: "WhatsApp" },
   { icon: <XIcon size={16} />, url: "https://x.com/linikers", label: "X" },
   { icon: <InstagramIcon size={16} />, url: "https://instagram.com/linikers", label: "Instagram" },
 ];

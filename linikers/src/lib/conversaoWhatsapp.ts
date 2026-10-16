@@ -8,11 +8,11 @@
  */
 
 /** Número comercial (o mesmo dos ícones sociais do site). */
-export const WHATSAPP_NUMERO = "5544984198075";
+export const WHATSAPP_NUMERO = "5544991528386";
 
 /** Abre o WhatsApp com a mensagem pronta — encurta a distância até o orçamento. */
 export const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent(
-  "Olá, Liniker! Vi o site e quero um orçamento para um projeto."
+  "Olá! Vi o site e quero um orçamento para um projeto."
 )}`;
 
 /**

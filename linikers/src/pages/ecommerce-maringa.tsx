@@ -162,7 +162,7 @@ export default function EcommerceMaringa() {
 
               <Stack direction={{ xs: "column", sm: "row" }} gap={2}>
                 <Button
-                  href="https://wa.me/5544984198075?text=Quero%20um%20e-commerce%20em%20Maring%C3%A1"
+                  href="https://wa.me/5544991528386?text=Quero%20um%20e-commerce%20em%20Maring%C3%A1"
                   target="_blank"
                   variant="contained"
                   size="large"
@@ -439,7 +439,7 @@ export default function EcommerceMaringa() {
                   </Box>
 
                   <Button
-                    href={`https://wa.me/5544984198075?text=Quero%20o%20pacote%20${pkg.name}%20-%20E-commerce%20Maring%C3%A1`}
+                    href={`https://wa.me/5544991528386?text=Quero%20o%20pacote%20${pkg.name}%20-%20E-commerce%20Maring%C3%A1`}
                     target="_blank"
                     variant={pkg.highlight ? "contained" : "outlined"}
                     fullWidth
@@ -592,7 +592,7 @@ export default function EcommerceMaringa() {
             Sem enrolação, sem mensalidade, sem mistério. Me chama no WhatsApp e a gente conversa.
           </Typography>
           <Button
-            href="https://wa.me/5544984198075?text=Oi!%20Vim%20pela%20p%C3%A1gina%20de%20e-commerce%20de%20Maring%C3%A1%20e%20quero%20saber%20mais"
+            href="https://wa.me/5544991528386?text=Oi!%20Vim%20pela%20p%C3%A1gina%20de%20e-commerce%20de%20Maring%C3%A1%20e%20quero%20saber%20mais"
             target="_blank"
             variant="contained"
             size="large"
