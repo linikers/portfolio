@@ -480,8 +480,8 @@ function Precos() {
             <p className={s.precoLabel}>Para o dia a dia</p>
             <h3 className={s.h3}>Vitrine que Vende</h3>
             <p className={s.precoSub}>
-              Site completo, mais cardápio digital ou agendamento online, com 1
-              ano de manutenção.
+              Site completo com cardápio digital ou agenda online, e 1 ano de
+              manutenção.
             </p>
             <p className={s.precoValor}>R$ 997</p>
             <p className={s.precoPagamento}>ou 2x de R$ 499, sem juros</p>
