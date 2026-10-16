@@ -838,6 +838,10 @@
   color: var(--dim-2);
 }
 .precoLinha a {
+  /* Área de toque: o link inline tinha 18px de altura (público 30-60 no
+     celular erra o toque). padding vertical (13+18+13 = 44px) aumenta o alvo
+     sem mexer no line box: o layout da frase fica idêntico. */
+  padding: 13px 0;
   color: var(--cyan-300);
   text-decoration: underline;
   text-underline-offset: 3px;
@@ -1021,6 +1025,9 @@ details[open] .faqMarcador {
   color: var(--dim);
 }
 .linkInline {
+  /* Mesma razão dos links das linhas de preço (23px -> 49px de alvo), também
+     só com padding vertical para não mexer no layout do parágrafo do FAQ. */
+  padding: 13px 0;
   color: var(--cyan-300);
   text-decoration: underline;
   text-underline-offset: 3px;
