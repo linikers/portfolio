@@ -24,17 +24,23 @@ const PROFISSIONAIS = [
 ];
 
 const DIAS = (() => {
-  /** Próxima data real de cada dia da semana (a demo mostra data, não só "amanhã"). */
-  const nomes = ["Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"];
+  /** Régua rolante: os próximos dias ABERTOS a partir de hoje (domingo fecha),
+   *  em ordem cronológica — botão mostra "Qua" + "21/10" e a mensagem leva a data. */
+  const nomes = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"];
   const hoje = new Date();
-  return nomes.map((rotulo, i) => {
-    const d = new Date(hoje);
-    d.setDate(d.getDate() + ((i + 1 - d.getDay() + 7) % 7));
-    const data = `${String(d.getDate()).padStart(2, "0")}/${String(
-      d.getMonth() + 1
+  const dias: { rotulo: string; data: string; chave: string }[] = [];
+  for (let d = 0; dias.length < 6 && d < 8; d++) {
+    const dia = new Date(hoje);
+    dia.setDate(dia.getDate() + d);
+    const w = dia.getDay();
+    if (w === 0) continue; // domingo: fechado
+    const data = `${String(dia.getDate()).padStart(2, "0")}/${String(
+      dia.getMonth() + 1
     ).padStart(2, "0")}`;
-    return { rotulo, data, chave: `${rotulo} ${data}` };
-  });
+    const rotulo = nomes[w];
+    dias.push({ rotulo, data, chave: `${rotulo} ${data}` });
+  }
+  return dias;
 })();
 
 const HORARIOS = [
