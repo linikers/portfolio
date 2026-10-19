@@ -23,7 +23,25 @@ const PROFISSIONAIS = [
   { id: "bruno", nome: "Bruno", iniciais: "B" },
 ];
 
-const DIAS = ["Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"];
+const DIAS = (() => {
+  /** Régua rolante: os próximos dias ABERTOS a partir de hoje (domingo fecha),
+   *  em ordem cronológica — botão mostra "Qua" + "21/10" e a mensagem leva a data. */
+  const nomes = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"];
+  const hoje = new Date();
+  const dias: { rotulo: string; data: string; chave: string }[] = [];
+  for (let d = 0; dias.length < 6 && d < 8; d++) {
+    const dia = new Date(hoje);
+    dia.setDate(dia.getDate() + d);
+    const w = dia.getDay();
+    if (w === 0) continue; // domingo: fechado
+    const data = `${String(dia.getDate()).padStart(2, "0")}/${String(
+      dia.getMonth() + 1
+    ).padStart(2, "0")}`;
+    const rotulo = nomes[w];
+    dias.push({ rotulo, data, chave: `${rotulo} ${data}` });
+  }
+  return dias;
+})();
 
 const HORARIOS = [
   "09:00",
@@ -82,7 +100,7 @@ export default function AgendaDemoPage() {
             <h1 className={s.demoMarca}>Navalha &amp; Cia</h1>
             <p className={s.demoTaglinha}>Agende seu horário em 20 segundos</p>
             <p className={s.demoSublinha}>
-              Seg a sáb, 9h às 20h · dados de exemplo, sem reserva real
+              Seg a sáb, 9h às 18h · dados de exemplo, sem reserva real
             </p>
           </header>
 
@@ -142,17 +160,20 @@ export default function AgendaDemoPage() {
             <div className={s.demoDias}>
               {DIAS.map((item) => (
                 <button
-                  key={item}
+                  key={item.chave}
                   type="button"
                   disabled={!profissionalId}
-                  className={`${s.demoDia} ${dia === item ? s.demoDiaOn : ""}`}
-                  aria-pressed={dia === item}
+                  className={`${s.demoDia} ${
+                    dia === item.chave ? s.demoDiaOn : ""
+                  }`}
+                  aria-pressed={dia === item.chave}
                   onClick={() => {
-                    setDia(item);
+                    setDia(item.chave);
                     setHora(null);
                   }}
                 >
-                  {item}
+                  <span className={s.demoDiaRotulo}>{item.rotulo}</span>
+                  <span className={s.demoDiaData}>{item.data}</span>
                 </button>
               ))}
             </div>
@@ -195,7 +216,7 @@ export default function AgendaDemoPage() {
                   <span className={s.demoBolhaRotulo}>
                     Lembrete automático (exemplo)
                   </span>
-                  Lembrete: amanhã às {hora} você tem{" "}
+                  Lembrete: {dia} às {hora} você tem{" "}
                   {servico.nome.toLowerCase()} na Navalha &amp; Cia.
                 </div>
                 <div className={s.demoAcoes}>

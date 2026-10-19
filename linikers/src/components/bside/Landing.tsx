@@ -34,6 +34,8 @@ interface Celula {
   demo?: boolean;
   larga?: boolean;
   cta?: boolean;
+  /** Linha de apoio extra (ex.: condição da verba de anúncios). */
+  nota?: string;
 }
 
 const CELULAS: Celula[] = [
@@ -66,7 +68,7 @@ const CELULAS: Celula[] = [
   {
     icone: "automacao",
     nome: "Automação de WhatsApp",
-    linha: "Respostas e lembretes no automático, pela API oficial",
+    linha: "Respostas e lembretes no automático, pelo WhatsApp oficial",
     href: "#precos",
   },
   {
@@ -88,6 +90,7 @@ const CELULAS: Celula[] = [
     icone: "anuncios",
     nome: "Anúncios no Google e Facebook",
     linha: "Tráfego pago para alcançar quem já está procurando",
+    nota: "A verba é paga por você direto ao Google e ao Facebook; a gente cuida da campanha.",
     href: wa(WA_MSG.anuncios),
     externo: true,
   },
@@ -108,7 +111,7 @@ const CELULAS: Celula[] = [
   {
     icone: "notas",
     nome: "Emissão de notas fiscais",
-    linha: "Nota fiscal de serviço (NFS-e) para o seu negócio, quando você precisar",
+    linha: "Nota fiscal de serviço para o seu negócio, quando você precisar",
     href: wa(WA_MSG.notasFiscais),
     externo: true,
   },
@@ -281,6 +284,9 @@ function OQueFazemos() {
               </span>
               <span className={s.celulaNome}>{celula.nome}</span>
               <span className={s.celulaLinha}>{celula.linha}</span>
+              {celula.nota ? (
+                <span className={s.celulaNota}>{celula.nota}</span>
+              ) : null}
             </a>
           ))}
         </div>
@@ -474,8 +480,8 @@ function Precos() {
             <p className={s.precoLabel}>Para o dia a dia</p>
             <h3 className={s.h3}>Vitrine que Vende</h3>
             <p className={s.precoSub}>
-              Site completo, mais cardápio digital ou agendamento online, com 1
-              ano de manutenção.
+              Site completo com cardápio digital ou agenda online, e 1 ano de
+              manutenção.
             </p>
             <p className={s.precoValor}>R$ 997</p>
             <p className={s.precoPagamento}>ou 2x de R$ 499, sem juros</p>
@@ -503,6 +509,9 @@ function Precos() {
             </ul>
             <p className={s.precoRecorrencia}>Do 13º mês: R$ 49/mês</p>
             <p className={s.precoPrazo}>Prazo: 5 a 7 dias úteis</p>
+            <p className={s.btnMicro}>
+              Você confirma tudo no WhatsApp, sem compromisso.
+            </p>
             <a
               className={`${s.btn} ${s.btnPrimary} ${s.btnBloco}`}
               href={wa(WA_MSG.card2)}
@@ -511,9 +520,6 @@ function Precos() {
             >
               Quero esse combo
             </a>
-            <p className={s.btnMicro}>
-              Você confirma tudo no WhatsApp, sem compromisso.
-            </p>
           </article>
 
           <article className={s.precoCard}>
@@ -537,7 +543,7 @@ function Precos() {
               </li>
               <li>
                 <CheckIcon />
-                Agendamento, cardápio e automação de WhatsApp (API oficial)
+                Agendamento, cardápio e automação no WhatsApp oficial
               </li>
               <li>
                 <CheckIcon />
@@ -545,11 +551,11 @@ function Precos() {
               </li>
               <li>
                 <CheckIcon />
-                12 meses de Manutenção Pro
+                12 meses de manutenção com prioridade
               </li>
             </ul>
             <p className={s.precoRecorrencia}>
-              Do 13º mês: R$ 79/mês. Mensagens da Meta cobradas à parte, a
+              Do 13º mês: R$ 79/mês. Mensagens automáticas cobradas à parte, a
               preço de custo.
             </p>
             <p className={s.precoPrazo}>Prazo: combinado por escrito na proposta</p>
