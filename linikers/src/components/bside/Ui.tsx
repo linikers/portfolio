@@ -13,21 +13,34 @@ import { wa, WA_MSG } from "@/lib/bside";
 /* ------------------------------------------------------------------ */
 
 /**
- * Logo oficial da Bside (redesenho vetorial de `bside-logo.svg`).
- * Asset final em public/bside/bside-logo.svg: monograma "BS" inclinado
- * (B em contorno ciano, S solido branco) com a dispersao de pixels, o
- * "DIGITAL" de tracking largo e a tagline entre filetes. Fundo transparente
- * (renderiza sobre o navy da LP). Tamanhos da direcao de arte: 132 no header,
- * 168 no footer. Proporcao do arquivo: 925 x 550.
+ * Logo oficial da Bside — arte aprovada pelo dono em 20/10/2026.
+ *
+ * Assets em public/bside/:
+ * - `bside-logo-mark.png` (900 x 296): monograma BS + dispersão de pixels, para o header
+ *   (onde 56px de altura deixaria a tagline ilegível);
+ * - `bside-logo.png` (1001 x 510): emblema + "DIGITAL" + "MARKETING E MÍDIA", para o footer.
+ *
+ * Os PNGs nasceram da arte quadrada da marca com o fundo navy removido por distância de
+ * cor, então renderizam sobre o navy da LP sem moldura. Substituem o vetor antigo
+ * (bside-logo.svg), reprovado pelo dono.
  */
-export function BsLogo({ size = 132 }: { size?: number }) {
+export function BsLogo({
+  size = 132,
+  variant = 'full',
+}: {
+  size?: number;
+  variant?: 'full' | 'mark';
+}) {
+  const marca = variant === 'mark';
+  const largura = marca ? 900 : 1001;
+  const altura = marca ? 296 : 510;
   return (
     <img
       className={s.logo}
-      src="/bside/bside-logo.svg"
-      alt="Bside Digital Studio"
+      src={marca ? '/bside/bside-logo-mark.png' : '/bside/bside-logo.png'}
+      alt="BS Digital — Marketing e Mídia"
       width={size}
-      height={Math.round((size * 550) / 925)}
+      height={Math.round((size * altura) / largura)}
     />
   );
 }

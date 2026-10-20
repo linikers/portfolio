@@ -178,7 +178,7 @@ function Header() {
     <header className={s.header}>
       <div className={`${s.container} ${s.headerInner}`}>
         <Link href="/bside" className={s.logoLink} aria-label="Bside Digital Studio">
-          <BsLogo size={132} />
+          <BsLogo size={176} variant="mark" />
         </Link>
         <span className={s.headerLinha}>
           Sites e sistemas · Maringá/PR · desde 2008
