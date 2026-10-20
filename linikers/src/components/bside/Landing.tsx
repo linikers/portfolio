@@ -443,7 +443,7 @@ function Precos() {
               Uma página no ar, no Google, com botão para o seu WhatsApp.
             </p>
             <p className={s.precoValor}>R$ 397</p>
-            <p className={s.precoPagamento}>ou 2x de R$ 199, sem juros</p>
+            <p className={s.precoPagamento}>em até 2x, sem juros</p>
             <ul className={s.precoLista}>
               <li>
                 <CheckIcon />
@@ -484,7 +484,7 @@ function Precos() {
               manutenção.
             </p>
             <p className={s.precoValor}>R$ 997</p>
-            <p className={s.precoPagamento}>ou 2x de R$ 499, sem juros</p>
+            <p className={s.precoPagamento}>em até 2x, sem juros</p>
             <ul className={s.precoLista}>
               <li>
                 <CheckIcon />
@@ -535,7 +535,7 @@ function Precos() {
               <span className={s.precoDe}>a partir de</span>
               R$ 2.497
             </p>
-            <p className={s.precoPagamento}>em até 6x de R$ 416, sem juros</p>
+            <p className={s.precoPagamento}>em até 6x, sem juros</p>
             <ul className={s.precoLista}>
               <li>
                 <CheckIcon />
