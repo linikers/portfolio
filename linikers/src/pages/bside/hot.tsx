@@ -340,8 +340,9 @@ export default function BsideHotPage() {
               </div>
               <p className={s.notaPlanos}>
                 Ensaio e vídeo podem ser feitos pelo nosso fotógrafo no mesmo dia. Para cidades da
-                região, o deslocamento é combinado junto no WhatsApp. Área de conteúdo exclusivo,
-                aparecer na busca do Google e outros extras são combinados caso a caso.
+                região, o deslocamento é combinado junto no WhatsApp. Para quem está fora da
+                região, fazemos somente a página. Área de conteúdo exclusivo, aparecer na busca do
+                Google e outros extras são combinados caso a caso.
               </p>
             </div>
           </section>
@@ -413,7 +414,8 @@ export default function BsideHotPage() {
                 </p>
               ) : null}
               <p className={s.cidadeHint}>
-                Não achou a sua? Manda mensagem de qualquer forma, a gente combina o deslocamento.
+                Não achou a sua? A página a gente monta para qualquer cidade do Brasil. Ensaio e
+                vídeo são feitos em Maringá e nas cidades desta lista.
               </p>
               <p className={s.cidadeHint}>
                 <a className={s.headerCta} href={wa(mensagem())}>
