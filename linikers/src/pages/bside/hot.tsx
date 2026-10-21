@@ -99,7 +99,7 @@ const PLANOS: Plano[] = [
     id: "completo",
     selo: "Mais completo",
     nome: "Completo",
-    valor: "R$ 797",
+    valor: "R$ 999",
     unidade: "uma vez",
     itens: [
       "Ensaio com 20 fotos tratadas",
@@ -117,7 +117,7 @@ const PLANOS: Plano[] = [
     unidade: "por mês",
     itens: [
       "Hospedagem e domínio da página",
-      "3 fotos novas por mês",
+      "10 fotos novas por mês",
       "Ajustes de texto e de valores",
       "Cancele quando quiser",
     ],
@@ -217,7 +217,7 @@ const FAQ = [
   },
   {
     q: "E se eu quiser trocar as fotos depois?",
-    a: "A manutenção de R$ 49 por mês inclui 3 fotos novas por mês e os ajustes de texto. Sem fidelidade, cancela quando quiser.",
+    a: "A manutenção de R$ 49 por mês inclui 10 fotos novas por mês e os ajustes de texto. Sem fidelidade, cancela quando quiser.",
   },
 ];
 
