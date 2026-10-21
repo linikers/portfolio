@@ -28,6 +28,10 @@ interface BsideSeoProps {
   ogImage?: string;
   /** Demos usam noindex, follow. A LP fica indexável. */
   noindex?: boolean;
+  /** Marca do og:site_name. Padrão é a Bside; a rota /bside/hot usa a própria. */
+  siteName?: string;
+  /** theme-color da rota. Padrão é o navy da Bside. */
+  themeColor?: string;
 }
 
 export default function BsideSeo({
@@ -36,6 +40,8 @@ export default function BsideSeo({
   path,
   ogImage,
   noindex,
+  siteName = "Bside Digital Studio",
+  themeColor = "#0A1628",
 }: BsideSeoProps) {
   const url = `${SITE}${path}`;
   const ogUrl = ogImage ? `${SITE}${ogImage}` : undefined;
@@ -48,7 +54,7 @@ export default function BsideSeo({
       {noindex ? <meta name="robots" content="noindex, follow" /> : null}
 
       {/* Identidade da rota: navy da marca e favicon próprio */}
-      <meta name="theme-color" content="#0A1628" />
+      <meta name="theme-color" content={themeColor} />
       <link rel="icon" href="/bside/favicon.svg" />
 
       {/* Open Graph próprio, sem sufixo de marca e sem "LinikerS" */}
@@ -57,7 +63,7 @@ export default function BsideSeo({
       <meta property="og:url" content={url} />
       {ogUrl ? <meta property="og:image" content={ogUrl} /> : null}
       <meta property="og:type" content="website" />
-      <meta property="og:site_name" content="Bside Digital Studio" />
+      <meta property="og:site_name" content={siteName} />
       <meta property="og:locale" content="pt_BR" />
 
       <meta name="twitter:card" content="summary_large_image" />
