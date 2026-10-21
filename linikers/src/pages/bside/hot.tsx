@@ -78,6 +78,7 @@ const PLANOS: Plano[] = [
       "Página só sua, com as fotos que você já tem",
       "Serviços, valores a partir de e bairro",
       "Botão de WhatsApp e link curto",
+      "Pode vender conteúdo exclusivo, se quiser",
       "No ar por 12 meses, sem mensalidade",
     ],
     cta: "Quero só a página",
@@ -105,6 +106,7 @@ const PLANOS: Plano[] = [
       "Ensaio com 20 fotos tratadas",
       "4 vídeos verticais com capas",
       "Página no ar com link curto e QR",
+      "Área de conteúdo exclusivo opcional",
       "1 ano de página incluído",
     ],
     cta: "Quero o completo",
@@ -181,8 +183,8 @@ const REGRAS = [
     texto: "Foto e vídeo sensual, sem conteúdo explícito. Isso mantém a página no ar e o pagamento funcionando.",
   },
   {
-    titulo: "Página fora da busca do Google",
-    texto: "Só vê quem receber o seu link. A página não aparece em pesquisa e não é listada em nenhum lugar.",
+    titulo: "Página discreta por padrão",
+    texto: "Só vê quem receber o seu link. Se você quiser aparecer na busca do Google, a gente liga isso, mas o padrão é ficar fora.",
   },
   {
     titulo: "Serviço de mídia, sem comissão",
@@ -205,11 +207,15 @@ const FAQ = [
   },
   {
     q: "A página aparece no Google?",
-    a: "Não. Ela é fechada para busca: só abre para quem tem o link ou o QR. É uma página de apoio ao seu anúncio, não um site público.",
+    a: "Por padrão não. Ela só abre para quem tem o link ou o QR. Se você quiser aparecer na busca, a gente liga isso, é só pedir.",
   },
   {
     q: "Como funciona o pagamento?",
     a: "Metade para agendar o ensaio, metade na entrega, por Pix. No plano de página anual, o valor é pago uma vez para os 12 meses.",
+  },
+  {
+    q: "Dá para vender conteúdo exclusivo na página?",
+    a: "Dá. A página pode ter uma área de assinatura para conteúdo exclusivo, combinada à parte no WhatsApp. Outros extras também são combinados caso a caso.",
   },
   {
     q: "Vocês sobem o material no meu anúncio?",
@@ -295,7 +301,7 @@ export default function BsideHotPage() {
               <ul className={s.provas}>
                 <li>Ensaio no seu local</li>
                 <li>Entrega em 48 horas</li>
-                <li>Página fora da busca do Google</li>
+                <li>Página só abre com o seu link</li>
               </ul>
             </div>
           </section>
@@ -334,7 +340,8 @@ export default function BsideHotPage() {
               </div>
               <p className={s.notaPlanos}>
                 Ensaio e vídeo podem ser feitos pelo nosso fotógrafo no mesmo dia. Para cidades da
-                região, o deslocamento é combinado junto no WhatsApp.
+                região, o deslocamento é combinado junto no WhatsApp. Área de conteúdo exclusivo,
+                aparecer na busca do Google e outros extras são combinados caso a caso.
               </p>
             </div>
           </section>
