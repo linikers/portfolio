@@ -159,19 +159,34 @@
   inset: 0;
   background-image: url("/bside/hot/hero.webp");
   background-size: cover;
-  background-position: center 30%;
-  opacity: 0.6;
+  background-position: 68% 42%;
+  opacity: 1;
 }
 .heroBg::after {
   content: "";
   position: absolute;
   inset: 0;
+  /* Scrim horizontal: protege só a coluna de texto e devolve a foto à direita.
+     O degradê vertical antigo apagava o quarto e a página virava texto no escuro. */
   background: linear-gradient(
-    180deg,
-    rgba(8, 9, 12, 0.7) 0%,
-    rgba(8, 9, 12, 0.88) 55%,
-    var(--ink-800) 100%
+    90deg,
+    rgba(8, 9, 12, 0.95) 0%,
+    rgba(8, 9, 12, 0.9) 34%,
+    rgba(8, 9, 12, 0.45) 62%,
+    rgba(8, 9, 12, 0) 85%
   );
+}
+@media (max-width: 899px) {
+  /* No celular não há coluna: o scrim volta a ser vertical, senão o título
+     cai sobre a área clara da foto. */
+  .heroBg::after {
+    background: linear-gradient(
+      180deg,
+      rgba(8, 9, 12, 0.9) 0%,
+      rgba(8, 9, 12, 0.82) 55%,
+      var(--ink-800) 100%
+    );
+  }
 }
 .hero > .shell {
   position: relative;
@@ -195,11 +210,13 @@
   max-width: 20ch;
 }
 .hero h1 em {
-  /* Cursiva editorial: só a palavra de ênfase, nunca o título inteiro. */
+  /* Cursiva editorial: só a palavra de ênfase, nunca o título inteiro.
+     Peso 500 (não 600) segura a haste fina do didone ao lado do Exo 2 800. */
   font-family: var(--font-script);
   font-style: italic;
-  font-weight: 600;
-  letter-spacing: 0.01em;
+  font-weight: 500;
+  font-size: 1.06em;
+  letter-spacing: -0.01em;
   color: var(--gold-300);
 }
 .lead {
