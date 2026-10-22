@@ -17,7 +17,7 @@ import Head from "next/head";
 const SITE = "https://linikers.cloud";
 
 const FONTES =
-  "https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;700;800&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap";
+  "https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;700;800&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Playfair+Display:ital,wght@1,500;1,600;1,700&display=swap";
 
 interface BsideSeoProps {
   title: string;

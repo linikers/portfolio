@@ -20,6 +20,8 @@
   --font-display: "Exo 2", "Eurostile", "Arial Narrow", sans-serif;
   --font-body: "Manrope", "Inter", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  /* Cursiva editorial: entra em uma palavra por título (a de ênfase). */
+  --font-script: "Playfair Display", Georgia, "Times New Roman", serif;
 
   --s1: 8px;
   --s2: 16px;
@@ -193,7 +195,11 @@
   max-width: 20ch;
 }
 .hero h1 em {
-  font-style: normal;
+  /* Cursiva editorial: só a palavra de ênfase, nunca o título inteiro. */
+  font-family: var(--font-script);
+  font-style: italic;
+  font-weight: 600;
+  letter-spacing: 0.01em;
   color: var(--gold-300);
 }
 .lead {

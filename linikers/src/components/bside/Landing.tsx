@@ -202,37 +202,71 @@ function Hero() {
     <section className={s.hero} id="topo">
       <PixelCorner />
       <div className={s.scanlines} aria-hidden="true" />
-      <div className={`${s.container} ${s.heroInner}`}>
-        <p className={s.kicker}>Marketing e mídia · Maringá/PR</p>
-        <h1 className={s.h1}>
-          Site pronto em até 7 dias. Cliente chamando no WhatsApp.
-        </h1>
-        <p className={s.heroSub}>
-          Sites, cardápios digitais, agendamento online e automação de WhatsApp
-          para o seu negócio. Você me conta o que precisa, eu monto e publico.
-        </p>
-        <div className={s.heroAcoes}>
-          <div>
-            <a
-              className={`${s.btn} ${s.btnPrimary} ${s.btnGrande}`}
-              href={wa(WA_MSG.geral)}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <WhatsAppIcon />
-              Falar no WhatsApp
-            </a>
-            <p className={s.btnMicro}>
-              Resposta no mesmo dia, de segunda a sexta. Sem compromisso.
-            </p>
-            <p className={s.btnMicro}>
-              Quem te responde no WhatsApp é a Márcia, do nosso time.
-            </p>
+      <div className={`${s.container} ${s.heroInner} ${s.heroGrade}`}>
+        <div className={s.heroTexto}>
+          <p className={s.kicker}>Sites, cardápio e agenda · Maringá e região</p>
+          <h1 className={s.h1}>
+            Seu site no ar
+            <br />
+            em <span className={s.destaque}>7 dias</span>.
+            <br />
+            O pedido cai
+            <br />
+            no <span className={s.ciano}>WhatsApp</span>.
+          </h1>
+          <p className={s.heroSub}>
+            Cardápio, agendamento e automação no mesmo pacote. Você conta o que
+            o negócio precisa, eu monto, você aprova a prévia e publica.
+          </p>
+          <div className={s.heroAcoes}>
+            <div>
+              <a
+                className={`${s.btn} ${s.btnPrimary} ${s.btnGrande}`}
+                href={wa(WA_MSG.geral)}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <WhatsAppIcon />
+                Falar no WhatsApp
+              </a>
+              <p className={s.btnMicro}>
+                <strong>Resposta no mesmo dia</strong>, de segunda a sexta. Sem
+                compromisso.
+              </p>
+              <p className={s.btnMicro}>
+                Quem te responde no WhatsApp é a Márcia, do nosso time.
+              </p>
+            </div>
           </div>
-          <a className={`${s.btn} ${s.btnContorno} ${s.btnGrande}`} href="#modelos">
+          <a className={s.heroLink} href="#modelos">
             Ver modelos por segmento ↓
           </a>
         </div>
+
+        {/* Prova visual: o que a promessa significa na prática. Sem isso a
+            dobra afirma resultado e não mostra nada. */}
+        <aside className={s.heroProva} aria-label="Exemplo de pedido chegando no WhatsApp">
+          <div className={s.chatTopo}>
+            <span className={s.chatAvatar} aria-hidden="true">
+              M
+            </span>
+            <span>
+              <span className={s.chatNome}>Padaria Pão Quente</span>
+              <span className={s.chatStatus}>online agora</span>
+            </span>
+          </div>
+          <p className={`${s.chatMsg} ${s.chatIn}`}>
+            Boa tarde! Queria encomendar 2 pães de mel e um bolo de cenoura
+          </p>
+          <p className={s.chatHora}>11:42</p>
+          <p className={`${s.chatMsg} ${s.chatOut}`}>
+            Boa tarde! Anotei: 2 pães de mel + bolo de cenoura. Retirada hoje às
+            17h, pode ser?
+          </p>
+          <p className={s.chatHora}>11:43</p>
+          <p className={`${s.chatMsg} ${s.chatIn}`}>Perfeito, obrigado!</p>
+          <p className={s.chatHora}>11:43</p>
+        </aside>
       </div>
     </section>
   );
