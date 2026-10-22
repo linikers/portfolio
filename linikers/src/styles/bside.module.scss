@@ -21,6 +21,11 @@
   --font-display: "Exo 2", "Eurostile", "Arial Narrow", sans-serif;
   --font-body: "Manrope", "Inter", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  /* Cursiva editorial: usada em UMA palavra por título, nunca em bloco. */
+  --font-script: "Playfair Display", Georgia, "Times New Roman", serif;
+
+  /* Acento quente: 1 destaque por dobra (número/prazo). Fora disso, é ruído. */
+  --amber: #ffb020;
 
   /* Espaço (módulo 8) */
   --s1: 8px;
@@ -350,6 +355,110 @@
 .heroAcoes > div {
   display: flex;
   flex-direction: column;
+}
+
+/* Grade da dobra: texto à esquerda, prova visual à direita (desktop). */
+.heroGrade {
+  display: grid;
+  gap: var(--s5);
+}
+@media (min-width: 900px) {
+  .heroGrade {
+    grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
+    align-items: start;
+    gap: var(--s6);
+  }
+}
+.heroTexto {
+  min-width: 0;
+}
+.heroGrade .h1 {
+  max-width: 18ch;
+}
+/* Um destaque por dobra: o prazo é o número que vende. */
+.destaque {
+  color: var(--amber);
+}
+.ciano {
+  color: var(--cyan-300);
+}
+.heroLink {
+  display: inline-block;
+  margin-top: var(--s3);
+  color: var(--dim);
+  font-size: 15px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.heroLink:hover {
+  color: var(--white);
+}
+.heroProva {
+  max-width: 400px;
+  padding: var(--s3);
+  border: 1px solid var(--line);
+  background: rgba(6, 16, 32, 0.72);
+}
+@media (max-width: 899px) {
+  /* No celular o card ocupa a largura toda e alinha com os outros blocos. */
+  .heroProva {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+.chatTopo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: var(--s2);
+  border-bottom: 1px solid var(--line);
+}
+.chatAvatar {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--cyan);
+  color: var(--navy-900);
+  font-weight: 800;
+  font-size: 13px;
+}
+.chatNome {
+  display: block;
+  font-weight: 700;
+  font-size: 14px;
+}
+.chatStatus {
+  display: block;
+  font-size: 11.5px;
+  color: var(--cyan-300);
+}
+.chatMsg {
+  max-width: 90%;
+  margin: 12px 0 0;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 13.5px;
+  line-height: 1.45;
+}
+.chatIn {
+  background: var(--navy-600);
+  color: var(--dim);
+  border-top-left-radius: 2px;
+}
+.chatOut {
+  margin-left: auto;
+  background: #0b5d4e;
+  color: #eafbf6;
+  border-top-right-radius: 2px;
+}
+.chatHora {
+  margin: 6px 0 0;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--dim-2);
+  text-align: right;
 }
 
 .scanlines {
