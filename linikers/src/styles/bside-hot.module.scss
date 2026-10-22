@@ -143,11 +143,37 @@
 /* ---------- hero ---------- */
 
 .hero {
+  position: relative;
+  overflow: clip;
   padding-block: 56px 40px;
   border-bottom: 1px solid var(--line-soft);
   background:
     radial-gradient(900px 380px at 78% -10%, rgba(217, 168, 92, 0.16), transparent 70%),
     var(--ink-800);
+}
+/* Foto do quarto atrás do texto, com véu escuro para o contraste do h1 continuar acima de 4,5:1 */
+.heroBg {
+  position: absolute;
+  inset: 0;
+  background-image: url("/bside/hot/hero.webp");
+  background-size: cover;
+  background-position: center 30%;
+  opacity: 0.6;
+}
+.heroBg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(8, 9, 12, 0.7) 0%,
+    rgba(8, 9, 12, 0.88) 55%,
+    var(--ink-800) 100%
+  );
+}
+.hero > .shell {
+  position: relative;
+  z-index: 1;
 }
 .eyebrow {
   display: inline-block;
@@ -460,6 +486,40 @@
   color: var(--dim-2);
 }
 
+/* ---------- imagem de apoio ---------- */
+
+.faixaImagem {
+  margin: 0 0 20px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: clip;
+}
+.faixaImagem img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+}
+
+/* faixa de respiro entre blocos: imagem de largura total, sem texto por cima */
+.respiro {
+  height: 150px;
+  overflow: clip;
+  border-block: 1px solid var(--line-soft);
+}
+.respiro img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.85;
+}
+@media (min-width: 900px) {
+  .respiro {
+    height: 210px;
+  }
+}
+
 /* ---------- passos ---------- */
 
 .passos {
@@ -624,11 +684,36 @@
 /* ---------- CTA final + rodapé ---------- */
 
 .final {
+  position: relative;
+  overflow: clip;
   padding-block: 56px;
   background:
     radial-gradient(700px 300px at 20% 120%, rgba(217, 168, 92, 0.14), transparent 70%),
     var(--ink-900);
   border-top: 1px solid var(--line-soft);
+}
+.finalBg {
+  position: absolute;
+  inset: 0;
+  background-image: url("/bside/hot/fechamento.webp");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.5;
+}
+.finalBg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(8, 9, 12, 0.82) 0%,
+    rgba(8, 9, 12, 0.7) 50%,
+    rgba(8, 9, 12, 0.9) 100%
+  );
+}
+.final > .shell {
+  position: relative;
+  z-index: 1;
 }
 .final h2 {
   font-family: var(--font-display);

@@ -278,6 +278,7 @@ export default function BsideHotPage() {
         <main>
           {/* HERO */}
           <section className={s.hero}>
+            <div className={s.heroBg} aria-hidden="true" />
             <div className={s.shell}>
               <span className={s.eyebrow}>Maringá e região · maiores de 18</span>
               <h1>
@@ -347,6 +348,10 @@ export default function BsideHotPage() {
             </div>
           </section>
 
+          <div className={s.respiro} aria-hidden="true">
+            <img src="/bside/hot/textura.webp" alt="" loading="lazy" width={825} height={1024} />
+          </div>
+
           {/* DORES */}
           <section className={s.section}>
             <div className={s.shell}>
@@ -374,6 +379,15 @@ export default function BsideHotPage() {
                 <h2>Como funciona</h2>
                 <p>Do primeiro contato até o material pronto, em uma semana.</p>
               </div>
+              <figure className={s.faixaImagem}>
+                <img
+                  src="/bside/hot/estudio.webp"
+                  alt="Softbox aceso e câmera em tripé no estúdio montado para o ensaio"
+                  loading="lazy"
+                  width={900}
+                  height={491}
+                />
+              </figure>
               <div className={s.passos}>
                 {PASSOS.map((passo) => (
                   <article key={passo.titulo} className={s.passo}>
@@ -464,6 +478,7 @@ export default function BsideHotPage() {
 
           {/* CTA FINAL */}
           <section className={s.final}>
+            <div className={s.finalBg} aria-hidden="true" />
             <div className={s.shell}>
               <h2>Se o seu anúncio já vende, ele pode vender melhor.</h2>
               <p>
