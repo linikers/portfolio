@@ -1,0 +1,355 @@
+/* =========================================================================
+   Bside Hot — página de exemplo de cliente (rota /bside/hot/modelo).
+   Escopo próprio, carvão + dourado, mesma família da LP de planos.
+   Serve para mostrar à cliente como a página dela fica depois de fechada.
+   ========================================================================= */
+
+.root {
+  --ink-900: #08090c;
+  --ink-800: #0b0d10;
+  --ink-700: #10141a;
+  --line: #262d38;
+  --gold: #d9a85c;
+  --gold-300: #ebc98e;
+  --dim: rgba(255, 255, 255, 0.78);
+  --dim-2: rgba(255, 255, 255, 0.62);
+  --font-display: "Exo 2", "Eurostile", "Arial Narrow", sans-serif;
+  --font-body: "Manrope", "Inter", system-ui, sans-serif;
+  --font-script: "Playfair Display", Georgia, serif;
+
+  position: relative;
+  min-height: 100vh;
+  background: var(--ink-900);
+  color: #fff;
+  font-family: var(--font-body);
+  padding-bottom: 88px;
+}
+
+.faixa {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  background: linear-gradient(90deg, rgba(217, 168, 92, 0.16), rgba(217, 168, 92, 0.04));
+  border-bottom: 1px solid rgba(217, 168, 92, 0.28);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold-300);
+  text-align: center;
+
+  strong {
+    font-weight: 700;
+  }
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  align-items: center;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 40px 20px 8px;
+
+  @media (min-width: 900px) {
+    grid-template-columns: 1fr 1.05fr;
+    padding: 64px 24px 16px;
+    gap: 48px;
+  }
+}
+
+.heroTexto {
+  order: 2;
+
+  @media (min-width: 900px) {
+    order: 1;
+  }
+}
+
+.olho {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 14px;
+}
+
+.titulo {
+  font-family: var(--font-display);
+  font-size: clamp(38px, 8vw, 68px);
+  line-height: 0.98;
+  margin: 0 0 14px;
+  letter-spacing: -0.01em;
+
+  em {
+    font-family: var(--font-script);
+    font-style: italic;
+    color: var(--gold-300);
+    font-weight: 500;
+  }
+}
+
+.sub {
+  color: var(--dim);
+  font-size: clamp(15px, 2.4vw, 18px);
+  line-height: 1.6;
+  margin: 0 0 24px;
+  max-width: 46ch;
+}
+
+.heroFoto {
+  order: 1;
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--ink-700);
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  @media (min-width: 900px) {
+    order: 2;
+  }
+}
+
+.seloFoto {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: rgba(8, 9, 12, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: var(--dim);
+  padding: 5px 10px;
+  border-radius: 999px;
+  backdrop-filter: blur(6px);
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--gold);
+  color: #101014;
+  font-weight: 700;
+  font-size: 16px;
+  padding: 14px 22px;
+  border-radius: 999px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    background: var(--gold-300);
+  }
+}
+
+.ctaSecundario {
+  color: var(--dim);
+  font-size: 13px;
+  margin-top: 12px;
+}
+
+.secao {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 48px 20px 0;
+
+  @media (min-width: 900px) {
+    padding: 64px 24px 0;
+  }
+}
+
+.secaoTitulo {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 4vw, 30px);
+  margin: 0 0 8px;
+  letter-spacing: 0.01em;
+}
+
+.secaoTexto {
+  color: var(--dim);
+  font-size: 15px;
+  line-height: 1.7;
+  max-width: 62ch;
+  margin: 0;
+}
+
+.dados {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 20px;
+
+  @media (min-width: 700px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.dado {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 16px;
+
+  span {
+    display: block;
+    font-size: 11.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--dim-2);
+    margin-bottom: 6px;
+  }
+
+  strong {
+    font-size: 15px;
+    font-weight: 600;
+  }
+}
+
+.galeria {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 20px;
+
+  @media (min-width: 800px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  figure {
+    margin: 0;
+    position: relative;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    aspect-ratio: 4 / 5;
+    background: var(--ink-700);
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  }
+}
+
+.reservado {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 100%;
+  background:
+    radial-gradient(120% 80% at 50% 0%, rgba(217, 168, 92, 0.12), transparent 60%),
+    var(--ink-800);
+  color: rgba(255, 255, 255, 0.66);
+  text-align: center;
+  padding: 16px;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+
+  strong {
+    font-size: 13px;
+    color: var(--dim);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+  }
+
+  span {
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.4);
+  }
+}
+
+.valores {
+  display: grid;
+  gap: 12px;
+  margin-top: 20px;
+
+  @media (min-width: 760px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.valor {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 20px;
+  background: var(--ink-800);
+
+  h3 {
+    margin: 0 0 4px;
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+  }
+
+  p {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 28px;
+    line-height: 1.1;
+  }
+
+  small {
+    display: block;
+    margin-top: 8px;
+    color: var(--dim-2);
+    font-size: 12px;
+  }
+}
+
+.rodape {
+  max-width: 1120px;
+  margin: 48px auto 0;
+  padding: 24px 20px 0;
+  border-top: 1px solid var(--line);
+  color: var(--dim);
+  font-size: 13px;
+  line-height: 1.65;
+
+  strong {
+    color: var(--dim);
+    font-weight: 600;
+  }
+}
+
+/* Barra fixa de contato no celular */
+.barra {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  gap: 12px;
+  padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+  background: rgba(8, 9, 12, 0.92);
+  border-top: 1px solid var(--line);
+  backdrop-filter: blur(10px);
+
+  a,
+  button {
+    flex: 1;
+    justify-content: center;
+  }
+
+  @media (min-width: 900px) {
+    display: none;
+  }
+}
