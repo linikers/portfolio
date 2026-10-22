@@ -21,9 +21,10 @@ const WHATSAPP = "5544991528386";
 
 const GALERIA = [
   { tipo: "foto", src: "/bside/hot/modelo/bastidor.webp", alt: "Ensaio em estúdio, bastidor de escolha de roupa" },
-  { tipo: "reservado", label: "Foto da cliente" },
-  { tipo: "reservado", label: "Foto da cliente" },
-  { tipo: "reservado", label: "Foto da cliente" },
+  { tipo: "foto", src: "/bside/hot/modelo/calcinha.webp", alt: "Ensaio em lingerie" },
+  { tipo: "foto", src: "/bside/hot/modelo/sofa.webp", alt: "Ensaio em estúdio, meia de rede" },
+  { tipo: "reservado", label: "Imagem paga" },
+  { tipo: "reservado", label: "Imagem paga" },
 ] as const;
 
 const VALORES = [
@@ -110,7 +111,8 @@ export default function ModeloHot() {
         <h2 className={s.secaoTitulo}>Fotos</h2>
         <p className={s.secaoTexto}>
           As fotos são da própria cliente, trocadas por ela quando a página é publicada. Os espaços
-          marcados abaixo mostram onde elas entram.
+          marcados como <strong>imagem paga</strong> são conteúdo exclusivo: aparece o cadeado e o
+          cliente só vê depois de comprar, direto com a cliente.
         </p>
         <div className={s.galeria}>
           {GALERIA.map((item, i) =>
@@ -122,8 +124,13 @@ export default function ModeloHot() {
             ) : (
               <figure key={`r-${i}`}>
                 <div className={s.reservado}>
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <rect x="4" y="10" width="16" height="11" rx="2.5" stroke="#d9a85c" strokeWidth="1.6" />
+                    <path d="M8 10V7.5a4 4 0 0 1 8 0V10" stroke="#d9a85c" strokeWidth="1.6" strokeLinecap="round" />
+                    <circle cx="12" cy="15.5" r="1.4" fill="#d9a85c" />
+                  </svg>
                   <strong>{item.label}</strong>
-                  <span>reservado</span>
+                  <span>exclusivo</span>
                 </div>
               </figure>
             )
