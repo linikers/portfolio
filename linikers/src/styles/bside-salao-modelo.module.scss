@@ -1,0 +1,665 @@
+/* /bside/salao/modelo — página de exemplo para salão de beleza.
+   Papel quente, tinta carvão, acento cobre. Sem gradiente, sem sombra pesada. */
+
+.page {
+  --paper: #faf7f3;
+  --paper-2: #f2ece4;
+  --ink: #1a1614;
+  --muted: #5c554d;
+  --accent: #8e4a2f;
+  --accent-2: #a85b3c;
+  --line: #e3dbd2;
+
+  min-height: 100vh;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Manrope", system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Selo discreto: deixa claro que é exemplo, sem virar faixa de liquidação. */
+.selo {
+  position: fixed;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  z-index: 40;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(250, 247, 243, 0.94);
+  backdrop-filter: blur(6px);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.seloPonto {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── header ─────────────────────────────────────────────── */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: rgba(250, 247, 243, 0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+
+.headerIn {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  height: 68px;
+}
+
+.headerIn > a:last-child {
+  margin-left: auto;
+}
+
+.marca {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 22px;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.marca em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+
+  a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+
+    &:hover {
+      color: var(--ink);
+    }
+  }
+
+  @media (max-width: 860px) {
+    display: none;
+  }
+}
+
+.botao,
+.botaoClaro {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 22px;
+  border-radius: 2px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.botao {
+  background: var(--accent);
+  color: #fff;
+
+  &:hover {
+    background: #743b24;
+  }
+}
+
+.botaoClaro {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--line);
+
+  &:hover {
+    border-color: var(--ink);
+  }
+}
+
+/* ── hero ───────────────────────────────────────────────── */
+.hero {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 64px;
+  align-items: center;
+  padding: 76px 0 84px;
+
+  @media (max-width: 940px) {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    padding: 44px 0 52px;
+  }
+}
+
+.olho {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 22px;
+}
+
+.titulo {
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(38px, 5.4vw, 62px);
+  line-height: 1.06;
+  letter-spacing: -0.015em;
+  margin: 0 0 22px;
+
+  em {
+    font-style: italic;
+    color: var(--accent);
+  }
+}
+
+.texto {
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--muted);
+  max-width: 46ch;
+  margin: 0 0 32px;
+}
+
+.acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 34px;
+}
+
+.fichas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+  padding-top: 26px;
+  border-top: 1px solid var(--line);
+
+  div {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  strong {
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  span {
+    font-size: 13px;
+    color: var(--muted);
+  }
+}
+
+.foto {
+  position: relative;
+  aspect-ratio: 686 / 797;
+  overflow: hidden;
+  border-radius: 2px;
+  background: var(--paper-2);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    /* a foto de ambiente é um render frio; duotone quente resolve as duas coisas:
+       unifica a paleta e tira a leitura de "imagem 3D de banco de imagens" */
+    filter: grayscale(1) sepia(0.55) contrast(1.06) brightness(0.96);
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(142, 74, 47, 0.18);
+    mix-blend-mode: multiply;
+    pointer-events: none;
+  }
+}
+
+.fotoTag {
+  position: absolute;
+  z-index: 2;
+  left: 16px;
+  bottom: 16px;
+  padding: 7px 12px;
+  background: rgba(250, 247, 243, 0.92);
+  color: #1a1614;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ── faixa ──────────────────────────────────────────────── */
+.faixa {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: var(--paper-2);
+}
+
+.faixaIn {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  padding: 26px 0;
+
+  @media (max-width: 760px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.faixaItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  strong {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 26px;
+    font-weight: 500;
+  }
+
+  span {
+    font-size: 13px;
+    color: var(--muted);
+  }
+}
+
+/* ── seções ─────────────────────────────────────────────── */
+.secao {
+  padding: 88px 0;
+
+  @media (max-width: 760px) {
+    padding: 56px 0;
+  }
+}
+
+.secaoTopo {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 32px;
+  margin-bottom: 44px;
+}
+
+.secaoTitulo {
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(28px, 3.4vw, 40px);
+  line-height: 1.15;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.secaoSub {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--muted);
+  max-width: 40ch;
+  margin: 0;
+}
+
+/* serviços */
+.servicos {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0 56px;
+
+  @media (max-width: 760px) {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}
+
+.servico {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.servicoInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.servicoNome {
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.servicoDesc {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.servicoPreco {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 19px;
+  white-space: nowrap;
+  color: var(--ink);
+}
+
+/* agenda */
+.agenda {
+  background: var(--paper-2);
+}
+
+.agendaGrade {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 48px;
+  align-items: start;
+
+  @media (max-width: 940px) {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+.painel {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  padding: 32px;
+
+  @media (max-width: 560px) {
+    padding: 22px;
+  }
+}
+
+.passo {
+  margin-bottom: 30px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.passoRotulo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 14px;
+}
+
+.passoNum {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-size: 11px;
+  letter-spacing: 0;
+}
+
+.opcoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.opcao {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  background: transparent;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--ink);
+  cursor: pointer;
+  transition: border-color 0.12s ease, background-color 0.12s ease;
+
+  &:hover:not(:disabled) {
+    border-color: var(--accent-2);
+  }
+
+  &:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+}
+
+.opcaoAtiva {
+  border-color: var(--accent) !important;
+  background: #f6ebe4;
+  font-weight: 700;
+}
+
+.opcaoObs {
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.gradeHorarios {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+
+  @media (max-width: 420px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.resumo {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.resumoTitulo {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 22px;
+  font-weight: 500;
+  margin: 0 0 4px;
+}
+
+.resumoLinha {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+
+  span:first-child {
+    color: var(--muted);
+  }
+
+  span:last-child {
+    font-weight: 600;
+    text-align: right;
+  }
+}
+
+.resumoAviso {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--muted);
+  margin: 4px 0 8px;
+}
+
+/* equipe */
+.equipe {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+
+  @media (max-width: 860px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pessoa {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 28px;
+  border: 1px solid var(--line);
+}
+
+.inicial {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--paper-2);
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 20px;
+  color: var(--accent);
+}
+
+.pessoaNome {
+  font-size: 17px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.pessoaArea {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* local */
+.local {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: start;
+
+  @media (max-width: 860px) {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+}
+
+.localBloco {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.localItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+
+  strong {
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  span {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.55;
+  }
+}
+
+/* fecho */
+.fecho {
+  background: #1a1614;
+  color: #faf7f3;
+  padding: 84px 0;
+
+  @media (max-width: 760px) {
+    padding: 56px 0;
+  }
+}
+
+.fechoTitulo {
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(30px, 3.8vw, 46px);
+  line-height: 1.12;
+  margin: 0 0 18px;
+  max-width: 20ch;
+}
+
+.fechoTexto {
+  font-size: 17px;
+  line-height: 1.6;
+  color: #bfb7ad;
+  max-width: 46ch;
+  margin: 0 0 30px;
+}
+
+/* rodapé */
+.rodape {
+  padding: 30px 0 90px;
+  border-top: 1px solid var(--line);
+  background: var(--paper-2);
+
+  @media (max-width: 760px) {
+    padding-bottom: 96px;
+  }
+}
+
+.rodapeIn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  font-size: 13px;
+  color: var(--muted);
+
+  @media (max-width: 760px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
