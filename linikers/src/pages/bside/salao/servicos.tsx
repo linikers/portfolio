@@ -123,7 +123,7 @@ export default function ModeloSalaoServicos() {
         <div className={s.wrap}>
           <section className={s.hero}>
             <div>
-              <span className={s.olho}>{CIDADE} · cabelo, estética e unhas</span>
+              <span className={s.olho}>{CIDADE} · seis áreas de cuidado</span>
               <h1 className={s.titulo}>
                 Seis áreas de cuidado, <em>um só endereço</em>
               </h1>
