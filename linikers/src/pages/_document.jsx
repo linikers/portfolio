@@ -1,5 +1,15 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
 
+/**
+ * Medição GA4 do site (propriedade "linikers.cloud", criada em 27/10/2026).
+ *
+ * O ID de métricas é público por natureza (vai no HTML de qualquer site que use GA).
+ * Ele fica como padrão aqui — e não só em variável de ambiente — porque a Vercel não
+ * tem `NEXT_PUBLIC_GA_ID` configurada, e sem um valor no código a tag simplesmente não
+ * sai no build. A variável continua valendo como override para trocar de propriedade
+ * sem mexer no código.
+ */
+const GA4_ID = process.env.NEXT_PUBLIC_GA_ID || "G-DGMR5208SP";
 
 export default class MyDocument extends Document {
   render() {
@@ -44,9 +54,7 @@ export default class MyDocument extends Document {
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'AW-18460150717');${
-                process.env.NEXT_PUBLIC_GA_ID
-                  ? `\ngtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');`
-                  : ""
+                GA4_ID ? `\ngtag('config', '${GA4_ID}');` : ""
               }`,
             }}
           />
