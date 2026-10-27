@@ -1,0 +1,254 @@
+/* =========================================================================
+   Bside — páginas de serviço (/bside/cardapio-digital, /bside/agendamento-online).
+   Páginas INDEXÁVEIS, feitas para busca local ("cardápio digital Maringá").
+   Tokens iguais aos da LP (5.1): navy, ciano, Exo 2 / Manrope / JetBrains Mono.
+   ========================================================================= */
+
+.root {
+  --navy-900: #061020;
+  --navy-800: #0a1628;
+  --navy-700: #0f2038;
+  --line: #1b3a5c;
+  --cyan: #00b8e6;
+  --white: #ffffff;
+  --dim: rgba(255, 255, 255, 0.72);
+  --font-display: "Exo 2", "Eurostile", "Arial Narrow", sans-serif;
+  --font-body: "Manrope", "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  min-height: 100vh;
+  background: var(--navy-800);
+  color: var(--white);
+  font-family: var(--font-body);
+}
+
+.wrap {
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.marca {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 20px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--white);
+  text-decoration: none;
+}
+
+.voltar {
+  font-size: 14px;
+  color: var(--dim);
+  text-decoration: none;
+
+  &:hover {
+    color: var(--cyan);
+  }
+}
+
+.hero {
+  padding: 72px 0 56px;
+}
+
+.kicker {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 20px;
+}
+
+.h1 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(32px, 5vw, 56px);
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+  margin: 0 0 24px;
+  max-width: 18ch;
+}
+
+.lead {
+  font-size: clamp(17px, 2vw, 20px);
+  line-height: 1.6;
+  color: var(--dim);
+  max-width: 60ch;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 32px;
+  padding: 18px 28px;
+  background: var(--cyan);
+  color: var(--navy-900);
+  font-weight: 800;
+  font-size: 16px;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+
+  &:hover {
+    filter: brightness(1.08);
+  }
+}
+
+.secao {
+  padding: 56px 0;
+  border-top: 1px solid var(--line);
+}
+
+.h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(24px, 3vw, 34px);
+  line-height: 1.16;
+  margin: 0 0 20px;
+}
+
+.texto {
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--dim);
+  max-width: 68ch;
+
+  & + & {
+    margin-top: 16px;
+  }
+}
+
+.passos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+  margin-top: 8px;
+  list-style: none;
+  padding: 0;
+}
+
+.passo {
+  padding: 24px;
+  background: var(--navy-700);
+  border: 1px solid var(--line);
+}
+
+.passoNum {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  color: var(--cyan);
+}
+
+.passoTitulo {
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 700;
+  margin: 10px 0 8px;
+}
+
+.passoTexto {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--dim);
+}
+
+.lista {
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    position: relative;
+    padding-left: 22px;
+    margin-bottom: 12px;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--dim);
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 8px;
+      height: 8px;
+      background: var(--cyan);
+    }
+  }
+}
+
+.faq {
+  margin-top: 8px;
+}
+
+.pergunta {
+  padding: 20px 0;
+  border-bottom: 1px solid var(--line);
+
+  summary {
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 17px;
+    color: var(--white);
+  }
+
+  p {
+    margin: 12px 0 0;
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--dim);
+  }
+}
+
+.fechamento {
+  padding: 64px 0 96px;
+  border-top: 1px solid var(--line);
+}
+
+.rodape {
+  padding: 32px 0 56px;
+  font-size: 13px;
+  color: var(--dim);
+
+  a {
+    color: var(--dim);
+    text-decoration: underline;
+
+    &:hover {
+      color: var(--cyan);
+    }
+  }
+}
+
+.outros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.outroLink {
+  padding: 14px 20px;
+  border: 1px solid var(--line);
+  color: var(--white);
+  text-decoration: none;
+  font-size: 15px;
+
+  &:hover {
+    border-color: var(--cyan);
+    color: var(--cyan);
+  }
+}

@@ -28,9 +28,12 @@ export default class MyDocument extends Document {
           {!ehBside && (
             <script async src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
           )}
-          {/* Google tag (gtag.js) — Google Ads AW-18460150717.
+          {/* Google tag (gtag.js) — Google Ads AW-18460150717 + GA4 (opcional).
               Fica no _document para sair no HTML de TODAS as páginas, uma vez só.
-              Não duplicar em _app nem em páginas individuais. */}
+              Não duplicar em _app nem em páginas individuais.
+              O GA4 só entra quando NEXT_PUBLIC_GA_ID está definido no build: é ele que
+              mede visita por origem e clique no WhatsApp por página (antes só existia a
+              conversão do Ads, que não responde de onde veio a visita). */}
           <script
             async
             src="https://www.googletagmanager.com/gtag/js?id=AW-18460150717"
@@ -40,7 +43,11 @@ export default class MyDocument extends Document {
               __html: `window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
-gtag('config', 'AW-18460150717');`,
+gtag('config', 'AW-18460150717');${
+                process.env.NEXT_PUBLIC_GA_ID
+                  ? `\ngtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');`
+                  : ""
+              }`,
             }}
           />
         </Head>
