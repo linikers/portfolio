@@ -1,5 +1,15 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
 
+/**
+ * ID de métricas da propriedade GA4 conferida em 10/11/2026: conta 114673171,
+ * propriedade 319496506, categoria "Animais de estimação".
+ *
+ * A propriedade estava **sem nenhum dado** porque o build mandava os eventos para
+ * outro ID (G-DGMR5208SP). Aqui o ID é fixo de propósito: enquanto ele depender de
+ * variável de ambiente, um valor errado no painel da Vercel esvazia a medição e
+ * ninguém percebe — foi exatamente o que aconteceu.
+ */
+const GA4_ID = "G-7Z0959XFV3";
 
 export default class MyDocument extends Document {
   render() {
@@ -28,12 +38,12 @@ export default class MyDocument extends Document {
           {!ehBside && (
             <script async src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
           )}
-          {/* Google tag (gtag.js) — Google Ads AW-18460150717 + GA4 (opcional).
+          {/* Google tag (gtag.js) — Google Ads AW-18460150717 + GA4.
               Fica no _document para sair no HTML de TODAS as páginas, uma vez só.
               Não duplicar em _app nem em páginas individuais.
-              O GA4 só entra quando NEXT_PUBLIC_GA_ID está definido no build: é ele que
-              mede visita por origem e clique no WhatsApp por página (antes só existia a
-              conversão do Ads, que não responde de onde veio a visita). */}
+              O ID do GA4 é fixo em GA4_ID (acima): mede visita por origem e clique no
+              WhatsApp por página. Antes vinha de NEXT_PUBLIC_GA_ID e o build estava
+              configurado com outra propriedade, que nunca recebeu dado nenhum. */}
           <script
             async
             src="https://www.googletagmanager.com/gtag/js?id=AW-18460150717"
@@ -43,11 +53,8 @@ export default class MyDocument extends Document {
               __html: `window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
-gtag('config', 'AW-18460150717');${
-                process.env.NEXT_PUBLIC_GA_ID
-                  ? `\ngtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');`
-                  : ""
-              }`,
+gtag('config', 'AW-18460150717');
+gtag('config', '${GA4_ID}');`,
             }}
           />
         </Head>
