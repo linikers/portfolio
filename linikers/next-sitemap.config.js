@@ -11,7 +11,7 @@ module.exports = {
       },
     ],
   },
-  exclude: ["/admin", "/admin/**", "/api/**", "/login", "/whatsapp-qr", "/sendCert", "/components/**", "/bside/agenda-demo", "/bside/cardapio-demo", "/bside/hot", "/bside/hot/modelo", "/bside/salao/modelo"],
+  exclude: ["/admin", "/admin/**", "/api/**", "/login", "/whatsapp-qr", "/sendCert", "/components/**", "/bside/agenda-demo", "/bside/cardapio-demo", "/bside/hot", "/bside/hot/modelo", "/bside/salao/modelo", "/bside/previa", "/bside/previa/**"],
   generateIndexSitemap: false,
   outDir: "public",
 };
