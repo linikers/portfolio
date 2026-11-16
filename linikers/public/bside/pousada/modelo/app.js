@@ -15,6 +15,13 @@
   }
 
   /* ---------- WhatsApp --------------------------------------------------- */
+  var BASE = window.SITE_BASE || "";
+  function assetSrc(p) {
+    if (!p) return "";
+    if (/^(https?:)?\/\//.test(p) || p.charAt(0) === "/" || p.indexOf("data:") === 0) return p;
+    return BASE + p;
+  }
+
   var waNumber = String(C.contato.whatsapp).replace(/\D/g, "");
   var modoModelo = Boolean(C.demo && C.demo.ativo && C.contato.mensagemModelo);
   function waLink(msg) {
@@ -75,7 +82,7 @@
 
   /* ---------- 1. Hero --------------------------------------------------- */
   var hero = C.hero;
-  $("#hero-img").src = hero.imagem;
+  $("#hero-img").src = assetSrc(hero.imagem);
   $("#hero-img").alt = hero.alt || "";
   $("#hero-eyebrow").textContent = hero.eyebrow;
   $("#hero-title").innerHTML = String(hero.titulo)
@@ -108,7 +115,7 @@
     card.className = "card reveal";
     card.innerHTML =
       '<div class="card-media">' +
-        '<img src="' + a.imagem + '" alt="' + (a.alt || a.nome) + '" loading="lazy" width="1200" height="1500">' +
+        '<img src="' + assetSrc(a.imagem) + '" alt="' + (a.alt || a.nome) + '" loading="lazy" width="1200" height="1500">' +
       "</div>" +
       '<div class="card-body">' +
         '<p class="card-meta"><span>' + a.capacidade + "</span><span>" + a.area + "</span></p>" +
@@ -158,7 +165,7 @@
     btn.type = "button";
     btn.className = "gallery-item";
     btn.setAttribute("aria-label", "Ampliar foto: " + (f.legenda || f.alt || "foto " + (i + 1)));
-    btn.innerHTML = '<img src="' + f.src + '" alt="' + (f.alt || "") + '" loading="lazy" width="1200" height="1200">';
+    btn.innerHTML = '<img src="' + assetSrc(f.src) + '" alt="' + (f.alt || "") + '" loading="lazy" width="1200" height="1200">';
     btn.addEventListener("click", function () { openLb(i); });
     gallery.appendChild(btn);
   });
@@ -172,7 +179,7 @@
 
   function renderLb() {
     var f = fotos[current];
-    lbImg.src = f.src;
+    lbImg.src = assetSrc(f.src);
     lbImg.alt = f.alt || f.legenda || "";
     lbCount.textContent = ("0" + (current + 1)).slice(-2) + " / " + ("0" + fotos.length).slice(-2);
     lbCaption.textContent = f.legenda || "";
@@ -298,7 +305,7 @@
   /* ---------- 7. Sobre -------------------------------------------------- */
   $("#about-eyebrow").textContent = C.sobre.eyebrow;
   $("#about-title").innerHTML = C.sobre.titulo;
-  $("#about-img").src = C.sobre.foto;
+  $("#about-img").src = assetSrc(C.sobre.foto);
   $("#about-img").alt = C.sobre.alt || "";
   $("#about-sign").textContent = C.sobre.assinatura;
 
