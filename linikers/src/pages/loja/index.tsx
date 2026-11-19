@@ -132,11 +132,16 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
     const prompts = snapshot.docs.map((doc: any) => {
       const data = doc.data();
+      const completo = data.content || "";
+      const pago = (data.price ?? 0) > 0;
       return {
         id: doc.id,
         title: data.title || "",
         description: data.description || "",
-        content: data.content || "",
+        // A listagem não precisa do prompt inteiro; em produto pago, só a prévia.
+        content: pago
+          ? completo.slice(0, 300) + (completo.length > 300 ? "..." : "")
+          : completo,
         category: data.category || "outro",
         platform: data.platform || "geral",
         price: data.price ?? 0,

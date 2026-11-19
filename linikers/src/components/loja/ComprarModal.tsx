@@ -106,10 +106,7 @@ export default function ComprarModal({
           )}
         </Box>
       </DialogContent>
-      <DialogActions sx={{ p: 2 }}>
-        <Button onClick={onClose} color="inherit">
-          Manter Depois
-        </Button>
+      <DialogActions sx={{ p: 2, flexDirection: "column", gap: 1 }}>
         <Button
           component="a"
           href={linkComprovante}
@@ -122,6 +119,9 @@ export default function ComprarModal({
           sx={{ bgcolor: "#25D366", color: "#fff", "&:hover": { bgcolor: "#1ebe5b" } }}
         >
           Já paguei — enviar comprovante
+        </Button>
+        <Button onClick={onClose} color="inherit" fullWidth>
+          Manter Depois
         </Button>
       </DialogActions>
     </Dialog>
