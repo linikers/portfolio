@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Container,
   Typography,
@@ -11,6 +12,8 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
+  TextField,
+  MenuItem,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import SEO from "@/components/SEO";
@@ -38,6 +41,14 @@ const CTA_MSG = encodeURIComponent(
   "Quero um diagnóstico do AutoHedge para a minha carteira"
 );
 const CTA = `https://wa.me/${WHATSAPP_NUMERO}?text=${CTA_MSG}`;
+
+const EXCHANGES = ["Binance", "OKX", "Bybit", "Outra", "Ainda não tenho conta"];
+const CAPITAIS = ["Até R$ 1 mil", "R$ 1 mil a 5 mil", "R$ 5 mil a 20 mil", "Acima de R$ 20 mil"];
+const PERFIS = [
+  "Conservador: perder no máximo 5% no mês",
+  "Moderado: até 15% no mês",
+  "Agressivo: aceito 30% ou mais",
+];
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -145,6 +156,131 @@ const faq = [
     a: "O suficiente para a taxa não comer a operação. Em ordem de 1 dólar a taxa consome 40 por cento do trade. Na conversa eu calculo o mínimo para o seu caso.",
   },
 ];
+
+function Diagnostico() {
+  const [exchange, setExchange] = useState("");
+  const [capital, setCapital] = useState("");
+  const [perfil, setPerfil] = useState("");
+
+  const completo = Boolean(exchange && capital && perfil);
+  const mensagem =
+    "Oi! Vim da pagina do AutoHedge e quero o diagnostico.\n\n" +
+    `Exchange: ${exchange || "-"}\n` +
+    `Capital: ${capital || "-"}\n` +
+    `Perfil: ${perfil || "-"}`;
+  const link = `https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent(mensagem)}`;
+
+  return (
+    <Box
+      sx={{
+        border: "1px solid",
+        borderColor: "divider",
+        bgcolor: "background.paper",
+        p: { xs: 3, md: 4 },
+        mb: 8,
+      }}
+    >
+      <Typography variant="h2" sx={{ ...H2, mb: 1 }}>
+        Diagnóstico em três perguntas
+      </Typography>
+      <Typography sx={{ color: "text.secondary", fontSize: "0.84rem", mb: 3 }}>
+        Responda e o WhatsApp abre com tudo preenchido. Eu leio antes de
+        responder, então não precisa repetir.
+      </Typography>
+
+      <Grid container spacing={2}>
+        <Grid size={{ xs: 12, md: 4 }}>
+          <TextField
+            select
+            fullWidth
+            size="small"
+            label="Qual exchange você usa"
+            value={exchange}
+            onChange={(e) => setExchange(e.target.value)}
+          >
+            {EXCHANGES.map((op) => (
+              <MenuItem key={op} value={op}>
+                {op}
+              </MenuItem>
+            ))}
+          </TextField>
+        </Grid>
+        <Grid size={{ xs: 12, md: 4 }}>
+          <TextField
+            select
+            fullWidth
+            size="small"
+            label="Quanto pretende colocar"
+            value={capital}
+            onChange={(e) => setCapital(e.target.value)}
+          >
+            {CAPITAIS.map((op) => (
+              <MenuItem key={op} value={op}>
+                {op}
+              </MenuItem>
+            ))}
+          </TextField>
+        </Grid>
+        <Grid size={{ xs: 12, md: 4 }}>
+          <TextField
+            select
+            fullWidth
+            size="small"
+            label="Quanta perda você tolera"
+            value={perfil}
+            onChange={(e) => setPerfil(e.target.value)}
+          >
+            {PERFIS.map((op) => (
+              <MenuItem key={op} value={op}>
+                {op}
+              </MenuItem>
+            ))}
+          </TextField>
+        </Grid>
+      </Grid>
+
+      <Box sx={{ mt: 3, display: "flex", gap: 2, alignItems: "center", flexWrap: "wrap" }}>
+        {completo ? (
+          // <a> de verdade: o listener global do site intercepta clique em wa.me
+          // e roteia por /ir/whatsapp, então a conversão sai medida.
+          <Button
+            variant="contained"
+            href={link}
+            target="_blank"
+            rel="noopener"
+            sx={{
+              minHeight: 46,
+              bgcolor: "primary.main",
+              color: "primary.contrastText",
+              fontFamily: "monospace",
+              fontWeight: 600,
+              "&:hover": { filter: "brightness(0.92)" },
+            }}
+          >
+            ABRIR O WHATSAPP COM AS RESPOSTAS
+          </Button>
+        ) : (
+          <Button
+            variant="contained"
+            disabled
+            sx={{
+              minHeight: 46,
+              fontFamily: "monospace",
+              fontWeight: 600,
+            }}
+          >
+            ABRIR O WHATSAPP COM AS RESPOSTAS
+          </Button>
+        )}
+        <Typography sx={{ color: "text.secondary", fontSize: "0.75rem" }}>
+          {completo
+            ? "As três respostas vão na mensagem."
+            : "Responda as três para liberar o botão."}
+        </Typography>
+      </Box>
+    </Box>
+  );
+}
 
 export default function AutoHedge() {
   return (
@@ -391,6 +527,11 @@ export default function AutoHedge() {
               </Grid>
             ))}
           </Grid>
+        </motion.div>
+
+        {/* Diagnóstico */}
+        <motion.div {...fadeUp}>
+          <Diagnostico />
         </motion.div>
 
         {/* O que não faz */}
