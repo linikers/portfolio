@@ -100,25 +100,39 @@ const itemVariants = {
 export default function Home() {
   const [phase, setPhase] = useState<"boot" | "glitch" | "landing">("boot");
   const [visibleLines, setVisibleLines] = useState(0);
+  const linhasRapidas = bootLines.slice(0, 4);
 
-  // Auto-play boot sequence
+  // Preloader curto: 1x por sessão, no máximo ~0,8 s, e nunca com
+  // prefers-reduced-motion. Antes eram ~2,2 s em todo carregamento.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const reduz = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const jaViu = sessionStorage.getItem("portfolio-preloader") === "1";
+    if (reduz || jaViu) {
+      setPhase("landing");
+      return;
+    }
+    sessionStorage.setItem("portfolio-preloader", "1");
+  }, []);
+
+  // Auto-play boot sequence (curta)
   useEffect(() => {
     if (phase !== "boot") return;
 
-    if (visibleLines < bootLines.length) {
-      const t = setTimeout(() => setVisibleLines((v) => v + 1), 120);
+    if (visibleLines < linhasRapidas.length) {
+      const t = setTimeout(() => setVisibleLines((v) => v + 1), 60);
       return () => clearTimeout(t);
     } else {
       // Move to glitch after last line
-      const t = setTimeout(() => setPhase("glitch"), 400);
+      const t = setTimeout(() => setPhase("glitch"), 120);
       return () => clearTimeout(t);
     }
-  }, [phase, visibleLines]);
+  }, [phase, visibleLines, linhasRapidas.length]);
 
   // Glitch → Landing
   useEffect(() => {
     if (phase !== "glitch") return;
-    const t = setTimeout(() => setPhase("landing"), 600);
+    const t = setTimeout(() => setPhase("landing"), 180);
     return () => clearTimeout(t);
   }, [phase]);
 
@@ -143,7 +157,7 @@ export default function Home() {
           alignItems: "center",
           justifyContent: "center",
           fontFamily: "'IBM Plex Mono', monospace",
-          animation: phase === "glitch" ? `${glitchAnim} 0.4s ease-in-out` : "none",
+          animation: phase === "glitch" ? `${glitchAnim} 0.25s ease-in-out` : "none",
           "&::before": phase === "glitch"
             ? {
                 content: '""',
@@ -157,20 +171,20 @@ export default function Home() {
         }}
       >
         <Box sx={{ textAlign: "left", px: 2 }}>
-          {bootLines.slice(0, visibleLines).map((line, i) => (
+          {linhasRapidas.slice(0, visibleLines).map((line, i) => (
             <Typography
               key={i}
               sx={{
                 fontFamily: "inherit",
                 fontSize: { xs: "0.7rem", md: "0.85rem" },
-                color: i === bootLines.length - 1 ? "#00ff41" : line.startsWith("[OK]") ? "#22c55e" : line.startsWith("[BOOT]") ? "#22d3ee" : "#94a3b8",
+                color: i === linhasRapidas.length - 1 ? "#00ff41" : line.startsWith("[OK]") ? "#22c55e" : line.startsWith("[BOOT]") ? "#22d3ee" : "#94a3b8",
                 lineHeight: 1.8,
                 whiteSpace: "pre",
                 overflow: "hidden",
               }}
             >
               {line}
-              {i === visibleLines - 1 && i < bootLines.length - 1 && (
+              {i === visibleLines - 1 && i < linhasRapidas.length - 1 && (
                 <Box component="span" sx={{ animation: "blink 1s step-end infinite", color: "#00ff41" }}>
                   _
                 </Box>

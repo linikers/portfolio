@@ -78,9 +78,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   );
 
   try {
-    const resposta = await fetch(`${destino}?k=${encodeURIComponent(token)}`, {
+    const resposta = await fetch(destino, {
       method: "POST",
-      headers: { "content-type": tipoConteudo },
+      headers: {
+        "content-type": tipoConteudo,
+        "x-sendcert-token": token,
+      },
       body: new Uint8Array(corpo),
     });
 

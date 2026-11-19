@@ -148,6 +148,18 @@ export default function SendCert({ token }: Props) {
           <Typography variant="body2" sx={{ opacity: 0.7 }}>
             ou clique para escolher o arquivo
           </Typography>
+          <Button
+            component="span"
+            variant="outlined"
+            startIcon={<CloudUploadIcon />}
+            onClick={(evento) => {
+              evento.stopPropagation();
+              inputRef.current?.click();
+            }}
+            sx={{ mt: 2 }}
+          >
+            Escolher arquivo .pfx
+          </Button>
           <input
             ref={inputRef}
             type="file"
