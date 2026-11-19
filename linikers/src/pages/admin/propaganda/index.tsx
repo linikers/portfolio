@@ -12,37 +12,25 @@ import { MdAdd } from "react-icons/md";
 
 const AddIcon: any = MdAdd;
 import { useRouter } from "next/router";
-import type { GetServerSideProps } from "next";
 import { onAuthStateChanged, User } from "firebase/auth";
 import { auth } from "@/config/firebaseClient";
-import { getAdminFirestore } from "@/lib/firebaseAdmin";
-import { QueryDocumentSnapshot } from "firebase-admin/firestore";
 import { usePropagandaStore } from "@/store/propaganda.store";
 import PropagandaDashboard from "@/components/propaganda/PropagandaDashboard";
 import PropagandaLayout from "@/components/propaganda/PropagandaLayout";
 import type { IPost } from "@/types/propaganda";
 
-interface PropagandaIndexProps {
-  initialPosts: IPost[];
-}
-
-export default function PropagandaIndex({
-  initialPosts,
-}: PropagandaIndexProps) {
+export default function PropagandaIndex() {
   const router = useRouter();
   const { posts, fetchPosts, deletePost, isLoading } = usePropagandaStore();
 
   useEffect(() => {
-    // Sync store with initial server data
-    usePropagandaStore.setState({ posts: initialPosts });
-
     const unsubscribe = onAuthStateChanged(auth, (user: User | null) => {
       if (user) {
         fetchPosts(user.uid);
       }
     });
     return () => unsubscribe();
-  }, [initialPosts, fetchPosts]);
+  }, [fetchPosts]);
 
   const handleEdit = (post: IPost) => {
     // For now we use the create page as editor by passing data via state or query
@@ -97,38 +85,3 @@ export default function PropagandaIndex({
     </PropagandaLayout>
   );
 }
-
-export const getServerSideProps: GetServerSideProps = async () => {
-  try {
-    const db = getAdminFirestore();
-    const snapshot = await db
-      .collection("posts")
-      .orderBy("scheduledAt", "desc")
-      .limit(20)
-      .get();
-
-    const initialPosts = snapshot.docs.map((doc: QueryDocumentSnapshot) => {
-      const data = doc.data();
-      return {
-        id: doc.id,
-        ...data,
-        scheduledAt:
-          data.scheduledAt?.toDate?.()?.toISOString() || data.scheduledAt,
-        createdAt: data.createdAt?.toDate?.()?.toISOString() || data.createdAt,
-      };
-    });
-
-    return {
-      props: {
-        initialPosts,
-      },
-    };
-  } catch (error) {
-    console.error("Propaganda index SSR error:", error);
-    return {
-      props: {
-        initialPosts: [],
-      },
-    };
-  }
-};

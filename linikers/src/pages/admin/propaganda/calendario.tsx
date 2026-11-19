@@ -23,17 +23,10 @@ const WhatsappIcon: any = FaWhatsapp;
 import { useRouter } from "next/router";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
-import type { GetServerSideProps } from "next";
-import { getAdminFirestore } from "@/lib/firebaseAdmin";
 import PropagandaLayout from "@/components/propaganda/PropagandaLayout";
 import CalendarioConteudo from "@/components/propaganda/CalendarioConteudo";
 import { usePropagandaStore } from "@/store/propaganda.store";
-import type { IPost } from "@/types/propaganda";
 import { STATUS_OPTIONS } from "@/types/propaganda";
-
-interface CalendarioPageProps {
-  initialPosts: IPost[];
-}
 
 const platformIcons: Record<string, JSX.Element> = {
   instagram: <InstagramIcon />,
@@ -42,14 +35,14 @@ const platformIcons: Record<string, JSX.Element> = {
   whatsapp: <WhatsappIcon />,
 };
 
-export default function CalendarioPage({ initialPosts }: CalendarioPageProps) {
+export default function CalendarioPage() {
   const router = useRouter();
-  const { posts, updatePost } = usePropagandaStore();
+  const { posts, fetchPosts, updatePost, isLoading } = usePropagandaStore();
   const [selectedEvent, setSelectedEvent] = useState<any | null>(null);
 
   useEffect(() => {
-    usePropagandaStore.setState({ posts: initialPosts });
-  }, [initialPosts]);
+    fetchPosts("");
+  }, [fetchPosts]);
 
   // Map IPost to Big Calendar format
   const events = posts.map((post) => ({
@@ -75,6 +68,12 @@ export default function CalendarioPage({ initialPosts }: CalendarioPageProps) {
         <Typography variant="h4" fontWeight="bold">
           Calendário de Publicações
         </Typography>
+
+        {isLoading && posts.length === 0 && (
+          <Typography variant="body2" color="text.secondary">
+            Carregando publicações…
+          </Typography>
+        )}
 
         <CalendarioConteudo
           events={events}
@@ -227,29 +226,3 @@ export default function CalendarioPage({ initialPosts }: CalendarioPageProps) {
     </PropagandaLayout>
   );
 }
-
-export const getServerSideProps: GetServerSideProps = async () => {
-  try {
-    const db = getAdminFirestore();
-    const snapshot = await db
-      .collection("posts")
-      .where("scheduledAt", "!=", null)
-      .get();
-
-    const initialPosts = snapshot.docs.map((doc) => {
-      const data = doc.data();
-      return {
-        id: doc.id,
-        ...data,
-        scheduledAt:
-          data.scheduledAt?.toDate?.()?.toISOString() || data.scheduledAt,
-        createdAt: data.createdAt?.toDate?.()?.toISOString() || data.createdAt,
-      };
-    });
-
-    return { props: { initialPosts } };
-  } catch (error) {
-    console.error("Calendar SSR error:", error);
-    return { props: { initialPosts: [] } };
-  }
-};
