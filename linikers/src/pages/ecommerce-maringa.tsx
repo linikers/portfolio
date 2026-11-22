@@ -158,6 +158,7 @@ export default function EcommerceMaringa() {
 
               <Typography
                 variant="h2"
+                component="h1"
                 sx={{
                   fontWeight: 800,
                   fontSize: { xs: "1.8rem", md: "3.2rem" },

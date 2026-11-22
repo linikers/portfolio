@@ -93,6 +93,7 @@ export default function Projetos() {
       {/* ─── Header ─────────────────────────── */}
       <Typography
         variant="h2"
+        component="h1"
         sx={{
           fontFamily: "monospace",
           fontWeight: 900,

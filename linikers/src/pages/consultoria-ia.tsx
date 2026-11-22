@@ -24,7 +24,7 @@ export default function ConsultoriaIA() {
     <>
       <SEO
         title="Consultoria de Precificação com IA em Maringá"
-        description="Consultoria de precificação com IA em Maringá e todo Brasil. Análise inteligente de mercado, concorrência e custos para definir o preço ideal do seu produto. R$ 97."
+        description="Consultoria de precificação com IA: análise de mercado, concorrência e custos para definir o preço do seu produto. R$ 97, em todo o Brasil."
         ogImage="/ecommerce-hero.png"
       />
       <Head>
