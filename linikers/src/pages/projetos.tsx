@@ -64,11 +64,30 @@ const anteriores = [
 ];
 
 export default function Projetos() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Projetos de Liniker Ferreira dos Santos",
+    url: "https://linikers.cloud/projetos",
+    description:
+      "Portfólio de projetos de desenvolvimento: sistemas web, e-commerce, Web3 e automação.",
+    isPartOf: { "@type": "WebSite", name: "LinikerS", url: "https://linikers.cloud" },
+    about: { "@type": "Person", name: "Liniker Ferreira dos Santos", url: "https://linikers.cloud" },
+  };
+
   return (
     <>
       <SEO
         title="Projetos"
         description="Portfólio de projetos de desenvolvimento: polyLink, CarCrew Commerce, ERC20 Token Lab, Taiff Connect e mais. Soluções em Next.js, React, Web3."
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Container maxWidth="lg" sx={{ py: 8 }}>
       {/* ─── Header ─────────────────────────── */}

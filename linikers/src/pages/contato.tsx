@@ -19,11 +19,30 @@ const socials = [
 ];
 
 export default function Contato() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    name: "Contato — LinikerS",
+    url: "https://linikers.cloud/contato",
+    description: "Contato para orçamento de sites, landing pages, sistemas web e automação.",
+    about: {
+      "@type": "Person",
+      name: "Liniker Ferreira dos Santos",
+      url: "https://linikers.cloud",
+      jobTitle: "Desenvolvedor Full Stack",
+      address: { "@type": "PostalAddress", addressLocality: "Maringá", addressRegion: "PR", addressCountry: "BR" },
+    },
+  };
+
   return (
     <>
       <SEO
         title="Contato"
         description="Entre em contato com LinikerS para orçamentos de sites, landing pages, sistemas web, bots e automação. Respondo em até 24h."
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Container
       maxWidth="sm"
