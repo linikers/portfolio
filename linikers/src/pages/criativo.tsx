@@ -2,6 +2,7 @@ import { Container, Typography, Box, Grid2, Card, CardContent, CardMedia, Button
 import Link from "next/link";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import { useEffect } from "react";
+import SEO from "@/components/SEO";
 
 export default function Criativo() {
   // Load Pinterest embed script
@@ -17,6 +18,11 @@ export default function Criativo() {
 
   return (
     <Container maxWidth="lg" sx={{ py: 6 }}>
+      <SEO
+        title="Criativo — referências visuais"
+        description="Mural de referências visuais usadas nos projetos."
+        noindex
+      />
       <Typography variant="h2" sx={{ fontFamily: "monospace", fontWeight: 900, mb: 1, fontSize: { xs: "1.5rem", md: "2rem" } }}>
         criativo/
       </Typography>

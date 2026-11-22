@@ -11,7 +11,9 @@ module.exports = {
       },
     ],
   },
-  exclude: ["/admin", "/admin/**", "/api/**", "/login", "/whatsapp-qr", "/sendCert", "/components/**", "/bside/agenda-demo", "/bside/cardapio-demo", "/bside/hot", "/bside/hot/modelo", "/bside/salao/modelo", "/bside/pousada/modelo", "/bside/previa", "/bside/previa/**"],
+  exclude: ["/admin", "/admin/**", "/api/**", "/login", "/whatsapp-qr", "/sendCert", "/components/**", "/bside/agenda-demo", "/bside/cardapio-demo", "/bside/hot", "/bside/hot/modelo", "/bside/salao/modelo", "/bside/pousada/modelo", "/bside/previa", "/bside/previa/**",
+    // páginas de sistema/obrigado: não têm valor de busca e sujam o índice
+    "/dashboard", "/dashboard/**", "/conectar", "/criativo", "/perfil", "/ir/whatsapp", "/obrigado"],
   generateIndexSitemap: false,
   outDir: "public",
 };

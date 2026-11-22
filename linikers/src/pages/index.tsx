@@ -137,12 +137,72 @@ export default function Home() {
   }, [phase]);
 
   // ─── BOOT PHASE ────────────────────────────
+  // Dados estruturados da home: é o que um motor de resposta (ChatGPT, Perplexity,
+  // resumo de IA do Google) lê para saber quem é o Liniker e o que ele vende.
+  // Sem isso a home não tem entidade declarada — era a maior lacuna de GEO do site.
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://linikers.cloud/#liniker",
+        name: "Liniker Ferreira dos Santos",
+        alternateName: "LinikerS",
+        url: "https://linikers.cloud",
+        jobTitle: "Desenvolvedor Full Stack",
+        image: "https://linikers.cloud/profileImg.jpg",
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Maringá",
+          addressRegion: "PR",
+          addressCountry: "BR",
+        },
+        knowsAbout: [
+          "desenvolvimento web",
+          "Next.js",
+          "React",
+          "Node.js",
+          "contratos inteligentes",
+          "automação de WhatsApp",
+        ],
+        sameAs: [
+          "https://github.com/linikers",
+          "https://www.linkedin.com/in/linikers",
+        ],
+      },
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://linikers.cloud/#servico",
+        name: "LinikerS — Criação de Sites e Sistemas",
+        url: "https://linikers.cloud",
+        description:
+          "Criação de sites, landing pages, lojas virtuais e sistemas web sob medida, com automação de WhatsApp e integrações.",
+        areaServed: { "@type": "Country", name: "Brasil" },
+        founder: { "@id": "https://linikers.cloud/#liniker" },
+        provider: { "@id": "https://linikers.cloud/#liniker" },
+        priceRange: "R$ 499 - R$ 2.999",
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Maringá",
+          addressRegion: "PR",
+          addressCountry: "BR",
+        },
+      },
+    ],
+  };
+
   const seo = (
-    <SEO
-      title="Criação de Sites e Sistemas Sob Medida | LinikerS"
-      description="Criação de sites, landing pages e sistemas web sob medida para vender mais. Código próprio, entrega combinada e suporte com quem desenvolve. Peça seu orçamento."
-      ogImage="/profileImg.jpg"
-    />
+    <>
+      <SEO
+        title="Criação de Sites e Sistemas Sob Medida | LinikerS"
+        description="Criação de sites, landing pages e sistemas web sob medida para vender mais. Código próprio, entrega combinada e suporte com quem desenvolve. Peça seu orçamento."
+        ogImage="/profileImg.jpg"
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+    </>
   );
 
   const bootOverlay = (

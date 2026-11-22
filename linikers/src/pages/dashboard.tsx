@@ -1,4 +1,5 @@
 import { Container, Typography, Box, Grid2, Card, CardContent, Button, Chip } from "@mui/material";
+import SEO from "@/components/SEO";
 import Link from "next/link";
 import {
   Dashboard as DashboardIcon,
@@ -64,6 +65,11 @@ const modulos = [
 export default function Dashboard() {
   return (
     <Container maxWidth="lg" sx={{ py: 6 }}>
+      <SEO
+        title="Dashboard de ferramentas internas"
+        description="Painel de ferramentas internas do LinikerS."
+        noindex
+      />
       <Typography
         variant="h2"
         sx={{
