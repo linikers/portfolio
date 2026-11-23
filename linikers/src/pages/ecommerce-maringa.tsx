@@ -93,12 +93,40 @@ const faq = [
 ];
 
 export default function EcommerceMaringa() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "Criação de Lojas Virtuais em Maringá",
+    serviceType: "Desenvolvimento de e-commerce",
+    provider: {
+      "@type": "Person",
+      name: "Liniker Ferreira dos Santos",
+      url: "https://linikers.cloud",
+    },
+    areaServed: [
+      { "@type": "City", name: "Maringá" },
+      { "@type": "State", name: "Paraná" },
+      { "@type": "Country", name: "Brasil" },
+    ],
+    description:
+      "Criação de lojas virtuais e landing pages com checkout, frete e integração de pagamento. Site profissional em 7 dias com SEO incluso.",
+    offers: [
+      { "@type": "Offer", name: "Landing page", price: "499", priceCurrency: "BRL" },
+      { "@type": "Offer", name: "Loja virtual", price: "1999", priceCurrency: "BRL" },
+      { "@type": "Offer", name: "Loja virtual completa", price: "2999", priceCurrency: "BRL" },
+    ],
+  };
+
   return (
     <>
       <SEO
         title="Criação de Lojas Virtuais em Maringá"
         description="Criação de lojas virtuais e landing pages em Maringá. Site profissional em 7 dias com SEO incluso e suporte direto no WhatsApp."
         canonical="https://linikers.cloud/ecommerce-maringa"
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
       {/* ─── HERO ────────────────────────────── */}

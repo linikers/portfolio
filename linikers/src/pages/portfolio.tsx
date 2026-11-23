@@ -45,11 +45,25 @@ export default function PortfolioPage() {
   const router = useRouter();
   const { ref } = router.query;
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Portfólio — Liniker Ferreira dos Santos",
+    url: "https://linikers.cloud/portfolio",
+    description:
+      "Projetos de desenvolvimento web, e-commerce, Web3 e automação entregues por Liniker.",
+    about: { "@type": "Person", name: "Liniker Ferreira dos Santos", url: "https://linikers.cloud" },
+  };
+
   return (
     <>
       <SEO
         title="Portfólio"
         description="Portfólio de Liniker Souza — Desenvolvedor Full Stack especializado em Next.js, React, Node, TypeScript e Web3. Projetos, cases e contato."
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Box sx={{ minHeight: "100vh", background: "#0a0a0f", py: 6 }}>
       <Container maxWidth="lg">

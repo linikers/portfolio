@@ -35,6 +35,24 @@ export default function LojaPage({ prompts }: LojaPageProps) {
     return matchesSearch && matchesCategory;
   });
 
+  // ItemList da vitrine: título e categoria vêm do Firestore, nada inventado.
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Loja de Prompts | LinikerS",
+    url: "https://linikers.cloud/loja",
+    description: "Prompts profissionais validados para alavancar seu workflow.",
+    mainEntity: {
+      "@type": "ItemList",
+      numberOfItems: prompts.length,
+      itemListElement: prompts.slice(0, 20).map((p, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        name: p.title,
+      })),
+    },
+  };
+
   return (
     <Box
       sx={{
@@ -48,6 +66,10 @@ export default function LojaPage({ prompts }: LojaPageProps) {
         <meta
           name="description"
           content="Prompts profissionais validados para alavancar seu workflow."
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </Head>
 
