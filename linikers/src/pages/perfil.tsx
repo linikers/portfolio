@@ -1,10 +1,16 @@
 import { Container, Typography, Box, Paper } from "@mui/material";
 import BoxPinterest from "@/components/boxPinterest";
 import infoPerfil from "@/components/infoPerfil";
+import SEO from "@/components/SEO";
 
 export default function Perfil() {
   return (
     <Container maxWidth="sm" sx={{ py: 6 }}>
+      <SEO
+        title="Perfil"
+        description="Perfil público de Liniker Ferreira dos Santos."
+        noindex
+      />
       <Box
         sx={{
           width: "100%",

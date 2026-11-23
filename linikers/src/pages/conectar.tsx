@@ -10,6 +10,7 @@ import {
   StepLabel,
   Chip,
 } from "@mui/material";
+import SEO from "@/components/SEO";
 import QrCodeIcon from "@mui/icons-material/QrCode";
 import PhoneIphoneIcon from "@mui/icons-material/PhoneIphone";
 import LinkIcon from "@mui/icons-material/Link";
@@ -45,6 +46,7 @@ export default function Conectar() {
   if (!qrData) {
     return (
       <Container maxWidth="sm" sx={{ py: 8, textAlign: "center" }}>
+        <SEO title="Conectar WhatsApp" description="Pareamento do WhatsApp por QR Code." noindex />
         <QrCodeIcon sx={{ fontSize: 80, opacity: 0.3, mb: 2 }} />
         <Typography variant="h4" gutterBottom>
           Nenhum QR Code
@@ -60,6 +62,7 @@ export default function Conectar() {
 
   return (
     <Container maxWidth="sm" sx={{ py: 4, textAlign: "center" }}>
+      <SEO title="Conectar WhatsApp" description="Pareamento do WhatsApp por QR Code." noindex />
       {/* Header */}
       <Box sx={{ mb: 3 }}>
         <Typography variant="h4" fontWeight={700} gutterBottom>
