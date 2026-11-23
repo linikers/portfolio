@@ -7,15 +7,16 @@ import {
   Button,
   Typography,
   Box,
-  Paper,
   Divider,
   Alert,
 } from "@mui/material";
-import { MdContentCopy, MdQrCode2 } from "react-icons/md";
+import { MdContentCopy } from "react-icons/md";
+import { FaWhatsapp } from "react-icons/fa6";
 
 const CopyIcon: any = MdContentCopy;
-const QrCodeIcon: any = MdQrCode2;
+const WhatsAppIcon: any = FaWhatsapp;
 import { useState } from "react";
+import { WHATSAPP_NUMERO } from "@/lib/conversaoWhatsapp";
 
 interface ComprarModalProps {
   open: boolean;
@@ -33,6 +34,11 @@ export default function ComprarModal({
   const [copied, setCopied] = useState(false);
   const pixKey =
     process.env.NEXT_PUBLIC_PIX_KEY || "sua-chave-pix-padrao@email.com";
+
+  const mensagemComprovante = encodeURIComponent(
+    `Oi! Paguei R$ ${price.toFixed(2)} pelo prompt "${title}" na loja. Vou enviar o comprovante.`,
+  );
+  const linkComprovante = `https://wa.me/${WHATSAPP_NUMERO}?text=${mensagemComprovante}`;
 
   const handleCopyPix = () => {
     navigator.clipboard.writeText(pixKey);
@@ -58,22 +64,9 @@ export default function ComprarModal({
             R$ {price.toFixed(2)}
           </Typography>
 
-          <Paper
-            variant="outlined"
-            sx={{
-              p: 2,
-              bgcolor: "#f9f9f9",
-              display: "flex",
-              justifyContent: "center",
-              mb: 2,
-            }}
-          >
-            <QrCodeIcon size={150} className="text-gray-800" />
-          </Paper>
-
           <Alert severity="info" sx={{ width: "100%", mb: 2 }}>
-            O acesso será liberado após o envio do comprovante para o
-            administrador.
+            Copie a chave PIX, pague o valor e envie o comprovante no WhatsApp.
+            O acesso é liberado manualmente depois da confirmação.
           </Alert>
 
           <Divider sx={{ width: "100%", mb: 2 }} />
@@ -113,12 +106,22 @@ export default function ComprarModal({
           )}
         </Box>
       </DialogContent>
-      <DialogActions sx={{ p: 2 }}>
-        <Button onClick={onClose} color="inherit">
-          Manter Depois
+      <DialogActions sx={{ p: 2, flexDirection: "column", gap: 1 }}>
+        <Button
+          component="a"
+          href={linkComprovante}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={onClose}
+          variant="contained"
+          fullWidth
+          startIcon={<WhatsAppIcon />}
+          sx={{ bgcolor: "#25D366", color: "#fff", "&:hover": { bgcolor: "#1ebe5b" } }}
+        >
+          Já paguei — enviar comprovante
         </Button>
-        <Button onClick={onClose} variant="contained" fullWidth>
-          Já realizei o pagamento
+        <Button onClick={onClose} color="inherit" fullWidth>
+          Manter Depois
         </Button>
       </DialogActions>
     </Dialog>

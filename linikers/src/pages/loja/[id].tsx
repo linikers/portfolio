@@ -311,11 +311,25 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       return { notFound: true };
     }
 
+    /**
+     * Conteúdo pago NÃO vai inteiro para o navegador.
+     *
+     * O blur na tela é só visual: se o `content` completo fosse para as props,
+     * ele apareceria no __NEXT_DATA__ e qualquer um leria sem pagar. Aqui o
+     * servidor manda só os primeiros 300 caracteres (a prévia borrada); o
+     * restante é entregue manualmente depois do comprovante.
+     */
+    const conteudoCompleto = data.content || "";
+    const gratuito = (data.price ?? 0) <= 0;
+    const conteudoExposto = gratuito
+      ? conteudoCompleto
+      : conteudoCompleto.slice(0, 300) + (conteudoCompleto.length > 300 ? "..." : "");
+
     const prompt = {
       id: docSnap.id,
       title: data.title || "",
       description: data.description || "",
-      content: data.content || "",
+      content: conteudoExposto,
       category: data.category || "outro",
       platform: data.platform || "geral",
       price: data.price ?? 0,
