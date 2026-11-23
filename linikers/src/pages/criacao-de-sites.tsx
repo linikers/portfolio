@@ -114,7 +114,7 @@ export default function CriacaoDeSites() {
     <>
       <SEO
         title="Criação de Sites e Sistemas Sob Medida | Orçamento em 24h"
-        description="Seu site ou sistema pronto para vender: landing pages a partir de R$ 499 e lojas virtuais a partir de R$ 1.999. Next.js, React e Node. Orçamento em 24h no WhatsApp."
+        description="Site ou sistema pronto para vender: landing page a partir de R$ 499 e loja virtual a partir de R$ 1.999. Orçamento em 24h no WhatsApp."
         ogImage="/ecommerce-hero.png"
       />
       <Head>

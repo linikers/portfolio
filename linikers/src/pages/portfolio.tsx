@@ -74,7 +74,7 @@ export default function PortfolioPage() {
             alt="Liniker"
             sx={{ width: 80, height: 80, mx: "auto", mb: 2, border: "3px solid #6366f1" }}
           />
-          <Typography variant="h3" sx={{ fontWeight: 800, color: "#fff", mb: 1 }}>
+          <Typography variant="h3" component="h1" sx={{ fontWeight: 800, color: "#fff", mb: 1 }}>
             Liniker Souza
           </Typography>
           <Typography sx={{ color: "#94a3b8", fontSize: "1.1rem", mb: 0.5 }}>

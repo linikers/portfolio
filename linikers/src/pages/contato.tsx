@@ -65,6 +65,7 @@ export default function Contato() {
 
       <Typography
         variant="h2"
+        component="h1"
         sx={{
           fontFamily: "monospace",
           fontWeight: 900,

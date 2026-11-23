@@ -62,7 +62,7 @@ export default function AgendamentoOnlinePage() {
     <div className={s.root}>
       <BsideSeo
         title="Agendamento online para barbearia, salão e clínica | BS Studio"
-        description="Agenda online que deixa o cliente marcar sozinho, 24 horas por dia, com confirmação no WhatsApp. Serve para barbearia, salão, clínica, estética e pet shop. BS Studio, na área desde 2008."
+        description="Agenda online para o cliente marcar sozinho, 24h, com confirmação no WhatsApp. Para barbearia, salão, clínica e pet shop. BS Studio, na área desde 2008."
         path="/bside/agendamento-online"
       />
       <script

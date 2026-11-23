@@ -65,7 +65,7 @@ export default function LojaPage({ prompts }: LojaPageProps) {
         <title>Loja de Prompts | Linikers</title>
         <meta
           name="description"
-          content="Prompts profissionais validados para alavancar seu workflow."
+          content="Prompts profissionais validados para alavancar seu workflow. Biblioteca de prompts de marketing, código e conteúdo para o dia a dia."
         />
         <script
           type="application/ld+json"
@@ -83,6 +83,7 @@ export default function LojaPage({ prompts }: LojaPageProps) {
           >
             <Typography
               variant="h3"
+              component="h1"
               fontWeight={900}
               sx={{ textTransform: "uppercase", letterSpacing: 3 }}
             >

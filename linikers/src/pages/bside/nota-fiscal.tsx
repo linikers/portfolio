@@ -73,7 +73,7 @@ export default function NotaFiscalPage() {
     <div className={s.root}>
       <BsideSeo
         title="Conferência de NF-e, NFS-e, CT-e e MDF-e para escritório contábil | BS Studio"
-        description="Confira chave e XML de nota fiscal, gere DANFE em PDF e organize os arquivos por cliente e por mês. Consulta por chave de acesso, sem pedir senha nem certificado. BS Studio, na área desde 2008."
+        description="Consulte chave e XML de nota fiscal, gere DANFE em PDF e organize por cliente. Sem pedir senha nem certificado. BS Studio, na área desde 2008."
         path="/bside/nota-fiscal"
       />
       <script

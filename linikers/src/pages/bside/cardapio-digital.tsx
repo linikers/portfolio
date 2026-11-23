@@ -65,7 +65,7 @@ export default function CardapioDigitalPage() {
     <div className={s.root}>
       <BsideSeo
         title="Cardápio digital para restaurante e delivery | BS Studio"
-        description="Cardápio digital que manda o pedido pronto no WhatsApp: item, quantidade, endereço e total. Sem aplicativo, sem comissão por pedido. BS Studio, na área desde 2008."
+        description="Cardápio digital que manda o pedido pronto no WhatsApp: item, quantidade, endereço e total. Sem aplicativo e sem comissão. BS Studio, desde 2008."
         path="/bside/cardapio-digital"
       />
       <script
