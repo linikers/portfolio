@@ -26,7 +26,7 @@ export const ADMIN_COOKIE = "admin_sessao";
 export const SESSAO_SEGUNDOS = 5 * 24 * 60 * 60;
 
 /** Fallback: só o dono. A lista real vem de ADMIN_EMAILS (separada por vírgula). */
-const EMAIL_DONO = "liniker@deltasge.com.br";
+const EMAIL_DONO = "linikers@hotmail.com";
 
 export interface AdminSessao {
   uid: string;
