@@ -66,7 +66,7 @@ export default function Contato() {
       <Typography
         variant="h2"
         sx={{
-          fontFamily: "monospace",
+          fontFamily: "inherit",
           fontWeight: 900,
           mt: 4,
           mb: 2,
@@ -80,7 +80,7 @@ export default function Contato() {
         variant="body1"
         sx={{
           color: "text.secondary",
-          fontFamily: "monospace",
+          fontFamily: "inherit",
           fontSize: "0.9rem",
           mb: 4,
           maxWidth: 400,
@@ -105,7 +105,7 @@ export default function Contato() {
               "&:hover": {
                 color: "primary.main",
                 borderColor: "primary.main",
-                background: "rgba(34,211,238,0.06)",
+                background: "var(--surface-2)",
               },
             }}
           >
@@ -120,11 +120,11 @@ export default function Contato() {
         onClick={registrarConversaoWhatsApp}
         sx={{
           bgcolor: "#25D366",
-          color: "#fff",
+          color: "var(--text)",
           px: 4,
           py: 1.5,
           borderRadius: 3,
-          fontFamily: "monospace",
+          fontFamily: "inherit",
           fontSize: "0.9rem",
           gap: 1,
           "&:hover": { bgcolor: "#20bd5a" },
@@ -137,7 +137,7 @@ export default function Contato() {
       <Typography
         sx={{
           mt: 6,
-          fontFamily: "monospace",
+          fontFamily: "inherit",
           fontSize: "0.65rem",
           color: "text.secondary",
           opacity: 0.4,

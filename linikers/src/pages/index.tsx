@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import Link from "next/link";
 import SEO from "@/components/SEO";
 import { WHATSAPP_LINK, registrarConversaoWhatsApp } from "@/lib/conversaoWhatsapp";
 import {
@@ -8,19 +8,10 @@ import {
   Container,
   Typography,
   Button,
-  Avatar,
   Chip,
   Grid2,
   Paper,
-  keyframes,
 } from "@mui/material";
-import {
-  FaGithub,
-  FaLinkedin,
-  FaWhatsapp,
-  FaXTwitter,
-  FaInstagram,
-} from "react-icons/fa6";
 import { motion } from "framer-motion";
 
 const NextIcon: any = require("react-icons/si").SiNextdotjs;
@@ -32,23 +23,42 @@ const SolidityIcon: any = require("react-icons/si").SiSolidity;
 const TailwindIcon: any = require("react-icons/si").SiTailwindcss;
 const PostgresIcon: any = require("react-icons/si").SiPostgresql;
 
-const GitHubIcon: any = FaGithub;
-const LinkedInIcon: any = FaLinkedin;
-const WhatsAppIcon: any = FaWhatsapp;
-const XIcon: any = FaXTwitter;
-const InstagramIcon: any = FaInstagram;
-
-const MotionBox = motion.create(Box);
-
 const techs = [
-  { icon: <NextIcon size={22} />, label: "Next.js" },
-  { icon: <TsIcon size={22} />, label: "TypeScript" },
-  { icon: <ReactIcon size={22} />, label: "React" },
-  { icon: <DockerIcon size={22} />, label: "Docker" },
-  { icon: <FirebaseIcon size={22} />, label: "Firebase" },
-  { icon: <SolidityIcon size={22} />, label: "Solidity" },
-  { icon: <TailwindIcon size={22} />, label: "Tailwind" },
-  { icon: <PostgresIcon size={22} />, label: "Postgres" },
+  { icon: <NextIcon size={18} />, label: "Next.js" },
+  { icon: <TsIcon size={18} />, label: "TypeScript" },
+  { icon: <ReactIcon size={18} />, label: "React" },
+  { icon: <DockerIcon size={18} />, label: "Docker" },
+  { icon: <FirebaseIcon size={18} />, label: "Firebase" },
+  { icon: <SolidityIcon size={18} />, label: "Solidity" },
+  { icon: <TailwindIcon size={18} />, label: "Tailwind" },
+  { icon: <PostgresIcon size={18} />, label: "Postgres" },
+];
+
+const frentes = [
+  {
+    num: "01 · WEB",
+    titulo: "Sites e landing pages",
+    texto:
+      "Página que carrega rápido, aparece no Google e leva o visitante para o WhatsApp. Do one-page ao site completo.",
+    href: "/criacao-de-sites",
+    cta: "Ver escopo e prazo",
+  },
+  {
+    num: "02 · SISTEMAS",
+    titulo: "Lojas, painéis e automação",
+    texto:
+      "E-commerce com PIX, painel de pedidos e integrações sob medida. O sistema acompanha a operação, não o contrário.",
+    href: "/ecommerce-maringa",
+    cta: "Ver loja e sistema",
+  },
+  {
+    num: "03 · IA",
+    titulo: "Consultoria e IA aplicada",
+    texto:
+      "Precificação, atendimento e análise de dados com agentes que trabalham todo dia. Decisão com número, não com achismo.",
+    href: "/consultoria-ia",
+    cta: "Ver consultoria",
+  },
 ];
 
 const featuredProjects = [
@@ -57,89 +67,26 @@ const featuredProjects = [
   { title: "erc20TokenLab", desc: "Laboratório educacional Web3", url: "https://github.com/linikers/erc20TokenLab" },
 ];
 
-// ─── Boot sequence lines ─────────────────────
-const bootLines = [
-  "[BOOT] LinikerS/portfolio v4.2.0",
-  "[OK] neural.network...... connected",
-  "[OK] theme.engine........ initialized",
-  "[OK] modules............. 6 loaded",
-  "[OK] auth.session........ active",
-  "",
-  "> _",
+const stats = [
+  { titulo: "Sites e sistemas", texto: "do briefing ao deploy" },
+  { titulo: "Delta Sistemas", texto: "desde 2023" },
+  { titulo: "Full-stack", texto: "Next · Node · Web3" },
+  { titulo: "1:1", texto: "direto com quem faz" },
 ];
 
-// ─── Glitch keyframes ────────────────────────
-const glitchAnim = keyframes`
-  0% { transform: translate(0); opacity: 1; }
-  20% { transform: translate(-3px, 1px); opacity: 0.9; }
-  40% { transform: translate(3px, -1px); opacity: 0.8; }
-  60% { transform: translate(-2px, 2px); opacity: 0.9; }
-  80% { transform: translate(2px, -2px); opacity: 0.95; }
-  100% { transform: translate(0); opacity: 1; }
-`;
-
-// ─── Stagger variants ────────────────────────
 const containerVariants = {
   hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1, delayChildren: 0.2 },
-  },
+  show: { opacity: 1, transition: { staggerChildren: 0.08, delayChildren: 0.05 } },
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 20, filter: "blur(4px)" },
-  show: {
-    opacity: 1,
-    y: 0,
-    filter: "blur(0px)",
-    transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] },
-  },
+  hidden: { opacity: 0, y: 16 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] } },
 };
 
 export default function Home() {
-  const [phase, setPhase] = useState<"boot" | "glitch" | "landing">("boot");
-  const [visibleLines, setVisibleLines] = useState(0);
-  const linhasRapidas = bootLines.slice(0, 4);
-
-  // Preloader curto: 1x por sessão, no máximo ~0,8 s, e nunca com
-  // prefers-reduced-motion. Antes eram ~2,2 s em todo carregamento.
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const reduz = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const jaViu = sessionStorage.getItem("portfolio-preloader") === "1";
-    if (reduz || jaViu) {
-      setPhase("landing");
-      return;
-    }
-    sessionStorage.setItem("portfolio-preloader", "1");
-  }, []);
-
-  // Auto-play boot sequence (curta)
-  useEffect(() => {
-    if (phase !== "boot") return;
-
-    if (visibleLines < linhasRapidas.length) {
-      const t = setTimeout(() => setVisibleLines((v) => v + 1), 60);
-      return () => clearTimeout(t);
-    } else {
-      // Move to glitch after last line
-      const t = setTimeout(() => setPhase("glitch"), 120);
-      return () => clearTimeout(t);
-    }
-  }, [phase, visibleLines, linhasRapidas.length]);
-
-  // Glitch → Landing
-  useEffect(() => {
-    if (phase !== "glitch") return;
-    const t = setTimeout(() => setPhase("landing"), 180);
-    return () => clearTimeout(t);
-  }, [phase]);
-
-  // ─── BOOT PHASE ────────────────────────────
   // Dados estruturados da home: é o que um motor de resposta (ChatGPT, Perplexity,
   // resumo de IA do Google) lê para saber quem é o Liniker e o que ele vende.
-  // Sem isso a home não tem entidade declarada — era a maior lacuna de GEO do site.
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -165,10 +112,7 @@ export default function Home() {
           "contratos inteligentes",
           "automação de WhatsApp",
         ],
-        sameAs: [
-          "https://github.com/linikers",
-          "https://www.linkedin.com/in/linikers",
-        ],
+        sameAs: ["https://github.com/linikers", "https://www.linkedin.com/in/linikers"],
       },
       {
         "@type": "ProfessionalService",
@@ -191,7 +135,7 @@ export default function Home() {
     ],
   };
 
-  const seo = (
+  return (
     <>
       <SEO
         title="Criação de Sites e Sistemas Sob Medida | LinikerS"
@@ -202,197 +146,68 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-    </>
-  );
 
-  const bootOverlay = (
-    <Box
-        sx={{
-          position: "fixed",
-          inset: 0,
-          zIndex: 9999,
-          bgcolor: "#0a0a0a",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          fontFamily: "'IBM Plex Mono', monospace",
-          animation: phase === "glitch" ? `${glitchAnim} 0.25s ease-in-out` : "none",
-          "&::before": phase === "glitch"
-            ? {
-                content: '""',
-                position: "absolute",
-                inset: 0,
-                background: "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,255,65,0.03) 2px, rgba(0,255,65,0.03) 4px)",
-                zIndex: 1,
-                pointerEvents: "none",
-              }
-            : {},
-        }}
-      >
-        <Box sx={{ textAlign: "left", px: 2 }}>
-          {linhasRapidas.slice(0, visibleLines).map((line, i) => (
-            <Typography
-              key={i}
-              sx={{
-                fontFamily: "inherit",
-                fontSize: { xs: "0.7rem", md: "0.85rem" },
-                color: i === linhasRapidas.length - 1 ? "#00ff41" : line.startsWith("[OK]") ? "#22c55e" : line.startsWith("[BOOT]") ? "#22d3ee" : "#94a3b8",
-                lineHeight: 1.8,
-                whiteSpace: "pre",
-                overflow: "hidden",
-              }}
-            >
-              {line}
-              {i === visibleLines - 1 && i < linhasRapidas.length - 1 && (
-                <Box component="span" sx={{ animation: "blink 1s step-end infinite", color: "#00ff41" }}>
-                  _
-                </Box>
-              )}
-            </Typography>
-          ))}
-        </Box>
-      </Box>
-    );
+      <Container maxWidth="lg" sx={{ py: { xs: 6, md: 10 } }}>
+        <motion.div variants={containerVariants} initial="hidden" animate="show">
+          {/* Hero */}
+          <Grid2
+            container
+            spacing={{ xs: 5, md: 6 }}
+            alignItems="center"
+            sx={{ mb: { xs: 8, md: 12 } }}
+          >
+            <Grid2 size={{ xs: 12, md: 7 }}>
+              <motion.div variants={itemVariants}>
+                <Typography
+                  sx={{
+                    fontSize: "0.75rem",
+                    letterSpacing: "0.12em",
+                    textTransform: "uppercase",
+                    color: "text.secondary",
+                    fontWeight: 500,
+                  }}
+                >
+                  Full-stack engineer · Maringá, PR
+                </Typography>
+              </motion.div>
 
-  // ─── LANDING PHASE ─────────────────────────
-  return (
-    <>
-      {seo}
-      <MotionBox
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6 }}
-        sx={{
-          minHeight: "100vh",
-          color: "text.primary",
-          overflow: "hidden",
-          position: "relative",
-        }}
-      >
-        {/* Subtle background */}
-        <Box
-          sx={{
-            position: "fixed",
-            inset: 0,
-            opacity: 0.03,
-            backgroundImage: "url(/assets/bgroomhd.png)",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            pointerEvents: "none",
-            zIndex: 0,
-          }}
-        />
-
-        <Container maxWidth="lg" sx={{ position: "relative", zIndex: 1, py: 8 }}>
-          <motion.div variants={containerVariants} initial="hidden" animate={phase === "landing" ? "show" : "hidden"}>
-            {/* Hero */}
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: { xs: "column", md: "row" },
-                alignItems: "center",
-                justifyContent: "space-between",
-                gap: 6,
-                mb: 10,
-                mt: 4,
-              }}
-            >
-              <Box sx={{ flex: 1 }}>
-                <motion.div variants={itemVariants}>
-                  <Typography
-                    variant="overline"
-                    sx={{
-                      color: "primary.main",
-                      letterSpacing: 3,
-                      fontWeight: 600,
-                      fontFamily: "monospace",
-                      fontSize: "0.75rem",
-                    }}
-                  >
-                    $ cat /home/linikers/README.md
-                  </Typography>
-                </motion.div>
-
-                <motion.div variants={itemVariants}>
-                  <Typography
-                    variant="h1"
-                    sx={{
-                      fontWeight: 900,
-                      fontSize: { xs: "2.5rem", md: "3.75rem" },
-                      mt: 1,
-                      lineHeight: 1.1,
-                      color: "text.primary",
-                    }}
-                  >
-                    LinikerS
-                  </Typography>
-                </motion.div>
-
-                <motion.div variants={itemVariants}>
-                  <Typography
-                    variant="h5"
-                    sx={{
-                      mt: 1,
-                      color: "text.secondary",
-                      fontWeight: 400,
-                      fontFamily: "monospace",
-                      fontSize: { xs: "1rem", md: "1.25rem" },
-                    }}
-                  >
-                    Full-stack Engineer &bull; IA &bull; Web3
-                  </Typography>
-                </motion.div>
-
-                <motion.div variants={itemVariants}>
-                  <Typography
-                    sx={{
-                      mt: 3,
-                      color: "text.secondary",
-                      maxWidth: 520,
-                      lineHeight: 1.7,
-                      fontSize: "0.95rem",
-                      opacity: 0.7,
-                    }}
-                  >
-                    Construo sistemas inteligentes — de dashboards DeFi a e-commerces com IA generativa. Código limpo, arquitetura pensada e soluções de verdade.
-                  </Typography>
-                </motion.div>
-
-                <motion.div variants={itemVariants}>
-                  <Box sx={{ display: "flex", gap: 1.5, mt: 4, flexWrap: "wrap" }}>
-                    {[
-                      { icon: <GitHubIcon size={18} />, url: "https://github.com/linikers", label: "GitHub" },
-                      { icon: <LinkedInIcon size={18} />, url: "https://linkedin.com/in/linikers", label: "LinkedIn" },
-                      { icon: <WhatsAppIcon size={18} />, url: WHATSAPP_LINK, label: "WhatsApp" },
-                      { icon: <XIcon size={18} />, url: "https://x.com/linikers", label: "X" },
-                      { icon: <InstagramIcon size={18} />, url: "https://instagram.com/linikers", label: "Instagram" },
-                    ].map((s) => (
-                      <Button
-                        key={s.label}
-                        href={s.url}
-                        target="_blank"
-                        onClick={s.label === "WhatsApp" ? registrarConversaoWhatsApp : undefined}
-                        variant="outlined"
-                        size="small"
-                        startIcon={s.icon}
-                        sx={{
-                          color: "text.secondary",
-                          borderColor: "divider",
-                          textTransform: "none",
-                          fontFamily: "monospace",
-                          fontSize: "0.8rem",
-                          "&:hover": { borderColor: "primary.main", color: "primary.main", background: "rgba(34,211,238,0.06)" },
-                        }}
-                      >
-                        {s.label}
-                      </Button>
-                    ))}
+              <motion.div variants={itemVariants}>
+                <Typography
+                  variant="h1"
+                  sx={{
+                    fontSize: { xs: "2.1rem", sm: "2.7rem", md: "3.4rem" },
+                    mt: 1.5,
+                    lineHeight: 1.12,
+                    color: "text.primary",
+                    maxWidth: 620,
+                  }}
+                >
+                  Sites e sistemas sob medida para{" "}
+                  <Box component="em" sx={{ fontStyle: "italic", color: "primary.main" }}>
+                    vender melhor
                   </Box>
-                </motion.div>
+                  .
+                </Typography>
+              </motion.div>
 
-                {/* CTA — conversão: clique no WhatsApp (é o que a ação "Clique WhatsApp - site" mede) */}
-                <motion.div variants={itemVariants}>
+              <motion.div variants={itemVariants}>
+                <Typography
+                  sx={{
+                    mt: 2.5,
+                    color: "text.secondary",
+                    maxWidth: 540,
+                    lineHeight: 1.75,
+                    fontSize: "1rem",
+                  }}
+                >
+                  Onze anos construindo produto: landing pages, lojas, painéis e automações.
+                  Código próprio, prazo combinado por escrito e suporte com quem escreveu o
+                  código.
+                </Typography>
+              </motion.div>
+
+              <motion.div variants={itemVariants}>
+                <Box sx={{ display: "flex", gap: 1.5, mt: 4, flexWrap: "wrap" }}>
                   <Button
                     component="a"
                     href={WHATSAPP_LINK}
@@ -401,137 +216,235 @@ export default function Home() {
                     onClick={registrarConversaoWhatsApp}
                     variant="contained"
                     size="large"
-                    endIcon={<Box component="span" sx={{ fontFamily: "monospace" }}>→</Box>}
+                    endIcon={<Box component="span">→</Box>}
                     sx={{
-                      mt: 3,
-                      background: "linear-gradient(135deg, #22d3ee 0%, #a78bfa 100%)",
-                      color: "#000",
-                      fontWeight: 700,
-                      fontFamily: "monospace",
+                      bgcolor: "primary.main",
+                      color: "primary.contrastText",
+                      px: 3.5,
+                      py: 1.25,
                       fontSize: "1rem",
-                      px: 4,
-                      py: 1.5,
-                      borderRadius: 2,
-                      textTransform: "none",
-                      transition: "all 0.25s",
+                      "&:hover": { bgcolor: "primary.main", opacity: 0.9 },
+                    }}
+                  >
+                    Pedir orçamento
+                  </Button>
+                  <Button
+                    component={Link}
+                    href="/projetos"
+                    variant="outlined"
+                    size="large"
+                    sx={{
+                      borderColor: "divider",
+                      color: "text.primary",
+                      px: 3,
+                      py: 1.25,
+                      fontSize: "1rem",
+                      "&:hover": { borderColor: "primary.main", bgcolor: "transparent" },
+                    }}
+                  >
+                    Ver projetos
+                  </Button>
+                </Box>
+              </motion.div>
+
+              <motion.div variants={itemVariants}>
+                <Typography sx={{ mt: 2, fontSize: "0.8rem", color: "text.secondary" }}>
+                  Resposta no mesmo dia útil. Sem proposta genérica.
+                </Typography>
+              </motion.div>
+            </Grid2>
+
+            <Grid2 size={{ xs: 12, md: 5 }}>
+              <motion.div variants={itemVariants}>
+                <Paper
+                  elevation={0}
+                  sx={{
+                    p: { xs: 2.5, md: 3 },
+                    borderRadius: "10px",
+                    border: "1px solid",
+                    borderColor: "divider",
+                    bgcolor: "background.paper",
+                    boxShadow: "0 1px 2px rgba(20,24,31,0.04)",
+                  }}
+                >
+                  <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
+                    <Box
+                      sx={{
+                        width: 44,
+                        height: 44,
+                        borderRadius: "50%",
+                        bgcolor: "background.default",
+                        border: "1px solid",
+                        borderColor: "divider",
+                        display: "grid",
+                        placeItems: "center",
+                        fontSize: "0.85rem",
+                        fontWeight: 600,
+                        color: "text.secondary",
+                      }}
+                    >
+                      LFS
+                    </Box>
+                    <Box>
+                      <Typography sx={{ fontWeight: 600, fontSize: "0.95rem" }}>
+                        Liniker Ferreira
+                      </Typography>
+                      <Typography sx={{ fontSize: "0.8rem", color: "text.secondary" }}>
+                        Full-stack · Maringá, PR
+                      </Typography>
+                    </Box>
+                  </Box>
+
+                  <Box sx={{ mt: 2.5, display: "grid", gap: 1.5 }}>
+                    {stats.map((s) => (
+                      <Box key={s.titulo} sx={{ display: "flex", justifyContent: "space-between", gap: 2 }}>
+                        <Typography sx={{ fontSize: "0.85rem", fontWeight: 600 }}>{s.titulo}</Typography>
+                        <Typography sx={{ fontSize: "0.82rem", color: "text.secondary", textAlign: "right" }}>
+                          {s.texto}
+                        </Typography>
+                      </Box>
+                    ))}
+                  </Box>
+
+                  <Box sx={{ mt: 2.5, pt: 2, borderTop: "1px solid", borderColor: "divider", display: "flex", flexWrap: "wrap", gap: 0.75 }}>
+                    {techs.map((t) => (
+                      <Chip
+                        key={t.label}
+                        label={t.label}
+                        size="small"
+                        variant="outlined"
+                        sx={{
+                          fontSize: "0.72rem",
+                          color: "text.secondary",
+                          borderColor: "divider",
+                          "& .MuiChip-label": { px: 1 },
+                        }}
+                      />
+                    ))}
+                  </Box>
+                </Paper>
+              </motion.div>
+            </Grid2>
+          </Grid2>
+
+          {/* O que eu faço */}
+          <motion.div variants={itemVariants}>
+            <Box sx={{ mb: 4 }}>
+              <Typography variant="h2" sx={{ fontSize: { xs: "1.6rem", md: "1.9rem" }, color: "text.primary" }}>
+                O que eu faço
+              </Typography>
+              <Typography sx={{ mt: 1, color: "text.secondary", maxWidth: 620 }}>
+                Três frentes, um responsável. Você fala com quem decide e com quem executa.
+              </Typography>
+            </Box>
+          </motion.div>
+
+          <Grid2 container spacing={2.5} sx={{ mb: { xs: 8, md: 10 } }}>
+            {frentes.map((f) => (
+              <Grid2 key={f.num} size={{ xs: 12, md: 4 }}>
+                <motion.div variants={itemVariants} style={{ height: "100%" }}>
+                  <Paper
+                    elevation={0}
+                    sx={{
+                      p: 3,
+                      height: "100%",
+                      display: "flex",
+                      flexDirection: "column",
+                      border: "1px solid",
+                      borderColor: "divider",
+                      borderRadius: "8px",
+                      bgcolor: "background.paper",
+                      transition: "border-color 0.2s, transform 0.2s",
+                      "&:hover": { borderColor: "primary.main", transform: "translateY(-2px)" },
+                    }}
+                  >
+                    <Typography sx={{ fontSize: "0.7rem", letterSpacing: "0.1em", color: "text.secondary" }}>
+                      {f.num}
+                    </Typography>
+                    <Typography sx={{ mt: 1, fontSize: "1.05rem", fontWeight: 600, color: "text.primary" }}>
+                      {f.titulo}
+                    </Typography>
+                    <Typography sx={{ mt: 1, fontSize: "0.9rem", color: "text.secondary", lineHeight: 1.65, flex: 1 }}>
+                      {f.texto}
+                    </Typography>
+                    <Link href={f.href} style={{ textDecoration: "none" }}>
+                      <Typography
+                        sx={{
+                          mt: 2.5,
+                          fontSize: "0.85rem",
+                          fontWeight: 600,
+                          color: "primary.main",
+                          "&:hover": { textDecoration: "underline" },
+                        }}
+                      >
+                        {f.cta} →
+                      </Typography>
+                    </Link>
+                  </Paper>
+                </motion.div>
+              </Grid2>
+            ))}
+          </Grid2>
+
+          {/* Projetos em destaque */}
+          <motion.div variants={itemVariants}>
+            <Box sx={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", mb: 3 }}>
+              <Typography variant="h2" sx={{ fontSize: { xs: "1.5rem", md: "1.8rem" } }}>
+                Projetos em destaque
+              </Typography>
+              <Link href="/projetos" style={{ textDecoration: "none" }}>
+                <Typography sx={{ fontSize: "0.85rem", color: "primary.main", fontWeight: 600 }}>
+                  Ver todos →
+                </Typography>
+              </Link>
+            </Box>
+            <Grid2 container spacing={2.5}>
+              {featuredProjects.map((p) => (
+                <Grid2 key={p.title} size={{ xs: 12, sm: 6, md: 4 }}>
+                  <Paper
+                    elevation={0}
+                    sx={{
+                      p: 3,
+                      height: "100%",
+                      bgcolor: "background.paper",
+                      border: "1px solid",
+                      borderColor: "divider",
+                      borderRadius: "8px",
+                      transition: "border-color 0.2s, transform 0.2s",
                       "&:hover": {
+                        borderColor: "primary.main",
                         transform: "translateY(-2px)",
-                        boxShadow: "0 8px 30px rgba(34,211,238,0.3)",
-                        background: "linear-gradient(135deg, #22d3ee 0%, #a78bfa 100%)",
                       },
                     }}
                   >
-                    $ pedir orçamento no whatsapp
-                  </Button>
-                </motion.div>
-              </Box>
-
-              <motion.div variants={itemVariants}>
-                <Box sx={{ flexShrink: 0 }}>
-                  <Avatar
-                    src="/profileImg.jpg"
-                    alt="Liniker"
-                    sx={{
-                      width: { xs: 160, md: 220 },
-                      height: { xs: 160, md: 220 },
-                      border: "3px solid",
-                      borderColor: "primary.main",
-                      boxShadow: "0 0 40px rgba(34,211,238,0.1)",
-                    }}
-                  />
-                </Box>
-              </motion.div>
-            </Box>
-
-            {/* Tech Stack */}
-            <motion.div variants={itemVariants}>
-              <Box sx={{ mb: 10 }}>
-                <Typography
-                  variant="h6"
-                  sx={{ fontFamily: "monospace", fontWeight: 600, color: "primary.main", mb: 3, fontSize: "0.85rem" }}
-                >
-                  {"// stack atual"}
-                </Typography>
-                <Box sx={{ display: "flex", gap: 1.5, flexWrap: "wrap" }}>
-                  {techs.map((t) => (
-                    <Chip
-                      key={t.label}
-                      icon={t.icon}
-                      label={t.label}
-                      variant="outlined"
+                    <Typography sx={{ fontWeight: 600, fontSize: "0.95rem" }}>{p.title}</Typography>
+                    <Typography sx={{ color: "text.secondary", mt: 0.75, fontSize: "0.85rem" }}>
+                      {p.desc}
+                    </Typography>
+                    <Button
+                      href={p.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      size="small"
                       sx={{
-                        color: "text.secondary",
-                        borderColor: "divider",
-                        fontFamily: "monospace",
-                        fontSize: "0.8rem",
-                        "& .MuiChip-icon": { color: "primary.main" },
-                        "&:hover": { borderColor: "primary.main", color: "primary.main" },
+                        mt: 2,
+                        p: 0,
+                        minWidth: 0,
+                        color: "primary.main",
+                        fontSize: "0.82rem",
+                        fontWeight: 600,
+                        "&:hover": { background: "transparent", textDecoration: "underline" },
                       }}
-                    />
-                  ))}
-                </Box>
-              </Box>
-            </motion.div>
-
-            {/* Featured Projects */}
-            <motion.div variants={itemVariants}>
-              <Box sx={{ mb: 6 }}>
-                <Typography
-                  variant="h6"
-                  sx={{ fontFamily: "monospace", fontWeight: 600, color: "primary.main", mb: 3, fontSize: "0.85rem" }}
-                >
-                  {"// projetos em destaque"}
-                </Typography>
-                <Grid2 container spacing={3}>
-                  {featuredProjects.map((p) => (
-                    <Grid2 key={p.title} size={{ xs: 12, sm: 4 }}>
-                      <Paper
-                        sx={{
-                          p: 3,
-                          background: "rgba(255,255,255,0.02)",
-                          border: "1px solid",
-                          borderColor: "divider",
-                          borderRadius: 3,
-                          transition: "all 0.25s",
-                          "&:hover": {
-                            borderColor: "primary.main",
-                            transform: "translateY(-2px)",
-                            boxShadow: "0 4px 20px rgba(0,0,0,0.2)",
-                          },
-                        }}
-                      >
-                        <Typography variant="subtitle1" sx={{ fontWeight: 700, fontFamily: "monospace" }}>
-                          {p.title}
-                        </Typography>
-                        <Typography variant="body2" sx={{ color: "text.secondary", mt: 1, fontSize: "0.85rem" }}>
-                          {p.desc}
-                        </Typography>
-                        <Button
-                          href={p.url}
-                          target="_blank"
-                          size="small"
-                          sx={{
-                            mt: 2,
-                            color: "primary.main",
-                            textTransform: "none",
-                            fontFamily: "monospace",
-                            fontSize: "0.8rem",
-                            p: 0,
-                            "&:hover": { background: "transparent", opacity: 0.8 },
-                          }}
-                        >
-                          $ ver projeto →
-                        </Button>
-                      </Paper>
-                    </Grid2>
-                  ))}
+                    >
+                      Ver projeto →
+                    </Button>
+                  </Paper>
                 </Grid2>
-              </Box>
-            </motion.div>
+              ))}
+            </Grid2>
           </motion.div>
-        </Container>
-      </MotionBox>
-      {phase !== "landing" && bootOverlay}
+        </motion.div>
+      </Container>
     </>
   );
 }

@@ -26,7 +26,7 @@ const items: DevItemProps[] = [
     icon: <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}><DeveloperBoard fontSize="small" /><DeviceIcon size={28} /></Box>,
     title: "Desenvolvimento",
     desc: "Aplicacoes web completas, APIs, integracoes, deploy e monitoramento.",
-    color: "#22d3ee",
+    color: "var(--accent)",
   },
   {
     icon: <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}><BugReport fontSize="small" /><BugIcon size={28} /></Box>,
@@ -44,7 +44,7 @@ export default function BoxDev() {
           key={item.title}
           sx={{
             width: 220,
-            background: "rgba(255,255,255,0.02)",
+            background: "var(--surface)",
             backdropFilter: "blur(8px)",
             border: "1px solid",
             borderColor: "divider",
@@ -63,7 +63,7 @@ export default function BoxDev() {
             </Box>
             <Typography
               variant="h6"
-              sx={{ fontFamily: "monospace", fontWeight: 700, fontSize: "0.9rem", mb: 1 }}
+              sx={{ fontFamily: "inherit", fontWeight: 700, fontSize: "0.9rem", mb: 1 }}
             >
               {item.title}
             </Typography>

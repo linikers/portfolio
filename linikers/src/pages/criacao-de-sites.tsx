@@ -134,9 +134,9 @@ export default function CriacaoDeSites() {
             <Typography
               variant="overline"
               sx={{
-                color: "#00ff41",
+                color: "var(--accent)",
                 letterSpacing: 3,
-                border: "1px solid #00ff41",
+                border: "1px solid var(--accent)",
                 px: 2,
                 py: 0.5,
                 display: "inline-block",
@@ -148,11 +148,11 @@ export default function CriacaoDeSites() {
             </Typography>
             <Typography
               variant="h1"
-              sx={{ fontWeight: 700, mb: 2, color: "#fff", fontSize: { xs: "1.8rem", md: "2.5rem" } }}
+              sx={{ fontWeight: 700, mb: 2, color: "var(--text)", fontSize: { xs: "1.8rem", md: "2.5rem" } }}
             >
-              Seu site ou sistema <span style={{ color: "#00ff41" }}>pronto para vender</span>
+              Seu site ou sistema <span style={{ color: "var(--accent)" }}>pronto para vender</span>
             </Typography>
-            <Typography sx={{ color: "#00cc33", maxWidth: 750, mx: "auto", mb: 4, fontSize: "0.9rem" }}>
+            <Typography sx={{ color: "var(--accent-2)", maxWidth: 750, mx: "auto", mb: 4, fontSize: "0.9rem" }}>
               Landing pages, lojas virtuais e automações sob medida. Você paga uma vez, o
               sistema é seu — sem mensalidade, só a hospedagem. Orçamento em 24h.
             </Typography>
@@ -162,13 +162,13 @@ export default function CriacaoDeSites() {
               target="_blank"
               rel="noopener noreferrer"
               sx={{
-                bgcolor: "#00ff41",
-                color: "#000",
-                fontFamily: "monospace",
+                bgcolor: "var(--accent)",
+                color: "var(--accent-contrast)",
+                fontFamily: "inherit",
                 fontWeight: 600,
                 px: 4,
                 py: 1.5,
-                "&:hover": { bgcolor: "#00cc33" },
+                "&:hover": { bgcolor: "var(--accent-2)" },
               }}
             >
               PEDIR ORÇAMENTO NO WHATSAPP
@@ -184,24 +184,24 @@ export default function CriacaoDeSites() {
                 <Card
                   sx={{
                     height: "100%",
-                    bgcolor: "rgba(255,255,255,0.01)",
-                    border: "1px solid #1e293b",
+                    bgcolor: "var(--surface)",
+                    border: "1px solid var(--border)",
                     p: 4,
                   }}
                 >
-                  <Typography variant="h6" sx={{ color: "#fff", fontFamily: "monospace", mb: 0.5 }}>
+                  <Typography variant="h6" sx={{ color: "var(--text)", fontFamily: "inherit", mb: 0.5 }}>
                     {o.nome}
                   </Typography>
-                  <Typography sx={{ color: "#00ff41", fontFamily: "monospace", fontWeight: 700, mb: 0.5 }}>
+                  <Typography sx={{ color: "var(--accent)", fontFamily: "inherit", fontWeight: 700, mb: 0.5 }}>
                     {o.preco}
                   </Typography>
-                  <Typography sx={{ color: "#00cc33", fontSize: "0.75rem", mb: 2 }}>{o.prazo}</Typography>
+                  <Typography sx={{ color: "var(--accent-2)", fontSize: "0.75rem", mb: 2 }}>{o.prazo}</Typography>
                   <List dense>
                     {o.itens.map((i) => (
                       <ListItem key={i} sx={{ px: 0 }}>
                         <ListItemText
                           primary={`▸ ${i}`}
-                          primaryTypographyProps={{ sx: { color: "#cbd5e1", fontSize: "0.82rem" } }}
+                          primaryTypographyProps={{ sx: { color: "var(--muted)", fontSize: "0.82rem" } }}
                         />
                       </ListItem>
                     ))}
@@ -217,14 +217,14 @@ export default function CriacaoDeSites() {
           <Box sx={{ mb: 8, textAlign: "center" }}>
             <Typography
               variant="h6"
-              sx={{ fontFamily: "monospace", color: "#fff", mb: 3, letterSpacing: 1 }}
+              sx={{ fontFamily: "inherit", color: "var(--text)", mb: 3, letterSpacing: 1 }}
             >
               ▸ JÁ ENTREGUE
             </Typography>
             <Grid container spacing={2}>
               {provas.map((p) => (
                 <Grid key={p} size={{ xs: 12, sm: 6 }}>
-                  <Typography sx={{ color: "#94a3b8", fontFamily: "monospace", fontSize: "0.82rem" }}>
+                  <Typography sx={{ color: "var(--muted)", fontFamily: "inherit", fontSize: "0.82rem" }}>
                     {`✓ ${p}`}
                   </Typography>
                 </Grid>
@@ -236,15 +236,15 @@ export default function CriacaoDeSites() {
         {/* FAQ */}
         <motion.div {...fadeUp}>
           <Box sx={{ mb: 8, maxWidth: 800, mx: "auto" }}>
-            <Typography variant="h6" sx={{ fontFamily: "monospace", color: "#fff", mb: 3, textAlign: "center" }}>
+            <Typography variant="h6" sx={{ fontFamily: "inherit", color: "var(--text)", mb: 3, textAlign: "center" }}>
               ▸ DÚVIDAS QUE SEMPRE CHEGAM
             </Typography>
             {faq.map((f) => (
               <Box key={f.q} sx={{ mb: 3 }}>
-                <Typography sx={{ color: "#00ff41", fontFamily: "monospace", fontSize: "0.85rem", mb: 0.5 }}>
+                <Typography sx={{ color: "var(--accent)", fontFamily: "inherit", fontSize: "0.85rem", mb: 0.5 }}>
                   {f.q}
                 </Typography>
-                <Typography sx={{ color: "#94a3b8", fontSize: "0.85rem", lineHeight: 1.7 }}>{f.a}</Typography>
+                <Typography sx={{ color: "var(--muted)", fontSize: "0.85rem", lineHeight: 1.7 }}>{f.a}</Typography>
               </Box>
             ))}
           </Box>
@@ -253,7 +253,7 @@ export default function CriacaoDeSites() {
         {/* CTA final */}
         <motion.div {...fadeUp}>
           <Box sx={{ textAlign: "center" }}>
-            <Typography sx={{ color: "#00cc33", mb: 3, fontSize: "0.85rem" }}>
+            <Typography sx={{ color: "var(--accent-2)", mb: 3, fontSize: "0.85rem" }}>
               Me conta o que você precisa e eu te respondo em até 24h.
             </Typography>
             <Button
@@ -262,13 +262,13 @@ export default function CriacaoDeSites() {
               target="_blank"
               rel="noopener noreferrer"
               sx={{
-                bgcolor: "#00ff41",
-                color: "#000",
-                fontFamily: "monospace",
+                bgcolor: "var(--accent)",
+                color: "var(--accent-contrast)",
+                fontFamily: "inherit",
                 fontWeight: 600,
                 px: 4,
                 py: 1.5,
-                "&:hover": { bgcolor: "#00cc33" },
+                "&:hover": { bgcolor: "var(--accent-2)" },
               }}
             >
               FALAR NO WHATSAPP

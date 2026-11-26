@@ -50,19 +50,19 @@ export default function IrWhatsapp() {
           alignItems: "center",
           justifyContent: "center",
           gap: 2,
-          fontFamily: "monospace",
+          fontFamily: "inherit",
           textAlign: "center",
           px: 2,
         }}
       >
-        <Typography sx={{ fontFamily: "monospace" }}>▸ abrindo o WhatsApp…</Typography>
+        <Typography sx={{ fontFamily: "inherit" }}>▸ abrindo o WhatsApp…</Typography>
         {/* Fallback: se o JavaScript demorar ou for bloqueado, o link funciona na mão */}
         <Button
           href={destino}
           target="_blank"
           rel="noopener noreferrer"
           variant="contained"
-          sx={{ bgcolor: "#25D366", color: "#fff", "&:hover": { bgcolor: "#20bd5a" }, fontFamily: "monospace" }}
+          sx={{ bgcolor: "#25D366", color: "var(--text)", "&:hover": { bgcolor: "#20bd5a" }, fontFamily: "inherit" }}
         >
           Abrir o WhatsApp
         </Button>
