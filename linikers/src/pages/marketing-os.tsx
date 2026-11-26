@@ -2,6 +2,7 @@ import { Container, Typography, Box, Button, Card, Grid2 as Grid, List, ListItem
 import SEO from "@/components/SEO";
 import Head from "next/head";
 import { motion } from "framer-motion";
+import { servico } from "@/data/servicos";
 
 const fadeUp = { initial: { opacity: 0, y: 30 }, whileInView: { opacity: 1, y: 0 }, transition: { duration: 0.6 } };
 
@@ -12,9 +13,9 @@ const jsonLd = {
   applicationCategory: "MarketingApplication",
   operatingSystem: "Web",
   offers: [
-    { "@type": "Offer", name: "Essential", price: "97", priceCurrency: "BRL" },
-    { "@type": "Offer", name: "Pro", price: "197", priceCurrency: "BRL" },
-    { "@type": "Offer", name: "Enterprise", price: "497", priceCurrency: "BRL" },
+    { "@type": "Offer", name: "Essential", price: String(servico("marketing-os-essential").preco), priceCurrency: "BRL" },
+    { "@type": "Offer", name: "Pro", price: String(servico("marketing-os-pro").preco), priceCurrency: "BRL" },
+    { "@type": "Offer", name: "Enterprise", price: String(servico("marketing-os-enterprise").preco), priceCurrency: "BRL" },
   ],
   areaServed: [{ "@type": "City", name: "Maringá" }, { "@type": "Country", name: "Brasil" }],
   description: "Sistema operacional de marketing multicanal. Gerencia campanhas, leads, canais e anúncios em um único sistema com agentes especializados.",
