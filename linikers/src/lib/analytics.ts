@@ -30,12 +30,15 @@ export function evento(nome: string, parametros: Parametros = {}): boolean {
 }
 
 /**
- * Listener global de clique no WhatsApp para as rotas da Bside.
+ * Listener global de clique no WhatsApp para as rotas da Bside (GA4).
  *
  * A família /bside tem número próprio e fica fora de `instalarConversaoWhatsApp`
  * (que faz o roteamento do portfólio). Aqui só medimos: o clique segue o fluxo
  * normal do navegador e abre o wa.me certo. O nome do evento leva o caminho da
  * página, que é o que permite comparar /bside com as páginas de serviço.
+ *
+ * A medição própria (Firestore) é independente: `instalarTrackingWhatsapp` em
+ * src/lib/track.ts cobre todas as rotas, inclusive /bside.
  */
 export function instalarCliqueWhatsAppBside(): () => void {
   if (typeof document === "undefined") return () => {};

@@ -11,6 +11,7 @@ import Head from "next/head";
 import "@/styles/globals.scss";
 import { instalarConversaoWhatsApp } from "@/lib/conversaoWhatsapp";
 import { instalarCliqueWhatsAppBside } from "@/lib/analytics";
+import { instalarTrackingWhatsapp, registrarPageview } from "@/lib/track";
 import {
   assinarModo,
   obterModo,
@@ -133,6 +134,17 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   // A família /bside fica fora do listener acima (número e marca próprios). Aqui o
   // clique é só MEDIDO no GA4, sem alterar para onde o navegador vai.
   useEffect(() => instalarCliqueWhatsAppBside(), []);
+
+  // Medição própria (first-party): visita por rota e clique no WhatsApp em
+  // qualquer página, inclusive /bside. Grava em /api/track → coleção `eventos`.
+  useEffect(() => instalarTrackingWhatsapp(), []);
+
+  useEffect(() => {
+    registrarPageview();
+    const aoMudar = (url: string) => registrarPageview(url.split("?")[0]);
+    router.events.on("routeChangeComplete", aoMudar);
+    return () => router.events.off("routeChangeComplete", aoMudar);
+  }, [router.events]);
 
   const theme = buildTheme(ehBside ? "dark" : modo);
 

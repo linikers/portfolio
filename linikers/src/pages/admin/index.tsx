@@ -8,10 +8,12 @@ import {
   Campaign as CampaignIcon,
   Groups as GroupsIcon,
   Inventory2 as InventoryIcon,
+  Insights as InsightsIcon,
 } from "@mui/icons-material";
 import Link from "next/link";
 
 const modules = [
+  { href: "/admin/visao", label: "Visão do site", icon: <InsightsIcon />, desc: "Visitas, cliques no WhatsApp e origem do lead" },
   { href: "/admin/servicos", label: "Serviços", icon: <InventoryIcon />, desc: "Catálogo, preços e recorrência" },
   { href: "/admin/dashboard", label: "Dashboard", icon: <DashboardIcon />, desc: "Métricas e visão geral" },
   { href: "/admin/ml", label: "Mercado Livre", icon: <StoreIcon />, desc: "Campanhas e vendas ML" },
