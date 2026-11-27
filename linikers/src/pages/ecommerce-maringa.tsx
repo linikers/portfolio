@@ -148,8 +148,8 @@ export default function EcommerceMaringa() {
                 label="Maringá / Paraná"
                 variant="outlined"
                 sx={{
-                  color: "#6366f1",
-                  borderColor: "#6366f1",
+                  color: "var(--accent)",
+                  borderColor: "var(--accent)",
                   fontWeight: 500,
                   mb: 3,
                   borderRadius: 2,
@@ -166,7 +166,7 @@ export default function EcommerceMaringa() {
                 }}
               >
                 Sua loja virtual em{" "}
-                <Box component="span" sx={{ color: "#6366f1" }}>
+                <Box component="span" sx={{ color: "var(--accent)" }}>
                   7 dias
                 </Box>
                 , pronta pra vender
@@ -196,8 +196,8 @@ export default function EcommerceMaringa() {
                   size="large"
                   startIcon={<WhatsApp />}
                   sx={{
-                    background: "#6366f1",
-                    color: "#fff",
+                    background: "var(--accent)",
+                    color: "var(--accent-contrast)",
                     fontWeight: 600,
                     fontSize: "1rem",
                     px: 4,
@@ -206,7 +206,7 @@ export default function EcommerceMaringa() {
                     borderRadius: 2,
                     boxShadow: "0 4px 14px rgba(99,102,241,0.3)",
                     "&:hover": {
-                      background: "#4f46e5",
+                      background: "var(--accent)",
                       boxShadow: "0 6px 20px rgba(99,102,241,0.4)",
                     },
                   }}
@@ -224,7 +224,7 @@ export default function EcommerceMaringa() {
                     textTransform: "none",
                     px: 4,
                     borderRadius: 2,
-                    "&:hover": { borderColor: "#6366f1", color: "#6366f1" },
+                    "&:hover": { borderColor: "var(--accent)", color: "var(--accent)" },
                   }}
                 >
                   Ver pacotes
@@ -256,7 +256,7 @@ export default function EcommerceMaringa() {
         <Container maxWidth="lg">
           <Typography
             variant="h6"
-            sx={{ color: "#6366f1", fontWeight: 700, mb: 1, fontSize: "0.9rem" }}
+            sx={{ color: "var(--accent)", fontWeight: 700, mb: 1, fontSize: "0.9rem" }}
           >
             E-commerce em Maringá
           </Typography>
@@ -276,7 +276,7 @@ export default function EcommerceMaringa() {
                   bgcolor: "rgba(99,102,241,0.03)",
                 }}
               >
-                <Typography variant="h3" sx={{ fontWeight: 800, color: "#6366f1", fontSize: "2.5rem", mb: 1 }}>
+                <Typography variant="h3" sx={{ fontWeight: 800, color: "var(--accent)", fontSize: "2.5rem", mb: 1 }}>
                   65%
                 </Typography>
                 <Typography variant="body2" sx={{ color: "text.secondary", fontSize: "0.9rem", lineHeight: 1.5 }}>
@@ -296,7 +296,7 @@ export default function EcommerceMaringa() {
                   bgcolor: "rgba(99,102,241,0.03)",
                 }}
               >
-                <Typography variant="h3" sx={{ fontWeight: 800, color: "#6366f1", fontSize: "2.5rem", mb: 1 }}>
+                <Typography variant="h3" sx={{ fontWeight: 800, color: "var(--accent)", fontSize: "2.5rem", mb: 1 }}>
                   R$ 2,5 bi
                 </Typography>
                 <Typography variant="body2" sx={{ color: "text.secondary", fontSize: "0.9rem", lineHeight: 1.5 }}>
@@ -316,7 +316,7 @@ export default function EcommerceMaringa() {
                   bgcolor: "rgba(99,102,241,0.03)",
                 }}
               >
-                <Typography variant="h3" sx={{ fontWeight: 800, color: "#6366f1", fontSize: "2.5rem", mb: 1 }}>
+                <Typography variant="h3" sx={{ fontWeight: 800, color: "var(--accent)", fontSize: "2.5rem", mb: 1 }}>
                   +40%
                 </Typography>
                 <Typography variant="body2" sx={{ color: "text.secondary", fontSize: "0.9rem", lineHeight: 1.5 }}>
@@ -362,10 +362,10 @@ export default function EcommerceMaringa() {
                     borderColor: "divider",
                     borderRadius: 3,
                     transition: "all 0.25s",
-                    "&:hover": { borderColor: "#6366f1" },
+                    "&:hover": { borderColor: "var(--accent)" },
                   }}
                 >
-                  <Box sx={{ color: "#6366f1", mb: 1.5 }}>{item.icon}</Box>
+                  <Box sx={{ color: "var(--accent)", mb: 1.5 }}>{item.icon}</Box>
                   <Typography variant="subtitle2" sx={{ fontWeight: 700, mb: 0.5, fontSize: "1rem" }}>
                     {item.title}
                   </Typography>
@@ -406,9 +406,9 @@ export default function EcommerceMaringa() {
                     flexDirection: "column",
                     background: pkg.highlight
                       ? "linear-gradient(180deg, rgba(99,102,241,0.08) 0%, transparent 100%)"
-                      : "rgba(255,255,255,0.02)",
-                    border: pkg.highlight ? "2px solid #6366f1" : "1px solid",
-                    borderColor: pkg.highlight ? "#6366f1" : "divider",
+                      : "var(--surface)",
+                    border: pkg.highlight ? "2px solid var(--accent)" : "1px solid",
+                    borderColor: pkg.highlight ? "var(--accent)" : "divider",
                     borderRadius: 3,
                     position: "relative",
                     transition: "all 0.3s",
@@ -426,8 +426,8 @@ export default function EcommerceMaringa() {
                         position: "absolute",
                         top: -12,
                         right: 24,
-                        background: "#6366f1",
-                        color: "#fff",
+                        background: "var(--accent)",
+                        color: "var(--accent-contrast)",
                         fontWeight: 700,
                         fontSize: "0.65rem",
                         borderRadius: 1.5,
@@ -458,7 +458,7 @@ export default function EcommerceMaringa() {
                   <Box sx={{ flex: 1, mb: 3 }}>
                     {pkg.items.map((item) => (
                       <Box key={item} sx={{ display: "flex", gap: 1, mb: 1.2 }}>
-                        <CheckCircle sx={{ fontSize: 18, color: "#6366f1", mt: 0.3, flexShrink: 0 }} />
+                        <CheckCircle sx={{ fontSize: 18, color: "var(--accent)", mt: 0.3, flexShrink: 0 }} />
                         <Typography variant="body2" sx={{ fontSize: "0.88rem", lineHeight: 1.5 }}>
                           {item}
                         </Typography>
@@ -479,13 +479,14 @@ export default function EcommerceMaringa() {
                       borderRadius: 2,
                       ...(pkg.highlight
                         ? {
-                            background: "#6366f1",
-                            "&:hover": { background: "#4f46e5" },
+                            background: "var(--accent)",
+                            color: "var(--accent-contrast)",
+                            "&:hover": { background: "var(--accent)", color: "var(--accent-contrast)" },
                           }
                         : {
                             color: "text.primary",
                             borderColor: "divider",
-                            "&:hover": { borderColor: "#6366f1", color: "#6366f1" },
+                            "&:hover": { borderColor: "var(--accent)", color: "var(--accent)" },
                           }),
                     }}
                   >
@@ -515,7 +516,7 @@ export default function EcommerceMaringa() {
             <Chip
               label="CASO REAL"
               size="small"
-              sx={{ background: "rgba(99,102,241,0.1)", color: "#6366f1", fontWeight: 600, fontSize: "0.7rem", mb: 2, borderRadius: 1.5 }}
+              sx={{ background: "rgba(99,102,241,0.1)", color: "var(--accent)", fontWeight: 600, fontSize: "0.7rem", mb: 2, borderRadius: 1.5 }}
             />
             <Typography
               variant="h4"
@@ -529,15 +530,15 @@ export default function EcommerceMaringa() {
             </Typography>
             <Stack direction="row" spacing={4} justifyContent="center" sx={{ mb: 3 }} flexWrap="wrap">
               <Box>
-                <Typography variant="h5" sx={{ fontWeight: 800, color: "#6366f1" }}>121</Typography>
+                <Typography variant="h5" sx={{ fontWeight: 800, color: "var(--accent)" }}>121</Typography>
                 <Typography variant="caption" sx={{ color: "text.secondary" }}>avaliações 5★</Typography>
               </Box>
               <Box>
-                <Typography variant="h5" sx={{ fontWeight: 800, color: "#6366f1" }}>3</Typography>
+                <Typography variant="h5" sx={{ fontWeight: 800, color: "var(--accent)" }}>3</Typography>
                 <Typography variant="caption" sx={{ color: "text.secondary" }}>páginas no Google</Typography>
               </Box>
               <Box>
-                <Typography variant="h5" sx={{ fontWeight: 800, color: "#6366f1" }}>7</Typography>
+                <Typography variant="h5" sx={{ fontWeight: 800, color: "var(--accent)" }}>7</Typography>
                 <Typography variant="caption" sx={{ color: "text.secondary" }}>dias pra ficar pronto</Typography>
               </Box>
             </Stack>
@@ -546,7 +547,7 @@ export default function EcommerceMaringa() {
               target="_blank"
               variant="outlined"
               startIcon={<ShoppingCart />}
-              sx={{ color: "text.primary", borderColor: "divider", textTransform: "none", "&:hover": { borderColor: "#6366f1", color: "#6366f1" } }}
+              sx={{ color: "text.primary", borderColor: "divider", textTransform: "none", "&:hover": { borderColor: "var(--accent)", color: "var(--accent)" } }}
             >
               Ver loja funcionando
             </Button>
@@ -580,10 +581,10 @@ export default function EcommerceMaringa() {
                 borderRadius: "12px !important",
                 mb: 1.5,
                 "&::before": { display: "none" },
-                "&.Mui-expanded": { borderColor: "#6366f1" },
+                "&.Mui-expanded": { borderColor: "var(--accent)" },
               }}
             >
-              <AccordionSummary expandIcon={<ExpandMore sx={{ color: "#6366f1" }} />}>
+              <AccordionSummary expandIcon={<ExpandMore sx={{ color: "var(--accent)" }} />}>
                 <Typography sx={{ fontWeight: 600, fontSize: "0.95rem" }}>
                   {item.q}
                 </Typography>
@@ -626,8 +627,8 @@ export default function EcommerceMaringa() {
             size="large"
             startIcon={<WhatsApp />}
             sx={{
-              background: "#6366f1",
-              color: "#fff",
+              background: "var(--accent)",
+              color: "var(--accent-contrast)",
               fontWeight: 600,
               fontSize: "1.1rem",
               px: 6,
@@ -636,7 +637,7 @@ export default function EcommerceMaringa() {
               borderRadius: 2.5,
               boxShadow: "0 4px 14px rgba(99,102,241,0.3)",
               "&:hover": {
-                background: "#4f46e5",
+                background: "var(--accent)",
                 boxShadow: "0 6px 20px rgba(99,102,241,0.4)",
               },
             }}

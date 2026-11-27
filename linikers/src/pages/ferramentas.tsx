@@ -25,12 +25,12 @@ const icons: Record<string, any> = {
 };
 
 const skillCards = [
-  { title: "Frontend", desc: "Next.js, React, TypeScript, MUI, Tailwind, HTML5, CSS3, Sass", icon: <Code />, color: "#22d3ee" },
-  { title: "Backend", desc: "Express 5, Node.js, REST APIs, TypeORM, Prisma, PostgreSQL, MongoDB", icon: <Storage />, color: "#a78bfa" },
+  { title: "Frontend", desc: "Next.js, React, TypeScript, MUI, Tailwind, HTML5, CSS3, Sass", icon: <Code />, color: "var(--accent)" },
+  { title: "Backend", desc: "Express 5, Node.js, REST APIs, TypeORM, Prisma, PostgreSQL, MongoDB", icon: <Storage />, color: "var(--accent)" },
   { title: "DevOps", desc: "Docker, Kubernetes (EKS), Helm, CI/CD, Linux, Ubuntu Server", icon: <Cloud />, color: "#f59e0b" },
   { title: "Design", desc: "Figma, UI/UX, Design Systems, Impeccable, glassmorphism, dark themes", icon: <Palette />, color: "#ec4899" },
   { title: "Blockchain", desc: "Solidity, Web3.js, MetaMask, Hardhat, Sepolia testnet, ERC20", icon: <DataObject />, color: "#10b981" },
-  { title: "CLI/Tools", desc: "Git, GitHub, npm, PM2, Vercel, Cloudinary, RabbitMQ, Scrum", icon: <Terminal />, color: "#6366f1" },
+  { title: "CLI/Tools", desc: "Git, GitHub, npm, PM2, Vercel, Cloudinary, RabbitMQ, Scrum", icon: <Terminal />, color: "var(--accent)" },
 ];
 
 const scrollAnim = keyframes`
@@ -41,10 +41,10 @@ const scrollAnim = keyframes`
 export default function Ferramentas() {
   return (
     <Container maxWidth="lg" sx={{ py: 6 }}>
-      <Typography variant="h2" sx={{ fontFamily: "monospace", fontWeight: 900, mb: 1, fontSize: { xs: "1.5rem", md: "2rem" } }}>
+      <Typography variant="h2" sx={{ fontFamily: "inherit", fontWeight: 900, mb: 1, fontSize: { xs: "1.5rem", md: "2rem" } }}>
         ferramentas/
       </Typography>
-      <Typography variant="body1" sx={{ color: "text.secondary", fontFamily: "monospace", fontSize: "0.85rem", mb: 6 }}>
+      <Typography variant="body1" sx={{ color: "text.secondary", fontFamily: "inherit", fontSize: "0.85rem", mb: 6 }}>
         $ which dev && dpkg -l | grep skill
       </Typography>
 
@@ -55,16 +55,16 @@ export default function Ferramentas() {
           rel="noopener noreferrer"
           variant="contained"
           sx={{
-            bgcolor: "#22d3ee",
-            color: "#000",
-            fontFamily: "monospace",
+            bgcolor: "var(--accent)",
+            color: "var(--accent-contrast)",
+            fontFamily: "inherit",
             fontWeight: 600,
-            "&:hover": { bgcolor: "#0fb6d0" },
+            "&:hover": { bgcolor: "var(--accent)" },
           }}
         >
           QUERO ESSA STACK NO MEU PROJETO
         </Button>
-        <Typography sx={{ color: "text.secondary", fontFamily: "monospace", fontSize: "0.8rem" }}>
+        <Typography sx={{ color: "text.secondary", fontFamily: "inherit", fontSize: "0.8rem" }}>
           orçamento em 24h no WhatsApp
         </Typography>
       </Box>
@@ -76,7 +76,7 @@ export default function Ferramentas() {
             <Card
               sx={{
                 height: "100%",
-                background: "rgba(255,255,255,0.02)",
+                background: "var(--surface)",
                 backdropFilter: "blur(8px)",
                 border: "1px solid",
                 borderColor: "divider",
@@ -91,7 +91,7 @@ export default function Ferramentas() {
             >
               <CardContent sx={{ p: 3 }}>
                 <Box sx={{ color: card.color, mb: 1.5 }}>{card.icon}</Box>
-                <Typography variant="h6" sx={{ fontFamily: "monospace", fontWeight: 700, fontSize: "0.9rem", mb: 1 }}>
+                <Typography variant="h6" sx={{ fontFamily: "inherit", fontWeight: 700, fontSize: "0.9rem", mb: 1 }}>
                   {card.title}
                 </Typography>
                 <Typography variant="body2" sx={{ color: "text.secondary", fontSize: "0.8rem", lineHeight: 1.6 }}>
@@ -109,7 +109,7 @@ export default function Ferramentas() {
           p: 3,
           mb: 4,
           borderRadius: 3,
-          background: "rgba(255,255,255,0.02)",
+          background: "var(--surface)",
           border: "1px solid",
           borderColor: "divider",
           display: "flex",

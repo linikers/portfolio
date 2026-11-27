@@ -17,7 +17,7 @@ export default function Blog({ posts }: any) {
       <Typography
         variant="h2"
         sx={{
-          fontFamily: "monospace",
+          fontFamily: "inherit",
           fontWeight: 900,
           mb: 1,
           fontSize: { xs: "1.5rem", md: "2rem" },
@@ -27,7 +27,7 @@ export default function Blog({ posts }: any) {
       </Typography>
       <Typography
         variant="body1"
-        sx={{ color: "text.secondary", fontFamily: "monospace", fontSize: "0.85rem", mb: 6 }}
+        sx={{ color: "text.secondary", fontFamily: "inherit", fontSize: "0.85rem", mb: 6 }}
       >
         $ cat ~/posts/*.md
       </Typography>
@@ -40,21 +40,21 @@ export default function Blog({ posts }: any) {
               mb: 8,
               p: 3,
               borderRadius: 2,
-              background: "rgba(255,255,255,0.02)",
+              background: "var(--surface)",
               border: "1px solid",
               borderColor: "divider",
             }}
           >
             <Typography
               variant="h5"
-              sx={{ fontFamily: "monospace", fontWeight: 700, mb: 1 }}
+              sx={{ fontFamily: "inherit", fontWeight: 700, mb: 1 }}
             >
               {post.title}
             </Typography>
             {post.date && (
               <Typography
                 variant="caption"
-                sx={{ color: "primary.main", fontFamily: "monospace", mb: 3, display: "block" }}
+                sx={{ color: "primary.main", fontFamily: "inherit", mb: 3, display: "block" }}
               >
                 ▸ {post.date}
               </Typography>
@@ -65,16 +65,16 @@ export default function Blog({ posts }: any) {
                 color: "text.secondary",
                 lineHeight: 1.8,
                 fontSize: "0.9rem",
-                "& h1, & h2, & h3": { fontFamily: "monospace", color: "primary.main" },
+                "& h1, & h2, & h3": { fontFamily: "inherit", color: "primary.main" },
                 "& p": { mb: 2 },
-                "& code": { fontFamily: "monospace", bgcolor: "rgba(255,255,255,0.05)", px: 0.8, py: 0.3, borderRadius: 1 },
+                "& code": { fontFamily: "inherit", bgcolor: "var(--surface-2)", px: 0.8, py: 0.3, borderRadius: 1 },
               }}
               dangerouslySetInnerHTML={{ __html: post.content }}
             />
           </Box>
         ))
       ) : (
-        <Typography sx={{ color: "text.secondary", fontFamily: "monospace" }}>
+        <Typography sx={{ color: "text.secondary", fontFamily: "inherit" }}>
           $ echo &apos;Nenhum post publicado ainda&apos;
         </Typography>
       )}

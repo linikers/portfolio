@@ -23,15 +23,15 @@ export default function Criativo() {
         description="Mural de referências visuais usadas nos projetos."
         noindex
       />
-      <Typography variant="h2" sx={{ fontFamily: "monospace", fontWeight: 900, mb: 1, fontSize: { xs: "1.5rem", md: "2rem" } }}>
+      <Typography variant="h2" sx={{ fontFamily: "inherit", fontWeight: 900, mb: 1, fontSize: { xs: "1.5rem", md: "2rem" } }}>
         criativo/
       </Typography>
-      <Typography variant="body1" sx={{ color: "text.secondary", fontFamily: "monospace", fontSize: "0.85rem", mb: 6 }}>
+      <Typography variant="body1" sx={{ color: "text.secondary", fontFamily: "inherit", fontSize: "0.85rem", mb: 6 }}>
         $ cat ~/inspiration/board.md
       </Typography>
 
       {/* Pinterest Board */}
-      <Typography variant="h6" sx={{ fontFamily: "monospace", fontWeight: 700, color: "primary.main", mb: 3, letterSpacing: 2, fontSize: "0.8rem" }}>
+      <Typography variant="h6" sx={{ fontFamily: "inherit", fontWeight: 700, color: "primary.main", mb: 3, letterSpacing: 2, fontSize: "0.8rem" }}>
         ▸ PINTEREST / ARTE
       </Typography>
       <Box
@@ -39,7 +39,7 @@ export default function Criativo() {
           p: 3,
           mb: 8,
           borderRadius: 3,
-          background: "rgba(255,255,255,0.02)",
+          background: "var(--surface)",
           border: "1px solid",
           borderColor: "divider",
           display: "flex",
@@ -57,20 +57,20 @@ export default function Criativo() {
       </Box>
 
       {/* Design Tools */}
-      <Typography variant="h6" sx={{ fontFamily: "monospace", fontWeight: 700, color: "primary.main", mb: 3, letterSpacing: 2, fontSize: "0.8rem" }}>
+      <Typography variant="h6" sx={{ fontFamily: "inherit", fontWeight: 700, color: "primary.main", mb: 3, letterSpacing: 2, fontSize: "0.8rem" }}>
         ▸ FERRAMENTAS DE DESIGN
       </Typography>
       <Grid2 container spacing={3} sx={{ mb: 8 }}>
         {[
-          { title: "Figma", desc: "Prototipação e design system. Componentes, auto-layout, variáveis.", url: "https://figma.com", tags: ["UI", "Prototype", "Systems"], color: "#a78bfa" },
-          { title: "Excalidraw", desc: "Diagramas e wireframes com estilo hand-drawn. Perfeito para arquitetura.", url: "https://excalidraw.com", tags: ["Wireframe", "Diagram", "Sketch"], color: "#22d3ee" },
+          { title: "Figma", desc: "Prototipação e design system. Componentes, auto-layout, variáveis.", url: "https://figma.com", tags: ["UI", "Prototype", "Systems"], color: "var(--accent)" },
+          { title: "Excalidraw", desc: "Diagramas e wireframes com estilo hand-drawn. Perfeito para arquitetura.", url: "https://excalidraw.com", tags: ["Wireframe", "Diagram", "Sketch"], color: "var(--accent)" },
           { title: "Impeccable", desc: "Framework de critique de design. Heurísticas, anti-padrões, polish.", url: "https://github.com/pbakaus/impeccable", tags: ["Critique", "UX", "Polish"], color: "#f59e0b" },
         ].map((tool) => (
           <Grid2 key={tool.title} size={{ xs: 12, sm: 6, md: 4 }}>
             <Card
               sx={{
                 height: "100%",
-                background: "rgba(255,255,255,0.02)",
+                background: "var(--surface)",
                 backdropFilter: "blur(8px)",
                 border: "1px solid",
                 borderColor: "divider",
@@ -80,7 +80,7 @@ export default function Criativo() {
               }}
             >
               <CardContent sx={{ p: 3, display: "flex", flexDirection: "column", gap: 1.5, height: "100%" }}>
-                <Typography variant="h6" sx={{ fontFamily: "monospace", fontWeight: 700, fontSize: "0.95rem" }}>
+                <Typography variant="h6" sx={{ fontFamily: "inherit", fontWeight: 700, fontSize: "0.95rem" }}>
                   {tool.title}
                 </Typography>
                 <Typography variant="body2" sx={{ color: "text.secondary", fontSize: "0.8rem", lineHeight: 1.6, flex: 1 }}>
@@ -88,12 +88,12 @@ export default function Criativo() {
                 </Typography>
                 <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.8 }}>
                   {tool.tags.map((tag) => (
-                    <Chip key={tag} label={tag} size="small" variant="outlined" sx={{ fontFamily: "monospace", fontSize: "0.6rem", borderRadius: 1, borderColor: "divider", color: "text.secondary" }} />
+                    <Chip key={tag} label={tag} size="small" variant="outlined" sx={{ fontFamily: "inherit", fontSize: "0.6rem", borderRadius: 1, borderColor: "divider", color: "text.secondary" }} />
                   ))}
                 </Box>
                 <Link href={tool.url} target="_blank" style={{ textDecoration: "none" }}>
                   <Button variant="outlined" size="small" endIcon={<OpenInNewIcon fontSize="small" />} fullWidth
-                    sx={{ fontFamily: "monospace", fontSize: "0.75rem", textTransform: "none", borderRadius: 1.5, mt: 1 }}>
+                    sx={{ fontFamily: "inherit", fontSize: "0.75rem", textTransform: "none", borderRadius: 1.5, mt: 1 }}>
                     Acessar
                   </Button>
                 </Link>
@@ -104,20 +104,20 @@ export default function Criativo() {
       </Grid2>
 
       {/* AI / Creative */}
-      <Typography variant="h6" sx={{ fontFamily: "monospace", fontWeight: 700, color: "primary.main", mb: 3, letterSpacing: 2, fontSize: "0.8rem" }}>
+      <Typography variant="h6" sx={{ fontFamily: "inherit", fontWeight: 700, color: "primary.main", mb: 3, letterSpacing: 2, fontSize: "0.8rem" }}>
         ▸ IA CRIATIVA
       </Typography>
       <Grid2 container spacing={3}>
         {[
           { title: "ComfyUI", desc: "Geração de imagens, video e audio com Stable Diffusion. Workflows nodais.", tags: ["Stable Diffusion", "Img2Img", "ControlNet"], color: "#ec4899" },
           { title: "Suno / HeartMuLa", desc: "Geração de música com IA. Letras + estilo → música completa.", tags: ["Music Gen", "Audio", "Creative"], color: "#10b981" },
-          { title: "Design MD", desc: "Especificação de design tokens no formato Google DESIGN.md.", tags: ["Tokens", "Spec", "System"], color: "#6366f1" },
+          { title: "Design MD", desc: "Especificação de design tokens no formato Google DESIGN.md.", tags: ["Tokens", "Spec", "System"], color: "var(--accent)" },
         ].map((item) => (
           <Grid2 key={item.title} size={{ xs: 12, sm: 6, md: 4 }}>
             <Card
               sx={{
                 height: "100%",
-                background: "rgba(255,255,255,0.02)",
+                background: "var(--surface)",
                 backdropFilter: "blur(8px)",
                 border: "1px solid",
                 borderColor: "divider",
@@ -127,7 +127,7 @@ export default function Criativo() {
               }}
             >
               <CardContent sx={{ p: 3, display: "flex", flexDirection: "column", gap: 1.5 }}>
-                <Typography variant="h6" sx={{ fontFamily: "monospace", fontWeight: 700, fontSize: "0.95rem" }}>
+                <Typography variant="h6" sx={{ fontFamily: "inherit", fontWeight: 700, fontSize: "0.95rem" }}>
                   {item.title}
                 </Typography>
                 <Typography variant="body2" sx={{ color: "text.secondary", fontSize: "0.8rem", lineHeight: 1.6 }}>
@@ -135,7 +135,7 @@ export default function Criativo() {
                 </Typography>
                 <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.8 }}>
                   {item.tags.map((tag) => (
-                    <Chip key={tag} label={tag} size="small" variant="outlined" sx={{ fontFamily: "monospace", fontSize: "0.6rem", borderRadius: 1, borderColor: "divider", color: "text.secondary" }} />
+                    <Chip key={tag} label={tag} size="small" variant="outlined" sx={{ fontFamily: "inherit", fontSize: "0.6rem", borderRadius: 1, borderColor: "divider", color: "text.secondary" }} />
                   ))}
                 </Box>
               </CardContent>
@@ -144,7 +144,7 @@ export default function Criativo() {
         ))}
       </Grid2>
 
-      <Typography sx={{ mt: 6, textAlign: "center", fontFamily: "monospace", fontSize: "0.65rem", color: "text.secondary", opacity: 0.4 }}>
+      <Typography sx={{ mt: 6, textAlign: "center", fontFamily: "inherit", fontSize: "0.65rem", color: "text.secondary", opacity: 0.4 }}>
         ▸ design.engine.active — inspiracao em fluxo continuo
       </Typography>
     </Container>

@@ -1,219 +1,188 @@
 "use client";
 
-import { useEffect, useRef, useCallback } from "react";
+import { useEffect, useState } from "react";
 import {
   AppBar,
   Toolbar,
   Box,
   Typography,
   Container,
+  IconButton,
+  Button,
+  Drawer,
+  Stack,
+  Divider,
 } from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
+import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
+import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { WHATSAPP_LINK, registrarConversaoWhatsApp } from "@/lib/conversaoWhatsapp";
+import { alternarModo, type Modo } from "@/lib/tema";
 
 const navLinks = [
-  { href: "/", label: "HOME" },
-  { href: "/ecommerce-maringa", label: "E-COMM" },
-  { href: "/projetos", label: "PROJETOS" },
-  { href: "/ferramentas", label: "FERRAMENTAS" },
-  { href: "/criativo", label: "CRIATIVO" },
-  { href: "/perfil", label: "PERFIL" },
-  { href: "/blog", label: "BLOG" },
-  { href: "/contato", label: "CONTATO" },
+  { href: "/", label: "Início" },
+  { href: "/projetos", label: "Projetos" },
+  { href: "/ferramentas", label: "Ferramentas" },
+  { href: "/criativo", label: "Criativo" },
+  { href: "/perfil", label: "Perfil" },
+  { href: "/blog", label: "Blog" },
+  { href: "/contato", label: "Contato" },
 ];
 
-interface Particle {
-  x: number;
-  y: number;
-  vx: number;
-  vy: number;
-  r: number;
-  alpha: number;
-}
-
-function useParticleCanvas(canvasRef: React.RefObject<HTMLCanvasElement | null>) {
-  const animRef = useRef<number>(0);
-
-  const draw = useCallback(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    const w = canvas.width;
-    const h = canvas.height;
-
-    const particles: Particle[] = [];
-    const count = 30;
-
-    for (let i = 0; i < count; i++) {
-      particles.push({
-        x: Math.random() * w,
-        y: Math.random() * h,
-        vx: (Math.random() - 0.5) * 0.3,
-        vy: (Math.random() - 0.5) * 0.15,
-        r: Math.random() * 1.5 + 0.5,
-        alpha: Math.random() * 0.5 + 0.2,
-      });
-    }
-
-    function animate() {
-      if (!ctx) return;
-      ctx.clearRect(0, 0, w, h);
-
-      for (const p of particles) {
-        p.x += p.vx;
-        p.y += p.vy;
-        if (p.x < 0) p.x = w;
-        if (p.x > w) p.x = 0;
-        if (p.y < 0) p.y = h;
-        if (p.y > h) p.y = 0;
-
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(34, 211, 238, ${p.alpha})`;
-        ctx.fill();
-      }
-
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 100) {
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(34, 211, 238, ${0.08 * (1 - dist / 100)})`;
-            ctx.lineWidth = 0.5;
-            ctx.stroke();
-          }
-        }
-      }
-
-      animRef.current = requestAnimationFrame(animate);
-    }
-
-    animate();
-
-    return () => {
-      if (animRef.current) cancelAnimationFrame(animRef.current);
-    };
-  }, [canvasRef]);
-
-  useEffect(() => {
-    const cleanup = draw();
-    return () => {
-      if (cleanup) cleanup();
-    };
-  }, [draw]);
-}
-
-export default function Navbar() {
+export default function Navbar({ modo }: { modo: Modo }) {
   const router = useRouter();
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [menuAberto, setMenuAberto] = useState(false);
 
-  useParticleCanvas(canvasRef);
+  // Fecha o menu ao navegar.
+  useEffect(() => {
+    setMenuAberto(false);
+  }, [router.pathname]);
+
+  const escuro = modo === "dark";
+  const rotuloTema = escuro ? "Usar tema claro" : "Usar tema escuro";
 
   return (
     <AppBar
       position="sticky"
       elevation={0}
+      color="transparent"
       sx={{
-        background: "transparent",
-        backdropFilter: "blur(12px)",
+        bgcolor: "background.paper",
         borderBottom: "1px solid",
         borderColor: "divider",
+        backdropFilter: "saturate(140%) blur(8px)",
         zIndex: 1100,
       }}
     >
-      <Box
-        sx={{
-          position: "relative",
-          height: 48,
-          overflow: "hidden",
-          background: "linear-gradient(90deg, rgba(34,211,238,0.05) 0%, rgba(34,211,238,0.02) 50%, rgba(168,85,247,0.05) 100%)",
-          borderBottom: "1px solid",
-          borderColor: "divider",
-        }}
-      >
-        <canvas
-          ref={canvasRef}
-          width={1280}
-          height={48}
-          style={{
-            position: "absolute",
-            inset: 0,
-            width: "100%",
-            height: "100%",
-          }}
-        />
-        <Box
-          sx={{
-            position: "absolute",
-            inset: 0,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            pointerEvents: "none",
-          }}
-        >
-          <Typography
-            sx={{
-              fontFamily: "monospace",
-              fontSize: "0.65rem",
-              color: "primary.main",
-              opacity: 0.6,
-              letterSpacing: 3,
-            }}
-          >
-            ▸ neural.network.active
-          </Typography>
-        </Box>
-      </Box>
-
       <Container maxWidth="lg">
-        <Toolbar
-          disableGutters
-          sx={{
-            minHeight: "48px !important",
-            gap: { xs: 1, md: 3 },
-            justifyContent: "center",
-            py: 0.5,
-          }}
-        >
-          {navLinks.map((link) => {
-            const active = router.pathname === link.href;
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                style={{ textDecoration: "none" }}
-              >
-                <Typography
-                  sx={{
-                    fontFamily: "monospace",
-                    fontSize: { xs: "0.7rem", md: "0.8rem" },
-                    fontWeight: active ? 700 : 400,
-                    color: active ? "primary.main" : "text.secondary",
-                    letterSpacing: 2,
-                    px: 1,
-                    py: 0.5,
-                    borderRadius: 1,
-                    transition: "all 0.2s",
-                    "&:hover": {
-                      color: "primary.main",
-                      background: "rgba(34,211,238,0.06)",
-                    },
-                  }}
-                >
-                  [{link.label}]
-                </Typography>
-              </Link>
-            );
-          })}
+        <Toolbar disableGutters sx={{ minHeight: { xs: 60, md: 72 }, gap: 2 }}>
+          <Link href="/" style={{ textDecoration: "none" }}>
+            <Typography
+              sx={{
+                fontSize: "1.15rem",
+                fontWeight: 700,
+                letterSpacing: "-0.02em",
+                color: "text.primary",
+              }}
+            >
+              Liniker
+              <Box component="span" sx={{ color: "primary.main" }}>
+                S
+              </Box>
+            </Typography>
+          </Link>
+
+          <Box sx={{ display: { xs: "none", md: "flex" }, gap: 0.5, ml: 2, flex: 1 }}>
+            {navLinks.map((link) => {
+              const ativo = router.pathname === link.href;
+              return (
+                <Link key={link.href} href={link.href} style={{ textDecoration: "none" }}>
+                  <Typography
+                    component="span"
+                    sx={{
+                      display: "inline-block",
+                      px: 1.25,
+                      py: 0.75,
+                      fontSize: "0.875rem",
+                      fontWeight: ativo ? 600 : 500,
+                      color: ativo ? "text.primary" : "text.secondary",
+                      borderBottom: "2px solid",
+                      borderColor: ativo ? "primary.main" : "transparent",
+                      transition: "color 0.2s, border-color 0.2s",
+                      "&:hover": { color: "text.primary" },
+                    }}
+                  >
+                    {link.label}
+                  </Typography>
+                </Link>
+              );
+            })}
+          </Box>
+
+          <Box sx={{ flex: { xs: 1, md: "none" }, display: "flex", justifyContent: "flex-end", gap: 1 }}>
+            <IconButton
+              onClick={alternarModo}
+              aria-label={rotuloTema}
+              title={rotuloTema}
+              size="small"
+              sx={{ color: "text.secondary", "&:hover": { color: "text.primary" } }}
+            >
+              {escuro ? <LightModeOutlinedIcon fontSize="small" /> : <DarkModeOutlinedIcon fontSize="small" />}
+            </IconButton>
+
+            <Button
+              component="a"
+              href={WHATSAPP_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={registrarConversaoWhatsApp}
+              variant="contained"
+              size="small"
+              sx={{
+                display: { xs: "none", sm: "inline-flex" },
+                bgcolor: "primary.main",
+                color: "primary.contrastText",
+                px: 2.25,
+                "&:hover": { bgcolor: "primary.main", opacity: 0.9 },
+              }}
+            >
+              Orçamento
+            </Button>
+
+            <IconButton
+              onClick={() => setMenuAberto(true)}
+              aria-label="Abrir menu"
+              size="small"
+              sx={{ display: { md: "none" }, color: "text.primary" }}
+            >
+              <MenuIcon />
+            </IconButton>
+          </Box>
         </Toolbar>
       </Container>
+
+      <Drawer anchor="right" open={menuAberto} onClose={() => setMenuAberto(false)}>
+        <Box sx={{ width: 260, p: 2 }}>
+          <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", mb: 1 }}>
+            <Typography sx={{ fontWeight: 700, fontSize: "1.1rem" }}>LinikerS</Typography>
+            <IconButton onClick={() => setMenuAberto(false)} aria-label="Fechar menu" size="small">
+              <CloseIcon fontSize="small" />
+            </IconButton>
+          </Box>
+          <Divider sx={{ mb: 1 }} />
+          <Stack>
+            {navLinks.map((link) => (
+              <Link key={link.href} href={link.href} style={{ textDecoration: "none" }}>
+                <Typography
+                  sx={{
+                    py: 1.25,
+                    fontSize: "0.95rem",
+                    color: router.pathname === link.href ? "primary.main" : "text.primary",
+                    fontWeight: router.pathname === link.href ? 600 : 400,
+                  }}
+                >
+                  {link.label}
+                </Typography>
+              </Link>
+            ))}
+          </Stack>
+          <Button
+            component="a"
+            href={WHATSAPP_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={registrarConversaoWhatsApp}
+            variant="contained"
+            fullWidth
+            sx={{ mt: 2, bgcolor: "primary.main", color: "primary.contrastText" }}
+          >
+            Pedir orçamento
+          </Button>
+        </Box>
+      </Drawer>
     </AppBar>
   );
 }

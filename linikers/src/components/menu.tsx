@@ -82,8 +82,8 @@ export default function MenuUser() {
               sx={{
                 mt: 1,
                 minWidth: 200,
-                background: "#111827",
-                border: "1px solid #1e293b",
+                background: "var(--surface)",
+                border: "1px solid var(--border)",
                 borderRadius: 2,
                 overflow: "hidden",
               }}
@@ -99,12 +99,12 @@ export default function MenuUser() {
                       sx={{
                         py: 1.2,
                         px: 2,
-                        fontFamily: "monospace",
+                        fontFamily: "inherit",
                         fontSize: "0.85rem",
-                        color: "#94a3b8",
+                        color: "var(--muted)",
                         transition: "all 0.15s",
                         "&:hover": {
-                          color: "#22d3ee",
+                          color: "var(--accent)",
                           background: "rgba(34, 211, 238, 0.08)",
                         },
                       }}
@@ -115,7 +115,7 @@ export default function MenuUser() {
                       <ListItemText primary={item.label} />
                     </MenuItem>
                   ))}
-                  <Divider sx={{ borderColor: "#1e293b", my: 0.5 }} />
+                  <Divider sx={{ borderColor: "var(--border)", my: 0.5 }} />
                   <MenuItem
                     component="a"
                     href="https://github.com/linikers"
@@ -124,11 +124,11 @@ export default function MenuUser() {
                     sx={{
                       py: 1.2,
                       px: 2,
-                      fontFamily: "monospace",
+                      fontFamily: "inherit",
                       fontSize: "0.8rem",
-                      color: "#64748b",
+                      color: "var(--muted)",
                       "&:hover": {
-                        color: "#22d3ee",
+                        color: "var(--accent)",
                         background: "rgba(34, 211, 238, 0.08)",
                       },
                     }}

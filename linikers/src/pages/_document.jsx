@@ -11,6 +11,12 @@ import Document, { Html, Head, Main, NextScript } from "next/document";
  */
 const GA4_ID = process.env.NEXT_PUBLIC_GA_ID || "G-DGMR5208SP";
 
+/**
+ * Aplica o tema antes da primeira pintura para não piscar claro→escuro.
+ * Papel (claro) é o padrão; Grafite é a variante escura.
+ */
+const SCRIPT_TEMA = `(function(){try{var m=localStorage.getItem('portfolio-tema');if(m!=='light'&&m!=='dark'){m=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.dataset.theme=m;document.documentElement.style.colorScheme=m;}catch(e){document.documentElement.dataset.theme='light';}})();`;
+
 export default class MyDocument extends Document {
   render() {
     // A família /bside tem head próprio (favicon, fontes e marca da Bside);
@@ -19,24 +25,26 @@ export default class MyDocument extends Document {
     const ehBside = pagina.startsWith("/bside");
 
     return (
-      <Html lang="pt-BR">
+      <Html lang="pt-BR" data-theme={ehBside ? "dark" : undefined}>
         <Head>
           {!ehBside && <link rel="icon" href="/favicon.png" />}
           <meta name="facebook-domain-verification" content="7ka2lllvr6hc9j4lmmajjhyj10ogmu" />
           {!ehBside && (
-            <link
-              rel="stylesheet"
-              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-            />
+            <>
+              <link rel="preconnect" href="https://fonts.googleapis.com" />
+              <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+              <link
+                rel="stylesheet"
+                href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap"
+              />
+              <script dangerouslySetInnerHTML={{ __html: SCRIPT_TEMA }} />
+            </>
           )}
           {!ehBside && (
             <meta
               name="LinikerS webDeveloper"
               content="LinikerS Dev desenvolvedor Fron-End && Back-End"
             />
-          )}
-          {!ehBside && (
-            <script async src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
           )}
           {/* Google tag (gtag.js) — Google Ads AW-18460150717 + GA4 (opcional).
               Fica no _document para sair no HTML de TODAS as páginas, uma vez só.
@@ -62,21 +70,6 @@ gtag('config', 'AW-18460150717');${
         <body>
           <Main />
           <NextScript />
-          {!ehBside && (
-            <div id="particles-js" 
-                    style={{ 
-                        position: "absolute", 
-                        width: "100%", 
-                        height: "100%", 
-                        top: 0, 
-                        left: 0, 
-                        background: 'https://images.unsplash.com/photo-1518818419601-72c8673f5852?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80',
-                        backgroundSize: 'cover',
-                        zIndex: 1,
-                        pointerEvents: "none" 
-                    }}
-                ></div>
-          )}
         </body>
       </Html>
     );

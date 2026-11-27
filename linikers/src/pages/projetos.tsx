@@ -94,7 +94,7 @@ export default function Projetos() {
       <Typography
         variant="h2"
         sx={{
-          fontFamily: "monospace",
+          fontFamily: "inherit",
           fontWeight: 900,
           mb: 1,
           fontSize: { xs: "1.8rem", md: "2.5rem" },
@@ -104,7 +104,7 @@ export default function Projetos() {
       </Typography>
       <Typography
         variant="body1"
-        sx={{ color: "text.secondary", mb: 6, fontFamily: "monospace", fontSize: "0.9rem" }}
+        sx={{ color: "text.secondary", mb: 6, fontFamily: "inherit", fontSize: "0.9rem" }}
       >
         $ ls -la ~/workspace/
       </Typography>
@@ -116,16 +116,16 @@ export default function Projetos() {
           rel="noopener noreferrer"
           variant="contained"
           sx={{
-            bgcolor: "#22d3ee",
-            color: "#000",
-            fontFamily: "monospace",
+            bgcolor: "var(--accent)",
+            color: "var(--accent-contrast)",
+            fontFamily: "inherit",
             fontWeight: 600,
-            "&:hover": { bgcolor: "#0fb6d0" },
+            "&:hover": { bgcolor: "var(--accent)" },
           }}
         >
           QUERO ALGO ASSIM
         </Button>
-        <Typography sx={{ color: "text.secondary", fontFamily: "monospace", fontSize: "0.8rem" }}>
+        <Typography sx={{ color: "text.secondary", fontFamily: "inherit", fontSize: "0.8rem" }}>
           orçamento em 24h no WhatsApp
         </Typography>
       </Box>
@@ -134,7 +134,7 @@ export default function Projetos() {
       <Typography
         variant="h6"
         sx={{
-          fontFamily: "monospace",
+          fontFamily: "inherit",
           fontWeight: 700,
           color: "primary.main",
           mb: 3,
@@ -153,7 +153,7 @@ export default function Projetos() {
                 height: "100%",
                 display: "flex",
                 flexDirection: "column",
-                background: "rgba(255,255,255,0.02)",
+                background: "var(--surface)",
                 backdropFilter: "blur(8px)",
                 border: "1px solid",
                 borderColor: "divider",
@@ -189,10 +189,10 @@ export default function Projetos() {
               </Box>
 
               <CardContent sx={{ flex: 1, p: 3, pb: 2 }}>
-                <Typography variant="h5" sx={{ fontWeight: 700, fontFamily: "monospace", fontSize: "1.1rem" }}>
+                <Typography variant="h5" sx={{ fontWeight: 700, fontFamily: "inherit", fontSize: "1.1rem" }}>
                   {p.title}
                 </Typography>
-                <Typography variant="body2" sx={{ color: "primary.main", fontFamily: "monospace", fontSize: "0.75rem", mb: 1.5 }}>
+                <Typography variant="body2" sx={{ color: "primary.main", fontFamily: "inherit", fontSize: "0.75rem", mb: 1.5 }}>
                   {p.subtitle}
                 </Typography>
                 <Typography variant="body2" sx={{ color: "text.secondary", fontSize: "0.85rem", lineHeight: 1.7, mb: 2 }}>
@@ -207,7 +207,7 @@ export default function Projetos() {
                       size="small"
                       variant="outlined"
                       sx={{
-                        fontFamily: "monospace",
+                        fontFamily: "inherit",
                         fontSize: "0.65rem",
                         borderRadius: 1,
                         borderColor: "divider",
@@ -224,7 +224,7 @@ export default function Projetos() {
                     size="small"
                     endIcon={<OpenInNewIcon fontSize="small" />}
                     sx={{
-                      fontFamily: "monospace",
+                      fontFamily: "inherit",
                       fontSize: "0.75rem",
                       textTransform: "none",
                       borderRadius: 1.5,
@@ -243,7 +243,7 @@ export default function Projetos() {
       <Typography
         variant="h6"
         sx={{
-          fontFamily: "monospace",
+          fontFamily: "inherit",
           fontWeight: 700,
           color: "text.secondary",
           mb: 3,
@@ -284,10 +284,10 @@ export default function Projetos() {
                 sx={{ objectFit: "cover", opacity: 0.8 }}
               />
               <CardContent sx={{ p: 2, "&:last-child": { pb: 2 } }}>
-                <Typography variant="subtitle2" sx={{ fontWeight: 600, fontFamily: "monospace", fontSize: "0.8rem" }}>
+                <Typography variant="subtitle2" sx={{ fontWeight: 600, fontFamily: "inherit", fontSize: "0.8rem" }}>
                   {p.title}
                 </Typography>
-                <Typography variant="caption" sx={{ color: "primary.main", fontFamily: "monospace" }}>
+                <Typography variant="caption" sx={{ color: "primary.main", fontFamily: "inherit" }}>
                   {p.sub}
                 </Typography>
                 <Typography variant="body2" sx={{ color: "text.secondary", mt: 0.5, fontSize: "0.7rem", lineHeight: 1.4 }}>
@@ -298,7 +298,7 @@ export default function Projetos() {
                     size="small"
                     sx={{
                       mt: 1,
-                      fontFamily: "monospace",
+                      fontFamily: "inherit",
                       fontSize: "0.7rem",
                       textTransform: "none",
                       color: "text.secondary",

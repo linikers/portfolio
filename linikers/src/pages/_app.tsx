@@ -1,79 +1,122 @@
 import type { AppProps } from "next/app";
-import { useState, useCallback, useEffect } from "react";
+import { useEffect, useSyncExternalStore } from "react";
 import { useRouter } from "next/router";
 import { ThemeProvider as MuiThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
-import IconButton from "@mui/material/IconButton";
-import Tooltip from "@mui/material/Tooltip";
-import PaletteIcon from "@mui/icons-material/Palette";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Head from "next/head";
 import "@/styles/globals.scss";
 import { instalarConversaoWhatsApp } from "@/lib/conversaoWhatsapp";
 import { instalarCliqueWhatsAppBside } from "@/lib/analytics";
+import {
+  assinarModo,
+  obterModo,
+  obterModoServidor,
+  sincronizarAtributo,
+  type Modo,
+} from "@/lib/tema";
 
-const themes = [
-  { id: "terminal-verde", name: "Terminal Verde", primary: "#00ff41", bg: "#0a0a0a", paper: "#0d0d0d", text: "#00ff41", secondary: "#00cc33", radius: 2, font: "'IBM Plex Mono', monospace" },
-  { id: "synthwave", name: "Synthwave", primary: "#ff00ff", bg: "#0d0221", paper: "#150530", text: "#f0e6ff", secondary: "#b39ddb", radius: 0, font: "'Orbitron', sans-serif" },
-  { id: "cyberpunk", name: "Cyberpunk", primary: "#ffb000", bg: "#0a0a0a", paper: "#111111", text: "#ffe0a0", secondary: "#b3863d", radius: 0, font: "'Share Tech Mono', monospace" },
-  { id: "matrix", name: "Matrix", primary: "#00ff41", bg: "#000000", paper: "#020802", text: "#00ff41", secondary: "#006620", radius: 0, font: "'Courier New', monospace" },
-  { id: "retro-mac", name: "Retro Mac", primary: "#008080", bg: "#f5f0e0", paper: "#ffffff", text: "#1a1a1a", secondary: "#555555", radius: 0, font: "'Chicago', monospace", mode: "light" as const },
-];
+/**
+ * Paleta única do portfólio.
+ * Papel (claro) é o padrão; Grafite é a variante escura da MESMA pele.
+ * Os mesmos valores estão em `styles/globals.scss` como CSS vars (--bg, --text…),
+ * usadas pelas páginas que estilizam com estilo inline.
+ */
+const paletas: Record<Modo, {
+  bg: string;
+  surface: string;
+  border: string;
+  text: string;
+  muted: string;
+  accent: string;
+  accent2: string;
+  contrast: string;
+  radius: number;
+}> = {
+  light: {
+    bg: "#f6f5f1",
+    surface: "#ffffff",
+    border: "#e1ded6",
+    text: "#14181f",
+    muted: "#666c75",
+    accent: "#16406b",
+    accent2: "#2f6b4f",
+    contrast: "#ffffff",
+    radius: 6,
+  },
+  dark: {
+    bg: "#0a0d12",
+    surface: "#0f141b",
+    border: "#1e2836",
+    text: "#e8edf5",
+    muted: "#93a1b5",
+    accent: "#4f8cff",
+    accent2: "#7fb3a2",
+    contrast: "#08101f",
+    radius: 10,
+  },
+};
 
-function buildTheme(t: typeof themes[0]) {
-  const mode = (t as any).mode === "light" ? "light" : "dark";
+const FONT_SANS = 'Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif';
+const FONT_SERIF = 'Newsreader, Georgia, "Times New Roman", serif';
+
+function buildTheme(modo: Modo) {
+  const p = paletas[modo];
+  const titulo = modo === "light" ? FONT_SERIF : FONT_SANS;
   return createTheme({
     palette: {
-      mode,
-      primary: { main: t.primary, contrastText: mode === "dark" ? "#000" : "#fff" },
-      secondary: { main: t.secondary },
-      background: { default: t.bg, paper: t.paper },
-      text: { primary: t.text, secondary: t.secondary },
-      divider: mode === "dark" ? "#1e293b" : "#c0c0c0",
+      mode: modo,
+      primary: { main: p.accent, contrastText: p.contrast },
+      secondary: { main: p.accent2 },
+      background: { default: p.bg, paper: p.surface },
+      text: { primary: p.text, secondary: p.muted },
+      divider: p.border,
     },
     typography: {
-      fontFamily: t.font,
-      h2: { fontWeight: 900 },
-      h3: { fontWeight: 700 },
+      fontFamily: FONT_SANS,
+      h1: { fontFamily: titulo, fontWeight: modo === "light" ? 500 : 600, letterSpacing: "-0.02em" },
+      h2: { fontFamily: titulo, fontWeight: modo === "light" ? 500 : 600, letterSpacing: "-0.02em" },
+      h3: { fontWeight: 600 },
+      h4: { fontWeight: 600 },
       h6: { fontWeight: 600 },
-      button: { textTransform: "none", fontFamily: t.font },
+      button: { textTransform: "none", fontWeight: 600 },
     },
-    shape: { borderRadius: t.radius },
+    shape: { borderRadius: p.radius },
     components: {
       MuiCard: { styleOverrides: { root: { backgroundImage: "none" } } },
       MuiPaper: { styleOverrides: { root: { backgroundImage: "none" } } },
-      MuiButton: { styleOverrides: { root: { textTransform: "none", borderRadius: t.radius } } },
-      MuiChip: { styleOverrides: { root: { fontFamily: t.font } } },
+      MuiButton: {
+        styleOverrides: {
+          root: {
+            textTransform: "none",
+            borderRadius: p.radius,
+            boxShadow: "none",
+            "&:hover": { boxShadow: "none" },
+          },
+        },
+      },
+      MuiChip: { styleOverrides: { root: { borderRadius: 4 } } },
     },
   });
 }
 
-const STORAGE_KEY = "portfolio-theme";
-const defaultId = "terminal-verde";
-
 export default function MyApp({ Component, pageProps }: AppProps) {
-  const [themeId, setThemeId] = useState(defaultId);
   const router = useRouter();
+  const modo = useSyncExternalStore(assinarModo, obterModo, obterModoServidor);
 
   // A família de rotas /bside (Bside Digital Studio) tem identidade própria:
-  // nada de Navbar, Footer, botão de tema nem meta/favicon do portfólio vazando.
+  // nada de Navbar, Footer, tema nem meta/favicon do portfólio vazando.
   const ehBside = router.pathname.startsWith("/bside");
 
   useEffect(() => {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved && themes.some((t) => t.id === saved)) setThemeId(saved);
-  }, []);
-
-  const cycle = useCallback(() => {
-    setThemeId((prev) => {
-      const idx = themes.findIndex((t) => t.id === prev);
-      const next = themes[(idx + 1) % themes.length];
-      localStorage.setItem(STORAGE_KEY, next.id);
-      return next.id;
-    });
-  }, []);
+    if (ehBside) {
+      document.documentElement.dataset.theme = "dark";
+      return;
+    }
+    sincronizarAtributo(modo);
+  }, [modo, ehBside]);
 
   // Mede o clique no WhatsApp em todo o site: botões, ícones do rodapé e as landing
   // pages das sitelinks. Um listener global cobre também pontos criados depois.
@@ -83,8 +126,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   // clique é só MEDIDO no GA4, sem alterar para onde o navegador vai.
   useEffect(() => instalarCliqueWhatsAppBside(), []);
 
-  const themeMeta = themes.find((t) => t.id === themeId) || themes[0];
-  const theme = buildTheme(themeMeta);
+  const theme = buildTheme(ehBside ? "dark" : modo);
 
   return (
     <>
@@ -92,47 +134,27 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         {/* Na rota /bside o tema e o favicon são os da Bside (ver Seo.tsx) */}
-        {!ehBside && <meta name="theme-color" content="#0a0a0a" />}
+        {!ehBside && <meta name="theme-color" content={modo === "dark" ? "#0a0d12" : "#f6f5f1"} />}
         {!ehBside && <link rel="icon" href="/favicon.png" />}
         <meta name="google-site-verification" content="f3b6fe1ad59f5971" />
         <meta name="facebook-domain-verification" content="7ka2lllvr6hc9j4lmmajjhyj10ogmu" />
       </Head>
       <MuiThemeProvider theme={theme}>
-      <CssBaseline />
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          minHeight: "100vh",
-          ...(ehBside ? { bgcolor: "#0A1628" } : {}),
-        }}
-      >
-        {!ehBside && <Navbar />}
-        <Box component="main" sx={{ flex: 1 }}>
-          <Component {...pageProps} />
+        <CssBaseline />
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            minHeight: "100vh",
+            ...(ehBside ? { bgcolor: "#0A1628" } : {}),
+          }}
+        >
+          {!ehBside && <Navbar modo={ehBside ? "dark" : modo} />}
+          <Box component="main" sx={{ flex: 1 }}>
+            <Component {...pageProps} />
+          </Box>
+          {!ehBside && <Footer />}
         </Box>
-        {!ehBside && <Footer />}
-      </Box>
-      {!ehBside && (
-        <Tooltip title={`Tema: ${themeMeta.name} (${themes.length} temas)`} placement="left">
-          <IconButton
-            onClick={cycle}
-            size="small"
-            sx={{
-              position: "fixed",
-              bottom: 20,
-              right: 20,
-              zIndex: 10000,
-              bgcolor: "background.paper",
-              border: "1px solid",
-              borderColor: "divider",
-              "&:hover": { bgcolor: "primary.main", color: "primary.contrastText", borderColor: "primary.main" },
-            }}
-          >
-            <PaletteIcon fontSize="small" />
-          </IconButton>
-        </Tooltip>
-      )}
       </MuiThemeProvider>
     </>
   );

@@ -41,11 +41,11 @@ export default function Obrigado() {
       >
         <Typography
           variant="h2"
-          sx={{ fontFamily: "monospace", fontWeight: 900, fontSize: { xs: "1.5rem", md: "2rem" }, mb: 2 }}
+          sx={{ fontFamily: "inherit", fontWeight: 900, fontSize: { xs: "1.5rem", md: "2rem" }, mb: 2 }}
         >
           ▸ recebido
         </Typography>
-        <Typography sx={{ color: "text.secondary", fontFamily: "monospace", fontSize: "0.9rem", mb: 4, maxWidth: 420 }}>
+        <Typography sx={{ color: "text.secondary", fontFamily: "inherit", fontSize: "0.9rem", mb: 4, maxWidth: 420 }}>
           Recebi sua mensagem e respondo em até 24h. Se quiser adiantar, me chama no WhatsApp.
         </Typography>
         <Button
@@ -53,7 +53,7 @@ export default function Obrigado() {
           target="_blank"
           rel="noopener noreferrer"
           variant="contained"
-          sx={{ bgcolor: "#25D366", color: "#fff", "&:hover": { bgcolor: "#20bd5a" }, fontFamily: "monospace" }}
+          sx={{ bgcolor: "#25D366", color: "var(--text)", "&:hover": { bgcolor: "#20bd5a" }, fontFamily: "inherit" }}
         >
           Falar no WhatsApp
         </Button>

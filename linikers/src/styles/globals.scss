@@ -3,152 +3,95 @@
 @import "tailwindcss/utilities";
 
 /* ============================================
-   Globals — Retro Portfolio
+   Tokens — tema Papel (claro, padrão)
+   Grafite = mesma pele, variante escura.
    ============================================ */
 
-/* ---------- Legacy custom properties (usadas por logo.tsx e paginas antigas) ---------- */
 :root {
-  --custom-base-0: #d8ccc8;
-  --custom-base-1: #c7ff3a;
-  --custom-base-2: #3c0675;
-  --custom-black-0: #302a2b;
-  --custom-red-1: #ff9f0d;
-  --custom-blue-1: #699fcb;
+  --bg: #f6f5f1;
+  --surface: #ffffff;
+  --surface-2: #f0efea;
+  --border: #e1ded6;
+  --text: #14181f;
+  --muted: #666c75;
+  --accent: #16406b;
+  --accent-2: #2f6b4f;
+  --accent-contrast: #ffffff;
+  --radius: 6px;
+  --font-sans: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-serif: Newsreader, Georgia, "Times New Roman", serif;
 }
 
-/* ---------- Scanline overlay ---------- */
-.scanlines::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 2px,
-    rgba(0, 0, 0, 0.03) 2px,
-    rgba(0, 0, 0, 0.03) 4px
-  );
-  pointer-events: none;
-  z-index: 9999;
+[data-theme="dark"] {
+  --bg: #0a0d12;
+  --surface: #0f141b;
+  --surface-2: #121924;
+  --border: #1e2836;
+  --text: #e8edf5;
+  --muted: #93a1b5;
+  --accent: #4f8cff;
+  --accent-2: #7fb3a2;
+  --accent-contrast: #08101f;
+  --radius: 10px;
 }
 
-/* ---------- Blink cursor ---------- */
-@keyframes blink {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-}
-.blink-cursor::after {
-  content: "_";
-  animation: blink 1s step-end infinite;
+html,
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* ---------- CRT flicker ---------- */
-@keyframes flicker {
-  0% {
-    opacity: 0.97;
-  }
-  5% {
-    opacity: 0.95;
-  }
-  10% {
-    opacity: 0.98;
-  }
-  15% {
-    opacity: 0.96;
-  }
-  20% {
-    opacity: 0.99;
-  }
-  50% {
-    opacity: 0.97;
-  }
-  80% {
-    opacity: 0.99;
-  }
-  100% {
-    opacity: 0.98;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
-/* ---------- Glitch effect ---------- */
-@keyframes glitch {
-  0% {
-    transform: translate(0);
-  }
-  20% {
-    transform: translate(-2px, 1px);
-  }
-  40% {
-    transform: translate(2px, -1px);
-  }
-  60% {
-    transform: translate(-1px, -1px);
-  }
-  80% {
-    transform: translate(1px, 1px);
-  }
-  100% {
-    transform: translate(0);
-  }
+/* Tipografia sóbria: títulos em serifa no tema claro (Papel). */
+h1,
+h2 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  letter-spacing: -0.02em;
 }
 
-/* ---------- Old boot screen styles ---------- */
-.background-image {
-  background: linear-gradient(
-    to right,
-    var(--custom-base-1, #c7ff3a),
-    var(--custom-base-2, #3c0675)
-  );
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-.backgroundRoom {
-  position: absolute;
-  inset: 0;
-  background-image: url("/desk-2000s.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.monitor-zone {
-  position: absolute;
-  left: 55%;
-  top: 28%;
-  width: 390px;
-  height: 240px;
-  overflow: hidden;
-}
-
-.debug-form-active {
-  border: 2px solid lime !important;
-  pointer-events: auto !important;
+[data-theme="dark"] h1,
+[data-theme="dark"] h2 {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  letter-spacing: -0.01em;
 }
 
 /* ---------- Scrollbar ---------- */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #0a0a0f;
+  background: var(--bg);
 }
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
-  border-radius: 3px;
+  background: var(--border);
+  border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #334155;
+  background: var(--muted);
 }
 
 /* ---------- Selection ---------- */
 ::selection {
-  background: rgba(34, 211, 238, 0.3);
-  color: #fff;
+  background: var(--accent);
+  color: var(--accent-contrast);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
 }
