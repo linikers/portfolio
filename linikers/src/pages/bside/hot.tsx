@@ -1,6 +1,7 @@
 import { useState } from "react";
 import BsideSeo from "@/components/bside/Seo";
 import { wa } from "@/lib/bside";
+import { formatarPreco, servico } from "@/data/servicos";
 import s from "@/styles/bside-hot.module.scss";
 
 /**
@@ -45,7 +46,7 @@ const PLANOS: Plano[] = [
   {
     id: "fotos",
     nome: "Fotos",
-    valor: "R$ 300",
+    valor: formatarPreco(servico("hot-fotos").preco),
     unidade: "uma vez",
     itens: [
       "1 hora de ensaio no seu local",
@@ -58,7 +59,7 @@ const PLANOS: Plano[] = [
   {
     id: "video",
     nome: "Vídeo",
-    valor: "R$ 300",
+    valor: formatarPreco(servico("hot-video").preco),
     unidade: "uma vez",
     itens: [
       "4 vídeos curtos de 15 a 30 segundos",
@@ -72,7 +73,7 @@ const PLANOS: Plano[] = [
     id: "pagina",
     selo: "Já tem fotos",
     nome: "Página anual",
-    valor: "R$ 300",
+    valor: formatarPreco(servico("hot-pagina-anual").preco),
     unidade: "por ano",
     itens: [
       "Página só sua, com as fotos que você já tem",
@@ -86,7 +87,7 @@ const PLANOS: Plano[] = [
   {
     id: "combo",
     nome: "Fotos + vídeo",
-    valor: "R$ 497",
+    valor: formatarPreco(servico("hot-combo-fotos-video").preco),
     unidade: "uma vez",
     itens: [
       "Tudo do plano de fotos",
@@ -100,7 +101,7 @@ const PLANOS: Plano[] = [
     id: "completo",
     selo: "Mais completo",
     nome: "Completo",
-    valor: "R$ 999",
+    valor: formatarPreco(servico("hot-completo").preco),
     unidade: "uma vez",
     itens: [
       "Ensaio com 20 fotos tratadas",
@@ -115,7 +116,7 @@ const PLANOS: Plano[] = [
   {
     id: "mensal",
     nome: "Manutenção",
-    valor: "R$ 49",
+    valor: formatarPreco(servico("hot-manutencao").preco),
     unidade: "por mês",
     itens: [
       "Hospedagem e domínio da página",

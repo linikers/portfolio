@@ -6,6 +6,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import AdminGuard from "@/components/admin/AdminGuard";
 import Head from "next/head";
 import "@/styles/globals.scss";
 import { instalarConversaoWhatsApp } from "@/lib/conversaoWhatsapp";
@@ -110,6 +111,13 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   // nada de Navbar, Footer, tema nem meta/favicon do portfólio vazando.
   const ehBside = router.pathname.startsWith("/bside");
 
+  // Toda rota /admin (menos o login) só renderiza depois que o servidor confirma
+  // a sessão de admin. O middleware já barra sem cookie; o guard cobre cookie
+  // inválido/expirado e evita piscar conteúdo antes da checagem.
+  const ehAdminProtegido =
+    router.pathname === "/admin" ||
+    (router.pathname.startsWith("/admin/") && router.pathname !== "/admin/login");
+
   useEffect(() => {
     if (ehBside) {
       document.documentElement.dataset.theme = "dark";
@@ -151,7 +159,13 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         >
           {!ehBside && <Navbar modo={ehBside ? "dark" : modo} />}
           <Box component="main" sx={{ flex: 1 }}>
-            <Component {...pageProps} />
+            {ehAdminProtegido ? (
+              <AdminGuard>
+                <Component {...pageProps} />
+              </AdminGuard>
+            ) : (
+              <Component {...pageProps} />
+            )}
           </Box>
           {!ehBside && <Footer />}
         </Box>

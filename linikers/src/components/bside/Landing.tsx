@@ -1,6 +1,7 @@
 import Link from "next/link";
 import s from "@/styles/bside.module.scss";
 import { wa, WA_MSG } from "@/lib/bside";
+import { formatarPreco, servico, valorDe } from "@/data/servicos";
 import {
   BsLogo,
   CellIcon,
@@ -19,7 +20,14 @@ import {
  * Wireframe e copy: RESPOSTA-SERVICOS-v3.md (11 seções) + textos literais de
  * RESPOSTA-CONVERSA-v3.md. Nenhum link daqui aponta para fora de /bside e demos
  * (as outras rotas do domínio têm outra oferta e outros preços).
+ *
+ * Preço exibido NÃO se digita aqui: vem de `src/data/servicos.ts` (fonte única).
  */
+
+const SERVICO_PAGINA = servico("bside-pagina-profissional");
+const SERVICO_VITRINE = servico("bside-vitrine-que-vende");
+const SERVICO_AUTOMATICO = servico("bside-operacao-automatica");
+const SERVICO_SOB_MEDIDA = servico("bside-sistema-sob-medida");
 
 /* ------------------------------------------------------------------ */
 /* Faixa "O QUE A GENTE FAZ" (9 serviços + célula de saída)             */
@@ -476,7 +484,7 @@ function Precos() {
             <p className={s.precoSub}>
               Uma página no ar, no Google, com botão para o seu WhatsApp.
             </p>
-            <p className={s.precoValor}>R$ 397</p>
+            <p className={s.precoValor}>{valorDe(SERVICO_PAGINA.id)}</p>
             <p className={s.precoPagamento}>em até 2x, sem juros</p>
             <ul className={s.precoLista}>
               <li>
@@ -497,7 +505,7 @@ function Precos() {
               </li>
             </ul>
             {/* Recorrência visível de propósito; R$ 39/mês aguarda ratificação final do dono. */}
-            <p className={s.precoRecorrencia}>Do 13º mês: R$ 39/mês</p>
+            <p className={s.precoRecorrencia}>Do 13º mês: {formatarPreco(SERVICO_PAGINA.recorrencia?.valor || 0)}/mês</p>
             <p className={s.precoPrazo}>Prazo: 3 a 5 dias úteis</p>
             <a
               className={`${s.btn} ${s.btnPrimary} ${s.btnBloco}`}
@@ -517,7 +525,7 @@ function Precos() {
               Site completo com cardápio digital ou agenda online, e 1 ano de
               manutenção.
             </p>
-            <p className={s.precoValor}>R$ 997</p>
+            <p className={s.precoValor}>{valorDe(SERVICO_VITRINE.id)}</p>
             <p className={s.precoPagamento}>em até 2x, sem juros</p>
             <ul className={s.precoLista}>
               <li>
@@ -541,7 +549,7 @@ function Precos() {
                 1 rodada de ajustes depois de publicado
               </li>
             </ul>
-            <p className={s.precoRecorrencia}>Do 13º mês: R$ 49/mês</p>
+            <p className={s.precoRecorrencia}>Do 13º mês: {formatarPreco(SERVICO_VITRINE.recorrencia?.valor || 0)}/mês</p>
             <p className={s.precoPrazo}>Prazo: 5 a 7 dias úteis</p>
             <p className={s.btnMicro}>
               Você confirma tudo no WhatsApp, sem compromisso.
@@ -567,7 +575,7 @@ function Precos() {
             </p>
             <p className={s.precoValor}>
               <span className={s.precoDe}>a partir de</span>
-              R$ 2.497
+              {valorDe(SERVICO_AUTOMATICO.id)}
             </p>
             <p className={s.precoPagamento}>em até 6x, sem juros</p>
             <ul className={s.precoLista}>
@@ -589,7 +597,7 @@ function Precos() {
               </li>
             </ul>
             <p className={s.precoRecorrencia}>
-              Do 13º mês: R$ 79/mês. Mensagens automáticas cobradas à parte, a
+              Do 13º mês: {formatarPreco(SERVICO_AUTOMATICO.recorrencia?.valor || 0)}/mês. Mensagens automáticas cobradas à parte, a
               preço de custo.
             </p>
             <p className={s.precoPrazo}>Prazo: combinado por escrito na proposta</p>
@@ -608,7 +616,7 @@ function Precos() {
           <PixelDivider />
           <p className={s.precoLinha}>
             Só precisa de um sistema sob medida, com painel e cadastros? A
-            partir de R$ 1.997, com escopo fechado em proposta.{" "}
+            partir de {valorDe(SERVICO_SOB_MEDIDA.id)}, com escopo fechado em proposta.{" "}
             <a
               href={wa(WA_MSG.linhaSistema)}
               target="_blank"
