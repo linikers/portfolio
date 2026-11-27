@@ -7,10 +7,14 @@ import {
   Terminal as TerminalIcon,
   Campaign as CampaignIcon,
   Groups as GroupsIcon,
+  Inventory2 as InventoryIcon,
+  Insights as InsightsIcon,
 } from "@mui/icons-material";
 import Link from "next/link";
 
 const modules = [
+  { href: "/admin/visao", label: "Visão do site", icon: <InsightsIcon />, desc: "Visitas, cliques no WhatsApp e origem do lead" },
+  { href: "/admin/servicos", label: "Serviços", icon: <InventoryIcon />, desc: "Catálogo, preços e recorrência" },
   { href: "/admin/dashboard", label: "Dashboard", icon: <DashboardIcon />, desc: "Métricas e visão geral" },
   { href: "/admin/ml", label: "Mercado Livre", icon: <StoreIcon />, desc: "Campanhas e vendas ML" },
   { href: "/admin/gerador", label: "Gerador de Conteúdo", icon: <TerminalIcon />, desc: "IA para criar posts" },
@@ -20,12 +24,12 @@ const modules = [
 
 export default function AdminIndex() {
   return (
-    <Box sx={{ minHeight: "100vh", background: "#0a0a0f", py: 6 }}>
+    <Box sx={{ minHeight: "100vh", bgcolor: "background.default", py: 6 }}>
       <Container maxWidth="lg">
-        <Typography variant="h4" sx={{ fontWeight: 800, color: "#fff", mb: 1 }}>
+        <Typography variant="h4" sx={{ fontWeight: 800, color: "text.primary", mb: 1 }}>
           Painel Administrativo
         </Typography>
-        <Typography sx={{ color: "#64748b", mb: 4 }}>
+        <Typography sx={{ color: "text.secondary", mb: 4 }}>
           Gerencie suas ferramentas e integrações.
         </Typography>
 
@@ -41,18 +45,19 @@ export default function AdminIndex() {
                     flexDirection: "column",
                     alignItems: "center",
                     gap: 1.5,
-                    background: "rgba(255,255,255,0.03)",
-                    border: "1px solid rgba(255,255,255,0.08)",
+                    background: "background.paper",
+                    border: "1px solid",
+                    borderColor: "divider",
                     borderRadius: 3,
                     cursor: "pointer",
                     textDecoration: "none",
                     transition: "0.2s",
-                    "&:hover": { borderColor: "rgba(99,102,241,0.4)", transform: "translateY(-2px)" },
+                    "&:hover": { borderColor: "primary.main", transform: "translateY(-2px)" },
                   }}
                 >
-                  <Box sx={{ color: "#818cf8", fontSize: "2rem" }}>{m.icon}</Box>
-                  <Typography sx={{ color: "#e2e8f0", fontWeight: 700 }}>{m.label}</Typography>
-                  <Typography sx={{ color: "#64748b", fontSize: "0.85rem", textAlign: "center" }}>{m.desc}</Typography>
+                  <Box sx={{ color: "primary.main", fontSize: "2rem" }}>{m.icon}</Box>
+                  <Typography sx={{ color: "text.primary", fontWeight: 700 }}>{m.label}</Typography>
+                  <Typography sx={{ color: "text.secondary", fontSize: "0.85rem", textAlign: "center" }}>{m.desc}</Typography>
                 </Paper>
               </Link>
             </Grid>

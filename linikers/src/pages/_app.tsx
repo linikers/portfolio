@@ -6,10 +6,12 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import AdminGuard from "@/components/admin/AdminGuard";
 import Head from "next/head";
 import "@/styles/globals.scss";
 import { instalarConversaoWhatsApp } from "@/lib/conversaoWhatsapp";
 import { instalarCliqueWhatsAppBside } from "@/lib/analytics";
+import { instalarTrackingWhatsapp, registrarPageview } from "@/lib/track";
 import {
   assinarModo,
   obterModo,
@@ -110,6 +112,13 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   // nada de Navbar, Footer, tema nem meta/favicon do portfólio vazando.
   const ehBside = router.pathname.startsWith("/bside");
 
+  // Toda rota /admin (menos o login) só renderiza depois que o servidor confirma
+  // a sessão de admin. O middleware já barra sem cookie; o guard cobre cookie
+  // inválido/expirado e evita piscar conteúdo antes da checagem.
+  const ehAdminProtegido =
+    router.pathname === "/admin" ||
+    (router.pathname.startsWith("/admin/") && router.pathname !== "/admin/login");
+
   useEffect(() => {
     if (ehBside) {
       document.documentElement.dataset.theme = "dark";
@@ -125,6 +134,17 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   // A família /bside fica fora do listener acima (número e marca próprios). Aqui o
   // clique é só MEDIDO no GA4, sem alterar para onde o navegador vai.
   useEffect(() => instalarCliqueWhatsAppBside(), []);
+
+  // Medição própria (first-party): visita por rota e clique no WhatsApp em
+  // qualquer página, inclusive /bside. Grava em /api/track → coleção `eventos`.
+  useEffect(() => instalarTrackingWhatsapp(), []);
+
+  useEffect(() => {
+    registrarPageview();
+    const aoMudar = (url: string) => registrarPageview(url.split("?")[0]);
+    router.events.on("routeChangeComplete", aoMudar);
+    return () => router.events.off("routeChangeComplete", aoMudar);
+  }, [router.events]);
 
   const theme = buildTheme(ehBside ? "dark" : modo);
 
@@ -151,7 +171,13 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         >
           {!ehBside && <Navbar modo={ehBside ? "dark" : modo} />}
           <Box component="main" sx={{ flex: 1 }}>
-            <Component {...pageProps} />
+            {ehAdminProtegido ? (
+              <AdminGuard>
+                <Component {...pageProps} />
+              </AdminGuard>
+            ) : (
+              <Component {...pageProps} />
+            )}
           </Box>
           {!ehBside && <Footer />}
         </Box>

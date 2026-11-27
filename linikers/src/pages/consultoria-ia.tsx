@@ -3,6 +3,7 @@ import SEO from "@/components/SEO";
 import Head from "next/head";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { servico, valorDe } from "@/data/servicos";
 
 const fadeUp = { initial: { opacity: 0, y: 30 }, whileInView: { opacity: 1, y: 0 }, transition: { duration: 0.6 } };
 
@@ -16,7 +17,7 @@ const jsonLd = {
     { "@type": "Country", name: "Brasil" },
   ],
   description: "Análise de precificação com inteligência artificial para definir o preço ideal do seu produto. Consultoria online em todo Brasil.",
-  offers: { "@type": "Offer", price: "97", priceCurrency: "BRL" },
+  offers: { "@type": "Offer", price: String(servico("consultoria-ia-precificacao").preco), priceCurrency: "BRL" },
 };
 
 export default function ConsultoriaIA() {
@@ -24,7 +25,7 @@ export default function ConsultoriaIA() {
     <>
       <SEO
         title="Consultoria de Precificação com IA em Maringá"
-        description="Consultoria de precificação com IA em Maringá e todo Brasil. Análise inteligente de mercado, concorrência e custos para definir o preço ideal do seu produto. R$ 97."
+        description={`Consultoria de precificação com IA em Maringá e todo Brasil. Análise inteligente de mercado, concorrência e custos para definir o preço ideal do seu produto. ${valorDe("consultoria-ia-precificacao")}.`}
         ogImage="/ecommerce-hero.png"
       />
       <Head>
@@ -59,7 +60,7 @@ export default function ConsultoriaIA() {
           <Box sx={{ textAlign: "center", mb: 8 }}>
             <Card sx={{ maxWidth: 400, mx: "auto", bgcolor: "var(--surface)", border: "1px solid var(--border)", p: 4 }}>
               <Typography variant="overline" sx={{ color: "var(--accent-2)", letterSpacing: 3, fontSize: "0.7rem" }}>CONSULTORIA DE PRECIFICAÇÃO</Typography>
-              <Typography variant="h3" sx={{ color: "var(--text)", fontWeight: 700, my: 1 }}>R$ 97 <Typography component="span" variant="body1" sx={{ color: "var(--accent-2)" }}>/projeto</Typography></Typography>
+              <Typography variant="h3" sx={{ color: "var(--text)", fontWeight: 700, my: 1 }}>{valorDe("consultoria-ia-precificacao")} <Typography component="span" variant="body1" sx={{ color: "var(--accent-2)" }}>/projeto</Typography></Typography>
               <List dense>
                 {["Análise de precificação com IA", "Comparativo de concorrência", "Relatório completo de cenários", "Recomendação de margem ideal", "Suporte por 7 dias"].map((item) => (
                   <ListItem key={item} sx={{ borderBottom: "1px solid var(--border)", py: 1 }}>

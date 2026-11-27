@@ -13,6 +13,7 @@ import SEO from "@/components/SEO";
 import Head from "next/head";
 import { motion } from "framer-motion";
 import { WHATSAPP_NUMERO } from "@/lib/conversaoWhatsapp";
+import { precoDe, servico } from "@/data/servicos";
 
 /**
  * Página de oferta do serviço que a campanha do Google anuncia.
@@ -21,8 +22,8 @@ import { WHATSAPP_NUMERO } from "@/lib/conversaoWhatsapp";
  * o clique para a home — que explica tudo e não fecha nada. Aqui a oferta, o preço e a
  * prova estão no mesmo lugar, com o CTA de WhatsApp (medido pelo listener global).
  *
- * Preços e fatos vieram das páginas que JÁ existem no site (landing a partir de R$ 499,
- * loja a partir de R$ 1.999, hospedagem R$ 20–40/mês, sem mensalidade) — nada inventado.
+ * Preços vêm de `src/data/servicos.ts` (fonte única): landing, loja e sistema
+ * sob medida. Hospedagem R$ 20–40/mês, sem mensalidade — nada inventado.
  */
 
 const LINK_WHATSAPP = `https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent(
@@ -47,13 +48,13 @@ const jsonLd = {
   areaServed: [{ "@type": "Country", name: "Brasil" }],
   description:
     "Criação de sites, landing pages, lojas virtuais e sistemas web sob medida. Tecnologia Next.js, React, Node e integrações.",
-  offers: { "@type": "Offer", price: "499", priceCurrency: "BRL" },
+  offers: { "@type": "Offer", price: String(servico("sites-landing-page").preco), priceCurrency: "BRL" },
 };
 
 const ofertas = [
   {
     nome: "Landing page",
-    preco: "a partir de R$ 499",
+    preco: precoDe("sites-landing-page"),
     prazo: "entrega em até 7 dias",
     itens: [
       "Página focada em converter visita em contato",
@@ -63,7 +64,7 @@ const ofertas = [
   },
   {
     nome: "Site ou loja virtual",
-    preco: "a partir de R$ 1.999",
+    preco: precoDe("sites-loja-virtual"),
     prazo: "projeto de 2 a 4 semanas",
     itens: [
       "Catálogo, carrinho e checkout",
@@ -114,7 +115,7 @@ export default function CriacaoDeSites() {
     <>
       <SEO
         title="Criação de Sites e Sistemas Sob Medida | Orçamento em 24h"
-        description="Seu site ou sistema pronto para vender: landing pages a partir de R$ 499 e lojas virtuais a partir de R$ 1.999. Next.js, React e Node. Orçamento em 24h no WhatsApp."
+        description={`Seu site ou sistema pronto para vender: landing pages ${precoDe("sites-landing-page")} e lojas virtuais ${precoDe("sites-loja-virtual")}. Next.js, React e Node. Orçamento em 24h no WhatsApp.`}
         ogImage="/ecommerce-hero.png"
       />
       <Head>
